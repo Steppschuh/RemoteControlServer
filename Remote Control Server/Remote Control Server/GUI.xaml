@@ -1,0 +1,188 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Remote Control Server" Height="700" Width="400" Background="#00000000" AllowsTransparency="True" WindowStyle="None" OpacityMask="Lime" Icon="icon_072.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="footerItem" TargetType="{x:Type Rectangle}">
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Fill" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Cursor" Value="Hand" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                    Storyboard.TargetProperty="Opacity" To="0.001" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                    Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="infoIcon" TargetType="{x:Type Image}">
+            <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="15" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Cursor" Value="Hand" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                    Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                    Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="infoLabel" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <Style x:Key="infoImageButton" TargetType="{x:Type Image}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="0,15,0,5" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style x:Key="infoImageButtonRotate" BasedOn="{StaticResource infoImageButton}" TargetType="{x:Type Image}">
+            <Setter Property="Image.RenderTransform">
+                <Setter.Value>
+                    <RotateTransform CenterX="32" CenterY="32" />
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    To="-360"
+                                    Duration="0:0:3"
+                                    RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    To="0"
+                                    Duration="0:0:0.5"
+                                    RepeatBehavior="1x" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Image x:Name="image_back" Stretch="UniformToFill" Source="pack://application:,,,/Resources/back_bb.png"/>
+        <Label x:Name="label_log" Content="Initializing" HorizontalAlignment="Left" Margin="75,104,0,0" VerticalAlignment="Top" Width="auto" Foreground="#FF818181" FontSize="11" Background="{x:Null}"/>
+
+        <Grid Name="grid_server" Margin="85,170,70,445">
+            <Label Content="Server" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+
+            <Label Content="IP Address:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+            <Label x:Name="label_server_ip" Style="{StaticResource infoLabel}" Content="Unknown" HorizontalAlignment="Right" Margin="0,12,0,0" HorizontalContentAlignment="Right" />
+            <Image x:Name="image_server_ip" Style="{StaticResource infoIcon}" Margin="80,19,0,0" Source="pack://application:,,,/Resources/ic_action_help.png" Visibility="Hidden" />
+
+            <Label Content="Version:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,27,0,0"/>
+            <Label x:Name="label_server_version" Style="{StaticResource infoLabel}" Content="2.1.0.0" HorizontalAlignment="Right" Margin="0,27,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_server_version" Style="{StaticResource infoIcon}" Margin="80,34,0,0" Source="pack://application:,,,/Resources/ic_action_refresh.png" />
+
+            <Label Content="Protected:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,42,0,0"/>
+            <Label x:Name="label_server_protected" Style="{StaticResource infoLabel}" Content="No" HorizontalAlignment="Right" Margin="0,42,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_server_protected" Style="{StaticResource infoIcon}" Margin="80,49,0,0" Source="pack://application:,,,/Resources/ic_action_not_secure.png" />
+
+            <Label Content="Status:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,57,0,0"/>
+            <Label x:Name="label_server_status" Style="{StaticResource infoLabel}" Content="Unknown" HorizontalAlignment="Right" Margin="0,57,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_server_status" Style="{StaticResource infoIcon}" Margin="80,64,0,0" Source="pack://application:,,,/Resources/ic_action_accept.png" Visibility="Hidden" />
+
+        </Grid>
+        <Grid Name="grid_app" Margin="85,262,70,352">
+            <Label Content="App" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+
+            <Label Content="IP Address:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+            <Label x:Name="label_app_ip" Style="{StaticResource infoLabel}" Content="Unknown" HorizontalAlignment="Right" Margin="0,12,0,0" HorizontalContentAlignment="Right" />
+            <Image x:Name="image_app_ip" Style="{StaticResource infoIcon}" Margin="80,19,0,0" Source="pack://application:,,,/Resources/ic_action_help.png" Visibility="Hidden" />
+
+            <Label Content="Version:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,27,0,0"/>
+            <Label x:Name="label_app_version" Style="{StaticResource infoLabel}" Content="Unknown" HorizontalAlignment="Right" Margin="0,27,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_app_version" Style="{StaticResource infoIcon}" Margin="80,34,0,0" Source="pack://application:,,,/Resources/ic_action_refresh.png" Visibility="Hidden" />
+
+            <Label Content="Device:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,42,0,0"/>
+            <Label x:Name="label_app_device" Style="{StaticResource infoLabel}" Content="Unknown" HorizontalAlignment="Right" Margin="0,42,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_app_device" Style="{StaticResource infoIcon}" Margin="80,49,0,0" Source="pack://application:,,,/Resources/icon_android.png" />
+
+            <Label Content="Status:" Style="{StaticResource infoLabel}" HorizontalAlignment="Left" Margin="0,57,0,0"/>
+            <Label x:Name="label_app_status" Style="{StaticResource infoLabel}" Content="Not connected" HorizontalAlignment="Right" Margin="0,57,0,0" HorizontalContentAlignment="Right"/>
+            <Image x:Name="image_app_status" Style="{StaticResource infoIcon}" Margin="80,64,0,0" Source="pack://application:,,,/Resources/ic_action_accept.png" Visibility="Hidden" />
+
+        </Grid>
+        
+        <Grid Name="grid_info" Margin="85,356,198,260">
+            <Image x:Name="button_info" Style="{StaticResource infoImageButton}" Source="Resources/start_info.png"/>
+            <Label Content="Log Info" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+        </Grid>
+
+        <Grid Name="grid_help" Margin="212,356,70,260">
+            <Image x:Name="button_help" Style="{StaticResource infoImageButton}" Source="Resources/start_help.png" />
+            <Label Content="Help" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+        </Grid>
+
+        <Grid Name="grid_settings" Margin="85,449,198,167">
+            <Image x:Name="button_settings"  Style="{StaticResource infoImageButtonRotate}" Source="Resources/start_settings.png" />
+            <Label Content="Settings" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+        </Grid>
+
+        <Grid Name="grid_upgrade" Margin="212,449,70,167">
+            <Image x:Name="button_upgrade" Style="{StaticResource infoImageButtonRotate}" Source="Resources/start_upgrade.png" />
+            <Label Content="Upgrade" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
+        </Grid>
+        
+        <Grid Name="grid_footer">
+            <Label x:Name="label_tooltip" Content="" HorizontalAlignment="Center" Height="auto" Margin="85,578,70,0" VerticalAlignment="Top" Width="245" Foreground="#FF7C7C7C" HorizontalContentAlignment="Center" Opacity="0"/>                
+            <Rectangle x:Name="button_footer_close" Style="{StaticResource footerItem}" Margin="85,546,0,0" Width="83"/>
+            <Rectangle x:Name="button_footer_home" Style="{StaticResource footerItem}" Margin="168,546,0,0" Width="79"/>
+            <Rectangle x:Name="button_footer_hide" Style="{StaticResource footerItem}" Margin="247,546,0,0" Width="83"/>
+        </Grid>
+        
+
+    </Grid>
+</Window>

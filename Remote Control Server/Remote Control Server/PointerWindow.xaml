@@ -1,0 +1,8 @@
+﻿<Window x:Class="PointerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="PointerWindow" Height="100" Width="100" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}">
+    <Grid>
+        <Image x:Name="image_back" Stretch="UniformToFill" Source="pack://application:,,,/Resources/pointer_white.png"/>
+    </Grid>
+</Window>
