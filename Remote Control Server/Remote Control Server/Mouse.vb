@@ -75,8 +75,8 @@ Module Mouse
         Return cursorPosition
     End Function
 
-    Public Function valueMatchesTolerance(ByVal Val1 As Decimal, ByVal Val2 As Decimal, Optional ByVal Tolerance As Integer = 20) As Boolean
-        If Val1 < Val2 + Tolerance And Val1 > Val2 - Tolerance Then
+    Public Function valueMatchesTolerance(ByVal val1 As Decimal, ByVal val2 As Decimal, Optional ByVal tolerance As Integer = 20) As Boolean
+        If val1 < val2 + tolerance And val1 > val2 - tolerance Then
             Return True
         Else
             Return False
@@ -98,15 +98,15 @@ Module Mouse
         Return P
     End Function
 
-    Public Function commandGetPoint(ByVal Message_Bytes As Byte(), ByVal ID As Integer) As Point
+    Public Function commandGetPoint(ByVal messageBytes As Byte(), ByVal ID As Integer) As Point
         Dim P As Point
         Try
             If ID = 0 Then
-                P.X = Message_Bytes(3)
-                P.Y = Message_Bytes(4)
+                P.X = messageBytes(3)
+                P.Y = messageBytes(4)
             ElseIf ID = 1 Then
-                P.X = Message_Bytes(5)
-                P.Y = Message_Bytes(6)
+                P.X = messageBytes(5)
+                P.Y = messageBytes(6)
             End If
         Catch ex As Exception
             'log(ex.ToString)
@@ -114,8 +114,8 @@ Module Mouse
         Return P
     End Function
 
-    Public Function isPointerDown(ByVal Pointer As Point) As Boolean
-        If Pointer = P_ORIGIN Then
+    Public Function isPointerDown(ByVal pointer As Point) As Boolean
+        If pointer = P_ORIGIN Then
             Return False
         Else
             Return True
@@ -174,24 +174,24 @@ Module Mouse
         End If
     End Sub
 
-    Public Sub scrollRepeat(ByVal Value As Integer, Optional ByVal Count As Integer = 1)
-        For i = 0 To Count
-            mouse_event(MOUSE_WHEEL, 0, 0, Value, 0)
+    Public Sub scrollRepeat(ByVal value As Integer, Optional ByVal count As Integer = 1)
+        For i = 0 To count
+            mouse_event(MOUSE_WHEEL, 0, 0, value, 0)
             i += 1
         Next
     End Sub
 
-    Public Sub leftClickRepeat(ByVal Count As Integer)
-        For i = 1 To Count
+    Public Sub leftClickRepeat(ByVal count As Integer)
+        For i = 1 To count
             mouse_event(MOUSE_LEFT_DOWN, 0, 0, 0, 0)
             mouse_event(MOUSE_LEFT_UP, 0, 0, 0, 0)
             i += 1
         Next
     End Sub
 
-    Public Sub zoom(ByVal Value As Integer, Optional ByVal Count As Integer = 1)
+    Public Sub zoom(ByVal value As Integer, Optional ByVal count As Integer = 1)
         Keyboard.sendKeyDown(Keys.LControlKey)
-        scrollRepeat(Value, Count)
+        scrollRepeat(value, count)
         Keyboard.sendKeyUp(Keys.LControlKey)
     End Sub
 
@@ -248,10 +248,10 @@ Module Mouse
         P3_Vektor_Last = P3_Vektor_New
     End Sub
 
-    Public Sub parseCursorMove(ByVal Message_Bytes As Byte())
-        P1_New = commandGetPoint(Message_Bytes, 0)
+    Public Sub parseCursorMove(ByVal messageBytes As Byte())
+        P1_New = commandGetPoint(messageBytes, 0)
         If isMultitouch = True Then
-            P2_New = commandGetPoint(Message_Bytes, 1)
+            P2_New = commandGetPoint(messageBytes, 1)
             processMultitouch()
         Else
             P2_New = P_ORIGIN
@@ -259,12 +259,12 @@ Module Mouse
         End If
     End Sub
 
-    Public Sub parseCursorSet(ByVal Message_Bytes As Byte())
+    Public Sub parseCursorSet(ByVal messageBytes As Byte())
         Dim x As Integer = 0
         Dim y As Integer = 0
         Try
-            x = Message_Bytes(3) * 255 + Message_Bytes(4)
-            y = Message_Bytes(5) * 255 + Message_Bytes(6)
+            x = messageBytes(3) * 255 + messageBytes(4)
+            y = messageBytes(5) * 255 + messageBytes(6)
 
             Dim locations As System.Drawing.Point() = Screenshot.getScreenBounds(Screenshot.screenIndex)
             x += locations(0).X
@@ -275,8 +275,8 @@ Module Mouse
         End Try
     End Sub
 
-    Public Sub parseScroll(ByVal Message_Bytes As Byte())
-        P1_New = commandGetPoint(Message_Bytes, 0)
+    Public Sub parseScroll(ByVal messageBytes As Byte())
+        P1_New = commandGetPoint(messageBytes, 0)
         scrollAmount = (P1_New.Y - P1_Last.Y) * 20
         If P1_New.Y > P1_Last.Y Then
             'scroll down
@@ -288,12 +288,12 @@ Module Mouse
         P1_Last = P1_New
     End Sub
 
-    Public Sub parseClick(ByVal Message_Bytes As Byte())
-        Select Case Message_Bytes(2)
+    Public Sub parseClick(ByVal messageBytes As Byte())
+        Select Case messageBytes(2)
             Case cmd_mouse_down
                 '1 Pointer Down
                 isMultitouch = False
-                P1_Start = commandGetPoint(Message_Bytes, 0)
+                P1_Start = commandGetPoint(messageBytes, 0)
                 P1_Last = P1_Start
                 cursorPositonDown = getCursorPosition()
                 mousePadDown = True
@@ -314,12 +314,12 @@ Module Mouse
             Case cmd_mouse_down_1
                 '2 Pointer Down
                 isMultitouch = True
-                P1_Start = commandGetPoint(Message_Bytes, 0)
+                P1_Start = commandGetPoint(messageBytes, 0)
                 P1_New = P1_Start
                 P1_Last = P1_Start
                 P1_Down = DateTime.Now
 
-                P2_Start = commandGetPoint(Message_Bytes, 1)
+                P2_Start = commandGetPoint(messageBytes, 1)
                 P2_New = P2_Start
                 P2_Last = P2_Start
                 P2_Down = DateTime.Now
@@ -362,8 +362,8 @@ Module Mouse
         End Select
     End Sub
 
-    Public Sub parseScroll(ByVal Message As String)
-        Dim Action As String = ApiV1.getCommandValue(Message)
+    Public Sub parseScroll(ByVal message As String)
+        Dim Action As String = ApiV1.getCommandvalue(message)
         If Action.Contains("left_down") Or Action.Contains("zoomout") Then
             'Zoom out
             Keyboard.sendKeyDown(Keys.LControlKey)
@@ -395,10 +395,10 @@ Module Mouse
         End If
     End Sub
 
-    Public Sub parsePointer(ByVal Message_Bytes As Byte())
+    Public Sub parsePointer(ByVal messageBytes As Byte())
         Try
-            X_New = Message_Bytes(3)
-            Y_New = Message_Bytes(4)
+            X_New = messageBytes(3)
+            Y_New = messageBytes(4)
             Z_New = 0
 
             If X_New > 99 Then
@@ -468,10 +468,10 @@ Module Mouse
         Exit Sub
     End Sub
 
-    Public Sub calibratePointer(ByVal Message_Bytes As Byte())
+    Public Sub calibratePointer(ByVal messageBytes As Byte())
         Try
-            X_Def = Message_Bytes(3)
-            Y_Def = Message_Bytes(4)
+            X_Def = messageBytes(3)
+            Y_Def = messageBytes(4)
 
             If X_Def > 99 Then
                 X_Def = 100 - X_Def
@@ -489,10 +489,10 @@ Module Mouse
         End Try
     End Sub
 
-    Public Sub parseLaser(ByVal Message_Bytes As Byte())
+    Public Sub parseLaser(ByVal messageBytes As Byte())
         Dim point_org As Point
         Dim point As Point
-        point_org = getPoint(Message_Bytes, 0)
+        point_org = getPoint(messageBytes, 0)
 
         Server.pointer.showPointer()
 
