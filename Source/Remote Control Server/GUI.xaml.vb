@@ -10,6 +10,8 @@ Class MainWindow
     Private refreshTimerActive As Boolean = False
     Public dialogActive As Boolean = False
 
+    Public notificationIcon As System.Windows.Forms.NotifyIcon
+
     Private refreshUiTimer As DispatcherTimer
     Public userName As String = "Home PC"
 
@@ -205,13 +207,23 @@ Class MainWindow
         label_tooltip.BeginAnimation(Label.OpacityProperty, myDoubleAnimation)
     End Sub
 
-
     Public Sub showNotificationIcon()
-        Dim ni As System.Windows.Forms.NotifyIcon = New System.Windows.Forms.NotifyIcon()
-        Dim bmp As Bitmap = My.Resources.icon_rcc_server
-        Dim ptr As IntPtr = bmp.GetHicon
-        ni.Icon = System.Drawing.Icon.FromHandle(ptr)
-        ni.Visible = True
+        notificationIcon = New System.Windows.Forms.NotifyIcon()
+        notificationIcon.Icon = bitmapToIcon(My.Resources.icon_rcc_server)
+        notificationIcon.Text = "Remote Control Server"
+        notificationIcon.Visible = True
+    End Sub
+
+    Private Delegate Sub showNotificationDelegate(ByVal title As String, ByVal text As String)
+    Public Sub showNotification(ByVal title As String, ByVal text As String)
+        If Not Me.Dispatcher.CheckAccess Then
+            Me.Dispatcher.Invoke(New showNotificationDelegate(AddressOf showNotification), title, text)
+        Else
+            notificationIcon.BalloonTipTitle = title
+            notificationIcon.BalloonTipText = text
+            notificationIcon.Icon = bitmapToIcon(My.Resources.icon_rcc)
+            notificationIcon.ShowBalloonTip(2000)
+        End If
     End Sub
 
 #End Region

@@ -57,6 +57,7 @@ Module Updater
             If updateVersionCode > currentVersionCode Then
                 Logger.add("Update available: " & updateVersionName)
                 isUpdateAvailable = True
+                gui.showNotification("Update available", "There is an update for the Remote Control Server available")
             Else
                 Logger.add("No update available")
                 isUpdateAvailable = False

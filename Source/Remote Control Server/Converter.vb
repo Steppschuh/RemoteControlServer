@@ -15,6 +15,11 @@ Module Converter
         Return Nothing
     End Function
 
+    Public Function bitmapToIcon(ByVal bitmap As Bitmap) As System.Drawing.Icon
+        Dim ptr As IntPtr = bitmap.GetHicon
+        Return System.Drawing.Icon.FromHandle(ptr)
+    End Function
+
     Public Function bitmapToSource(ByVal bitmap As Bitmap) As ImageSource
         Dim imageSourceConverter As ImageSourceConverter = New ImageSourceConverter()
         Dim source As ImageSource = imageSourceConverter.ConvertFrom(bitmap)

@@ -21,6 +21,7 @@
         isConnected = True
         isActive = True
         Logger.add(deviceName & " connected")
+        gui.showNotification("App connected", deviceName & " has connected to the Remote Control Server")
     End Sub
 
     Public Sub onDisconnect()
@@ -55,6 +56,7 @@
                     'Block request
                     Logger.add("Connection blocked")
                     refuseBroadCast(command)
+                    gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
                 End If
             End If
         Catch ex As Exception
