@@ -32,4 +32,12 @@
 
     End Sub
 
+#Region "Events"
+
+    Private Sub btn_update_install_Click(sender As Object, e As EventArgs) Handles btn_update_install.Click
+        Updater.startUpdater()
+    End Sub
+
+#End Region
+
 End Class

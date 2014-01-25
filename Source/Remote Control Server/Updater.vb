@@ -3,8 +3,9 @@ Imports System.Windows.Threading
 
 Module Updater
 
-    Public Const URL_UPDATE_INFO As String = "http://android-remote.com/server/update.html"
-    Public Const URL_UPDATE_SERVER As String = ""
+    Public Const URL_UPDATE_INFO As String = "http://remote-control-collection.com/files/server/update.xml"
+    Public Const URL_UPDATE_SERVER As String = "http://remote-control-collection.com/files/server/RemoteControlServer.exe"
+    Public Const URL_UPDATE_SERVER_BETA As String = "http://remote-control-collection.com/files/server/RemoteControlServerBeta.exe"
     Public Const URL_UPDATE_HELP As String = ""
 
     Public Const currentVersionCode As Byte = 3
@@ -86,5 +87,26 @@ Module Updater
         End Try
         Return tmp
     End Function
+
+    Public Sub startUpdater()
+        'Start the update tool or extract it
+        Try
+            Dim path_updater As String = Settings.getAppDataDirectory & "\Remote Control Server Updater.exe"
+            If Not My.Computer.FileSystem.FileExists(path_updater) Then
+                Logger.add("Extracting update tool to " & path_updater)
+                My.Computer.FileSystem.WriteAllBytes(path_updater, My.Resources.Remote_Control_Server_Updater, False)
+            End If
+
+            Logger.add("Starting update tool")
+            Process.Start(path_updater)
+
+            gui.stopRefreshUiTimer()
+            'Server.finish()
+            gui.Close()
+        Catch ex As Exception
+            Logger.add("Unable to start update tool" & vbNewLine & ex.ToString)
+            gui.showErrorDialog("Update failed", "Unable to start the update tool. Please start the Remote Control Server with administrator rights and try again.")
+        End Try
+    End Sub
 
 End Module

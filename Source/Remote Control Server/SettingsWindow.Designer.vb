@@ -45,19 +45,19 @@ Partial Class SettingsWindow
         Me.tab_screen = New System.Windows.Forms.TabPage()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
         Me.tab_update = New System.Windows.Forms.TabPage()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.btn_update_changelog = New System.Windows.Forms.Button()
+        Me.btn_update_install = New System.Windows.Forms.Button()
+        Me.label_update_current_version = New System.Windows.Forms.Label()
+        Me.label_update_available_version = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.btn_update_help = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.tab_help = New System.Windows.Forms.TabPage()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.btn_update_help = New System.Windows.Forms.Button()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.label_update_current_version = New System.Windows.Forms.Label()
-        Me.label_update_available_version = New System.Windows.Forms.Label()
-        Me.btn_update_install = New System.Windows.Forms.Button()
-        Me.btn_update_changelog = New System.Windows.Forms.Button()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -67,9 +67,9 @@ Partial Class SettingsWindow
         Me.tab_protection.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.tab_update.SuspendLayout()
-        Me.tab_log.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.tab_log.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -321,6 +321,111 @@ Partial Class SettingsWindow
         Me.tab_update.Text = "Update"
         Me.tab_update.UseVisualStyleBackColor = True
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox5.Controls.Add(Me.btn_update_changelog)
+        Me.GroupBox5.Controls.Add(Me.btn_update_install)
+        Me.GroupBox5.Controls.Add(Me.label_update_current_version)
+        Me.GroupBox5.Controls.Add(Me.label_update_available_version)
+        Me.GroupBox5.Controls.Add(Me.Label5)
+        Me.GroupBox5.Controls.Add(Me.Label4)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(449, 91)
+        Me.GroupBox5.TabIndex = 3
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Update"
+        '
+        'btn_update_changelog
+        '
+        Me.btn_update_changelog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_changelog.Location = New System.Drawing.Point(6, 62)
+        Me.btn_update_changelog.Name = "btn_update_changelog"
+        Me.btn_update_changelog.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_changelog.TabIndex = 5
+        Me.btn_update_changelog.Text = "Show changelog"
+        Me.btn_update_changelog.UseVisualStyleBackColor = True
+        '
+        'btn_update_install
+        '
+        Me.btn_update_install.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_install.Location = New System.Drawing.Point(231, 62)
+        Me.btn_update_install.Name = "btn_update_install"
+        Me.btn_update_install.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_install.TabIndex = 4
+        Me.btn_update_install.Text = "Install the latest Version"
+        Me.btn_update_install.UseVisualStyleBackColor = True
+        '
+        'label_update_current_version
+        '
+        Me.label_update_current_version.AutoSize = True
+        Me.label_update_current_version.Location = New System.Drawing.Point(189, 36)
+        Me.label_update_current_version.Name = "label_update_current_version"
+        Me.label_update_current_version.Size = New System.Drawing.Size(53, 13)
+        Me.label_update_current_version.TabIndex = 3
+        Me.label_update_current_version.Text = "Unknown"
+        '
+        'label_update_available_version
+        '
+        Me.label_update_available_version.AutoSize = True
+        Me.label_update_available_version.Location = New System.Drawing.Point(189, 20)
+        Me.label_update_available_version.Name = "label_update_available_version"
+        Me.label_update_available_version.Size = New System.Drawing.Size(53, 13)
+        Me.label_update_available_version.TabIndex = 2
+        Me.label_update_available_version.Text = "Unknown"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(6, 36)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(129, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Currently installed version:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(6, 20)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(121, 13)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Latest available version:"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox4.Controls.Add(Me.btn_update_help)
+        Me.GroupBox4.Controls.Add(Me.Label3)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 103)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(449, 125)
+        Me.GroupBox4.TabIndex = 2
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Info"
+        '
+        'btn_update_help
+        '
+        Me.btn_update_help.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_help.Location = New System.Drawing.Point(9, 96)
+        Me.btn_update_help.Name = "btn_update_help"
+        Me.btn_update_help.Size = New System.Drawing.Size(434, 23)
+        Me.btn_update_help.TabIndex = 1
+        Me.btn_update_help.Text = "How to update the Remote Control Server"
+        Me.btn_update_help.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.Location = New System.Drawing.Point(6, 16)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(437, 76)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = resources.GetString("Label3.Text")
+        '
         'tab_help
         '
         Me.tab_help.Location = New System.Drawing.Point(4, 22)
@@ -356,111 +461,6 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'GroupBox4
-        '
-        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox4.Controls.Add(Me.btn_update_help)
-        Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 103)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(449, 125)
-        Me.GroupBox4.TabIndex = 2
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Info"
-        '
-        'Label3
-        '
-        Me.Label3.Location = New System.Drawing.Point(6, 16)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(437, 76)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = resources.GetString("Label3.Text")
-        '
-        'btn_update_help
-        '
-        Me.btn_update_help.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_help.Location = New System.Drawing.Point(9, 96)
-        Me.btn_update_help.Name = "btn_update_help"
-        Me.btn_update_help.Size = New System.Drawing.Size(434, 23)
-        Me.btn_update_help.TabIndex = 1
-        Me.btn_update_help.Text = "How to update the Remote Control Server"
-        Me.btn_update_help.UseVisualStyleBackColor = True
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox5.Controls.Add(Me.btn_update_changelog)
-        Me.GroupBox5.Controls.Add(Me.btn_update_install)
-        Me.GroupBox5.Controls.Add(Me.label_update_current_version)
-        Me.GroupBox5.Controls.Add(Me.label_update_available_version)
-        Me.GroupBox5.Controls.Add(Me.Label5)
-        Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(449, 91)
-        Me.GroupBox5.TabIndex = 3
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Update"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 20)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(121, 13)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Latest available version:"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 36)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(129, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Currently installed version:"
-        '
-        'label_update_current_version
-        '
-        Me.label_update_current_version.AutoSize = True
-        Me.label_update_current_version.Location = New System.Drawing.Point(189, 36)
-        Me.label_update_current_version.Name = "label_update_current_version"
-        Me.label_update_current_version.Size = New System.Drawing.Size(53, 13)
-        Me.label_update_current_version.TabIndex = 3
-        Me.label_update_current_version.Text = "Unknown"
-        '
-        'label_update_available_version
-        '
-        Me.label_update_available_version.AutoSize = True
-        Me.label_update_available_version.Location = New System.Drawing.Point(189, 20)
-        Me.label_update_available_version.Name = "label_update_available_version"
-        Me.label_update_available_version.Size = New System.Drawing.Size(53, 13)
-        Me.label_update_available_version.TabIndex = 2
-        Me.label_update_available_version.Text = "Unknown"
-        '
-        'btn_update_install
-        '
-        Me.btn_update_install.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_install.Location = New System.Drawing.Point(231, 62)
-        Me.btn_update_install.Name = "btn_update_install"
-        Me.btn_update_install.Size = New System.Drawing.Size(212, 23)
-        Me.btn_update_install.TabIndex = 4
-        Me.btn_update_install.Text = "Install the latest Version"
-        Me.btn_update_install.UseVisualStyleBackColor = True
-        '
-        'btn_update_changelog
-        '
-        Me.btn_update_changelog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_changelog.Location = New System.Drawing.Point(6, 62)
-        Me.btn_update_changelog.Name = "btn_update_changelog"
-        Me.btn_update_changelog.Size = New System.Drawing.Size(212, 23)
-        Me.btn_update_changelog.TabIndex = 5
-        Me.btn_update_changelog.Text = "Show changelog"
-        Me.btn_update_changelog.UseVisualStyleBackColor = True
-        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -486,11 +486,11 @@ Partial Class SettingsWindow
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.tab_update.ResumeLayout(False)
-        Me.tab_log.ResumeLayout(False)
-        Me.tab_log.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.tab_log.ResumeLayout(False)
+        Me.tab_log.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

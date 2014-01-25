@@ -166,17 +166,17 @@ Class MainWindow
 
     Private Delegate Sub showDialogDelegate(ByVal title As String, ByVal message As String)
     Public Sub showDialog(ByVal title As String, ByVal message As String)
-            Try
-                If Not Me.Dispatcher.CheckAccess Then
-                    Me.Dispatcher.Invoke(New showDialogDelegate(AddressOf showDialog), title, message)
-                Else
-                    dialogActive = True
-                    MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.None)
-                    dialogActive = False
-                End If
-            Catch ex As Exception
-                'Window disposed
-            End Try
+        Try
+            If Not Me.Dispatcher.CheckAccess Then
+                Me.Dispatcher.Invoke(New showDialogDelegate(AddressOf showDialog), title, message)
+            Else
+                dialogActive = True
+                MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.None)
+                dialogActive = False
+            End If
+        Catch ex As Exception
+            'Window disposed
+        End Try
     End Sub
 
     Public Sub showTooltip(ByVal tooltip As String)

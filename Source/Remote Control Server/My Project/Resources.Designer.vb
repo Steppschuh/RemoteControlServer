@@ -301,6 +301,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property Remote_Control_Server_Updater() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Remote_Control_Server_Updater", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property start_help() As System.Drawing.Bitmap

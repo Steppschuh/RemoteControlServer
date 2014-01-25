@@ -23,13 +23,19 @@ Public Module Server
 
         status = "Initializing"
 
-        Settings.loadSettings()
-        Network.initialize()
-        Updater.checkForUpdates(10)
+        If isLatestServerRunning() Then
+            Settings.loadSettings()
+            Network.initialize()
+            Updater.checkForUpdates(10)
 
-        Dim initializeThread = New Thread(AddressOf initializeAsync)
-        initializeThread.IsBackground = True
-        initializeThread.Start()
+            Dim initializeThread = New Thread(AddressOf initializeAsync)
+            initializeThread.IsBackground = True
+            initializeThread.Start()
+        Else
+            'New server version has been started
+            gui.stopRefreshUiTimer()
+            gui.Close()
+        End If
 
         Logger.add("UI ready")
     End Sub
@@ -59,6 +65,30 @@ Public Module Server
 
         End Try
     End Sub
+
+    Public Function isLatestServerRunning() As Boolean
+        'Updates for the Server are stored in the AppData directory
+        Dim path_dl As String = Settings.getAppDataDirectory & "\Remote Control Server.exe"
+        Dim path_cur As String = System.AppDomain.CurrentDomain.BaseDirectory & "\Remote Control Server.exe"
+
+        If path_cur.Equals(path_dl) Then
+            'Currently running the latest version
+            Return True
+        Else
+            Try
+                If My.Computer.FileSystem.FileExists(path_dl) Then
+                    'Start newer version
+                    Process.Start(path_dl)
+                    Return False
+                Else
+                    Return True
+                End If
+            Catch ex As Exception                
+                Logger.add("A new version of the Remote Control Server is available but could not be started." & vbNewLine & path_dl)
+                Return True
+            End Try
+        End If
+    End Function
 
     Public Function getApp(ByVal ip As String) As App
         For Each savedApp As App In apps

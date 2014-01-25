@@ -314,5 +314,8 @@
   <ItemGroup>
     <Resource Include="Resources\back_ios.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Remote Control Server Updater.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
