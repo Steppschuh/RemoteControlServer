@@ -2,6 +2,7 @@
 Imports System.Windows.Media
 Imports System.Windows.Input
 Imports System.Windows.Media.Animation
+Imports System.Drawing
 
 Class MainWindow
 
@@ -36,6 +37,9 @@ Class MainWindow
         Server.initialize(Me)
         refreshUi()
         startRefreshUiTimer()
+
+
+        showNotificationIcon()
     End Sub
 
     Public Sub startRefreshUiTimer()
@@ -151,17 +155,17 @@ Class MainWindow
 
     Private Delegate Sub showErrorDialogDelegate(ByVal title As String, ByVal message As String)
     Public Sub showErrorDialog(ByVal title As String, ByVal message As String)
-            Try
-                If Not Me.Dispatcher.CheckAccess Then
-                    Me.Dispatcher.Invoke(New showErrorDialogDelegate(AddressOf showErrorDialog), title, message)
-                Else
-                    dialogActive = True
-                    MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error)
-                    dialogActive = False
-                End If
-            Catch ex As Exception
-                'Window disposed
-            End Try
+        Try
+            If Not Me.Dispatcher.CheckAccess Then
+                Me.Dispatcher.Invoke(New showErrorDialogDelegate(AddressOf showErrorDialog), title, message)
+            Else
+                dialogActive = True
+                MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error)
+                dialogActive = False
+            End If
+        Catch ex As Exception
+            'Window disposed
+        End Try
     End Sub
 
     Private Delegate Sub showDialogDelegate(ByVal title As String, ByVal message As String)
@@ -201,6 +205,14 @@ Class MainWindow
         label_tooltip.BeginAnimation(Label.OpacityProperty, myDoubleAnimation)
     End Sub
 
+
+    Public Sub showNotificationIcon()
+        Dim ni As System.Windows.Forms.NotifyIcon = New System.Windows.Forms.NotifyIcon()
+        Dim bmp As Bitmap = My.Resources.icon_rcc_server
+        Dim ptr As IntPtr = bmp.GetHicon
+        ni.Icon = System.Drawing.Icon.FromHandle(ptr)
+        ni.Visible = True
+    End Sub
 
 #End Region
 

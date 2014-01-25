@@ -110,9 +110,9 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-
+    
     <Grid>
-        <Image x:Name="image_back" Stretch="UniformToFill" Source="pack://application:,,,/Resources/back_bb.png"/>
+        <Image x:Name="image_back" Stretch="UniformToFill" Source="pack://application:,,,/Resources/back.png"/>
         <Label x:Name="label_log" Content="Initializing" HorizontalAlignment="Left" Margin="75,104,0,0" VerticalAlignment="Top" Width="auto" Foreground="#FF818181" FontSize="11" Background="{x:Null}"/>
 
         <Grid Name="grid_server" Margin="85,170,70,445">

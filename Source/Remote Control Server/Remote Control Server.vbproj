@@ -317,5 +317,11 @@
   <ItemGroup>
     <Resource Include="Resources\Remote Control Server Updater.exe" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_072.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_server_256.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
