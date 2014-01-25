@@ -40,7 +40,9 @@ Class MainWindow
         refreshUi()
         startRefreshUiTimer()
 
-
+        If Settings.startMinimized Then
+            hideUi()
+        End If
         showNotificationIcon()
     End Sub
 
@@ -209,6 +211,7 @@ Class MainWindow
         Me.ShowInTaskbar = True
         Me.Visibility = Windows.Visibility.Visible
         Me.WindowState = Windows.WindowState.Normal
+        Me.BringIntoView()
     End Sub
 
     Public Sub hideUi()
@@ -238,8 +241,6 @@ Class MainWindow
         notificationIcon.ContextMenu = trayContextMenu
         notificationIcon.Visible = True
     End Sub
-
-    
 
     Private Delegate Sub showNotificationDelegate(ByVal title As String, ByVal text As String)
     Public Sub showNotification(ByVal title As String, ByVal text As String)
@@ -311,7 +312,9 @@ Class MainWindow
     Private Sub image_server_protected_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles image_server_protected.MouseUp
         Server.showAdvancedWindow(Server.advanced.tab_settings)
     End Sub
+
 #Region "Footer"
+
     Private Sub button_footer_close_MouseEnter(sender As Object, e As MouseEventArgs) Handles button_footer_close.MouseEnter
         showTooltip("Close")
     End Sub
@@ -343,8 +346,10 @@ Class MainWindow
     Private Sub button_footer_hide_MouseLeave(sender As Object, e As MouseEventArgs) Handles button_footer_hide.MouseLeave
         hideTooltip()
     End Sub
-#End Region
 
+    Private Sub button_footer_hide_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles button_footer_hide.MouseUp
+        hideUi()
+    End Sub
 
 #End Region
 
@@ -364,5 +369,9 @@ Class MainWindow
     End Sub
 
 #End Region
+
+#End Region
+
+
 
 End Class

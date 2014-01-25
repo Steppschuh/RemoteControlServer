@@ -38,6 +38,11 @@
         Updater.startUpdater()
     End Sub
 
+    Private Sub btn_update_changelog_Click(sender As Object, e As EventArgs) Handles btn_update_changelog.Click
+        Server.gui.showDialog("Changelog", Updater.updateChangeLog)
+    End Sub
+
 #End Region
+
 
 End Class
