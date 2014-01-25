@@ -197,8 +197,6 @@ Class MainWindow
     End Sub
 
     Public Sub hideTooltip()
-        'label_tooltip.Content = ""
-
         Dim myDoubleAnimation As New DoubleAnimation()
         myDoubleAnimation.To = 0
         myDoubleAnimation.Duration = New Duration(TimeSpan.FromSeconds(1))
@@ -207,22 +205,54 @@ Class MainWindow
         label_tooltip.BeginAnimation(Label.OpacityProperty, myDoubleAnimation)
     End Sub
 
+    Public Sub showUI()
+        Me.ShowInTaskbar = True
+        Me.Visibility = Windows.Visibility.Visible
+        Me.WindowState = Windows.WindowState.Normal
+    End Sub
+
+    Public Sub hideUi()
+        If Settings.minimizeToTray Then
+            Me.ShowInTaskbar = False
+            Me.Visibility = Windows.Visibility.Hidden
+        Else
+            Me.ShowInTaskbar = True
+        End If
+        Me.WindowState = Windows.WindowState.Minimized
+    End Sub
+
     Public Sub showNotificationIcon()
+        Dim trayContextMenu As New Forms.ContextMenu()
+
+        Dim item_show As New Forms.MenuItem("Show server", New EventHandler(AddressOf menuItemShow_Click))
+        Dim item_advanced As New Forms.MenuItem("Advanced", New EventHandler(AddressOf menuItemAdvanced_Click))
+        Dim item_close As New Forms.MenuItem("Close", New EventHandler(AddressOf menuItemClose_Click))
+
+        trayContextMenu.MenuItems.Add(item_show)
+        trayContextMenu.MenuItems.Add(item_advanced)
+        trayContextMenu.MenuItems.Add(item_close)
+
         notificationIcon = New System.Windows.Forms.NotifyIcon()
         notificationIcon.Icon = bitmapToIcon(My.Resources.icon_rcc_server)
         notificationIcon.Text = "Remote Control Server"
+        notificationIcon.ContextMenu = trayContextMenu
         notificationIcon.Visible = True
     End Sub
 
+    
+
     Private Delegate Sub showNotificationDelegate(ByVal title As String, ByVal text As String)
     Public Sub showNotification(ByVal title As String, ByVal text As String)
-        If Not Me.Dispatcher.CheckAccess Then
-            Me.Dispatcher.Invoke(New showNotificationDelegate(AddressOf showNotification), title, text)
-        Else
-            notificationIcon.BalloonTipTitle = title
-            notificationIcon.BalloonTipText = text
-            notificationIcon.Icon = bitmapToIcon(My.Resources.icon_rcc)
-            notificationIcon.ShowBalloonTip(2000)
+        If Settings.showTrayNotoifications Then
+            If Not Me.Dispatcher.CheckAccess Then
+                Me.Dispatcher.Invoke(New showNotificationDelegate(AddressOf showNotification), title, text)
+            Else
+                notificationIcon.BalloonTipTitle = title
+                notificationIcon.BalloonTipText = text
+                Dim icon As Windows.Forms.ToolTipIcon = Forms.ToolTipIcon.Info
+                notificationIcon.BalloonTipIcon = icon
+                notificationIcon.ShowBalloonTip(2000)
+            End If
         End If
     End Sub
 
@@ -315,6 +345,23 @@ Class MainWindow
     End Sub
 #End Region
 
+
+#End Region
+
+#Region "Menu Events"
+
+    Private Sub menuItemShow_Click(sender As System.Object, e As System.EventArgs)
+        showUI()
+    End Sub
+
+    Private Sub menuItemAdvanced_Click(sender As System.Object, e As System.EventArgs)
+        showUI()
+        Server.showAdvancedWindow(Server.advanced.tab_settings)
+    End Sub
+
+    Private Sub menuItemClose_Click(sender As System.Object, e As System.EventArgs)
+        Me.Close()
+    End Sub
 
 #End Region
 
