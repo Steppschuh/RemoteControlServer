@@ -180,6 +180,5 @@
             <Rectangle x:Name="button_footer_home" Style="{StaticResource footerItem}" Margin="168,546,0,0" Width="79"/>
             <Rectangle x:Name="button_footer_hide" Style="{StaticResource footerItem}" Margin="247,546,0,0" Width="83"/>
         </Grid>
-        
     </Grid>
 </Window>
