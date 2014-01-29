@@ -1,7 +1,7 @@
 Remote Control Server
 ===================
 
-![Banner](http://remote-control-collection.com/files/posts/github_banner.jpg "Remote Control Collection")
+![Banner](http://remote-control-collection.com/files/posts/server_gui_advanced.png "Remote Control Collection")
 
 ### Description
 The Remote Control Server is needed to receive commands from any [Remote Control App](http://remote-control-collection.com/). The Remote Control apps allow you to remotely control your PC from your smartphone or tablet.
