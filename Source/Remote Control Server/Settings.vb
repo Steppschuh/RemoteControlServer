@@ -25,6 +25,7 @@ Module Settings
     Public useWhiteList As Boolean = False
     Public usePin As Boolean = False
     Public pin As String = "0000"
+    Public whitelistedIps As List(Of String)
 
     'Mouse
     Public mouseSensitivity As Single = 5
@@ -42,6 +43,7 @@ Module Settings
     Public Sub loadSettings()
         Try
             Logger.add("Loading settings")
+            whitelistedIps = New List(Of String)
             readSettingsFromFile()
         Catch ex As Exception
 
@@ -66,6 +68,7 @@ Module Settings
                 sr = New StreamReader(path, Text.Encoding.UTF8)
                 xmlString = sr.ReadToEnd()
                 parseSettings(xmlString)
+                parseWhitelist(xmlString)
             Else
                 Throw New FileNotFoundException
             End If
@@ -216,6 +219,31 @@ Module Settings
     Private Sub appendSetting(ByVal name As String, ByVal value As String, ByVal sw As StreamWriter)
         sw.Write("  <setting name=" & Chr(34) & name & Chr(34) & " value=" & Chr(34) & value & Chr(34) & "/>")
         sw.WriteLine()
+    End Sub
+
+    Private Sub parseWhitelist(ByVal xmlString As String)
+        Try
+            Logger.add("Parsing whitelist")
+
+            Dim xmldoc As New XmlDocument()
+            xmldoc.LoadXml(xmlString)
+
+            Dim xml_nodelist As XmlNodeList = xmldoc.GetElementsByTagName("/whitelist")
+            Dim appIP As String
+
+            For Each mxmlnode As XmlNode In xmldoc.GetElementsByTagName("app")
+                Try
+                    appIP = mxmlnode.Attributes.ItemOf("ip").InnerText
+                    whitelistedIps.Add(appIP)
+                Catch ex As Exception
+                    Logger.add(ex.ToString)
+                End Try
+            Next
+            Logger.add("Whitelist restored, " & whitelistedIps.Count & " IPs saved")
+        Catch ex As Exception
+            Logger.add("Error while parsing whitelist:")
+            Logger.add(ex.ToString)
+        End Try
     End Sub
 
     Public Function getAppDataDirectory() As String
