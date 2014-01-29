@@ -47,7 +47,11 @@ Module Converter
     End Function
 
     Public Function byteToString(ByVal value As Byte()) As String
-        Dim chars As Char() = System.Text.Encoding.UTF8.GetChars(value)
+        Return byteToString(value, 0)
+    End Function
+
+    Public Function byteToString(ByVal value As Byte(), ByVal index As Integer) As String
+        Dim chars As Char() = System.Text.Encoding.UTF8.GetChars(value, index, value.Length - index)
         Return New String(chars)
     End Function
 

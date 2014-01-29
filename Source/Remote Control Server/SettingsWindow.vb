@@ -25,7 +25,7 @@
         '   Protection
         cb_useWhitelist.Checked = Settings.useWhiteList
         cb_usePin.Checked = Settings.usePin
-
+        tb_pin.Text = Settings.pin
 
         'Upgrade
 
@@ -124,9 +124,6 @@
     End Sub
 
 #End Region
-
-
-
 
 #End Region
 

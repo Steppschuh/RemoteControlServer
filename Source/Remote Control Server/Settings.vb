@@ -24,6 +24,7 @@ Module Settings
     'Authentication
     Public useWhiteList As Boolean = False
     Public usePin As Boolean = False
+    Public pin As String = "0000"
 
     'Mouse
     Public mouseSensitivity As Single = 5
@@ -108,6 +109,7 @@ Module Settings
             'Authentication
             appendSetting("useWhiteList", Converter.boolToString(useWhiteList), sw)
             appendSetting("usePin", Converter.boolToString(usePin), sw)
+            appendSetting("pin", pin, sw)
             sw.WriteLine()
 
             'Mouse and Pointer
@@ -183,6 +185,8 @@ Module Settings
             useWhiteList = Converter.stringToBool(value)
         ElseIf name.Equals("usePin") Then
             usePin = Converter.stringToBool(value)
+        ElseIf name.Equals("pin") Then
+            pin = value
 
             'Mouse and pointer
         ElseIf name.Equals("mouseSensitivity") Then

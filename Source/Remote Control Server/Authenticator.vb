@@ -15,11 +15,21 @@
         End If
     End Function
 
-    Public Function isAuthenticated(ByVal ip As String) As Boolean
-        If Settings.useWhiteList Then
-            Return isWhiteListed(ip)
-        Else
+    Public Function isAuthenticated(ByVal ip As String, ByVal pin As String) As Boolean
+        If Not isProtected() Then
             Return True
+        Else
+            If Settings.useWhiteList Then
+                If isWhiteListed(ip) Then
+                    Return True
+                End If
+            End If
+            If Settings.usePin Then
+                If Settings.pin.Equals(pin) Then
+                    Return True
+                End If
+            End If
+            Return False
         End If
     End Function
 

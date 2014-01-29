@@ -8,6 +8,7 @@ Module ApiV2
     Public Const cmd_pause As Byte = 12
     Public Const cmd_resume As Byte = 13
     Public Const cmd_control As Byte = 14
+    Public Const cmd_pin As Byte = 15
 
     Public Const cmd_media As Byte = 20
     Public Const cmd_mouse As Byte = 21
@@ -102,6 +103,9 @@ Module ApiV2
             Case cmd_resume
                 'Remote resumed
                 app.onResume()
+            Case cmd_pin
+                'App authenticates
+                app.pin = Converter.byteToString(command.data, 2)
             Case cmd_control
                 'Remote changed
                 Select Case command.data(2)
@@ -228,7 +232,7 @@ Module ApiV2
     Private Sub parseRequest(ByRef command As Command)
         Select Case command.data(2)
             Case cmd_request_screen
-                readableCommand = "Screenshot (compressed)"
+                readableCommand = "Screenshot (normal)"
                 Screenshot.sendScreenshot(False)
             Case cmd_request_screen_next
                 readableCommand = "Toggle screen"

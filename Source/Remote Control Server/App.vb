@@ -7,6 +7,7 @@
     Public osVersion As String = "Unknown"
     Public deviceName As String = "Unknown"
     Public status As String = "Unknown"
+    Public pin As String = ""
 
     Public detectedOs As Byte = 0
 
@@ -21,7 +22,7 @@
         isConnected = True
         isActive = True
         Logger.add(deviceName & " connected")
-        gui.showNotification("App connected", deviceName & " has connected to the Remote Control Server")
+        Server.gui.showNotification("App connected", deviceName & " has connected to the Remote Control Server")
     End Sub
 
     Public Sub onDisconnect()
@@ -43,7 +44,7 @@
     Public Sub onBroadCast(ByRef command As Command)
         Try
             Logger.add("Connection request from " & ip)
-            If Authentication.isAuthenticated(ip) Then
+            If Authentication.isAuthenticated(ip, pin) Then
                 'App ip is whitelisted
                 Logger.add("Allowing to connect")
                 answerBroadCast(command)
@@ -56,7 +57,7 @@
                     'Block request
                     Logger.add("Connection blocked")
                     refuseBroadCast(command)
-                    gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
+                    Server.gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
                 End If
             End If
         Catch ex As Exception

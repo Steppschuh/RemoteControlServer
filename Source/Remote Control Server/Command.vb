@@ -23,9 +23,9 @@
 
     Public Sub process()
         Try
-            If Authentication.isAuthenticated(source) Then
+            If Authentication.isAuthenticated(source, Server.getApp(source).pin) Then
+                'If Authentication.isAuthenticated(source, "") Then
                 parse()
-                'log()
             Else
                 Logger.add("Refused a command from " & source)
             End If
