@@ -323,5 +323,8 @@
   <ItemGroup>
     <Resource Include="Resources\icon_server_256.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ic_action_search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

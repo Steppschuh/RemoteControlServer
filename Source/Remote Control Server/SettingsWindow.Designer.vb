@@ -28,19 +28,24 @@ Partial Class SettingsWindow
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tab_general = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
+        Me.dropDown_backDesign = New System.Windows.Forms.ComboBox()
+        Me.cb_backDesign = New System.Windows.Forms.CheckBox()
+        Me.cb_showTrayNotoifications = New System.Windows.Forms.CheckBox()
+        Me.cb_minimizeToTray = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.cb_startMinimized = New System.Windows.Forms.CheckBox()
+        Me.cb_autostart = New System.Windows.Forms.CheckBox()
         Me.tab_protection = New System.Windows.Forms.TabPage()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.btn_showPin = New System.Windows.Forms.PictureBox()
+        Me.tb_pin = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.cb_usePin = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.label_whitelist = New System.Windows.Forms.Label()
+        Me.btn_manageWhitelist = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.cb_useWhitelist = New System.Windows.Forms.CheckBox()
         Me.tab_mouse = New System.Windows.Forms.TabPage()
         Me.tab_screen = New System.Windows.Forms.TabPage()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
@@ -58,6 +63,7 @@ Partial Class SettingsWindow
         Me.tab_help = New System.Windows.Forms.TabPage()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.btn_appData = New System.Windows.Forms.Button()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -65,6 +71,8 @@ Partial Class SettingsWindow
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.tab_protection.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -112,6 +120,7 @@ Partial Class SettingsWindow
         '
         'tab_general
         '
+        Me.tab_general.Controls.Add(Me.btn_appData)
         Me.tab_general.Controls.Add(Me.GroupBox3)
         Me.tab_general.Controls.Add(Me.GroupBox2)
         Me.tab_general.Location = New System.Drawing.Point(4, 22)
@@ -126,10 +135,10 @@ Partial Class SettingsWindow
         '
         Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.ComboBox1)
-        Me.GroupBox3.Controls.Add(Me.CheckBox6)
-        Me.GroupBox3.Controls.Add(Me.CheckBox4)
-        Me.GroupBox3.Controls.Add(Me.CheckBox5)
+        Me.GroupBox3.Controls.Add(Me.dropDown_backDesign)
+        Me.GroupBox3.Controls.Add(Me.cb_backDesign)
+        Me.GroupBox3.Controls.Add(Me.cb_showTrayNotoifications)
+        Me.GroupBox3.Controls.Add(Me.cb_minimizeToTray)
         Me.GroupBox3.Location = New System.Drawing.Point(6, 79)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(435, 95)
@@ -137,58 +146,58 @@ Partial Class SettingsWindow
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Appearance"
         '
-        'ComboBox1
+        'dropDown_backDesign
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Auto", "Android", "BlackBerry", "iOS"})
-        Me.ComboBox1.Location = New System.Drawing.Point(149, 63)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 3
-        Me.ComboBox1.Text = "Auto"
+        Me.dropDown_backDesign.FormattingEnabled = True
+        Me.dropDown_backDesign.Items.AddRange(New Object() {"Auto", "Android", "BlackBerry", "iOS"})
+        Me.dropDown_backDesign.Location = New System.Drawing.Point(149, 63)
+        Me.dropDown_backDesign.Name = "dropDown_backDesign"
+        Me.dropDown_backDesign.Size = New System.Drawing.Size(121, 21)
+        Me.dropDown_backDesign.TabIndex = 3
+        Me.dropDown_backDesign.Text = "Auto"
         '
-        'CheckBox6
+        'cb_backDesign
         '
-        Me.CheckBox6.AutoSize = True
-        Me.CheckBox6.Checked = True
-        Me.CheckBox6.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox6.Location = New System.Drawing.Point(6, 65)
-        Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(120, 17)
-        Me.CheckBox6.TabIndex = 2
-        Me.CheckBox6.Text = "Set server design to"
-        Me.CheckBox6.UseVisualStyleBackColor = True
+        Me.cb_backDesign.AutoSize = True
+        Me.cb_backDesign.Checked = True
+        Me.cb_backDesign.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_backDesign.Location = New System.Drawing.Point(6, 65)
+        Me.cb_backDesign.Name = "cb_backDesign"
+        Me.cb_backDesign.Size = New System.Drawing.Size(120, 17)
+        Me.cb_backDesign.TabIndex = 2
+        Me.cb_backDesign.Text = "Set server design to"
+        Me.cb_backDesign.UseVisualStyleBackColor = True
         '
-        'CheckBox4
+        'cb_showTrayNotoifications
         '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Checked = True
-        Me.CheckBox4.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox4.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(155, 17)
-        Me.CheckBox4.TabIndex = 1
-        Me.CheckBox4.Text = "Show tray icon notifications"
-        Me.CheckBox4.UseVisualStyleBackColor = True
+        Me.cb_showTrayNotoifications.AutoSize = True
+        Me.cb_showTrayNotoifications.Checked = True
+        Me.cb_showTrayNotoifications.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_showTrayNotoifications.Location = New System.Drawing.Point(6, 42)
+        Me.cb_showTrayNotoifications.Name = "cb_showTrayNotoifications"
+        Me.cb_showTrayNotoifications.Size = New System.Drawing.Size(155, 17)
+        Me.cb_showTrayNotoifications.TabIndex = 1
+        Me.cb_showTrayNotoifications.Text = "Show tray icon notifications"
+        Me.cb_showTrayNotoifications.UseVisualStyleBackColor = True
         '
-        'CheckBox5
+        'cb_minimizeToTray
         '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Checked = True
-        Me.CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox5.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(153, 17)
-        Me.CheckBox5.TabIndex = 0
-        Me.CheckBox5.Text = "Minimize server to tray icon"
-        Me.CheckBox5.UseVisualStyleBackColor = True
+        Me.cb_minimizeToTray.AutoSize = True
+        Me.cb_minimizeToTray.Checked = True
+        Me.cb_minimizeToTray.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_minimizeToTray.Location = New System.Drawing.Point(6, 19)
+        Me.cb_minimizeToTray.Name = "cb_minimizeToTray"
+        Me.cb_minimizeToTray.Size = New System.Drawing.Size(153, 17)
+        Me.cb_minimizeToTray.TabIndex = 0
+        Me.cb_minimizeToTray.Text = "Minimize server to tray icon"
+        Me.cb_minimizeToTray.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.CheckBox3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox2)
+        Me.GroupBox2.Controls.Add(Me.cb_startMinimized)
+        Me.GroupBox2.Controls.Add(Me.cb_autostart)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(435, 67)
@@ -196,28 +205,29 @@ Partial Class SettingsWindow
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Startup"
         '
-        'CheckBox3
+        'cb_startMinimized
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(128, 17)
-        Me.CheckBox3.TabIndex = 1
-        Me.CheckBox3.Text = "Start server minimized"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.cb_startMinimized.AutoSize = True
+        Me.cb_startMinimized.Location = New System.Drawing.Point(6, 42)
+        Me.cb_startMinimized.Name = "cb_startMinimized"
+        Me.cb_startMinimized.Size = New System.Drawing.Size(128, 17)
+        Me.cb_startMinimized.TabIndex = 1
+        Me.cb_startMinimized.Text = "Start server minimized"
+        Me.cb_startMinimized.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'cb_autostart
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(184, 17)
-        Me.CheckBox2.TabIndex = 0
-        Me.CheckBox2.Text = "Start server when Windows starts"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.cb_autostart.AutoSize = True
+        Me.cb_autostart.Location = New System.Drawing.Point(6, 19)
+        Me.cb_autostart.Name = "cb_autostart"
+        Me.cb_autostart.Size = New System.Drawing.Size(184, 17)
+        Me.cb_autostart.TabIndex = 0
+        Me.cb_autostart.Text = "Start server when Windows starts"
+        Me.cb_autostart.UseVisualStyleBackColor = True
         '
         'tab_protection
         '
+        Me.tab_protection.Controls.Add(Me.GroupBox6)
         Me.tab_protection.Controls.Add(Me.GroupBox1)
         Me.tab_protection.Location = New System.Drawing.Point(4, 22)
         Me.tab_protection.Name = "tab_protection"
@@ -227,14 +237,68 @@ Partial Class SettingsWindow
         Me.tab_protection.Text = "Protection"
         Me.tab_protection.UseVisualStyleBackColor = True
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.btn_showPin)
+        Me.GroupBox6.Controls.Add(Me.tb_pin)
+        Me.GroupBox6.Controls.Add(Me.Label6)
+        Me.GroupBox6.Controls.Add(Me.cb_usePin)
+        Me.GroupBox6.Location = New System.Drawing.Point(6, 112)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(435, 100)
+        Me.GroupBox6.TabIndex = 4
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Pin"
+        '
+        'btn_showPin
+        '
+        Me.btn_showPin.Cursor = System.Windows.Forms.Cursors.Help
+        Me.btn_showPin.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_search
+        Me.btn_showPin.Location = New System.Drawing.Point(115, 61)
+        Me.btn_showPin.Name = "btn_showPin"
+        Me.btn_showPin.Size = New System.Drawing.Size(29, 26)
+        Me.btn_showPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_showPin.TabIndex = 3
+        Me.btn_showPin.TabStop = False
+        '
+        'tb_pin
+        '
+        Me.tb_pin.Location = New System.Drawing.Point(8, 64)
+        Me.tb_pin.Name = "tb_pin"
+        Me.tb_pin.Size = New System.Drawing.Size(100, 20)
+        Me.tb_pin.TabIndex = 2
+        Me.tb_pin.Text = "0000"
+        Me.tb_pin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.tb_pin.UseSystemPasswordChar = True
+        '
+        'Label6
+        '
+        Me.Label6.Location = New System.Drawing.Point(10, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(419, 22)
+        Me.Label6.TabIndex = 1
+        Me.Label6.Text = "If enabled, devices can only connect by entering the correct pin."
+        '
+        'cb_usePin
+        '
+        Me.cb_usePin.AutoSize = True
+        Me.cb_usePin.Location = New System.Drawing.Point(8, 41)
+        Me.cb_usePin.Name = "cb_usePin"
+        Me.cb_usePin.Size = New System.Drawing.Size(76, 17)
+        Me.cb_usePin.TabIndex = 0
+        Me.cb_usePin.Text = "Enable pin"
+        Me.cb_usePin.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.label_whitelist)
+        Me.GroupBox1.Controls.Add(Me.btn_manageWhitelist)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.cb_useWhitelist)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(435, 100)
@@ -242,24 +306,24 @@ Partial Class SettingsWindow
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Whitelist"
         '
-        'Label2
+        'label_whitelist
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(131, 42)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(105, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "0 devices whitelisted"
+        Me.label_whitelist.AutoSize = True
+        Me.label_whitelist.ForeColor = System.Drawing.Color.DimGray
+        Me.label_whitelist.Location = New System.Drawing.Point(131, 42)
+        Me.label_whitelist.Name = "label_whitelist"
+        Me.label_whitelist.Size = New System.Drawing.Size(105, 13)
+        Me.label_whitelist.TabIndex = 3
+        Me.label_whitelist.Text = "0 devices whitelisted"
         '
-        'Button1
+        'btn_manageWhitelist
         '
-        Me.Button1.Location = New System.Drawing.Point(6, 64)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(145, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Manage devices"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_manageWhitelist.Location = New System.Drawing.Point(6, 64)
+        Me.btn_manageWhitelist.Name = "btn_manageWhitelist"
+        Me.btn_manageWhitelist.Size = New System.Drawing.Size(145, 23)
+        Me.btn_manageWhitelist.TabIndex = 2
+        Me.btn_manageWhitelist.Text = "Manage devices"
+        Me.btn_manageWhitelist.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -269,15 +333,15 @@ Partial Class SettingsWindow
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "If enabled, only commands from known IP addresses will be accepted."
         '
-        'CheckBox1
+        'cb_useWhitelist
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(8, 41)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(98, 17)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Enable whilelist"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.cb_useWhitelist.AutoSize = True
+        Me.cb_useWhitelist.Location = New System.Drawing.Point(8, 41)
+        Me.cb_useWhitelist.Name = "cb_useWhitelist"
+        Me.cb_useWhitelist.Size = New System.Drawing.Size(98, 17)
+        Me.cb_useWhitelist.TabIndex = 0
+        Me.cb_useWhitelist.Text = "Enable whilelist"
+        Me.cb_useWhitelist.UseVisualStyleBackColor = True
         '
         'tab_mouse
         '
@@ -461,6 +525,16 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
+        'btn_appData
+        '
+        Me.btn_appData.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_appData.Location = New System.Drawing.Point(276, 242)
+        Me.btn_appData.Name = "btn_appData"
+        Me.btn_appData.Size = New System.Drawing.Size(165, 23)
+        Me.btn_appData.TabIndex = 3
+        Me.btn_appData.Text = "Open app data folder"
+        Me.btn_appData.UseVisualStyleBackColor = True
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -483,6 +557,9 @@ Partial Class SettingsWindow
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.tab_protection.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.tab_update.ResumeLayout(False)
@@ -507,18 +584,18 @@ Partial Class SettingsWindow
     Friend WithEvents tab_protection As System.Windows.Forms.TabPage
     Friend WithEvents tab_update As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents cb_useWhitelist As System.Windows.Forms.CheckBox
+    Friend WithEvents btn_manageWhitelist As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents label_whitelist As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_autostart As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_startMinimized As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox4 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox5 As System.Windows.Forms.CheckBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents CheckBox6 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_showTrayNotoifications As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_minimizeToTray As System.Windows.Forms.CheckBox
+    Friend WithEvents dropDown_backDesign As System.Windows.Forms.ComboBox
+    Friend WithEvents cb_backDesign As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btn_update_help As System.Windows.Forms.Button
@@ -529,4 +606,10 @@ Partial Class SettingsWindow
     Friend WithEvents label_update_available_version As System.Windows.Forms.Label
     Friend WithEvents btn_update_install As System.Windows.Forms.Button
     Friend WithEvents btn_update_changelog As System.Windows.Forms.Button
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cb_usePin As System.Windows.Forms.CheckBox
+    Friend WithEvents tb_pin As System.Windows.Forms.TextBox
+    Friend WithEvents btn_showPin As System.Windows.Forms.PictureBox
+    Friend WithEvents btn_appData As System.Windows.Forms.Button
 End Class

@@ -214,18 +214,6 @@ Class MainWindow
         Me.Activate()
     End Sub
 
-    Public Sub showUIAll()
-        Me.ShowInTaskbar = True
-        Me.Visibility = Windows.Visibility.Visible
-        Me.WindowState = Windows.WindowState.Normal
-        Me.BringIntoView()
-        Me.Show()
-        Me.Activate()
-        Me.Topmost = True
-        Me.Topmost = False
-        Me.Focus()
-    End Sub
-
     Public Sub hideUi()
         If Settings.minimizeToTray Then
             Me.ShowInTaskbar = False
