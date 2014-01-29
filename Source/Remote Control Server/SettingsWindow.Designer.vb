@@ -206,6 +206,7 @@ Partial Class SettingsWindow
         Me.cb_backDesign.AutoSize = True
         Me.cb_backDesign.Checked = True
         Me.cb_backDesign.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_backDesign.Enabled = False
         Me.cb_backDesign.Location = New System.Drawing.Point(6, 65)
         Me.cb_backDesign.Name = "cb_backDesign"
         Me.cb_backDesign.Size = New System.Drawing.Size(120, 17)

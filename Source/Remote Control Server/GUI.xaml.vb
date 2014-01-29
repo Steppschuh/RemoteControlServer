@@ -99,15 +99,32 @@ Class MainWindow
         Select Case app.detectedOs
             Case Settings.OS_DEFAULT
                 image_app_device.Visibility = Windows.Visibility.Hidden
-                Converter.setImageDrawable(image_back, "back.png")
             Case Settings.OS_ANDROID
                 Converter.setImageDrawable(image_app_device, "icon_android.png")
-                Converter.setImageDrawable(image_back, "back.png")
             Case Settings.OS_BLACKBERRY
                 Converter.setImageDrawable(image_app_device, "icon_bb.png")
-                Converter.setImageDrawable(image_back, "back_bb.png")
             Case Settings.OS_IOS
                 Converter.setImageDrawable(image_app_device, "icon_ios.png")
+        End Select
+
+        Select Case Settings.backDesign
+            Case Settings.OS_DEFAULT
+                'Auto detect
+                Select Case app.detectedOs
+                    Case Settings.OS_DEFAULT
+                        Converter.setImageDrawable(image_back, "back.png")
+                    Case Settings.OS_ANDROID
+                        Converter.setImageDrawable(image_back, "back.png")
+                    Case Settings.OS_BLACKBERRY
+                        Converter.setImageDrawable(image_back, "back_bb.png")
+                    Case Settings.OS_IOS
+                        Converter.setImageDrawable(image_back, "back_ios.png")
+                End Select
+            Case Settings.OS_ANDROID
+                Converter.setImageDrawable(image_back, "back.png")
+            Case Settings.OS_BLACKBERRY
+                Converter.setImageDrawable(image_back, "back_bb.png")
+            Case Settings.OS_IOS
                 Converter.setImageDrawable(image_back, "back_ios.png")
         End Select
 

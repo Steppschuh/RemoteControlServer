@@ -47,6 +47,26 @@
 
 #Region "General settings"
 
+    Private Sub cb_autostart_CheckedChanged(sender As Object, e As EventArgs) Handles cb_autostart.CheckedChanged
+        Settings.autoStart = cb_autostart.Checked
+    End Sub
+
+    Private Sub cb_startMinimized_CheckedChanged(sender As Object, e As EventArgs) Handles cb_startMinimized.CheckedChanged
+        Settings.startMinimized = cb_startMinimized.Checked
+    End Sub
+
+    Private Sub cb_minimizeToTray_CheckedChanged(sender As Object, e As EventArgs) Handles cb_minimizeToTray.CheckedChanged
+        Settings.minimizeToTray = cb_minimizeToTray.Checked
+    End Sub
+
+    Private Sub cb_showTrayNotoifications_CheckedChanged(sender As Object, e As EventArgs) Handles cb_showTrayNotoifications.CheckedChanged
+        Settings.showTrayNotoifications = cb_showTrayNotoifications.Checked
+    End Sub
+
+    Private Sub dropDown_backDesign_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dropDown_backDesign.SelectedIndexChanged
+        Settings.backDesign = dropDown_backDesign.SelectedIndex
+    End Sub
+
     Private Sub btn_appData_Click(sender As Object, e As EventArgs) Handles btn_appData.Click
         Process.Start(Settings.getAppDataDirectory)
     End Sub
@@ -127,4 +147,5 @@
 
 #End Region
 
+    
 End Class
