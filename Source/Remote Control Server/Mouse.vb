@@ -415,8 +415,8 @@ Module Mouse
             'log(X_New & " | " & Y_New)
 
 
-            X_Rel = ((Y_New * (-1)) * Settings.motionAccel * 20) / 100
-            Y_Rel = ((X_New * (1)) * Settings.motionAccel * 20) / 100
+            X_Rel = ((Y_New * (-1)) * Settings.motionAcceleration * 20) / 100
+            Y_Rel = ((X_New * (1)) * Settings.motionAcceleration * 20) / 100
 
             If X_Rel > Settings.motionFilter Or X_Rel < Settings.motionFilter * -1 Then
             Else

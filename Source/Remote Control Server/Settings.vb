@@ -29,7 +29,7 @@ Module Settings
     Public mouseSensitivity As Single = 5
     Public mouseAcceleration As Single = 1.5
     Public motionFilter As Byte = 1
-    Public motionAccel As Byte = 3
+    Public motionAcceleration As Byte = 3
 
     'Screen
     Public screenQuality As Byte = 30
@@ -114,7 +114,7 @@ Module Settings
             appendSetting("mouseSensitivity", mouseSensitivity.ToString, sw)
             appendSetting("mouseAcceleration", mouseAcceleration.ToString, sw)
             appendSetting("motionFilter", motionFilter.ToString, sw)
-            appendSetting("motionAccel", motionAccel.ToString, sw)
+            appendSetting("motionAccel", motionAcceleration.ToString, sw)
             sw.WriteLine()
 
             'Screen
@@ -192,7 +192,7 @@ Module Settings
         ElseIf name.Equals("motionFilter") Then
             motionFilter = Integer.Parse(value)
         ElseIf name.Equals("motionAccel") Then
-            motionAccel = Integer.Parse(value)
+            motionAcceleration = Integer.Parse(value)
 
             'Screen
         ElseIf name.Equals("screenQuality") Then

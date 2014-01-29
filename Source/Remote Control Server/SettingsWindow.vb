@@ -64,11 +64,50 @@
     End Sub
 
     Private Sub btn_manageWhitelist_Click(sender As Object, e As EventArgs) Handles btn_manageWhitelist.Click
-
+        Process.Start(Settings.getAppDataDirectory)
     End Sub
 
 #End Region
 
+#Region "Mouse settings"
+
+    Private Sub track_mouse_sensitivity_Scroll(sender As Object, e As EventArgs) Handles track_mouse_sensitivity.Scroll
+        Settings.mouseSensitivity = track_mouse_sensitivity.Value
+    End Sub
+
+    Private Sub track_mouse_acceleration_Scroll(sender As Object, e As EventArgs) Handles track_mouse_acceleration.Scroll
+        Settings.mouseAcceleration = track_mouse_acceleration.Value / 10
+    End Sub
+
+    Private Sub track_motion_filter_Scroll(sender As Object, e As EventArgs) Handles track_motion_filter.Scroll
+        Settings.motionFilter = track_motion_filter.Value
+    End Sub
+
+    Private Sub track_motion_acceleration_Scroll(sender As Object, e As EventArgs) Handles track_motion_acceleration.Scroll
+        Settings.motionAcceleration = track_motion_acceleration.Value / 10
+    End Sub
+
+#End Region
+
+#Region "Screen settings"
+
+    Private Sub track_screen_quality_Scroll(sender As Object, e As EventArgs) Handles track_screen_quality.Scroll
+        Settings.screenQuality = track_screen_quality.Value
+    End Sub
+
+    Private Sub track_screen_scale_Scroll(sender As Object, e As EventArgs) Handles track_screen_scale.Scroll
+        Settings.screenScale = track_screen_scale.Value / 100
+    End Sub
+
+    Private Sub track_screen_quality_full_Scroll(sender As Object, e As EventArgs) Handles track_screen_quality_full.Scroll
+        Settings.screenQualityFull = track_screen_quality_full.Value
+    End Sub
+
+    Private Sub track_screen_scale_full_Scroll(sender As Object, e As EventArgs) Handles track_screen_scale_full.Scroll
+        Settings.screenScaleFull = track_screen_scale_full.Value / 100
+    End Sub
+
+#End Region
 
 #Region "Update"
 
@@ -91,9 +130,4 @@
 
 #End Region
 
-
-    
-    
-    
-    
 End Class
