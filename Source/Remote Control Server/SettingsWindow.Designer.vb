@@ -94,6 +94,7 @@ Partial Class SettingsWindow
         Me.track_screen_scale_full = New System.Windows.Forms.TrackBar()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.track_screen_quality_full = New System.Windows.Forms.TrackBar()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -240,6 +241,7 @@ Partial Class SettingsWindow
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.Label24)
         Me.GroupBox2.Controls.Add(Me.cb_startMinimized)
         Me.GroupBox2.Controls.Add(Me.cb_autostart)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 6)
@@ -925,6 +927,16 @@ Partial Class SettingsWindow
         Me.track_screen_quality_full.TickFrequency = 10
         Me.track_screen_quality_full.Value = 50
         '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.ForeColor = System.Drawing.Color.DimGray
+        Me.Label24.Location = New System.Drawing.Point(196, 20)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(139, 13)
+        Me.Label24.TabIndex = 2
+        Me.Label24.Text = "Administrator rights required!"
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1050,4 +1062,5 @@ Partial Class SettingsWindow
     Friend WithEvents track_screen_scale_full As System.Windows.Forms.TrackBar
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents track_screen_quality_full As System.Windows.Forms.TrackBar
+    Friend WithEvents Label24 As System.Windows.Forms.Label
 End Class

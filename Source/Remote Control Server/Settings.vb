@@ -165,6 +165,7 @@ Module Settings
         'General
         If name.Equals("autoStart") Then
             autoStart = Converter.stringToBool(value)
+            setAutostart(autoStart)
         ElseIf name.Equals("startMinimized") Then
             startMinimized = Converter.stringToBool(value)
         ElseIf name.Equals("minimizeToTray") Then
@@ -223,6 +224,35 @@ Module Settings
 
     Public Function getConfigPath() As String
         Return getAppDataDirectory() & "\" & SETTINGS_PATH
+    End Function
+
+    Public Function setAutostart(ByVal value As Boolean)
+        Try
+            Dim currentValue As String
+            Dim key As Microsoft.Win32.RegistryKey
+
+            key = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", False)
+            currentValue = key.GetValue("Remote Control Server")
+
+            If value Then
+                If Not currentValue = Nothing Then
+                    If currentValue.Equals(System.Reflection.Assembly.GetExecutingAssembly().Location) Then
+                        Return True
+                    End If
+                End If
+                key = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
+                key.SetValue("Remote Control Server", System.Reflection.Assembly.GetExecutingAssembly().Location)
+            Else
+                If Not currentValue = Nothing Then
+                    key = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
+                    key.DeleteValue("Remote Control Server")
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            Logger.add("Unable to set autostart value, please start the server with administrator rights." & vbNewLine & ex.ToString)
+        End Try
+        Return False
     End Function
 
 End Module
