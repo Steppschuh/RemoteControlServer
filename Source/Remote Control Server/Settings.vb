@@ -128,6 +128,17 @@ Module Settings
             appendSetting("screenScale", screenScale.ToString, sw)
             appendSetting("screenScaleFull", screenScaleFull.ToString, sw)
 
+            'Whitelist
+            sw.Write("  <whitelist>")
+            sw.WriteLine()
+
+            For Each appIp As String In whitelistedIps
+                appendWhitelistIp(appIp, sw)
+            Next
+
+            sw.Write("  </whitelist>")
+            sw.WriteLine()
+
             sw.Write("</settings>")
             sw.Flush()
             sw.Close()
@@ -218,6 +229,11 @@ Module Settings
 
     Private Sub appendSetting(ByVal name As String, ByVal value As String, ByVal sw As StreamWriter)
         sw.Write("  <setting name=" & Chr(34) & name & Chr(34) & " value=" & Chr(34) & value & Chr(34) & "/>")
+        sw.WriteLine()
+    End Sub
+
+    Private Sub appendWhitelistIp(ByVal ip As String, ByVal sw As StreamWriter)
+        sw.Write("    <app ip=" & Chr(34) & ip & Chr(34) & "/>")
         sw.WriteLine()
     End Sub
 
