@@ -16,8 +16,7 @@
         Try
             Network.sendCommand(Me)
         Catch ex As Exception
-            Logger.add("Unable to send command to " & destination)
-            Logger.add(ex.ToString)
+            Logger.add("Unable to send command to " & destination & vbNewLine & ex.ToString)
         End Try
     End Sub
 
@@ -30,8 +29,7 @@
                 Logger.add("Refused a command from " & source)
             End If
         Catch ex As Exception
-            Logger.add("Error while processing command:")
-            Logger.add(ex.ToString)
+            Logger.add("Error while processing command: " & vbNewLine & ex.ToString)
         End Try
     End Sub
 

@@ -61,7 +61,7 @@
                 End If
             End If
         Catch ex As Exception
-
+            Logger.add("Error while processing broadcast: " & vbNewLine & ex.ToString)
         End Try
     End Sub
 
