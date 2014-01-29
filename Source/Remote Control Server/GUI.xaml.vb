@@ -211,7 +211,19 @@ Class MainWindow
         Me.ShowInTaskbar = True
         Me.Visibility = Windows.Visibility.Visible
         Me.WindowState = Windows.WindowState.Normal
+        Me.Activate()
+    End Sub
+
+    Public Sub showUIAll()
+        Me.ShowInTaskbar = True
+        Me.Visibility = Windows.Visibility.Visible
+        Me.WindowState = Windows.WindowState.Normal
         Me.BringIntoView()
+        Me.Show()
+        Me.Activate()
+        Me.Topmost = True
+        Me.Topmost = False
+        Me.Focus()
     End Sub
 
     Public Sub hideUi()
@@ -220,8 +232,8 @@ Class MainWindow
             Me.Visibility = Windows.Visibility.Hidden
         Else
             Me.ShowInTaskbar = True
+            Me.WindowState = Windows.WindowState.Minimized
         End If
-        Me.WindowState = Windows.WindowState.Minimized
     End Sub
 
     Public Sub showNotificationIcon()
