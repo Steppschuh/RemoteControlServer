@@ -87,6 +87,12 @@ Class MainWindow
             image_server_version.Visibility = Windows.Visibility.Hidden
         End If
 
+        If Settings.whitelistedIps.Contains(app.ip) Then
+            Converter.setImageDrawable(image_app_ip, "ic_action_accept.png")
+        Else
+            Converter.setImageDrawable(image_app_ip, "ic_action_important.png")
+        End If
+
         If Authentication.isProtected() Then
             label_server_protected.Content = "Yes"
             Converter.setImageDrawable(image_server_protected, "ic_action_secure.png")
@@ -321,13 +327,59 @@ Class MainWindow
         Server.showAdvancedWindow(Server.advanced.tab_upgrade)
     End Sub
 
-    'Icons
+    'Server version
     Private Sub image_server_version_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles image_server_version.MouseUp
         Server.showAdvancedWindow(Server.advanced.tab_update)
     End Sub
 
+    'Server protection
     Private Sub image_server_protected_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles image_server_protected.MouseUp
         Server.showAdvancedWindow(Server.advanced.tab_settings)
+    End Sub
+
+    'App device
+    Private Sub image_app_device_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles image_app_device.MouseUp
+        Server.showAdvancedWindow(Server.advanced.tab_settings)
+    End Sub
+
+    Private Sub image_app_device_MouseEnter(sender As Object, e As MouseEventArgs) Handles image_app_device.MouseEnter
+        showTooltip("Detected OS")
+    End Sub
+
+    Private Sub image_app_device_MouseLeave(sender As Object, e As MouseEventArgs) Handles image_app_device.MouseLeave
+        hideTooltip()
+    End Sub
+
+    'App IP
+    Private Sub image_app_ip_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles image_app_ip.MouseUp
+        Dim app As App = Server.getCurrentApp
+        If Settings.whitelistedIps.Contains(app.ip) Then
+            'Remove IP
+            Settings.whitelistedIps.Remove(app.ip)
+            showDialog("Whitelist", app.deviceName & " has been removed from the whitelist." & vbNewLine & "IP address: " & app.ip)
+        Else
+            'Add IP
+            If app.ip.Equals("Unknown") Then
+                showDialog("Whitelist", "Can't add an unkown IP address to the whitelist, please connect a device first." _
+                           & vbNewLine & vbNewLine & _
+                           "If your connection gets blocked, go to 'Settings - Protection' and disable the 'Use whitelist' checkbox first.")
+            Else
+                Settings.whitelistedIps.Add(app.ip)
+                showDialog("Whitelist", app.deviceName & " has been added to the whitelist." & vbNewLine & "IP address: " & app.ip)
+            End If
+        End If
+    End Sub
+
+    Private Sub image_app_ip_MouseEnter(sender As Object, e As MouseEventArgs) Handles image_app_ip.MouseEnter
+        If Settings.whitelistedIps.Contains(Server.getCurrentApp.ip) Then
+            showTooltip("IP whitelisted")
+        Else
+            showTooltip("Add to whitelist")
+        End If
+    End Sub
+
+    Private Sub image_app_ip_MouseLeave(sender As Object, e As MouseEventArgs) Handles image_app_ip.MouseLeave
+        hideTooltip()
     End Sub
 
 #Region "Footer"
@@ -389,6 +441,5 @@ Class MainWindow
 
 #End Region
 
-
-
+    
 End Class

@@ -96,13 +96,10 @@ Public Module Server
             End If
         Next
 
-        'No app found for the given IP
+        'No app found for the given IP, save a new one
         Dim app As App = New App
-
-        If Not ip.Equals("Unknown") Then
-            app.ip = ip
-            apps.Add(app)
-        End If
+        app.ip = ip
+        apps.Add(app)
 
         Return app
     End Function
