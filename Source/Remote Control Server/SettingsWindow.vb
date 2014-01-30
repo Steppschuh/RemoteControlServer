@@ -83,6 +83,14 @@
 
 #Region "Protection settings"
 
+    Private Sub cb_useWhitelist_CheckedChanged(sender As Object, e As EventArgs) Handles cb_useWhitelist.CheckedChanged
+        Settings.useWhiteList = cb_useWhitelist.Checked
+    End Sub
+
+    Private Sub cb_usePin_CheckedChanged(sender As Object, e As EventArgs) Handles cb_usePin.CheckedChanged
+        Settings.usePin = cb_usePin.Checked
+    End Sub
+
     Private Sub btn_showPin_MouseHover(sender As Object, e As EventArgs) Handles btn_showPin.MouseHover
         tb_pin.UseSystemPasswordChar = False
     End Sub
@@ -93,6 +101,10 @@
 
     Private Sub btn_manageWhitelist_Click(sender As Object, e As EventArgs) Handles btn_manageWhitelist.Click
         Process.Start(Settings.getAppDataDirectory)
+    End Sub
+
+    Private Sub tb_pin_TextChanged(sender As Object, e As EventArgs) Handles tb_pin.TextChanged
+        Settings.pin = tb_pin.Text
     End Sub
 
 #End Region
@@ -155,4 +167,6 @@
 
 #End Region
 
+    
+    
 End Class
