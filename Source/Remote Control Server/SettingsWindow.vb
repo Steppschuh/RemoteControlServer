@@ -49,6 +49,14 @@
 
     Private Sub cb_autostart_CheckedChanged(sender As Object, e As EventArgs) Handles cb_autostart.CheckedChanged
         Settings.autoStart = cb_autostart.Checked
+
+        'Try to apply autostart setting
+        Dim success As Boolean = Settings.setAutostart(Settings.autoStart)
+        If Not success Then
+            Server.gui.showErrorDialog("Permission denied", "Can't apply this setting, please restart the server with Administrator rights." _
+                                       & vbNewLine & vbNewLine & _
+                                       "To do that, right-click on the server executable and select 'Run as Administrator'.")
+        End If
     End Sub
 
     Private Sub cb_startMinimized_CheckedChanged(sender As Object, e As EventArgs) Handles cb_startMinimized.CheckedChanged

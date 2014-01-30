@@ -260,6 +260,10 @@ Module Settings
             Logger.add("Error while parsing whitelist:")
             Logger.add(ex.ToString)
         End Try
+        If whitelistedIps.Count = 0 Then
+            'Add one IP to show the syntax
+            whitelistedIps.Add("127.0.0.1")
+        End If
     End Sub
 
     Public Function getAppDataDirectory() As String
