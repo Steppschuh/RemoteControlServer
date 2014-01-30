@@ -126,6 +126,12 @@
     <Compile Include="UpgradeWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WhitelistWindow.Designer.vb">
+      <DependentUpon>WhitelistWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WhitelistWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Page Include="GUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpgradeWindow.resx">
       <DependentUpon>UpgradeWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WhitelistWindow.resx">
+      <DependentUpon>WhitelistWindow.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">

@@ -110,4 +110,13 @@ Public Module Network
         Return result
     End Function
 
+    Public Function isValidIp(ByVal ip As String) As Boolean
+        Try
+            System.Net.IPAddress.Parse(ip)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 End Module

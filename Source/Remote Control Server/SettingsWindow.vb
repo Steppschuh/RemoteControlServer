@@ -26,6 +26,11 @@
         cb_useWhitelist.Checked = Settings.useWhiteList
         cb_usePin.Checked = Settings.usePin
         tb_pin.Text = Settings.pin
+        If Settings.whitelistedIps.Count = 1 Then
+            label_whitelist.Text = Settings.whitelistedIps.Count & " device whitelisted"
+        Else
+            label_whitelist.Text = Settings.whitelistedIps.Count & " devices whitelisted"
+        End If
 
         'Upgrade
 
@@ -100,7 +105,8 @@
     End Sub
 
     Private Sub btn_manageWhitelist_Click(sender As Object, e As EventArgs) Handles btn_manageWhitelist.Click
-        Process.Start(Settings.getAppDataDirectory)
+        Dim editor As New WhitelistWindow
+        editor.ShowDialog()
     End Sub
 
     Private Sub tb_pin_TextChanged(sender As Object, e As EventArgs) Handles tb_pin.TextChanged
