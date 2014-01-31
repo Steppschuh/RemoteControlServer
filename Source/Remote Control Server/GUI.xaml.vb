@@ -15,27 +15,10 @@ Class MainWindow
     Private refreshUiTimer As DispatcherTimer
     Public userName As String = "Home PC"
 
-#Region "Functions"
-
-    Public Function getServerName() As String
-        Try
-            Dim name As String = My.User.Name
-            If name = Nothing Then
-                name = System.Security.Principal.WindowsIdentity.GetCurrent.Name
-            End If
-            'Return name.Remove(InStr(name, "\") - 1) 
-            Return name.Substring(InStr(name, "\"))
-        Catch ex As Exception
-            Return System.Security.Principal.WindowsIdentity.GetCurrent.Name
-        End Try
-    End Function
-
-#End Region
-
 #Region "Form Methods"
 
     Public Sub initialize()
-        userName = getServerName()
+        userName = Server.getServerName()
         Server.initialize(Me)
         refreshUi()
         startRefreshUiTimer()

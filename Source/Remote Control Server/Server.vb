@@ -42,7 +42,6 @@ Public Module Server
 
     Public Sub initializeAsync()
         apps = New List(Of App)
-
         Logger.add("Server ready")
         status = "Ready"
         gui.showNotification("Server ready", "The Remote Control Server has been started and is waiting for a connection")
@@ -165,6 +164,19 @@ Public Module Server
 
     Public Function getServerOs() As String
         Return My.Computer.Info.OSFullName
+    End Function
+
+    Public Function getServerName() As String
+        Try
+            Dim name As String = My.User.Name
+            If name = Nothing Then
+                name = System.Security.Principal.WindowsIdentity.GetCurrent.Name
+            End If
+            'Return name.Remove(InStr(name, "\") - 1) 
+            Return name.Substring(InStr(name, "\"))
+        Catch ex As Exception
+            Return System.Security.Principal.WindowsIdentity.GetCurrent.Name
+        End Try
     End Function
 
 End Module
