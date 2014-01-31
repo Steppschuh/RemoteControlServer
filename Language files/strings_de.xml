@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Remote Control Collection</string>
+
+    <string name="url_upgrade">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
+    <string name="url_setupguide">http://android-remote.com/setup/</string>
+    <string name="url_troubleshooting">http://android-remote.com/troubleshooting/</string>
+    <string name="url_faq">http://android-remote.com/m/faq.html</string>
+    <string name="url_website">http://android-remote.com/</string>
+
+    <string name="next">Weiter</string>
+    <string name="prev">Zurück</string>
+    <string name="finish">Schließen</string>
+    <string name="review">Schließen</string>
+
+    <string name="guide_1_title">Einrichtung</string>
+    <string name="guide_1_description">Danke, dass Sie sich für die Remote Control Collection entschieden haben.\n\nSie werden nun die erste Verbindung herstellen.</string>
+    <string name="guide_2_title">Laden Sie den Server</string>
+    <string name="guide_2_description">Um Befehle auf ihrem PC empfangen zu können, benötigen Sie den Remote Control Server.\n\nDownload des Server unter\nwww.android-remote.com</string>
+    <string name="guide_3_title">Starten Sie den Server</string>
+    <string name="guide_3_description">Installieren und starten Sie den Remote Control Server auf dem PC, den Sie steuern möchten.\n\nBeim ersten Start wird er eine IP Adresse zeigen.</string>
+    <string name="guide_4_title">IP finden</string>
+    <string name="guide_4_description">Sobald Ihnen die IP Adresse gezeigt wird, fahren Sie mit dem nächsten Schritt fort.\n\nStellen Sie sicher, dass sich Ihre Geräte im selben Netzwerk befinden.</string>
+    <string name="guide_finish_title">Server hinzufügen</string>
+    <string name="guide_finish_description">\n\nTragen Sie die IP Adresse im obigen Feld ein.\n\nKlicken Sie \'Scannen\' um Ihren PC automatisch zu suchen.</string>
+
+    <string name="dialog_yes">Ja</string>
+    <string name="dialog_no">Nein</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_unlock">Freischalten</string>
+    <string name="dialog_success">Erfolg</string>
+    <string name="dialog_error">Fehler</string>
+    <string name="dialog_info">Information</string>
+    <string name="dialog_changelog">Changelog</string>
+
+    <string name="changelog">Sie haben kürzlich ein Update für die App installiert. Möglicherweise hat auch der Remote Control Server ein Update erhalten. Hier sind die letzten Änderungen:\n\nVersion 2.0.3.0:\n - Added dark theme\n - Language support: Spanish\n - Improved exception handling\n\nVersion 2.0.2.0:\n - Language support: German\n - Improved auto connect\n\nVersion 2.0.1.0:\n - Hotfix for license bug\n\nVersion 2.0.0.0:\n - New app design\n - Tablet support\n - Improved performance\n - Multiscreen support\n - Fullscreen support\n - New network scan\n\nVersion 1.8.0.0:\n - New live screen remote\n - Absolute cursor positioning\n - Smoother scrolling\n\nVersion 1.7.5.0:\n - New Remote Control Server\n - Optional white theme\n - Support for unlock codes</string>
+
+    <string name="connection_success">Verbunden</string>
+    <string name="connection_success_description">Die Geräte sind nun verbunden</string>
+    <string name="connection_success_remotes">Steuerungen</string>
+    <string name="connection_success_with">Verbunden mit </string>
+
+    <string name="connection_search">Suche</string>
+    <string name="connection_search_description">Suche nach einem Server...</string>
+
+    <string name="connection_error">Nicht erreichbar</string>
+    <string name="connection_error_description">Verbindung fehlgeschlagen, es konnte kein Server gefunden werden.</string>
+    <string name="connection_error_retry">Zurück</string>
+    <string name="connection_error_help">Hilfe</string>
+
+    <string name="navigation_home">Übersicht</string>
+    <string name="navigation_remotes">Steuerungen</string>
+    <string name="navigation_server">Server</string>
+    <string name="navigation_info">Info</string>
+    <string name="navigation_help">Hilfe</string>
+    <string name="navigation_upgrade">Upgrade</string>
+    <string name="navigation_settings">Einstellungen</string>
+
+    <string name="remote_mouse">Maus</string>
+    <string name="remote_keyboard">Tastatur</string>
+    <string name="remote_live">Bildschirm</string>
+    <string name="remote_media">Media</string>
+    <string name="remote_slideshow">Präsentation</string>
+    <string name="remote_shortcuts">Shortcuts</string>
+    <string name="remote_speech">Sprache</string>
+    <string name="remote_scroll">Scrollen</string>
+
+    <string name="menu_switch_screen">Bildschirm wechseln</string>
+
+    <string name="license_free">Kostenlos</string>
+    <string name="license_trial">Trial</string>
+    <string name="license_pro">Pro</string>
+    <string name="license_upgrade">Upgraded</string>
+
+    <string name="home_commands_sent">Gesendete Befehle</string>
+    <string name="home_frequently_used">Häufig genutzt</string>
+    <string name="home_recent_connections">Letzte Verbindungen</string>
+    <string name="home_app_details">App Details</string>
+    <string name="home_version">Version:</string>
+    <string name="home_license">Lizens:</string>
+    <string name="home_ip">IP Adresse:</string>
+    <string name="home_connected">Verbunden</string>
+
+    <string name="server_invalid_title">Speichern fehlgeschlagen</string>
+    <string name="server_invalid_description">Die eingetragene IP Adresse oder Name ist nicht gültig.</string>
+    <string name="server_connect_title">Server gespeichert</string>
+    <string name="server_connect_description">Möchten Sie eine Verbindung mit SERVERNAME herstellen?</string>
+    <string name="server_add_new">Neuen Server hinzufügen</string>
+    <string name="server_add_ip">IP Adresse:</string>
+    <string name="server_add_name">Name:</string>
+    <string name="server_add_ip_sample">z.B. 192.168.1.5</string>
+    <string name="server_add_name_sample">z.B. Heim PC</string>
+    <string name="server_add_save">Speichern</string>
+    <string name="server_add_scan">Suchen</string>
+
+    <string name="server_add_first">Keine Server gespeichert</string>
+    <string name="server_add_first_description">Sie haben noch keine Server hinzugefügt. Bitte speichern Sie zunächst einen Server.</string>
+
+
+    <string name="help_contact_support">Support</string>
+    <string name="help_contact_support_description">Sollten Sie Probleme haben, kontaktieren Sie uns. Wir sind da um Ihnen zu helfen. Bitte überprüfen Sie vorher, ob es nicht eine Anleitung für Ihr Problem gibt.</string>
+    <string name="help_contact_support_contact">Support kontaktieren</string>
+    <string name="help_contact_write_mail">E-Mail schreiben</string>
+    <string name="help_contact_feedback">Feedback</string>
+    <string name="help_contact_feedback_description">Haben Sie Vorschläge? Bitte lassen Sie uns wissen, was Sie denken! Ihr Feedback ist es, was unsere App stetig besser macht.</string>
+    <string name="help_contact_feedback_contact">Feedback senden</string>
+
+    <string name="help_setup">Einrichtung</string>
+    <string name="help_setup_descriptions">Nicht sicher, wie Sie eine Verbindung herstellen sollen? Folgen Sie dieser Anleitung.</string>
+    <string name="help_troubleshooting">Problembehandlung</string>
+    <string name="help_troubleshooting_descriptions">Die Einrichtung funktioniert nicht? Hier sind mögliche Ursachen aufgelistet.</string>
+    <string name="help_mac">Server für Mac</string>
+    <string name="help_mac_descriptions">Wir bieten zur Zeit noch keinen Server für Mac an. Wir arbeiten daran.</string>
+    <string name="help_bt">BlueTooth Verbindung</string>
+    <string name="help_bt_descriptions">Eine Verbindung ist nur über ein WLAN Netzwerk möglich, BlueTooth wird nicht unterstützt.</string>
+    <string name="help_faq">FAQ</string>
+    <string name="help_faq_descriptions">Eine Liste mit häufig gestellten Fragen finden Sie hier.</string>
+
+    <string name="upgrade_code">Freischalt Code</string>
+    <string name="upgrade_code_description">Sie können Funktionen auch mit einem Code freischalten. Einen kostenlosen Code zum testen erhalten Sie auf unserer Facebook Seite.</string>
+    <string name="upgrade_code_button">Code bekommen</string>
+
+    <string name="upgrade_get_code">Einen Code erhalten</string>
+    <string name="upgrade_get_code_description">Navigieren Sie mit Ihrem PC zu: \nhttp://code.android-remote.com\n\nDie Website ist nicht von einem mobilen Gerät verfügbar.</string>
+
+    <string name="upgrade_activate">Code aktivieren</string>
+    <string name="upgrade_activate_description">Haben Sie einen Code erhalten? Tragen Sie ihn hier ein:</string>
+    <string name="upgrade_activate_check">Aktivieren</string>
+    <string name="upgrade_activate_reset">Löschen</string>
+    <string name="upgrade_activate_isactive">Code ist aktiv</string>
+
+    <string name="upgrade_thanks">Danke!</string>
+    <string name="upgrade_thanks_description">Vielen Dank für den Erwerb der Pro Version, wir freuen uns über Ihre Unterstützung. Genießen Sie die App mit all ihren Funktionen!</string>
+
+    <string name="upgrade_ads">Werbung entfernen</string>
+    <string name="upgrade_ads_description">Sie mögen keine Werbung? Schalten Sie eines der unten gelisteten Upgrades frei um sie zu entfernen.</string>
+
+    <string name="upgrade_live">Bildschirm</string>
+    <string name="upgrade_live_description">Sehen Sie den Bildschirm Ihres PCs in Echtzeit und steuern Sie die Maus. Mehrere Bildschirme und Full HD Auflösung werden unterstützt.</string>
+
+    <string name="upgrade_media">Media Steuerung</string>
+    <string name="upgrade_media_description">Steuern Sie einen Media Player Ihrer Wahl! Unterstützt werden Windows Media Player, iTunes, VLC, Spotify, Songbird und weitere.</string>
+
+    <string name="upgrade_slideshow">Präsentationen</string>
+    <string name="upgrade_slideshow_description">Steuern Sie Ihre Präsentationen direkt vom Smartphone! Der Bildschirm wird in Echtzeit auf Ihr Smartphone übertragen. Das Funktioniert mit Powerpoint, Impress, Adobe Reader, Windows Media Center und weiteren.</string>
+
+    <string name="upgrade_pro">Pro Version</string>
+    <string name="upgrade_pro_description">Schaltet alle Upgrades frei. Alle kommenden Funktionen sind ebenfalls kostenlos.</string>
+
+    <string name="upgrade_purchase">Kaufen</string>
+    <string name="upgrade_locked">Steuerung gesperrt</string>
+    <string name="upgrade_locked_description">Diese Steuerung ist nicht freigeschaltet. Bitte erwerben Sie ein Upgrade oder aktivieren Sie einen Freischaltcode um diese Steuerung zu nutzen.</string>
+
+    <string name="keyboard_send">Senden</string>
+    <string name="keyboard_live">Live übertragen</string>
+    <string name="keyboard_advanced">Erweitert</string>
+    <string name="keyboard_lastsend">Zuletzt gesendet:</string>
+    <string name="keyboard_ctrl">Strg</string>
+    <string name="keyboard_shift">Shift</string>
+    <string name="keyboard_alt">Alt</string>
+    <string name="keyboard_win">Win</string>
+    <string name="keyboard_tab">Tab</string>
+    <string name="keyboard_esc">Esc</string>
+    <string name="keyboard_del">Entf</string>
+    <string name="keyboard_ins">Einf</string>
+    <string name="keyboard_return">Ret</string>
+    <string name="keyboard_back">Back</string>
+    <string name="keyboard_left">Links</string>
+    <string name="keyboard_up">Hoch</string>
+    <string name="keyboard_right">Rechts</string>
+    <string name="keyboard_down">Runter</string>
+
+    <string name="shortcut_desktop">Desktop zeigen</string>
+    <string name="shortcut_close">Fenster schließen</string>
+    <string name="shortcut_shutdown">Herunterfahren</string>
+    <string name="shortcut_standby">Ruhezustand</string>
+    <string name="shortcut_lock">PC sperren</string>
+    <string name="shortcut_copy">Kopieren</string>
+    <string name="shortcut_paste">Einfügen</string>
+    <string name="shortcut_undo">Rückgängig</string>
+    <string name="shortcut_select_all">Alles auswählen</string>
+
+    <string name="f_upgrade_error">Etwas lief schief, bitte versuchen Sie es erneut.</string>
+    <string name="f_upgrade_overused">Das Registrierungslimit für diesen Code wurde erreicht</string>
+    <string name="f_upgrade_expired_title">Code abgelaufen</string>
+    <string name="f_upgrade_expired">Ihr Code ist abgelaufen. Sie können ihn nicht erneut aktivieren.</string>
+    <string name="f_upgrade_trial_used">Sie haben bereits einen Trial Code verwendet. Sie können nur einen Code pro Gerät aktivieren.</string>
+    <string name="f_upgrade_now_active">Code wurde aktiviert, Sie können nun alle Steuerungen nutzen.</string>
+    <string name="f_upgrade_result_invalid">Antwort vom Server entspricht nicht der Anfrage.</string>
+    <string name="f_upgrade_payload_failed">Fehler beim Kauf, die Identitätsverifizierung schlug fehl.</string>
+    <string name="f_upgrade_thanks">Danke für Ihren Kauf, Sie können nun Ihr Upgrade nutzen.</string>
+    <string name="f_upgrade_no_billing">In-App Käufe werden auf Ihrem Gerät nicht unterstützt.</string>
+
+    <string name="speech_talk">Erneut sprechen</string>
+    <string name="speech_send_cmd">Befehl senden</string>
+    <string name="speech_send_text">Text senden</string>
+    <string name="speech_na">Spracherkennung ist auf Ihrem Gerät nicht verfügbar.</string>
+
+    <string name="v_identify_command">Kommando, Befehl, Remote, Steuerung, Command</string>
+    <string name="v_identify_media">Media, Mediaplayer, iTunes, Musik, Titel, Track, Music</string>
+    <string name="v_identify_audio">Lautstärke, Sound, Audio, Volume, Ton, Loudness</string>
+    <string name="v_identify_google">Google, Suche, Search, Find, finde</string>
+    <string name="v_play">play, pause, anhalten, stop, stopp, pausieren</string>
+    <string name="v_next">weiter, vorwärts, nächster, überspringen, skip, next, forward</string>
+    <string name="v_prev">zurück, vorheriger, letzter, last, back, return, previous</string>
+    <string name="v_volup">lauter, höher, hoch, erhöhen, up, higher, increase, raise, heighten, step up, louder</string>
+    <string name="v_voldown">leiser, niedriger, geringer, verringern, down, lower, reduce, decrease, lessen, weaken</string>
+    <string name="v_volmute">lautlos, stumm, aus, an,mute, aus, off, silent, on, unmute</string>
+    <string name="v_send">senden, enter, abschicken, send, return</string>
+    <string name="v_delete">löschen, entfernen, rückgängig, undo, delete, clear</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_cat_general">Allgemein</string>
+    <string name="settings_reset_stats">Statistiken zurücksetzen</string>
+    <string name="settings_reset_stats_sum">Löscht gesammelte Daten</string>
+    <string name="settings_reset_stats_toast">Statistiken wurden gelöscht</string>
+    <string name="settings_vibrate">Haptisches Feedback</string>
+    <string name="settings_vibrate_sum">Vibration bei Übertragung</string>
+    <string name="settings_low_traffic">Geringe Datenrate</string>
+    <string name="settings_low_traffic_sum">Verringert Netzwerk Verkehr</string>
+    <string name="settings_autoconnect">Automatisch verbinden</string>
+    <string name="settings_autoconnect_sum">Stellt beim Start eine Verbindung her</string>
+    <string name="settings_dark">Dunkles Design</string>
+    <string name="settings_dark_sum">Wechselt in den Nachtmodus</string>
+
+    <string name="detail_commandcount">Zählt die Anzahl an Befehlen, die an den Server übertragen wurden.</string>
+    <string name="detail_frequently_used">Zeigt die Steuerungen, die häufig verwendet werden. Klicken Sie um eine Steuerung zu starten.</string>
+    <string name="detail_recent_connections">Listet die Server auf, die zuletzt eine Verbindung hergestellt haben. Klicken Sie zum verbinden.</string>
+    <string name="detail_nowifi">Sie sind zur Zeit mit keinen WLAN Netzwerk verbunden. Sie werden nicht in der Lage sein, eine Verbindung mit Ihrem PC herzustellen.</string>
+
+
+</resources>
