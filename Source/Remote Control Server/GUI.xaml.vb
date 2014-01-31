@@ -10,7 +10,7 @@ Class MainWindow
     Private refreshTimerActive As Boolean = False
     Public dialogActive As Boolean = False
 
-    Public notificationIcon As System.Windows.Forms.NotifyIcon
+    Public WithEvents notificationIcon As System.Windows.Forms.NotifyIcon
 
     Private refreshUiTimer As DispatcherTimer
     Public userName As String = "Home PC"
@@ -278,6 +278,14 @@ Class MainWindow
                 notificationIcon.ShowBalloonTip(2000)
             End If
         End If
+    End Sub
+
+    Private Sub NotifyIcon_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles notificationIcon.Click
+        showUI()
+    End Sub
+
+    Private Sub NotifyIcon_BallonClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles notificationIcon.BalloonTipClicked
+        showUI()
     End Sub
 
 #End Region

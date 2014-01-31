@@ -26,10 +26,6 @@ Public Class TCP
 
     Public Sub initialize()
         Logger.add("Initializing TCP")
-
-        'Dim listenThread As New Thread(New ThreadStart(AddressOf startListener))
-        'listenThread.Start()
-
         startListener()
     End Sub
 
