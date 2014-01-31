@@ -22,15 +22,25 @@ Module Keyboard
         Dim key As Keys
         Dim character As Char
         For i As Integer = 0 To message.Length - 1
-            character = message.Chars(i)
-            key = stringToKey(Char.ToUpper(character))
-            If Char.IsUpper(character) Then
-                sendKeyDown(Keys.ShiftKey)
-                sendKeyPress(key)
-                sendKeyUp(Keys.ShiftKey)
-            Else
-                sendKeyPress(key)
-            End If
+            Try
+                character = message.Chars(i)
+                key = stringToKey(Char.ToUpper(character))
+                If key = Nothing Then
+                    'Character is unicode, no Windows Key available
+                    Dim unicode As Integer = AscW(character)
+                    SendInput.SendUniCodeKey(unicode)
+                Else
+                    If Char.IsUpper(character) Then
+                        sendKeyDown(Keys.ShiftKey)
+                        sendKeyPress(key)
+                        sendKeyUp(Keys.ShiftKey)
+                    Else
+                        sendKeyPress(key)
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
         Next
     End Sub
 

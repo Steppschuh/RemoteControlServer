@@ -109,6 +109,7 @@
     <Compile Include="Remote.vb" />
     <Compile Include="Keyboard.vb" />
     <Compile Include="Screenshot.vb" />
+    <Compile Include="SendInput.vb" />
     <Compile Include="Server.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SettingsWindow.Designer.vb">
