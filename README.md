@@ -19,7 +19,7 @@ Usage
 ===================
 
 ### Sending a data package
- ```javascript
+ ```visualbasic
   Dim command As New Command
   command.source = Network.getServerIp()
   command.destination = Server.getCurrentApp().ip
@@ -39,7 +39,7 @@ Priority | Protocol | Tries
 ### Receiving a data package
 The `TCP` and `UDP` modules are constantly listening for incoming connections / data packages. If data was received and the source was authenticated, it will be processed as a `Command` object in the `Remote` module, where the used API will be detected. Depending on the API level, the command data will be parsed by the responsible `API` module. If it is a valid command, the server will execute it.
 
- ```javascript
+ ```visualbasic
   Dim command As Command = New Command
   command.source = remoteEndPoint.Address.ToString
   command.destination = localEndPoint.Address.ToString
@@ -47,3 +47,38 @@ The `TCP` and `UDP` modules are constantly listening for incoming connections / 
   command.process()
  ```
 The above snippet is part of the `listen()` methods of the `TCP` and `UDP` module and initiates the processing of a command.
+
+### Simulating keyboard input
+#### Pressing a key
+To send a key up and down event for a single key use:
+ ```visualbasic
+  'Simulate Esc key press
+  Keyboard.sendKeyPress(Keys.Escape)
+  
+  'The method above will call:
+  Keyboard.sendKeyDown(ByVal key As Keys)
+  Keyboard.sendKeyUp(ByVal key As Keys)
+ ```
+#### Sending a shortcut
+To simulate pressing multiple keys, use:
+ ```visualbasic
+  'Send shortcut for Copy
+  Dim shortcut = New List(Of Key) From {Keys.ControlKey, Keys.C}
+  Keyboard.sendShortcut(shortcut)
+ ```
+#### Sending a string
+If you want to press multiple keys after each other, use:
+ ```visualbasic
+  'Send Hello World
+  Keyboard.sendEachKey("Hello World")
+ ```
+#### Sending a unicode character
+If you need to send characters that have no `Key` representation, use:
+ ```visualbasic
+  'Send © (Copyright)
+  'If you have the char
+  Keyboard.sendUnicodeKeyPress("©")
+  
+  'If you have the unicode
+  Keyboard.sendUnicodeKeyPress(169)
+ ```
