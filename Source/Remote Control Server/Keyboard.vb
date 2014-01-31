@@ -7,6 +7,15 @@ Module Keyboard
         sendKeyUp(key)
     End Sub
 
+    Public Sub sendUnicodeKeyPress(ByVal character As Char)
+        Dim unicode As Integer = AscW(character)
+        sendUnicodeKeyPress(unicode)
+    End Sub
+
+    Public Sub sendUnicodeKeyPress(ByVal unicode As Integer)
+        SendInput.SendUniCodeKey(unicode)
+    End Sub
+
     Public Sub sendKeyDown(ByVal key As Keys)
         Try
             Remote.keybd_event(key, 0, 0, 0) 'Down
@@ -27,8 +36,7 @@ Module Keyboard
                 key = stringToKey(Char.ToUpper(character))
                 If key = Nothing Then
                     'Character is unicode, no Windows Key available
-                    Dim unicode As Integer = AscW(character)
-                    SendInput.SendUniCodeKey(unicode)
+                    sendUnicodeKeyPress(character)
                 Else
                     If Char.IsUpper(character) Then
                         sendKeyDown(Keys.ShiftKey)
