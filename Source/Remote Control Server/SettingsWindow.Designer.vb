@@ -95,6 +95,8 @@ Partial Class SettingsWindow
         Me.Label23 = New System.Windows.Forms.Label()
         Me.track_screen_quality_full = New System.Windows.Forms.TrackBar()
         Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -107,9 +109,11 @@ Partial Class SettingsWindow
         Me.GroupBox1.SuspendLayout()
         Me.tab_mouse.SuspendLayout()
         Me.tab_screen.SuspendLayout()
+        Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.tab_help.SuspendLayout()
         Me.tab_log.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -416,6 +420,7 @@ Partial Class SettingsWindow
         '
         'tab_upgrade
         '
+        Me.tab_upgrade.Controls.Add(Me.Label25)
         Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
         Me.tab_upgrade.Name = "tab_upgrade"
         Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
@@ -543,6 +548,7 @@ Partial Class SettingsWindow
         '
         'tab_help
         '
+        Me.tab_help.Controls.Add(Me.Label26)
         Me.tab_help.Location = New System.Drawing.Point(4, 22)
         Me.tab_help.Name = "tab_help"
         Me.tab_help.Padding = New System.Windows.Forms.Padding(3)
@@ -938,6 +944,24 @@ Partial Class SettingsWindow
         Me.Label24.TabIndex = 2
         Me.Label24.Text = "Administrator rights required!"
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(8, 7)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(259, 13)
+        Me.Label25.TabIndex = 0
+        Me.Label25.Text = "Not yet available, you are using a pre-release version!"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(8, 7)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(259, 13)
+        Me.Label26.TabIndex = 1
+        Me.Label26.Text = "Not yet available, you are using a pre-release version!"
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -967,10 +991,14 @@ Partial Class SettingsWindow
         Me.GroupBox1.PerformLayout()
         Me.tab_mouse.ResumeLayout(False)
         Me.tab_screen.ResumeLayout(False)
+        Me.tab_upgrade.ResumeLayout(False)
+        Me.tab_upgrade.PerformLayout()
         Me.tab_update.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
+        Me.tab_help.ResumeLayout(False)
+        Me.tab_help.PerformLayout()
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
@@ -1064,4 +1092,6 @@ Partial Class SettingsWindow
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents track_screen_quality_full As System.Windows.Forms.TrackBar
     Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents Label26 As System.Windows.Forms.Label
 End Class

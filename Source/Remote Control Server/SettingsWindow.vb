@@ -44,8 +44,6 @@
 
         'Help
 
-        'Log
-
     End Sub
 
 #Region "Events"
