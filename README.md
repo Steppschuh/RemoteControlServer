@@ -4,7 +4,7 @@ Remote Control Server
 ![Banner](http://remote-control-collection.com/files/posts/server_gui_advanced.png "Remote Control Collection")
 
 ### Description
-The Remote Control Server is needed to receive commands from any [Remote Control App](http://remote-control-collection.com/). The Remote Control apps allow you to remotely control your PC from your smartphone or tablet.
+The Remote Control Server is needed to receive commands from any [Remote Control App](http://remote-control-collection.com/). The Remote Control apps allow you to remotely control your PC from your smartphone or tablet. You can download the latest stable version here: [Server Releases](https://github.com/Steppschuh/RemoteControlServer/releases)
 
 ### For developers
 If you are interested in improving this software, feel free to contribute your code. If you would like to port this software to Mac OS or Linux, please [contact me](http://steppschuh.net/?contact). Usage samples can be found below.
