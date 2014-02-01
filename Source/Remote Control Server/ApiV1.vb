@@ -8,6 +8,13 @@ Module ApiV1
     Public Const cmd_info_app_version As String = "[cmd_18]"
     Public Const cmd_info_app_mode As String = "[cmd_19]"
 
+
+    Public Const cmd_connect As String = "[cmd_connect]"
+    Public Const cmd_disconnect As String = "[cmd_disconnect]"
+    Public Const cmd_lizens As String = "[cmd_lizens]"
+    Public Const cmd_version As String = "[cmd_version]"
+
+    Public Const cmd_mouse_string As String = "[cmd_mouse]"
     Public Const cmd_keyboard_string As String = "[cmd_keyboard]"
     Public Const cmd_media_string As String = "[cmd_music]"
     Public Const cmd_slideshow_string As String = "[cmd_slide]"
@@ -25,8 +32,10 @@ Module ApiV1
         Dim app As App = Server.getApp(command.source)
 
         readableCommand = "Unknown"
-
-        If cmd.Contains(cmd_keyboard_string) Then
+        If cmd.Contains(cmd_mouse_string) Then
+            parseMouseCommand(value)
+            Logger.add("Mouse: " & value)
+        ElseIf cmd.Contains(cmd_keyboard_string) Then
             parseKeyboardCommand(cmd)
             Logger.add("Keyboard: " & readableCommand)
         ElseIf cmd.Contains(cmd_media_string) Then
@@ -61,10 +70,21 @@ Module ApiV1
             Catch ex As Exception
             End Try
             Logger.add("Google: " & value)
+
+            'Connection
         ElseIf cmd.Contains(cmd_broadcast_string) Then
             command.source = value
             app = Server.getApp(value)
             app.onBroadCast(command)
+        ElseIf cmd.Contains(cmd_connect) Then
+            app.deviceName = value
+            Logger.add("Device name set to " & value)
+            app.onConnect()
+        ElseIf cmd.Contains(cmd_disconnect) Then
+            app = Server.getApp(value)
+            app.onDisconnect()
+
+            'Info
         ElseIf cmd.Contains(cmd_info_device_name) Then
             app.deviceName = value
             Logger.add("Device name set to " & value)
@@ -75,10 +95,10 @@ Module ApiV1
         ElseIf cmd.Contains(cmd_info_app_name) Then
             app.appName = value
             Logger.add("App name set to " & value)
-        ElseIf cmd.Contains(cmd_info_app_version) Then
+        ElseIf cmd.Contains(cmd_info_app_version) Or cmd.Contains(cmd_version) Then
             app.appVersion = value
             Logger.add("App version set to " & value)
-        ElseIf cmd.Contains(cmd_info_app_mode) Then
+        ElseIf cmd.Contains(cmd_info_app_mode) Or cmd.Contains(cmd_lizens) Then
             Dim license As New License
             If value.ToLower.Equals("pro") Or value.ToLower.Equals("trial") Then
                 license.isProVersion = True
@@ -88,7 +108,7 @@ Module ApiV1
             app.license = license
             Logger.add("App license set to " & value)
         Else
-            Logger.add("ApiV1: " + cmd)
+            Logger.add("Unknown ApiV1: " + cmd)
         End If
 
     End Sub
@@ -99,6 +119,10 @@ Module ApiV1
         value = value.Replace(vbLf, "")
         Return value
     End Function
+
+    Public Sub parseMouseCommand(ByVal cmd As String)
+        Mouse.parseMouse(cmd)
+    End Sub
 
     Public Sub parseKeyboardCommand(ByVal cmd As String)
         If cmd.Contains("<") And cmd.Contains(">") Then

@@ -74,8 +74,6 @@ Module ApiV2
     End Sub
 
     Public Sub parseCommand(ByRef command As Command)
-        'Logger.add("ApiV2: Command from " & command.source)
-
         'Get remote type
         Dim typeBit As Byte = command.data(1)
         If typeBit < 20 Then

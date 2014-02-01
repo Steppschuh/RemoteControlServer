@@ -83,7 +83,7 @@ Module Mouse
         End If
     End Function
 
-    Public Function getPoint(ByVal data As Byte(), ByVal index As Integer) As Point
+    Public Function getPointAt(ByVal data As Byte(), ByVal index As Integer) As Point
         Dim P As Point
         Try
             If index = 0 Then
@@ -362,39 +362,6 @@ Module Mouse
         End Select
     End Sub
 
-    Public Sub parseScroll(ByVal message As String)
-        Dim Action As String = ApiV1.getCommandvalue(message)
-        If Action.Contains("left_down") Or Action.Contains("zoomout") Then
-            'Zoom out
-            Keyboard.sendKeyDown(Keys.LControlKey)
-            scrollRepeat(-10, 1)
-            Keyboard.sendKeyUp(Keys.LControlKey)
-        ElseIf Action.Contains("right_down") Or Action.Contains("zoomin") Then
-            'Zoom in
-            Keyboard.sendKeyDown(Keys.LControlKey)
-            scrollRepeat(10, 1)
-            Keyboard.sendKeyUp(Keys.LControlKey)
-        ElseIf Action.Contains("left2_down") Or Action.Contains("back") Then
-            'Back
-            Keyboard.sendKeyPress(Keys.BrowserBack)
-        ElseIf Action.Contains("right2_down") Or Action.Contains("forward") Then
-            'Forward
-            Keyboard.sendKeyPress(Keys.BrowserForward)
-        ElseIf Action.Contains("pagedown") Then
-            Keyboard.sendKeyPress(Keys.PageDown)
-        ElseIf Action.Contains("pageup") Then
-            Keyboard.sendKeyPress(Keys.PageUp)
-        ElseIf Action.Contains("cancel") Then
-            Keyboard.sendKeyPress(Keys.BrowserStop)
-        ElseIf Action.Contains("refresh") Then
-            Keyboard.sendKeyPress(Keys.BrowserRefresh)
-        ElseIf Action.Contains("fullscreen") Then
-            Keyboard.sendKeyPress(Keys.F11)
-        ElseIf Action.Contains("fullexit") Then
-            Keyboard.sendKeyPress(Keys.Escape)
-        End If
-    End Sub
-
     Public Sub parsePointer(ByVal messageBytes As Byte())
         Try
             X_New = messageBytes(3)
@@ -492,7 +459,7 @@ Module Mouse
     Public Sub parseLaser(ByVal messageBytes As Byte())
         Dim point_org As Point
         Dim point As Point
-        point_org = getPoint(messageBytes, 0)
+        point_org = getPointAt(messageBytes, 0)
 
         Server.pointer.showPointer()
 
@@ -534,4 +501,159 @@ Module Mouse
         Server.pointer.fadeOutPointer()
     End Sub
 
+
+#Region "Legacy support"
+
+    'These methods are supporting very old apps, do not use!
+
+    Public Sub parseScroll(ByVal message As String)
+        Dim Action As String = ApiV1.getCommandvalue(message)
+        If Action.Contains("left_down") Or Action.Contains("zoomout") Then
+            'Zoom out
+            Keyboard.sendKeyDown(Keys.LControlKey)
+            scrollRepeat(-10, 1)
+            Keyboard.sendKeyUp(Keys.LControlKey)
+        ElseIf Action.Contains("right_down") Or Action.Contains("zoomin") Then
+            'Zoom in
+            Keyboard.sendKeyDown(Keys.LControlKey)
+            scrollRepeat(10, 1)
+            Keyboard.sendKeyUp(Keys.LControlKey)
+        ElseIf Action.Contains("left2_down") Or Action.Contains("back") Then
+            'Back
+            Keyboard.sendKeyPress(Keys.BrowserBack)
+        ElseIf Action.Contains("right2_down") Or Action.Contains("forward") Then
+            'Forward
+            Keyboard.sendKeyPress(Keys.BrowserForward)
+        ElseIf Action.Contains("pagedown") Then
+            Keyboard.sendKeyPress(Keys.PageDown)
+        ElseIf Action.Contains("pageup") Then
+            Keyboard.sendKeyPress(Keys.PageUp)
+        ElseIf Action.Contains("cancel") Then
+            Keyboard.sendKeyPress(Keys.BrowserStop)
+        ElseIf Action.Contains("refresh") Then
+            Keyboard.sendKeyPress(Keys.BrowserRefresh)
+        ElseIf Action.Contains("fullscreen") Then
+            Keyboard.sendKeyPress(Keys.F11)
+        ElseIf Action.Contains("fullexit") Then
+            Keyboard.sendKeyPress(Keys.Escape)
+        End If
+    End Sub
+
+    'Parses the x and y values from a command at an index
+    Private Function parsePointAt(ByVal message As String, ByVal index As Integer) As Point
+        Dim point As Point
+        Dim temp As String 'ACTION_MOVE[#0=82,292;#1=157,116]
+
+        If index = 0 Then
+            message = message.Substring(InStr(message, "=")) '82,292;#1=157,116]
+            If message.Contains(";") Then
+                temp = message.Remove(InStr(message, ";") - 1) '82,292
+            Else
+                temp = message.Remove(InStr(message, "]") - 1) '82,292
+            End If
+
+            point.X = temp.Remove(InStr(temp, ",") - 1) '82
+            point.Y = temp.Substring(InStr(temp, ",")) '292
+        Else
+            If message.Contains(";") Then
+                message = message.Substring(InStrRev(message, "=")) '157,116]
+                temp = message.Remove(InStr(message, "]") - 1) '157,116
+                point.X = temp.Remove(InStr(temp, ",") - 1) '157
+                point.Y = temp.Substring(InStr(temp, ",")) '116
+            Else
+                point.X = -1
+                point.Y = -1
+            End If
+        End If
+
+        Return point
+    End Function
+
+    'Parses a legacy mouse remote command
+    Public Sub parseMouse(ByVal message As String)
+        Dim Action As String = message
+        If Action.Contains("ACTION_MOVE") Then
+            P1_New = parsePointAt(Action, 0)
+            If isMultitouch = True Then
+                P2_New = parsePointAt(Action, 1)
+                processMultitouch()
+            Else
+                P2_New = P_ORIGIN
+                moveCursor()
+            End If
+            Exit Sub
+        ElseIf Action.Contains("ACTION_DOWN") Then
+            If Action.Contains("ACTION_DOWN[") Then
+                '1 Pointer Down
+                isMultitouch = False
+                P1_Start = parsePointAt(Action, 0)
+                P1_Last = P1_Start
+
+                cursorPositonDown = getCursorPosition()
+                mousePadDown = True
+                P1_Down = DateTime.Now
+            Else
+                '2 Pointer Down
+                isMultitouch = True
+                P1_Start = parsePointAt(Action, 0)
+                P1_New = P1_Start
+                P1_Last = P1_Start
+                P1_Down = DateTime.Now
+
+                P2_Start = parsePointAt(Action, 1)
+                P2_New = P2_Start
+                P2_Last = P2_Start
+                P2_Down = DateTime.Now
+                currentGesture = 0
+
+                P3_Start.X = Math.Round((P1_New.X + P2_New.X) / 2)
+                P3_Start.Y = Math.Round((P1_New.Y + P2_New.Y) / 2)
+                P3_New = P3_Start
+                P3_Last = P3_Start
+                P3_Vektor_Start = Converter.getPointDistance(P1_New, P2_New)
+            End If
+        ElseIf Action.Contains("ACTION_UP") Then
+            If Action.Contains("ACTION_UP[") Then
+                '0 Pointer Down
+                mousePadDown = False
+                P1_New = P_ORIGIN
+                P1_Up = DateTime.Now
+
+                If P1_Up.Subtract(P1_Down).TotalMilliseconds < 150 Then
+                    If -10 < P1_Start.X - P1_Last.X < 10 And -10 < P1_Start.Y - P1_Last.Y < 10 Then
+                        SetCursorPos(cursorPositonDown.X, cursorPositonDown.Y)
+                        leftClickRepeat(1)
+                    End If
+                End If
+            Else
+                '1 Pointer Down
+                P2_Up = DateTime.Now
+                isMultitouch = False
+                P1_Last = P_ORIGIN
+                P2_New = P_ORIGIN
+                P3_New = P_ORIGIN
+                P3_Last = P_ORIGIN
+                P3_Start = P_ORIGIN
+            End If
+            currentGesture = 0
+        ElseIf Action.Contains("left_down") Then
+            mouse_event(MOUSE_LEFT_DOWN, 0, 0, 0, 0)
+            dateLeftDown = DateTime.Now
+            mouseLeftDown = True
+        ElseIf Action.Contains("left_up") Then
+            mouse_event(MOUSE_LEFT_UP, 0, 0, 0, 0)
+            dateLeftUp = DateTime.Now
+            mouseLeftDown = False
+        ElseIf Action.Contains("right_down") Then
+            mouseRightDown = True
+            mouse_event(MOUSE_RIGHT_DOWN, 0, 0, 0, 0)
+        ElseIf Action.Contains("right_up") Then
+            mouseRightDown = False
+            mouse_event(MOUSE_RIGHT_UP, 0, 0, 0, 0)
+        End If
+    End Sub
+
+#End Region
+
+    
 End Module
