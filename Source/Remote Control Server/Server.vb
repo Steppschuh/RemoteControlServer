@@ -69,13 +69,8 @@ Public Module Server
         Dim path_dl As String = Settings.getAppDataDirectory & "\Remote Control Server.exe"
         Dim path_cur As String = System.AppDomain.CurrentDomain.BaseDirectory & "Remote Control Server.exe"
 
-        Logger.add("Path appdata: " & path_dl)
-        Logger.add("Path cur: " & path_cur)
-
-
         If path_cur.Equals(path_dl) Then
             'Currently running the latest version
-            Logger.add("Running the latest version")
             Return True
         Else
             Try

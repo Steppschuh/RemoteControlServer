@@ -87,13 +87,14 @@ Partial Class UpgradeWindow
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btn_upgrade)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "UpgradeWindow"
         Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Upgrade"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
