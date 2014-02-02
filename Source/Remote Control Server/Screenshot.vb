@@ -3,7 +3,7 @@ Imports System.Threading
 
 Module Screenshot
 
-    Public screenIndex As Byte = 0 'For multiple monitors
+    Public screenIndex As Integer = 0 'For multiple monitors
     Public isSendingBitmap As Boolean = False
 
     Public Function getScreenShot(ByVal fullscreen As Boolean, ByVal index As Integer) As Bitmap
