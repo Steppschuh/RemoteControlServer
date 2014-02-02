@@ -4,6 +4,8 @@ Imports System.Text
 
 Module Settings
 
+    'Loads, holds and saves application settings
+
     Public Const SETTINGS_PATH As String = "config.xml"
 
     Public Const OS_DEFAULT As Byte = 0

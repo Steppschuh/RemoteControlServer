@@ -99,6 +99,7 @@
     <Compile Include="Authenticator.vb" />
     <Compile Include="Command.vb" />
     <Compile Include="Converter.vb" />
+    <Compile Include="Helper.vb" />
     <Compile Include="Logger.vb" />
     <Compile Include="Media.vb" />
     <Compile Include="Mouse.vb" />

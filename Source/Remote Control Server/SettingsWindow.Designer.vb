@@ -27,12 +27,14 @@ Partial Class SettingsWindow
         Me.tab_settings = New System.Windows.Forms.TabPage()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tab_general = New System.Windows.Forms.TabPage()
+        Me.btn_appData = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.dropDown_backDesign = New System.Windows.Forms.ComboBox()
         Me.cb_backDesign = New System.Windows.Forms.CheckBox()
         Me.cb_showTrayNotoifications = New System.Windows.Forms.CheckBox()
         Me.cb_minimizeToTray = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.cb_startMinimized = New System.Windows.Forms.CheckBox()
         Me.cb_autostart = New System.Windows.Forms.CheckBox()
         Me.tab_protection = New System.Windows.Forms.TabPage()
@@ -47,8 +49,39 @@ Partial Class SettingsWindow
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cb_useWhitelist = New System.Windows.Forms.CheckBox()
         Me.tab_mouse = New System.Windows.Forms.TabPage()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.track_motion_acceleration = New System.Windows.Forms.TrackBar()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.track_motion_filter = New System.Windows.Forms.TrackBar()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.track_mouse_acceleration = New System.Windows.Forms.TrackBar()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.track_mouse_sensitivity = New System.Windows.Forms.TrackBar()
         Me.tab_screen = New System.Windows.Forms.TabPage()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.track_screen_scale_full = New System.Windows.Forms.TrackBar()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.track_screen_quality_full = New System.Windows.Forms.TrackBar()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.track_screen_scale = New System.Windows.Forms.TrackBar()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.track_screen_quality = New System.Windows.Forms.TrackBar()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.tab_update = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.btn_update_changelog = New System.Windows.Forms.Button()
@@ -63,40 +96,17 @@ Partial Class SettingsWindow
         Me.tab_help = New System.Windows.Forms.TabPage()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.btn_appData = New System.Windows.Forms.Button()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.track_mouse_sensitivity = New System.Windows.Forms.TrackBar()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.track_mouse_acceleration = New System.Windows.Forms.TrackBar()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.track_motion_acceleration = New System.Windows.Forms.TrackBar()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.track_motion_filter = New System.Windows.Forms.TrackBar()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.track_screen_scale = New System.Windows.Forms.TrackBar()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.track_screen_quality = New System.Windows.Forms.TrackBar()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.track_screen_scale_full = New System.Windows.Forms.TrackBar()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.track_screen_quality_full = New System.Windows.Forms.TrackBar()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.btn_help_setupguide = New System.Windows.Forms.Button()
+        Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
+        Me.GroupBox12 = New System.Windows.Forms.GroupBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.btn_help_contact = New System.Windows.Forms.Button()
+        Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.btn_help_github = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -108,25 +118,28 @@ Partial Class SettingsWindow
         CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.tab_mouse.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
+        CType(Me.track_motion_acceleration, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.track_motion_filter, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.track_mouse_acceleration, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_screen.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
+        CType(Me.track_screen_scale_full, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.track_screen_quality_full, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox10.SuspendLayout()
+        CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.tab_help.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.GroupBox7.SuspendLayout()
-        CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.track_mouse_acceleration, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox8.SuspendLayout()
-        CType(Me.track_motion_acceleration, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.track_motion_filter, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox10.SuspendLayout()
-        CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox9.SuspendLayout()
-        CType(Me.track_screen_scale_full, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.track_screen_quality_full, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox11.SuspendLayout()
+        Me.GroupBox12.SuspendLayout()
+        Me.GroupBox13.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -179,6 +192,16 @@ Partial Class SettingsWindow
         Me.tab_general.TabIndex = 2
         Me.tab_general.Text = "General"
         Me.tab_general.UseVisualStyleBackColor = True
+        '
+        'btn_appData
+        '
+        Me.btn_appData.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_appData.Location = New System.Drawing.Point(276, 255)
+        Me.btn_appData.Name = "btn_appData"
+        Me.btn_appData.Size = New System.Drawing.Size(165, 23)
+        Me.btn_appData.TabIndex = 3
+        Me.btn_appData.Text = "Open app data folder"
+        Me.btn_appData.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -255,6 +278,16 @@ Partial Class SettingsWindow
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Startup"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.ForeColor = System.Drawing.Color.DimGray
+        Me.Label24.Location = New System.Drawing.Point(196, 20)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(139, 13)
+        Me.Label24.TabIndex = 2
+        Me.Label24.Text = "Administrator rights required!"
         '
         'cb_startMinimized
         '
@@ -406,249 +439,6 @@ Partial Class SettingsWindow
         Me.tab_mouse.Text = "Mouse"
         Me.tab_mouse.UseVisualStyleBackColor = True
         '
-        'tab_screen
-        '
-        Me.tab_screen.Controls.Add(Me.GroupBox9)
-        Me.tab_screen.Controls.Add(Me.GroupBox10)
-        Me.tab_screen.Location = New System.Drawing.Point(4, 22)
-        Me.tab_screen.Name = "tab_screen"
-        Me.tab_screen.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_screen.Size = New System.Drawing.Size(447, 284)
-        Me.tab_screen.TabIndex = 1
-        Me.tab_screen.Text = "Screen"
-        Me.tab_screen.UseVisualStyleBackColor = True
-        '
-        'tab_upgrade
-        '
-        Me.tab_upgrade.Controls.Add(Me.Label25)
-        Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
-        Me.tab_upgrade.Name = "tab_upgrade"
-        Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_upgrade.Size = New System.Drawing.Size(461, 316)
-        Me.tab_upgrade.TabIndex = 2
-        Me.tab_upgrade.Text = "Upgrade"
-        Me.tab_upgrade.UseVisualStyleBackColor = True
-        '
-        'tab_update
-        '
-        Me.tab_update.Controls.Add(Me.GroupBox5)
-        Me.tab_update.Controls.Add(Me.GroupBox4)
-        Me.tab_update.Location = New System.Drawing.Point(4, 22)
-        Me.tab_update.Name = "tab_update"
-        Me.tab_update.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_update.Size = New System.Drawing.Size(461, 316)
-        Me.tab_update.TabIndex = 4
-        Me.tab_update.Text = "Update"
-        Me.tab_update.UseVisualStyleBackColor = True
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox5.Controls.Add(Me.btn_update_changelog)
-        Me.GroupBox5.Controls.Add(Me.btn_update_install)
-        Me.GroupBox5.Controls.Add(Me.label_update_current_version)
-        Me.GroupBox5.Controls.Add(Me.label_update_available_version)
-        Me.GroupBox5.Controls.Add(Me.Label5)
-        Me.GroupBox5.Controls.Add(Me.Label4)
-        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(449, 91)
-        Me.GroupBox5.TabIndex = 3
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Update"
-        '
-        'btn_update_changelog
-        '
-        Me.btn_update_changelog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_changelog.Location = New System.Drawing.Point(6, 62)
-        Me.btn_update_changelog.Name = "btn_update_changelog"
-        Me.btn_update_changelog.Size = New System.Drawing.Size(212, 23)
-        Me.btn_update_changelog.TabIndex = 5
-        Me.btn_update_changelog.Text = "Show changelog"
-        Me.btn_update_changelog.UseVisualStyleBackColor = True
-        '
-        'btn_update_install
-        '
-        Me.btn_update_install.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_install.Location = New System.Drawing.Point(231, 62)
-        Me.btn_update_install.Name = "btn_update_install"
-        Me.btn_update_install.Size = New System.Drawing.Size(212, 23)
-        Me.btn_update_install.TabIndex = 4
-        Me.btn_update_install.Text = "Install the latest Version"
-        Me.btn_update_install.UseVisualStyleBackColor = True
-        '
-        'label_update_current_version
-        '
-        Me.label_update_current_version.AutoSize = True
-        Me.label_update_current_version.Location = New System.Drawing.Point(189, 36)
-        Me.label_update_current_version.Name = "label_update_current_version"
-        Me.label_update_current_version.Size = New System.Drawing.Size(53, 13)
-        Me.label_update_current_version.TabIndex = 3
-        Me.label_update_current_version.Text = "Unknown"
-        '
-        'label_update_available_version
-        '
-        Me.label_update_available_version.AutoSize = True
-        Me.label_update_available_version.Location = New System.Drawing.Point(189, 20)
-        Me.label_update_available_version.Name = "label_update_available_version"
-        Me.label_update_available_version.Size = New System.Drawing.Size(53, 13)
-        Me.label_update_available_version.TabIndex = 2
-        Me.label_update_available_version.Text = "Unknown"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 36)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(129, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Currently installed version:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 20)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(121, 13)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Latest available version:"
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox4.Controls.Add(Me.btn_update_help)
-        Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 103)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(449, 125)
-        Me.GroupBox4.TabIndex = 2
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Info"
-        '
-        'btn_update_help
-        '
-        Me.btn_update_help.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_help.Location = New System.Drawing.Point(9, 96)
-        Me.btn_update_help.Name = "btn_update_help"
-        Me.btn_update_help.Size = New System.Drawing.Size(434, 23)
-        Me.btn_update_help.TabIndex = 1
-        Me.btn_update_help.Text = "How to update the Remote Control Server"
-        Me.btn_update_help.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.Location = New System.Drawing.Point(6, 16)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(437, 76)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = resources.GetString("Label3.Text")
-        '
-        'tab_help
-        '
-        Me.tab_help.Controls.Add(Me.Label26)
-        Me.tab_help.Location = New System.Drawing.Point(4, 22)
-        Me.tab_help.Name = "tab_help"
-        Me.tab_help.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_help.Size = New System.Drawing.Size(461, 316)
-        Me.tab_help.TabIndex = 3
-        Me.tab_help.Text = "Help"
-        Me.tab_help.UseVisualStyleBackColor = True
-        '
-        'tab_log
-        '
-        Me.tab_log.Controls.Add(Me.tb_log)
-        Me.tab_log.Location = New System.Drawing.Point(4, 22)
-        Me.tab_log.Name = "tab_log"
-        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_log.Size = New System.Drawing.Size(461, 316)
-        Me.tab_log.TabIndex = 0
-        Me.tab_log.Text = "Log"
-        Me.tab_log.UseVisualStyleBackColor = True
-        '
-        'tb_log
-        '
-        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tb_log.ForeColor = System.Drawing.Color.White
-        Me.tb_log.Location = New System.Drawing.Point(3, 3)
-        Me.tb_log.Multiline = True
-        Me.tb_log.Name = "tb_log"
-        Me.tb_log.ReadOnly = True
-        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.tb_log.Size = New System.Drawing.Size(455, 310)
-        Me.tb_log.TabIndex = 0
-        Me.tb_log.Text = "Log"
-        '
-        'btn_appData
-        '
-        Me.btn_appData.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_appData.Location = New System.Drawing.Point(276, 255)
-        Me.btn_appData.Name = "btn_appData"
-        Me.btn_appData.Size = New System.Drawing.Size(165, 23)
-        Me.btn_appData.TabIndex = 3
-        Me.btn_appData.Text = "Open app data folder"
-        Me.btn_appData.UseVisualStyleBackColor = True
-        '
-        'GroupBox7
-        '
-        Me.GroupBox7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox7.Controls.Add(Me.Label7)
-        Me.GroupBox7.Controls.Add(Me.track_mouse_acceleration)
-        Me.GroupBox7.Controls.Add(Me.Label2)
-        Me.GroupBox7.Controls.Add(Me.track_mouse_sensitivity)
-        Me.GroupBox7.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(435, 84)
-        Me.GroupBox7.TabIndex = 2
-        Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Cursor"
-        '
-        'track_mouse_sensitivity
-        '
-        Me.track_mouse_sensitivity.AutoSize = False
-        Me.track_mouse_sensitivity.BackColor = System.Drawing.Color.White
-        Me.track_mouse_sensitivity.Location = New System.Drawing.Point(109, 13)
-        Me.track_mouse_sensitivity.Minimum = 1
-        Me.track_mouse_sensitivity.Name = "track_mouse_sensitivity"
-        Me.track_mouse_sensitivity.Size = New System.Drawing.Size(320, 29)
-        Me.track_mouse_sensitivity.TabIndex = 0
-        Me.track_mouse_sensitivity.Value = 5
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 16)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Sensitivity"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 51)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(66, 13)
-        Me.Label7.TabIndex = 3
-        Me.Label7.Text = "Acceleration"
-        '
-        'track_mouse_acceleration
-        '
-        Me.track_mouse_acceleration.AutoSize = False
-        Me.track_mouse_acceleration.BackColor = System.Drawing.Color.White
-        Me.track_mouse_acceleration.Location = New System.Drawing.Point(109, 48)
-        Me.track_mouse_acceleration.Maximum = 100
-        Me.track_mouse_acceleration.Minimum = 1
-        Me.track_mouse_acceleration.Name = "track_mouse_acceleration"
-        Me.track_mouse_acceleration.Size = New System.Drawing.Size(320, 29)
-        Me.track_mouse_acceleration.TabIndex = 2
-        Me.track_mouse_acceleration.TickFrequency = 10
-        Me.track_mouse_acceleration.Value = 15
-        '
         'GroupBox8
         '
         Me.GroupBox8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -704,120 +494,74 @@ Partial Class SettingsWindow
         Me.track_motion_filter.TabIndex = 0
         Me.track_motion_filter.Value = 1
         '
-        'GroupBox10
+        'GroupBox7
         '
-        Me.GroupBox10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox10.Controls.Add(Me.Label15)
-        Me.GroupBox10.Controls.Add(Me.Label16)
-        Me.GroupBox10.Controls.Add(Me.Label14)
-        Me.GroupBox10.Controls.Add(Me.Label11)
-        Me.GroupBox10.Controls.Add(Me.Label10)
-        Me.GroupBox10.Controls.Add(Me.Label12)
-        Me.GroupBox10.Controls.Add(Me.track_screen_scale)
-        Me.GroupBox10.Controls.Add(Me.Label13)
-        Me.GroupBox10.Controls.Add(Me.track_screen_quality)
-        Me.GroupBox10.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(435, 132)
-        Me.GroupBox10.TabIndex = 5
-        Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "Normal"
+        Me.GroupBox7.Controls.Add(Me.Label7)
+        Me.GroupBox7.Controls.Add(Me.track_mouse_acceleration)
+        Me.GroupBox7.Controls.Add(Me.Label2)
+        Me.GroupBox7.Controls.Add(Me.track_mouse_sensitivity)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(435, 84)
+        Me.GroupBox7.TabIndex = 2
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Cursor"
         '
-        'Label12
+        'Label7
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(6, 88)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(34, 13)
-        Me.Label12.TabIndex = 3
-        Me.Label12.Text = "Scale"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(6, 51)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(66, 13)
+        Me.Label7.TabIndex = 3
+        Me.Label7.Text = "Acceleration"
         '
-        'track_screen_scale
+        'track_mouse_acceleration
         '
-        Me.track_screen_scale.AutoSize = False
-        Me.track_screen_scale.BackColor = System.Drawing.Color.White
-        Me.track_screen_scale.Location = New System.Drawing.Point(109, 85)
-        Me.track_screen_scale.Maximum = 100
-        Me.track_screen_scale.Minimum = 1
-        Me.track_screen_scale.Name = "track_screen_scale"
-        Me.track_screen_scale.Size = New System.Drawing.Size(320, 29)
-        Me.track_screen_scale.TabIndex = 2
-        Me.track_screen_scale.TickFrequency = 10
-        Me.track_screen_scale.Value = 60
+        Me.track_mouse_acceleration.AutoSize = False
+        Me.track_mouse_acceleration.BackColor = System.Drawing.Color.White
+        Me.track_mouse_acceleration.Location = New System.Drawing.Point(109, 48)
+        Me.track_mouse_acceleration.Maximum = 100
+        Me.track_mouse_acceleration.Minimum = 1
+        Me.track_mouse_acceleration.Name = "track_mouse_acceleration"
+        Me.track_mouse_acceleration.Size = New System.Drawing.Size(320, 29)
+        Me.track_mouse_acceleration.TabIndex = 2
+        Me.track_mouse_acceleration.TickFrequency = 10
+        Me.track_mouse_acceleration.Value = 15
         '
-        'Label13
+        'Label2
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(6, 37)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(39, 13)
-        Me.Label13.TabIndex = 1
-        Me.Label13.Text = "Quality"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 16)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(54, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Sensitivity"
         '
-        'track_screen_quality
+        'track_mouse_sensitivity
         '
-        Me.track_screen_quality.AutoSize = False
-        Me.track_screen_quality.BackColor = System.Drawing.Color.White
-        Me.track_screen_quality.Location = New System.Drawing.Point(109, 34)
-        Me.track_screen_quality.Maximum = 100
-        Me.track_screen_quality.Minimum = 1
-        Me.track_screen_quality.Name = "track_screen_quality"
-        Me.track_screen_quality.Size = New System.Drawing.Size(320, 29)
-        Me.track_screen_quality.TabIndex = 0
-        Me.track_screen_quality.TickFrequency = 10
-        Me.track_screen_quality.Value = 30
+        Me.track_mouse_sensitivity.AutoSize = False
+        Me.track_mouse_sensitivity.BackColor = System.Drawing.Color.White
+        Me.track_mouse_sensitivity.Location = New System.Drawing.Point(109, 13)
+        Me.track_mouse_sensitivity.Minimum = 1
+        Me.track_mouse_sensitivity.Name = "track_mouse_sensitivity"
+        Me.track_mouse_sensitivity.Size = New System.Drawing.Size(320, 29)
+        Me.track_mouse_sensitivity.TabIndex = 0
+        Me.track_mouse_sensitivity.Value = 5
         '
-        'Label10
+        'tab_screen
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 16)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(351, 13)
-        Me.Label10.TabIndex = 4
-        Me.Label10.Text = "Screenshot properties for normal screen requests (e.g. slideshow remote)."
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.ForeColor = System.Drawing.Color.DimGray
-        Me.Label11.Location = New System.Drawing.Point(115, 61)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(65, 13)
-        Me.Label11.TabIndex = 5
-        Me.Label11.Text = "Compressed"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.ForeColor = System.Drawing.Color.DimGray
-        Me.Label14.Location = New System.Drawing.Point(381, 61)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(42, 13)
-        Me.Label14.TabIndex = 6
-        Me.Label14.Text = "Original"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.ForeColor = System.Drawing.Color.DimGray
-        Me.Label15.Location = New System.Drawing.Point(381, 113)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(42, 13)
-        Me.Label15.TabIndex = 8
-        Me.Label15.Text = "Original"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.ForeColor = System.Drawing.Color.DimGray
-        Me.Label16.Location = New System.Drawing.Point(115, 113)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(41, 13)
-        Me.Label16.TabIndex = 7
-        Me.Label16.Text = "Smaller"
+        Me.tab_screen.Controls.Add(Me.GroupBox9)
+        Me.tab_screen.Controls.Add(Me.GroupBox10)
+        Me.tab_screen.Location = New System.Drawing.Point(4, 22)
+        Me.tab_screen.Name = "tab_screen"
+        Me.tab_screen.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_screen.Size = New System.Drawing.Size(447, 284)
+        Me.tab_screen.TabIndex = 1
+        Me.tab_screen.Text = "Screen"
+        Me.tab_screen.UseVisualStyleBackColor = True
         '
         'GroupBox9
         '
@@ -934,15 +678,131 @@ Partial Class SettingsWindow
         Me.track_screen_quality_full.TickFrequency = 10
         Me.track_screen_quality_full.Value = 50
         '
-        'Label24
+        'GroupBox10
         '
-        Me.Label24.AutoSize = True
-        Me.Label24.ForeColor = System.Drawing.Color.DimGray
-        Me.Label24.Location = New System.Drawing.Point(196, 20)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(139, 13)
-        Me.Label24.TabIndex = 2
-        Me.Label24.Text = "Administrator rights required!"
+        Me.GroupBox10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox10.Controls.Add(Me.Label15)
+        Me.GroupBox10.Controls.Add(Me.Label16)
+        Me.GroupBox10.Controls.Add(Me.Label14)
+        Me.GroupBox10.Controls.Add(Me.Label11)
+        Me.GroupBox10.Controls.Add(Me.Label10)
+        Me.GroupBox10.Controls.Add(Me.Label12)
+        Me.GroupBox10.Controls.Add(Me.track_screen_scale)
+        Me.GroupBox10.Controls.Add(Me.Label13)
+        Me.GroupBox10.Controls.Add(Me.track_screen_quality)
+        Me.GroupBox10.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(435, 132)
+        Me.GroupBox10.TabIndex = 5
+        Me.GroupBox10.TabStop = False
+        Me.GroupBox10.Text = "Normal"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.ForeColor = System.Drawing.Color.DimGray
+        Me.Label15.Location = New System.Drawing.Point(381, 113)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(42, 13)
+        Me.Label15.TabIndex = 8
+        Me.Label15.Text = "Original"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.ForeColor = System.Drawing.Color.DimGray
+        Me.Label16.Location = New System.Drawing.Point(115, 113)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(41, 13)
+        Me.Label16.TabIndex = 7
+        Me.Label16.Text = "Smaller"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.ForeColor = System.Drawing.Color.DimGray
+        Me.Label14.Location = New System.Drawing.Point(381, 61)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(42, 13)
+        Me.Label14.TabIndex = 6
+        Me.Label14.Text = "Original"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.ForeColor = System.Drawing.Color.DimGray
+        Me.Label11.Location = New System.Drawing.Point(115, 61)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(65, 13)
+        Me.Label11.TabIndex = 5
+        Me.Label11.Text = "Compressed"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 16)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(351, 13)
+        Me.Label10.TabIndex = 4
+        Me.Label10.Text = "Screenshot properties for normal screen requests (e.g. slideshow remote)."
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 88)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(34, 13)
+        Me.Label12.TabIndex = 3
+        Me.Label12.Text = "Scale"
+        '
+        'track_screen_scale
+        '
+        Me.track_screen_scale.AutoSize = False
+        Me.track_screen_scale.BackColor = System.Drawing.Color.White
+        Me.track_screen_scale.Location = New System.Drawing.Point(109, 85)
+        Me.track_screen_scale.Maximum = 100
+        Me.track_screen_scale.Minimum = 1
+        Me.track_screen_scale.Name = "track_screen_scale"
+        Me.track_screen_scale.Size = New System.Drawing.Size(320, 29)
+        Me.track_screen_scale.TabIndex = 2
+        Me.track_screen_scale.TickFrequency = 10
+        Me.track_screen_scale.Value = 60
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 37)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(39, 13)
+        Me.Label13.TabIndex = 1
+        Me.Label13.Text = "Quality"
+        '
+        'track_screen_quality
+        '
+        Me.track_screen_quality.AutoSize = False
+        Me.track_screen_quality.BackColor = System.Drawing.Color.White
+        Me.track_screen_quality.Location = New System.Drawing.Point(109, 34)
+        Me.track_screen_quality.Maximum = 100
+        Me.track_screen_quality.Minimum = 1
+        Me.track_screen_quality.Name = "track_screen_quality"
+        Me.track_screen_quality.Size = New System.Drawing.Size(320, 29)
+        Me.track_screen_quality.TabIndex = 0
+        Me.track_screen_quality.TickFrequency = 10
+        Me.track_screen_quality.Value = 30
+        '
+        'tab_upgrade
+        '
+        Me.tab_upgrade.Controls.Add(Me.Label25)
+        Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
+        Me.tab_upgrade.Name = "tab_upgrade"
+        Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_upgrade.Size = New System.Drawing.Size(461, 316)
+        Me.tab_upgrade.TabIndex = 2
+        Me.tab_upgrade.Text = "Upgrade"
+        Me.tab_upgrade.UseVisualStyleBackColor = True
         '
         'Label25
         '
@@ -953,14 +813,288 @@ Partial Class SettingsWindow
         Me.Label25.TabIndex = 0
         Me.Label25.Text = "Not yet available, you are using a pre-release version!"
         '
+        'tab_update
+        '
+        Me.tab_update.Controls.Add(Me.GroupBox5)
+        Me.tab_update.Controls.Add(Me.GroupBox4)
+        Me.tab_update.Location = New System.Drawing.Point(4, 22)
+        Me.tab_update.Name = "tab_update"
+        Me.tab_update.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_update.Size = New System.Drawing.Size(461, 316)
+        Me.tab_update.TabIndex = 4
+        Me.tab_update.Text = "Update"
+        Me.tab_update.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox5.Controls.Add(Me.btn_update_changelog)
+        Me.GroupBox5.Controls.Add(Me.btn_update_install)
+        Me.GroupBox5.Controls.Add(Me.label_update_current_version)
+        Me.GroupBox5.Controls.Add(Me.label_update_available_version)
+        Me.GroupBox5.Controls.Add(Me.Label5)
+        Me.GroupBox5.Controls.Add(Me.Label4)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(449, 91)
+        Me.GroupBox5.TabIndex = 3
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Update"
+        '
+        'btn_update_changelog
+        '
+        Me.btn_update_changelog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_changelog.Location = New System.Drawing.Point(6, 62)
+        Me.btn_update_changelog.Name = "btn_update_changelog"
+        Me.btn_update_changelog.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_changelog.TabIndex = 5
+        Me.btn_update_changelog.Text = "Show changelog"
+        Me.btn_update_changelog.UseVisualStyleBackColor = True
+        '
+        'btn_update_install
+        '
+        Me.btn_update_install.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_install.Location = New System.Drawing.Point(231, 62)
+        Me.btn_update_install.Name = "btn_update_install"
+        Me.btn_update_install.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_install.TabIndex = 4
+        Me.btn_update_install.Text = "Install the latest Version"
+        Me.btn_update_install.UseVisualStyleBackColor = True
+        '
+        'label_update_current_version
+        '
+        Me.label_update_current_version.AutoSize = True
+        Me.label_update_current_version.Location = New System.Drawing.Point(189, 36)
+        Me.label_update_current_version.Name = "label_update_current_version"
+        Me.label_update_current_version.Size = New System.Drawing.Size(53, 13)
+        Me.label_update_current_version.TabIndex = 3
+        Me.label_update_current_version.Text = "Unknown"
+        '
+        'label_update_available_version
+        '
+        Me.label_update_available_version.AutoSize = True
+        Me.label_update_available_version.Location = New System.Drawing.Point(189, 20)
+        Me.label_update_available_version.Name = "label_update_available_version"
+        Me.label_update_available_version.Size = New System.Drawing.Size(53, 13)
+        Me.label_update_available_version.TabIndex = 2
+        Me.label_update_available_version.Text = "Unknown"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(6, 36)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(129, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Currently installed version:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(6, 20)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(121, 13)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Latest available version:"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox4.Controls.Add(Me.btn_update_help)
+        Me.GroupBox4.Controls.Add(Me.Label3)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 103)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(449, 125)
+        Me.GroupBox4.TabIndex = 2
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Info"
+        '
+        'btn_update_help
+        '
+        Me.btn_update_help.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_update_help.Location = New System.Drawing.Point(9, 96)
+        Me.btn_update_help.Name = "btn_update_help"
+        Me.btn_update_help.Size = New System.Drawing.Size(434, 23)
+        Me.btn_update_help.TabIndex = 1
+        Me.btn_update_help.Text = "How to update the Remote Control Server"
+        Me.btn_update_help.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label3.Location = New System.Drawing.Point(6, 16)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(437, 76)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = resources.GetString("Label3.Text")
+        '
+        'tab_help
+        '
+        Me.tab_help.Controls.Add(Me.Label29)
+        Me.tab_help.Controls.Add(Me.GroupBox13)
+        Me.tab_help.Controls.Add(Me.GroupBox12)
+        Me.tab_help.Controls.Add(Me.GroupBox11)
+        Me.tab_help.Location = New System.Drawing.Point(4, 22)
+        Me.tab_help.Name = "tab_help"
+        Me.tab_help.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_help.Size = New System.Drawing.Size(461, 316)
+        Me.tab_help.TabIndex = 3
+        Me.tab_help.Text = "Help"
+        Me.tab_help.UseVisualStyleBackColor = True
+        '
+        'tab_log
+        '
+        Me.tab_log.Controls.Add(Me.tb_log)
+        Me.tab_log.Location = New System.Drawing.Point(4, 22)
+        Me.tab_log.Name = "tab_log"
+        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_log.Size = New System.Drawing.Size(461, 316)
+        Me.tab_log.TabIndex = 0
+        Me.tab_log.Text = "Log"
+        Me.tab_log.UseVisualStyleBackColor = True
+        '
+        'tb_log
+        '
+        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tb_log.ForeColor = System.Drawing.Color.White
+        Me.tb_log.Location = New System.Drawing.Point(3, 3)
+        Me.tb_log.Multiline = True
+        Me.tb_log.Name = "tb_log"
+        Me.tb_log.ReadOnly = True
+        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.tb_log.Size = New System.Drawing.Size(455, 310)
+        Me.tb_log.TabIndex = 0
+        Me.tb_log.Text = "Log"
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox11.Controls.Add(Me.Label26)
+        Me.GroupBox11.Controls.Add(Me.btn_help_setupguide)
+        Me.GroupBox11.Controls.Add(Me.btn_help_troubleshooting)
+        Me.GroupBox11.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(449, 123)
+        Me.GroupBox11.TabIndex = 4
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Setting up a connection"
+        '
+        'btn_help_setupguide
+        '
+        Me.btn_help_setupguide.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_setupguide.Location = New System.Drawing.Point(6, 94)
+        Me.btn_help_setupguide.Name = "btn_help_setupguide"
+        Me.btn_help_setupguide.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_setupguide.TabIndex = 5
+        Me.btn_help_setupguide.Text = "Setup Guide"
+        Me.btn_help_setupguide.UseVisualStyleBackColor = True
+        '
+        'btn_help_troubleshooting
+        '
+        Me.btn_help_troubleshooting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_troubleshooting.Location = New System.Drawing.Point(238, 94)
+        Me.btn_help_troubleshooting.Name = "btn_help_troubleshooting"
+        Me.btn_help_troubleshooting.Size = New System.Drawing.Size(205, 23)
+        Me.btn_help_troubleshooting.TabIndex = 4
+        Me.btn_help_troubleshooting.Text = "Troubleshooting"
+        Me.btn_help_troubleshooting.UseVisualStyleBackColor = True
+        '
         'Label26
         '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(8, 7)
+        Me.Label26.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label26.Location = New System.Drawing.Point(6, 16)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(259, 13)
-        Me.Label26.TabIndex = 1
-        Me.Label26.Text = "Not yet available, you are using a pre-release version!"
+        Me.Label26.Size = New System.Drawing.Size(437, 78)
+        Me.Label26.TabIndex = 6
+        Me.Label26.Text = resources.GetString("Label26.Text")
+        '
+        'GroupBox12
+        '
+        Me.GroupBox12.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox12.Controls.Add(Me.Label27)
+        Me.GroupBox12.Controls.Add(Me.btn_help_contact)
+        Me.GroupBox12.Location = New System.Drawing.Point(6, 135)
+        Me.GroupBox12.Name = "GroupBox12"
+        Me.GroupBox12.Size = New System.Drawing.Size(218, 113)
+        Me.GroupBox12.TabIndex = 7
+        Me.GroupBox12.TabStop = False
+        Me.GroupBox12.Text = "Feedback and support"
+        '
+        'Label27
+        '
+        Me.Label27.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label27.Location = New System.Drawing.Point(6, 16)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(206, 60)
+        Me.Label27.TabIndex = 6
+        Me.Label27.Text = "Please feel free to contact us if you have any issues or feedback." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "We will get" & _
+    " back to you soon!"
+        '
+        'btn_help_contact
+        '
+        Me.btn_help_contact.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_contact.Location = New System.Drawing.Point(6, 84)
+        Me.btn_help_contact.Name = "btn_help_contact"
+        Me.btn_help_contact.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_contact.TabIndex = 5
+        Me.btn_help_contact.Text = "Contact us"
+        Me.btn_help_contact.UseVisualStyleBackColor = True
+        '
+        'GroupBox13
+        '
+        Me.GroupBox13.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox13.Controls.Add(Me.Label28)
+        Me.GroupBox13.Controls.Add(Me.btn_help_github)
+        Me.GroupBox13.Location = New System.Drawing.Point(235, 135)
+        Me.GroupBox13.Name = "GroupBox13"
+        Me.GroupBox13.Size = New System.Drawing.Size(218, 113)
+        Me.GroupBox13.TabIndex = 8
+        Me.GroupBox13.TabStop = False
+        Me.GroupBox13.Text = "Found a bug?"
+        '
+        'Label28
+        '
+        Me.Label28.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label28.Location = New System.Drawing.Point(6, 16)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(206, 60)
+        Me.Label28.TabIndex = 6
+        Me.Label28.Text = "Please create an issue on our GitHub page, we will fix it as soon as possible. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & _
+    "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Feature requests are also welcome!"
+        '
+        'btn_help_github
+        '
+        Me.btn_help_github.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_github.Location = New System.Drawing.Point(6, 84)
+        Me.btn_help_github.Name = "btn_help_github"
+        Me.btn_help_github.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_github.TabIndex = 5
+        Me.btn_help_github.Text = "GitHub Issue tracker"
+        Me.btn_help_github.UseVisualStyleBackColor = True
+        '
+        'Label29
+        '
+        Me.Label29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label29.ForeColor = System.Drawing.Color.Maroon
+        Me.Label29.Location = New System.Drawing.Point(6, 251)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(449, 60)
+        Me.Label29.TabIndex = 9
+        Me.Label29.Text = "Please include as much information as possible when contacting us!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will hel" & _
+    "p us solve your issue faster."
+        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'SettingsWindow
         '
@@ -990,7 +1124,23 @@ Partial Class SettingsWindow
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.tab_mouse.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
+        CType(Me.track_motion_acceleration, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.track_motion_filter, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        CType(Me.track_mouse_acceleration, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_screen.ResumeLayout(False)
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
+        CType(Me.track_screen_scale_full, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.track_screen_quality_full, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
+        CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_upgrade.ResumeLayout(False)
         Me.tab_upgrade.PerformLayout()
         Me.tab_update.ResumeLayout(False)
@@ -998,25 +1148,11 @@ Partial Class SettingsWindow
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.tab_help.ResumeLayout(False)
-        Me.tab_help.PerformLayout()
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.GroupBox7.ResumeLayout(False)
-        Me.GroupBox7.PerformLayout()
-        CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.track_mouse_acceleration, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout()
-        CType(Me.track_motion_acceleration, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.track_motion_filter, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox10.ResumeLayout(False)
-        Me.GroupBox10.PerformLayout()
-        CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
-        CType(Me.track_screen_scale_full, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.track_screen_quality_full, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox12.ResumeLayout(False)
+        Me.GroupBox13.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1093,5 +1229,15 @@ Partial Class SettingsWindow
     Friend WithEvents track_screen_quality_full As System.Windows.Forms.TrackBar
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
+    Friend WithEvents btn_help_setupguide As System.Windows.Forms.Button
+    Friend WithEvents btn_help_troubleshooting As System.Windows.Forms.Button
     Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox12 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents btn_help_contact As System.Windows.Forms.Button
+    Friend WithEvents GroupBox13 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents btn_help_github As System.Windows.Forms.Button
+    Friend WithEvents Label29 As System.Windows.Forms.Label
 End Class
