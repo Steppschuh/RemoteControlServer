@@ -2,6 +2,9 @@
 
 Module Logger
 
+    Private Const URL_TRACKER As String = "http://remote-control-collection.com/api/tracker/"
+
+    Public trackEvents As Boolean = True
     Public showDebug As Boolean = True
     Public maxItems As Integer = 100
 
@@ -66,8 +69,6 @@ Module Logger
 
     Private Sub invalidateTimerTick(ByVal sender As Object, ByVal e As EventArgs)
         invalidateLog()
-        'dispatcherTimer.Stop()
-        'dispatcherActive = False
     End Sub
 
     Public Sub clearLog()
@@ -100,6 +101,25 @@ Module Logger
             End If
         Loop
         Return entry
+    End Function
+
+    Public Sub trackLaunchEvent()
+        trackEevent("Server", "Launch", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString)
+    End Sub
+
+    Public Sub trackEevent(ByVal category As String, ByVal acttion As String, ByVal label As String)
+        If trackEvents = True Then
+            Dim url As String = URL_TRACKER & _
+                        "?category=" & category & _
+                        "&action=" & acttion & _
+                        "&label=" & label
+
+            Network.loadInBrowser(url)
+        End If
+    End Sub
+
+    Public Function eventTracked(ByVal result As String) As Boolean
+        Return True
     End Function
 
 End Module

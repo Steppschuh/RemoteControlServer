@@ -176,19 +176,23 @@
 #Region "Help"
 
     Private Sub btn_help_setupguide_Click(sender As Object, e As EventArgs) Handles btn_help_setupguide.Click
+        Logger.trackEevent("Server", "Click", "Setup guide")
         Process.Start("http://remote-control-collection.com/help/connect/")
     End Sub
 
     Private Sub btn_help_troubleshooting_Click(sender As Object, e As EventArgs) Handles btn_help_troubleshooting.Click
+        Logger.trackEevent("Server", "Click", "Troubleshooting")
         Process.Start("http://remote-control-collection.com/help/troubleshooting/")
     End Sub
 
     Private Sub btn_help_contact_Click(sender As Object, e As EventArgs) Handles btn_help_contact.Click
+        Logger.trackEevent("Server", "Click", "Send support mail")
         Dim body As String = Helper.generateHelpMail() & "My problem is "
         Helper.sendMail("support@android-remote.com", "Remote Control Support", body)
     End Sub
 
     Private Sub btn_help_github_Click(sender As Object, e As EventArgs) Handles btn_help_github.Click
+        Logger.trackEevent("Server", "Click", "GitHub")
         Process.Start("https://github.com/Steppschuh/RemoteControlServer/issues")
     End Sub
 

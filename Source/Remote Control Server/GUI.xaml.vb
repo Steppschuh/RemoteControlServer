@@ -271,6 +271,18 @@ Class MainWindow
         showUI()
     End Sub
 
+    Private Delegate Sub loadInBrowserDelegate(ByVal url As String)
+    Public Sub loadInBrowser(ByVal url As String)
+        Try
+            If Not Me.Dispatcher.CheckAccess Then
+                Me.Dispatcher.Invoke(New loadInBrowserDelegate(AddressOf loadInBrowser), url)
+            Else
+                browser.Navigate(url)
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Form Events"

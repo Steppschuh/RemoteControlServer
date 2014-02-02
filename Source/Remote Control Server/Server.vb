@@ -42,6 +42,7 @@ Public Module Server
 
     Public Sub initializeAsync()
         apps = New List(Of App)
+        Logger.trackLaunchEvent()
         Logger.add("Server ready")
         status = "Ready"
         gui.showNotification("Server ready", "The Remote Control Server has been started and is waiting for a connection")

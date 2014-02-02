@@ -23,6 +23,11 @@
         isActive = True
         Logger.add(deviceName & " connected")
         Server.gui.showNotification("App connected", deviceName & " has connected to the Remote Control Server")
+        If appName.Equals("Unknown") Or appVersion.Equals("Unknown") Then
+            Logger.trackEevent("App", "Connect", deviceName)
+        Else
+            Logger.trackEevent("App", "Connect", appName & " " & appVersion & " on a " & deviceName)
+        End If
     End Sub
 
     Public Sub onDisconnect()

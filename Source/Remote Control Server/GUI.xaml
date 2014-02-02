@@ -79,7 +79,7 @@
                     <RotateTransform CenterX="32" CenterY="32" />
                 </Setter.Value>
             </Setter>
-            
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Trigger.EnterActions>
@@ -108,7 +108,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Image x:Name="image_back" Stretch="UniformToFill" Source="pack://application:,,,/Resources/back.png"/>
         <Label x:Name="label_log" Content="Initializing" HorizontalAlignment="Left" Margin="75,104,0,0" VerticalAlignment="Top" Width="auto" Foreground="#FF818181" FontSize="11" Background="{x:Null}"/>
@@ -153,7 +153,7 @@
             <Image x:Name="image_app_status" Style="{StaticResource infoIcon}" Margin="80,64,0,0" Source="pack://application:,,,/Resources/ic_action_accept.png" Visibility="Hidden" />
 
         </Grid>
-        
+
         <Grid Name="grid_info" Margin="85,356,198,260">
             <Image x:Name="button_info" Style="{StaticResource infoImageButton}" Source="Resources/start_info.png"/>
             <Label Content="Log Info" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
@@ -173,12 +173,14 @@
             <Image x:Name="button_upgrade" Style="{StaticResource infoImageButtonRotate}" Source="Resources/start_upgrade.png" />
             <Label Content="Upgrade" HorizontalAlignment="Left" Margin="0,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFAAAAAA"/>
         </Grid>
-        
+
         <Grid Name="grid_footer">
-            <Label x:Name="label_tooltip" Content="" HorizontalAlignment="Center" Height="auto" Margin="85,578,70,0" VerticalAlignment="Top" Width="245" Foreground="#FF7C7C7C" HorizontalContentAlignment="Center" Opacity="0"/>                
+            <Label x:Name="label_tooltip" Content="" HorizontalAlignment="Center" Height="auto" Margin="85,578,70,0" VerticalAlignment="Top" Width="245" Foreground="#FF7C7C7C" HorizontalContentAlignment="Center" Opacity="0"/>
             <Rectangle x:Name="button_footer_close" Style="{StaticResource footerItem}" Margin="85,546,0,0" Width="83"/>
             <Rectangle x:Name="button_footer_home" Style="{StaticResource footerItem}" Margin="168,546,0,0" Width="79"/>
             <Rectangle x:Name="button_footer_hide" Style="{StaticResource footerItem}" Margin="247,546,0,0" Width="83"/>
         </Grid>
+        
+        <WebBrowser x:Name="browser" HorizontalAlignment="Left" Height="111" Margin="10,579,0,0" VerticalAlignment="Top" Width="380" Visibility="Hidden"/>
     </Grid>
 </Window>

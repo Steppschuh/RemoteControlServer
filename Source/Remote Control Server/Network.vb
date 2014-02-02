@@ -110,6 +110,10 @@ Public Module Network
         Return result
     End Function
 
+    Public Sub loadInBrowser(ByVal url As String)
+        Server.gui.loadInBrowser(url)
+    End Sub
+
     Public Function isValidIp(ByVal ip As String) As Boolean
         Try
             System.Net.IPAddress.Parse(ip)
