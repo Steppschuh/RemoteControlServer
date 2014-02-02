@@ -8,7 +8,7 @@ Module Updater
     Public Const URL_UPDATE_SERVER_BETA As String = "http://remote-control-collection.com/files/server/RemoteControlServerBeta.exe"
     Public Const URL_UPDATE_HELP As String = "http://remote-control-collection.com/help/update/"
 
-    Public Const currentVersionCode As Byte = 7
+    Public Const currentVersionCode As Byte = 8
 
     Public updateVersionCode As Byte = 0
     Public updateVersionName As String = ""
@@ -57,7 +57,7 @@ Module Updater
             If updateVersionCode > currentVersionCode Then
                 Logger.add("Update available: " & updateVersionName)
                 isUpdateAvailable = True
-                gui.showNotification("Update available", "There is an update for the Remote Control Server available")
+                gui.showNotification("Update available", "There is a new version of the Remote Control Server available")
             Else
                 Logger.add("No update available")
                 isUpdateAvailable = False

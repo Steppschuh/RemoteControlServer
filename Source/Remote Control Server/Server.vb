@@ -26,7 +26,7 @@ Public Module Server
         If isLatestServerRunning() Then
             Settings.loadSettings()
             Network.initialize()
-            Updater.checkForUpdates(10)
+            Updater.checkForUpdates(60)
 
             Dim initializeThread = New Thread(AddressOf initializeAsync)
             initializeThread.IsBackground = True
@@ -67,10 +67,15 @@ Public Module Server
     Public Function isLatestServerRunning() As Boolean
         'Updates for the Server are stored in the AppData directory
         Dim path_dl As String = Settings.getAppDataDirectory & "\Remote Control Server.exe"
-        Dim path_cur As String = System.AppDomain.CurrentDomain.BaseDirectory & "\Remote Control Server.exe"
+        Dim path_cur As String = System.AppDomain.CurrentDomain.BaseDirectory & "Remote Control Server.exe"
+
+        Logger.add("Path appdata: " & path_dl)
+        Logger.add("Path cur: " & path_cur)
+
 
         If path_cur.Equals(path_dl) Then
             'Currently running the latest version
+            Logger.add("Running the latest version")
             Return True
         Else
             Try

@@ -1,7 +1,11 @@
 ﻿Public Class SettingsWindow
 
+    Private isUserAction As Boolean = False
+
     Private Sub SettingsWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        isUserAction = False
         refreshUi()
+        isUserAction = True
     End Sub
 
     Private Delegate Sub refreshUiDelegate()
@@ -55,8 +59,8 @@
 
         'Try to apply autostart setting
         Dim success As Boolean = Settings.setAutostart(Settings.autoStart)
-        If Not success Then
-            Server.gui.showErrorDialog("Permission denied", "Can't apply this setting, please restart the server with Administrator rights." _
+        If Not success And isUserAction Then
+            Server.gui.showErrorDialog("Permission denied", "Can't apply the autostart setting, please restart the server with Administrator rights." _
                                        & vbNewLine & vbNewLine & _
                                        "To do that, right-click on the server executable and select 'Run as Administrator'.")
         End If
