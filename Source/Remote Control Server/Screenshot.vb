@@ -36,8 +36,7 @@ Module Screenshot
 
         Catch ex As Exception
             screenGrab = New Bitmap(My.Resources.ic_action_warning)
-            Logger.add("Can't get screenshot:")
-            Logger.add(ex.ToString)
+            Logger.add("Can't get screenshot:" & vbNewLine & ex.ToString)
         End Try
         Return screenGrab
     End Function
@@ -67,7 +66,7 @@ Module Screenshot
             End Using
             bitmap = CropImage
         Catch ex As Exception
-
+            'Logger.add("Can't crop bitmap:" & vbNewLine & ex.ToString)
         End Try
     End Sub
 
@@ -122,6 +121,7 @@ Module Screenshot
             command.data = Converter.bitmapToByte(bmp, quality)
             command.send()
         Catch ex As Exception
+            Logger.add("Can't send bitmap:" & vbNewLine & ex.ToString)
         End Try
         isSendingBitmap = False
     End Sub
@@ -136,10 +136,12 @@ Module Screenshot
         End If
     End Sub
 
+    'Shows the next screen if multiple screens available
     Public Sub toogleScreen()
         Dim new_index As Integer = screenIndex + 1
         Dim screens As Forms.Screen() = Forms.Screen.AllScreens
         If (new_index > screens.Count - 1) Then
+            'Include all screens
             new_index = -1
         End If
         screenIndex = new_index
