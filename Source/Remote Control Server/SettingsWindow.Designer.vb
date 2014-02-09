@@ -94,19 +94,25 @@ Partial Class SettingsWindow
         Me.btn_update_help = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tab_help = New System.Windows.Forms.TabPage()
-        Me.tab_log = New System.Windows.Forms.TabPage()
-        Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
-        Me.btn_help_setupguide = New System.Windows.Forms.Button()
-        Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.GroupBox12 = New System.Windows.Forms.GroupBox()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.btn_help_contact = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.btn_help_github = New System.Windows.Forms.Button()
-        Me.Label29 = New System.Windows.Forms.Label()
+        Me.GroupBox12 = New System.Windows.Forms.GroupBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.btn_help_contact = New System.Windows.Forms.Button()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.btn_help_setupguide = New System.Windows.Forms.Button()
+        Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
+        Me.tab_log = New System.Windows.Forms.TabPage()
+        Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.tab_slideshow = New System.Windows.Forms.TabPage()
+        Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
+        Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.img_pointer = New System.Windows.Forms.PictureBox()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -136,10 +142,13 @@ Partial Class SettingsWindow
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.tab_help.SuspendLayout()
-        Me.tab_log.SuspendLayout()
-        Me.GroupBox11.SuspendLayout()
-        Me.GroupBox12.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
+        Me.GroupBox12.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        Me.tab_log.SuspendLayout()
+        Me.tab_slideshow.SuspendLayout()
+        Me.GroupBox14.SuspendLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -173,6 +182,7 @@ Partial Class SettingsWindow
         Me.TabControl1.Controls.Add(Me.tab_protection)
         Me.TabControl1.Controls.Add(Me.tab_mouse)
         Me.TabControl1.Controls.Add(Me.tab_screen)
+        Me.TabControl1.Controls.Add(Me.tab_slideshow)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
@@ -946,108 +956,18 @@ Partial Class SettingsWindow
         Me.tab_help.Text = "Help"
         Me.tab_help.UseVisualStyleBackColor = True
         '
-        'tab_log
+        'Label29
         '
-        Me.tab_log.Controls.Add(Me.tb_log)
-        Me.tab_log.Location = New System.Drawing.Point(4, 22)
-        Me.tab_log.Name = "tab_log"
-        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_log.Size = New System.Drawing.Size(461, 316)
-        Me.tab_log.TabIndex = 0
-        Me.tab_log.Text = "Log"
-        Me.tab_log.UseVisualStyleBackColor = True
-        '
-        'tb_log
-        '
-        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tb_log.ForeColor = System.Drawing.Color.White
-        Me.tb_log.Location = New System.Drawing.Point(3, 3)
-        Me.tb_log.Multiline = True
-        Me.tb_log.Name = "tb_log"
-        Me.tb_log.ReadOnly = True
-        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.tb_log.Size = New System.Drawing.Size(455, 310)
-        Me.tb_log.TabIndex = 0
-        Me.tb_log.Text = "Log"
-        '
-        'GroupBox11
-        '
-        Me.GroupBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Label29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox11.Controls.Add(Me.Label26)
-        Me.GroupBox11.Controls.Add(Me.btn_help_setupguide)
-        Me.GroupBox11.Controls.Add(Me.btn_help_troubleshooting)
-        Me.GroupBox11.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(449, 123)
-        Me.GroupBox11.TabIndex = 4
-        Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "Setting up a connection"
-        '
-        'btn_help_setupguide
-        '
-        Me.btn_help_setupguide.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_help_setupguide.Location = New System.Drawing.Point(6, 94)
-        Me.btn_help_setupguide.Name = "btn_help_setupguide"
-        Me.btn_help_setupguide.Size = New System.Drawing.Size(206, 23)
-        Me.btn_help_setupguide.TabIndex = 5
-        Me.btn_help_setupguide.Text = "Setup Guide"
-        Me.btn_help_setupguide.UseVisualStyleBackColor = True
-        '
-        'btn_help_troubleshooting
-        '
-        Me.btn_help_troubleshooting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_help_troubleshooting.Location = New System.Drawing.Point(238, 94)
-        Me.btn_help_troubleshooting.Name = "btn_help_troubleshooting"
-        Me.btn_help_troubleshooting.Size = New System.Drawing.Size(205, 23)
-        Me.btn_help_troubleshooting.TabIndex = 4
-        Me.btn_help_troubleshooting.Text = "Troubleshooting"
-        Me.btn_help_troubleshooting.UseVisualStyleBackColor = True
-        '
-        'Label26
-        '
-        Me.Label26.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label26.Location = New System.Drawing.Point(6, 16)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(437, 78)
-        Me.Label26.TabIndex = 6
-        Me.Label26.Text = resources.GetString("Label26.Text")
-        '
-        'GroupBox12
-        '
-        Me.GroupBox12.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox12.Controls.Add(Me.Label27)
-        Me.GroupBox12.Controls.Add(Me.btn_help_contact)
-        Me.GroupBox12.Location = New System.Drawing.Point(6, 135)
-        Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(218, 113)
-        Me.GroupBox12.TabIndex = 7
-        Me.GroupBox12.TabStop = False
-        Me.GroupBox12.Text = "Feedback and support"
-        '
-        'Label27
-        '
-        Me.Label27.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label27.Location = New System.Drawing.Point(6, 16)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(206, 60)
-        Me.Label27.TabIndex = 6
-        Me.Label27.Text = "Please feel free to contact us if you have any issues or feedback." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "We will get" & _
-    " back to you soon!"
-        '
-        'btn_help_contact
-        '
-        Me.btn_help_contact.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_help_contact.Location = New System.Drawing.Point(6, 84)
-        Me.btn_help_contact.Name = "btn_help_contact"
-        Me.btn_help_contact.Size = New System.Drawing.Size(206, 23)
-        Me.btn_help_contact.TabIndex = 5
-        Me.btn_help_contact.Text = "Contact us"
-        Me.btn_help_contact.UseVisualStyleBackColor = True
+        Me.Label29.ForeColor = System.Drawing.Color.Maroon
+        Me.Label29.Location = New System.Drawing.Point(6, 251)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(449, 60)
+        Me.Label29.TabIndex = 9
+        Me.Label29.Text = "Please include as much information as possible when contacting us!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will hel" & _
+    "p us solve your issue faster."
+        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox13
         '
@@ -1083,18 +1003,180 @@ Partial Class SettingsWindow
         Me.btn_help_github.Text = "GitHub Issue tracker"
         Me.btn_help_github.UseVisualStyleBackColor = True
         '
-        'Label29
+        'GroupBox12
         '
-        Me.Label29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox12.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label29.ForeColor = System.Drawing.Color.Maroon
-        Me.Label29.Location = New System.Drawing.Point(6, 251)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(449, 60)
-        Me.Label29.TabIndex = 9
-        Me.Label29.Text = "Please include as much information as possible when contacting us!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will hel" & _
-    "p us solve your issue faster."
-        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.GroupBox12.Controls.Add(Me.Label27)
+        Me.GroupBox12.Controls.Add(Me.btn_help_contact)
+        Me.GroupBox12.Location = New System.Drawing.Point(6, 135)
+        Me.GroupBox12.Name = "GroupBox12"
+        Me.GroupBox12.Size = New System.Drawing.Size(218, 113)
+        Me.GroupBox12.TabIndex = 7
+        Me.GroupBox12.TabStop = False
+        Me.GroupBox12.Text = "Feedback and support"
+        '
+        'Label27
+        '
+        Me.Label27.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label27.Location = New System.Drawing.Point(6, 16)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(206, 60)
+        Me.Label27.TabIndex = 6
+        Me.Label27.Text = "Please feel free to contact us if you have any issues or feedback." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "We will get" & _
+    " back to you soon!"
+        '
+        'btn_help_contact
+        '
+        Me.btn_help_contact.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_contact.Location = New System.Drawing.Point(6, 84)
+        Me.btn_help_contact.Name = "btn_help_contact"
+        Me.btn_help_contact.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_contact.TabIndex = 5
+        Me.btn_help_contact.Text = "Contact us"
+        Me.btn_help_contact.UseVisualStyleBackColor = True
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox11.Controls.Add(Me.Label26)
+        Me.GroupBox11.Controls.Add(Me.btn_help_setupguide)
+        Me.GroupBox11.Controls.Add(Me.btn_help_troubleshooting)
+        Me.GroupBox11.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(449, 123)
+        Me.GroupBox11.TabIndex = 4
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Setting up a connection"
+        '
+        'Label26
+        '
+        Me.Label26.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label26.Location = New System.Drawing.Point(6, 16)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(437, 78)
+        Me.Label26.TabIndex = 6
+        Me.Label26.Text = resources.GetString("Label26.Text")
+        '
+        'btn_help_setupguide
+        '
+        Me.btn_help_setupguide.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_setupguide.Location = New System.Drawing.Point(6, 94)
+        Me.btn_help_setupguide.Name = "btn_help_setupguide"
+        Me.btn_help_setupguide.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_setupguide.TabIndex = 5
+        Me.btn_help_setupguide.Text = "Setup Guide"
+        Me.btn_help_setupguide.UseVisualStyleBackColor = True
+        '
+        'btn_help_troubleshooting
+        '
+        Me.btn_help_troubleshooting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_troubleshooting.Location = New System.Drawing.Point(238, 94)
+        Me.btn_help_troubleshooting.Name = "btn_help_troubleshooting"
+        Me.btn_help_troubleshooting.Size = New System.Drawing.Size(205, 23)
+        Me.btn_help_troubleshooting.TabIndex = 4
+        Me.btn_help_troubleshooting.Text = "Troubleshooting"
+        Me.btn_help_troubleshooting.UseVisualStyleBackColor = True
+        '
+        'tab_log
+        '
+        Me.tab_log.Controls.Add(Me.tb_log)
+        Me.tab_log.Location = New System.Drawing.Point(4, 22)
+        Me.tab_log.Name = "tab_log"
+        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_log.Size = New System.Drawing.Size(461, 316)
+        Me.tab_log.TabIndex = 0
+        Me.tab_log.Text = "Log"
+        Me.tab_log.UseVisualStyleBackColor = True
+        '
+        'tb_log
+        '
+        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tb_log.ForeColor = System.Drawing.Color.White
+        Me.tb_log.Location = New System.Drawing.Point(3, 3)
+        Me.tb_log.Multiline = True
+        Me.tb_log.Name = "tb_log"
+        Me.tb_log.ReadOnly = True
+        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.tb_log.Size = New System.Drawing.Size(455, 310)
+        Me.tb_log.TabIndex = 0
+        Me.tb_log.Text = "Log"
+        '
+        'tab_slideshow
+        '
+        Me.tab_slideshow.Controls.Add(Me.GroupBox14)
+        Me.tab_slideshow.Location = New System.Drawing.Point(4, 22)
+        Me.tab_slideshow.Name = "tab_slideshow"
+        Me.tab_slideshow.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_slideshow.Size = New System.Drawing.Size(447, 284)
+        Me.tab_slideshow.TabIndex = 4
+        Me.tab_slideshow.Text = "Slideshow"
+        Me.tab_slideshow.UseVisualStyleBackColor = True
+        '
+        'GroupBox14
+        '
+        Me.GroupBox14.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox14.Controls.Add(Me.img_pointer)
+        Me.GroupBox14.Controls.Add(Me.dropDown_pointerDesign)
+        Me.GroupBox14.Controls.Add(Me.CheckBox1)
+        Me.GroupBox14.Controls.Add(Me.cb_clickOnLaserUp)
+        Me.GroupBox14.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox14.Name = "GroupBox14"
+        Me.GroupBox14.Size = New System.Drawing.Size(435, 73)
+        Me.GroupBox14.TabIndex = 2
+        Me.GroupBox14.TabStop = False
+        Me.GroupBox14.Text = "Laser pointer"
+        '
+        'cb_clickOnLaserUp
+        '
+        Me.cb_clickOnLaserUp.AutoSize = True
+        Me.cb_clickOnLaserUp.Location = New System.Drawing.Point(6, 19)
+        Me.cb_clickOnLaserUp.Name = "cb_clickOnLaserUp"
+        Me.cb_clickOnLaserUp.Size = New System.Drawing.Size(121, 17)
+        Me.cb_clickOnLaserUp.TabIndex = 0
+        Me.cb_clickOnLaserUp.Text = "Click when released"
+        Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
+        '
+        'dropDown_pointerDesign
+        '
+        Me.dropDown_pointerDesign.FormattingEnabled = True
+        Me.dropDown_pointerDesign.Items.AddRange(New Object() {"White circle", "Red dot"})
+        Me.dropDown_pointerDesign.Location = New System.Drawing.Point(149, 40)
+        Me.dropDown_pointerDesign.Name = "dropDown_pointerDesign"
+        Me.dropDown_pointerDesign.Size = New System.Drawing.Size(121, 21)
+        Me.dropDown_pointerDesign.TabIndex = 5
+        Me.dropDown_pointerDesign.Text = "White circle"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Enabled = False
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(89, 17)
+        Me.CheckBox1.TabIndex = 4
+        Me.CheckBox1.Text = "Set pointer to"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'img_pointer
+        '
+        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
+        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
+        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
+        Me.img_pointer.Name = "img_pointer"
+        Me.img_pointer.Size = New System.Drawing.Size(69, 49)
+        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.img_pointer.TabIndex = 6
+        Me.img_pointer.TabStop = False
         '
         'SettingsWindow
         '
@@ -1148,11 +1230,15 @@ Partial Class SettingsWindow
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.tab_help.ResumeLayout(False)
+        Me.GroupBox13.ResumeLayout(False)
+        Me.GroupBox12.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox12.ResumeLayout(False)
-        Me.GroupBox13.ResumeLayout(False)
+        Me.tab_slideshow.ResumeLayout(False)
+        Me.GroupBox14.ResumeLayout(False)
+        Me.GroupBox14.PerformLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1240,4 +1326,10 @@ Partial Class SettingsWindow
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents btn_help_github As System.Windows.Forms.Button
     Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents tab_slideshow As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox14 As System.Windows.Forms.GroupBox
+    Friend WithEvents cb_clickOnLaserUp As System.Windows.Forms.CheckBox
+    Friend WithEvents dropDown_pointerDesign As System.Windows.Forms.ComboBox
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents img_pointer As System.Windows.Forms.PictureBox
 End Class

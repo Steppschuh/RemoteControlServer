@@ -17,6 +17,13 @@ Public Class PointerWindow
         Else
             Me.Show()
             Me.Opacity = 1
+            Select Case Settings.pointerDesign
+                Case 0
+                    Converter.setImageDrawable(image_back, "pointer_white.png")
+                Case 1
+                    Converter.setImageDrawable(image_back, "pointer.png")
+            End Select
+
         End If
     End Sub
 
@@ -39,6 +46,11 @@ Public Class PointerWindow
         lowerOpacityTimer.Start()
 
         fadeOutDelayTimer.Stop()
+
+        If Settings.clickOnLaserUp Then
+            Me.Hide()
+            Mouse.leftClickRepeat(1)
+        End If
     End Sub
 
     Private Sub lowerOpacity()
@@ -65,7 +77,13 @@ Public Class PointerWindow
 
             fadeOutDelayTimer = New DispatcherTimer
             AddHandler fadeOutDelayTimer.Tick, AddressOf startFadeOutPointer
-            fadeOutDelayTimer.Interval = New TimeSpan(0, 0, 2)
+
+            If Settings.clickOnLaserUp Then
+                fadeOutDelayTimer.Interval = New TimeSpan(0, 0, 1)
+            Else
+                fadeOutDelayTimer.Interval = New TimeSpan(0, 0, 2)
+            End If
+
             fadeOutDelayTimer.Start()
             isFadingOutTimed = True
         End If
@@ -79,6 +97,13 @@ Public Class PointerWindow
             Try
                 Me.Left = point.X
                 Me.Top = point.Y
+
+                If Settings.clickOnLaserUp Then
+                    Dim cursor As New Point
+                    cursor.X = point.X + (Me.Width / 2)
+                    cursor.Y = point.Y + (Me.Height / 2)
+                    SetCursorPos(cursor.X, cursor.Y)
+                End If
             Catch ex As Exception
                 Logger.add(ex.ToString)
             End Try

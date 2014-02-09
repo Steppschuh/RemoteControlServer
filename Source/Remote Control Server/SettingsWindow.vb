@@ -24,7 +24,17 @@
         cb_startMinimized.Checked = Settings.startMinimized
         cb_minimizeToTray.Checked = Settings.minimizeToTray
         cb_showTrayNotoifications.Checked = Settings.showTrayNotoifications
-        cb_backDesign.Checked = Settings.backDesign
+        dropDown_backDesign.SelectedIndex = Settings.backDesign
+
+        '   Slideshow
+        cb_clickOnLaserUp.Checked = Settings.clickOnLaserUp
+        dropDown_pointerDesign.SelectedIndex = Settings.pointerDesign
+        Select Case Settings.pointerDesign
+            Case 0
+                img_pointer.Image = My.Resources.pointer_white
+            Case 1
+                img_pointer.Image = My.Resources.pointer
+        End Select
 
         '   Protection
         cb_useWhitelist.Checked = Settings.useWhiteList
@@ -157,6 +167,26 @@
 
 #End Region
 
+#Region "Slideshow settings"
+
+    Private Sub cb_clickOnLaserUp_CheckedChanged(sender As Object, e As EventArgs) Handles cb_clickOnLaserUp.CheckedChanged
+        Settings.clickOnLaserUp = cb_clickOnLaserUp.Checked
+    End Sub
+
+    Private Sub dropDown_pointer_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dropDown_pointerDesign.SelectedIndexChanged
+        If isUserAction Then
+            Settings.pointerDesign = dropDown_pointerDesign.SelectedIndex
+            Select Case Settings.pointerDesign
+                Case 0
+                    img_pointer.Image = My.Resources.pointer_white
+                Case 1
+                    img_pointer.Image = My.Resources.pointer
+            End Select
+        End If
+    End Sub
+
+#End Region
+
 #Region "Update"
 
     Private Sub btn_update_install_Click(sender As Object, e As EventArgs) Handles btn_update_install.Click
@@ -200,5 +230,4 @@
 
 #End Region
 
-    
 End Class

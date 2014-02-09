@@ -41,6 +41,10 @@ Module Settings
     Public screenScale As Single = 0.6
     Public screenScaleFull As Single = 1
 
+    'Slideshow
+    Public clickOnLaserUp As Boolean = False
+    Public pointerDesign As Byte = 0
+
 
     Public Sub loadSettings()
         Try
@@ -129,6 +133,12 @@ Module Settings
             appendSetting("screenQualityFull", screenQualityFull.ToString, sw)
             appendSetting("screenScale", screenScale.ToString, sw)
             appendSetting("screenScaleFull", screenScaleFull.ToString, sw)
+            sw.WriteLine()
+
+            'Slideshow
+            appendSetting("clickOnLaserUp", Converter.boolToString(clickOnLaserUp), sw)
+            appendSetting("pointerDesign", pointerDesign.ToString, sw)
+            sw.WriteLine()
 
             'Whitelist
             sw.Write("  <whitelist>")
@@ -224,6 +234,12 @@ Module Settings
             screenScale = Single.Parse(value)
         ElseIf name.Equals("screenScaleFull") Then
             screenScaleFull = Single.Parse(value)
+
+            'Slideshow
+        ElseIf name.Equals("clickOnLaserUp") Then
+            clickOnLaserUp = Converter.stringToBool(value)
+        ElseIf name.Equals("pointerDesign") Then
+            pointerDesign = Integer.Parse(value)
         Else
             Logger.add("Unknown config entry: " & name)
         End If
