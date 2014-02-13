@@ -220,7 +220,21 @@ Module ApiV1
         Else
             Try
                 readableCommand = getCommandValue(cmd)
-                Keyboard.sendEachKey(readableCommand)
+                If readableCommand.ToLower.Contains("execute") And Settings.serialCommands Then
+                    Dim command As New Command
+                    If readableCommand.Contains("10") Then
+                        command.data = New Byte() {0}
+                    ElseIf readableCommand.Contains("11") Then
+                        command.data = New Byte() {1}
+                    ElseIf readableCommand.Contains("12") Then
+                        command.data = New Byte() {2}
+                    Else
+                        command.data = New Byte() {0}
+                    End If
+                    Serial.sendCommand(command)
+                Else
+                    Keyboard.sendEachKey(readableCommand)
+                End If
             Catch ex As Exception
                 Logger.add(ex.ToString)
             End Try

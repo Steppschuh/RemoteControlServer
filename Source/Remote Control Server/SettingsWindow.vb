@@ -36,6 +36,10 @@
                 img_pointer.Image = My.Resources.pointer
         End Select
 
+        '   Misc
+        cb_serialCommands.Checked = Settings.serialCommands
+        tb_serialPortName.Text = Settings.serialPortName
+
         '   Protection
         cb_useWhitelist.Checked = Settings.useWhiteList
         cb_usePin.Checked = Settings.usePin
@@ -187,6 +191,24 @@
 
 #End Region
 
+#Region "Misc settings"
+
+    Private Sub btn_sendDebugCommand_Click(sender As Object, e As EventArgs) Handles btn_sendDebugCommand.Click
+        Dim command As New Command
+        command.data = New Byte() {2}
+        Serial.sendCommand(command)
+    End Sub
+
+    Private Sub tb_serialPortName_TextChanged(sender As Object, e As EventArgs) Handles tb_serialPortName.TextChanged
+        Settings.serialPortName = tb_serialPortName.Text
+    End Sub
+
+    Private Sub cb_serialCommands_CheckedChanged(sender As Object, e As EventArgs) Handles cb_serialCommands.CheckedChanged
+        Settings.serialCommands = cb_serialCommands.Checked
+    End Sub
+
+#End Region
+
 #Region "Update"
 
     Private Sub btn_update_install_Click(sender As Object, e As EventArgs) Handles btn_update_install.Click
@@ -230,4 +252,5 @@
 
 #End Region
 
+    
 End Class

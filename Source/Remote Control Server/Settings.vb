@@ -45,6 +45,9 @@ Module Settings
     Public clickOnLaserUp As Boolean = False
     Public pointerDesign As Byte = 0
 
+    'Misc
+    Public serialPortName As String = "COM7"
+    Public serialCommands As Boolean = False
 
     Public Sub loadSettings()
         Try
@@ -138,6 +141,11 @@ Module Settings
             'Slideshow
             appendSetting("clickOnLaserUp", Converter.boolToString(clickOnLaserUp), sw)
             appendSetting("pointerDesign", pointerDesign.ToString, sw)
+            sw.WriteLine()
+
+            'Misc
+            appendSetting("serialCommands", Converter.boolToString(serialCommands), sw)
+            appendSetting("serialPortName", serialPortName, sw)
             sw.WriteLine()
 
             'Whitelist
@@ -240,6 +248,13 @@ Module Settings
             clickOnLaserUp = Converter.stringToBool(value)
         ElseIf name.Equals("pointerDesign") Then
             pointerDesign = Integer.Parse(value)
+
+            'Misc
+        ElseIf name.Equals("serialCommands") Then
+            serialCommands = Converter.stringToBool(value)
+        ElseIf name.Equals("serialPortName") Then
+            serialPortName = value
+
         Else
             Logger.add("Unknown config entry: " & name)
         End If

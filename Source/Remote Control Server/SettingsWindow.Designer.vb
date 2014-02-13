@@ -80,6 +80,12 @@ Partial Class SettingsWindow
         Me.track_screen_scale = New System.Windows.Forms.TrackBar()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.track_screen_quality = New System.Windows.Forms.TrackBar()
+        Me.tab_slideshow = New System.Windows.Forms.TabPage()
+        Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.img_pointer = New System.Windows.Forms.PictureBox()
+        Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.tab_update = New System.Windows.Forms.TabPage()
@@ -107,12 +113,12 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.tab_slideshow = New System.Windows.Forms.TabPage()
-        Me.GroupBox14 = New System.Windows.Forms.GroupBox()
-        Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
-        Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.img_pointer = New System.Windows.Forms.PictureBox()
+        Me.Misc = New System.Windows.Forms.TabPage()
+        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
+        Me.tb_serialPortName = New System.Windows.Forms.TextBox()
+        Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -137,6 +143,9 @@ Partial Class SettingsWindow
         Me.GroupBox10.SuspendLayout()
         CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tab_slideshow.SuspendLayout()
+        Me.GroupBox14.SuspendLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -146,9 +155,8 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.tab_slideshow.SuspendLayout()
-        Me.GroupBox14.SuspendLayout()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Misc.SuspendLayout()
+        Me.GroupBox15.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -183,6 +191,7 @@ Partial Class SettingsWindow
         Me.TabControl1.Controls.Add(Me.tab_mouse)
         Me.TabControl1.Controls.Add(Me.tab_screen)
         Me.TabControl1.Controls.Add(Me.tab_slideshow)
+        Me.TabControl1.Controls.Add(Me.Misc)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
@@ -803,6 +812,78 @@ Partial Class SettingsWindow
         Me.track_screen_quality.TickFrequency = 10
         Me.track_screen_quality.Value = 30
         '
+        'tab_slideshow
+        '
+        Me.tab_slideshow.Controls.Add(Me.GroupBox14)
+        Me.tab_slideshow.Location = New System.Drawing.Point(4, 22)
+        Me.tab_slideshow.Name = "tab_slideshow"
+        Me.tab_slideshow.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_slideshow.Size = New System.Drawing.Size(447, 284)
+        Me.tab_slideshow.TabIndex = 4
+        Me.tab_slideshow.Text = "Slideshow"
+        Me.tab_slideshow.UseVisualStyleBackColor = True
+        '
+        'GroupBox14
+        '
+        Me.GroupBox14.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox14.Controls.Add(Me.img_pointer)
+        Me.GroupBox14.Controls.Add(Me.dropDown_pointerDesign)
+        Me.GroupBox14.Controls.Add(Me.CheckBox1)
+        Me.GroupBox14.Controls.Add(Me.cb_clickOnLaserUp)
+        Me.GroupBox14.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox14.Name = "GroupBox14"
+        Me.GroupBox14.Size = New System.Drawing.Size(435, 73)
+        Me.GroupBox14.TabIndex = 2
+        Me.GroupBox14.TabStop = False
+        Me.GroupBox14.Text = "Laser pointer"
+        '
+        'img_pointer
+        '
+        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
+        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
+        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
+        Me.img_pointer.Name = "img_pointer"
+        Me.img_pointer.Size = New System.Drawing.Size(69, 49)
+        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.img_pointer.TabIndex = 6
+        Me.img_pointer.TabStop = False
+        '
+        'dropDown_pointerDesign
+        '
+        Me.dropDown_pointerDesign.FormattingEnabled = True
+        Me.dropDown_pointerDesign.Items.AddRange(New Object() {"White circle", "Red dot"})
+        Me.dropDown_pointerDesign.Location = New System.Drawing.Point(149, 40)
+        Me.dropDown_pointerDesign.Name = "dropDown_pointerDesign"
+        Me.dropDown_pointerDesign.Size = New System.Drawing.Size(121, 21)
+        Me.dropDown_pointerDesign.TabIndex = 5
+        Me.dropDown_pointerDesign.Text = "White circle"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Enabled = False
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(89, 17)
+        Me.CheckBox1.TabIndex = 4
+        Me.CheckBox1.Text = "Set pointer to"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'cb_clickOnLaserUp
+        '
+        Me.cb_clickOnLaserUp.AutoSize = True
+        Me.cb_clickOnLaserUp.Location = New System.Drawing.Point(6, 19)
+        Me.cb_clickOnLaserUp.Name = "cb_clickOnLaserUp"
+        Me.cb_clickOnLaserUp.Size = New System.Drawing.Size(121, 17)
+        Me.cb_clickOnLaserUp.TabIndex = 0
+        Me.cb_clickOnLaserUp.Text = "Click when released"
+        Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
+        '
         'tab_upgrade
         '
         Me.tab_upgrade.Controls.Add(Me.Label25)
@@ -1106,77 +1187,74 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'tab_slideshow
+        'Misc
         '
-        Me.tab_slideshow.Controls.Add(Me.GroupBox14)
-        Me.tab_slideshow.Location = New System.Drawing.Point(4, 22)
-        Me.tab_slideshow.Name = "tab_slideshow"
-        Me.tab_slideshow.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_slideshow.Size = New System.Drawing.Size(447, 284)
-        Me.tab_slideshow.TabIndex = 4
-        Me.tab_slideshow.Text = "Slideshow"
-        Me.tab_slideshow.UseVisualStyleBackColor = True
+        Me.Misc.Controls.Add(Me.GroupBox15)
+        Me.Misc.Location = New System.Drawing.Point(4, 22)
+        Me.Misc.Name = "Misc"
+        Me.Misc.Padding = New System.Windows.Forms.Padding(3)
+        Me.Misc.Size = New System.Drawing.Size(447, 284)
+        Me.Misc.TabIndex = 5
+        Me.Misc.Text = "Misc"
+        Me.Misc.UseVisualStyleBackColor = True
         '
-        'GroupBox14
+        'GroupBox15
         '
-        Me.GroupBox14.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox14.Controls.Add(Me.img_pointer)
-        Me.GroupBox14.Controls.Add(Me.dropDown_pointerDesign)
-        Me.GroupBox14.Controls.Add(Me.CheckBox1)
-        Me.GroupBox14.Controls.Add(Me.cb_clickOnLaserUp)
-        Me.GroupBox14.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(435, 73)
-        Me.GroupBox14.TabIndex = 2
-        Me.GroupBox14.TabStop = False
-        Me.GroupBox14.Text = "Laser pointer"
+        Me.GroupBox15.Controls.Add(Me.btn_sendDebugCommand)
+        Me.GroupBox15.Controls.Add(Me.tb_serialPortName)
+        Me.GroupBox15.Controls.Add(Me.CheckBox2)
+        Me.GroupBox15.Controls.Add(Me.cb_serialCommands)
+        Me.GroupBox15.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox15.Name = "GroupBox15"
+        Me.GroupBox15.Size = New System.Drawing.Size(435, 68)
+        Me.GroupBox15.TabIndex = 3
+        Me.GroupBox15.TabStop = False
+        Me.GroupBox15.Text = "Serial port"
         '
-        'cb_clickOnLaserUp
+        'CheckBox2
         '
-        Me.cb_clickOnLaserUp.AutoSize = True
-        Me.cb_clickOnLaserUp.Location = New System.Drawing.Point(6, 19)
-        Me.cb_clickOnLaserUp.Name = "cb_clickOnLaserUp"
-        Me.cb_clickOnLaserUp.Size = New System.Drawing.Size(121, 17)
-        Me.cb_clickOnLaserUp.TabIndex = 0
-        Me.cb_clickOnLaserUp.Text = "Click when released"
-        Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = True
+        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox2.Enabled = False
+        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(77, 17)
+        Me.CheckBox2.TabIndex = 4
+        Me.CheckBox2.Text = "Select port"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
-        'dropDown_pointerDesign
+        'cb_serialCommands
         '
-        Me.dropDown_pointerDesign.FormattingEnabled = True
-        Me.dropDown_pointerDesign.Items.AddRange(New Object() {"White circle", "Red dot"})
-        Me.dropDown_pointerDesign.Location = New System.Drawing.Point(149, 40)
-        Me.dropDown_pointerDesign.Name = "dropDown_pointerDesign"
-        Me.dropDown_pointerDesign.Size = New System.Drawing.Size(121, 21)
-        Me.dropDown_pointerDesign.TabIndex = 5
-        Me.dropDown_pointerDesign.Text = "White circle"
+        Me.cb_serialCommands.AutoSize = True
+        Me.cb_serialCommands.Checked = True
+        Me.cb_serialCommands.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_serialCommands.Location = New System.Drawing.Point(6, 19)
+        Me.cb_serialCommands.Name = "cb_serialCommands"
+        Me.cb_serialCommands.Size = New System.Drawing.Size(161, 17)
+        Me.cb_serialCommands.TabIndex = 0
+        Me.cb_serialCommands.Text = "Enable serial port commands"
+        Me.cb_serialCommands.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'tb_serialPortName
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Enabled = False
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(89, 17)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Set pointer to"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.tb_serialPortName.Location = New System.Drawing.Point(109, 40)
+        Me.tb_serialPortName.Name = "tb_serialPortName"
+        Me.tb_serialPortName.Size = New System.Drawing.Size(67, 20)
+        Me.tb_serialPortName.TabIndex = 7
+        Me.tb_serialPortName.Text = "COM7"
+        Me.tb_serialPortName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'img_pointer
+        'btn_sendDebugCommand
         '
-        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
-        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
-        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
-        Me.img_pointer.Name = "img_pointer"
-        Me.img_pointer.Size = New System.Drawing.Size(69, 49)
-        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.img_pointer.TabIndex = 6
-        Me.img_pointer.TabStop = False
+        Me.btn_sendDebugCommand.Location = New System.Drawing.Point(322, 38)
+        Me.btn_sendDebugCommand.Name = "btn_sendDebugCommand"
+        Me.btn_sendDebugCommand.Size = New System.Drawing.Size(107, 23)
+        Me.btn_sendDebugCommand.TabIndex = 8
+        Me.btn_sendDebugCommand.Text = "Debug command"
+        Me.btn_sendDebugCommand.UseVisualStyleBackColor = True
         '
         'SettingsWindow
         '
@@ -1223,6 +1301,10 @@ Partial Class SettingsWindow
         Me.GroupBox10.PerformLayout()
         CType(Me.track_screen_scale, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tab_slideshow.ResumeLayout(False)
+        Me.GroupBox14.ResumeLayout(False)
+        Me.GroupBox14.PerformLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_upgrade.ResumeLayout(False)
         Me.tab_upgrade.PerformLayout()
         Me.tab_update.ResumeLayout(False)
@@ -1235,10 +1317,9 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.tab_slideshow.ResumeLayout(False)
-        Me.GroupBox14.ResumeLayout(False)
-        Me.GroupBox14.PerformLayout()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Misc.ResumeLayout(False)
+        Me.GroupBox15.ResumeLayout(False)
+        Me.GroupBox15.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1332,4 +1413,10 @@ Partial Class SettingsWindow
     Friend WithEvents dropDown_pointerDesign As System.Windows.Forms.ComboBox
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents img_pointer As System.Windows.Forms.PictureBox
+    Friend WithEvents Misc As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_serialCommands As System.Windows.Forms.CheckBox
+    Friend WithEvents tb_serialPortName As System.Windows.Forms.TextBox
+    Friend WithEvents btn_sendDebugCommand As System.Windows.Forms.Button
 End Class
