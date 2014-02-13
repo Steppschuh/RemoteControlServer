@@ -1,7 +1,10 @@
 ﻿Imports System.Threading
 
 Module ApiV2
-    Public Const cmd_command As Byte = 128
+
+    'API v2 introduced commands that were just plain byte arrays sent from a device to the server
+
+    Public Const COMMAND_IDENTIFIER As Byte = 128
 
     Public Const cmd_connect As Byte = 10
     Public Const cmd_disconnect As Byte = 11
@@ -9,6 +12,7 @@ Module ApiV2
     Public Const cmd_resume As Byte = 13
     Public Const cmd_control As Byte = 14
     Public Const cmd_pin As Byte = 15
+    Public Const cmd_broadcast As Byte = 16
 
     Public Const cmd_media As Byte = 20
     Public Const cmd_mouse As Byte = 21
@@ -52,11 +56,25 @@ Module ApiV2
     Private Const cmd_request_screen_full As Byte = 1
     Private Const cmd_request_screen_next As Byte = 2
     Private Const cmd_request_connect As Byte = 3
+    Private Const cmd_request_pin As Byte = 4
 
     Public readableCommand As String = "Unknown"
 
+    Public Function isBroadcast(ByVal command As Command) As Boolean
+        If command.data.Equals(New Byte() {COMMAND_IDENTIFIER, cmd_broadcast}) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Public Sub requestPin(ByRef app As App)
-        'Not yet supported
+        Dim command As New Command
+        command.source = Network.getServerIp()
+        command.destination = app.ip
+        command.priority = RemoteControlServer.Command.PRIORITY_HIGH
+        command.data = New Byte() {COMMAND_IDENTIFIER, cmd_request, cmd_request_pin}
+        command.send()
     End Sub
 
     Public Sub answerBroadCast(ByRef app As App)

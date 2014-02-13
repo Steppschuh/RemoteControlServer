@@ -22,7 +22,7 @@
 
     Public Sub process()
         Try
-            If Authentication.isAuthenticated(source, Server.getApp(source).pin) Then
+            If Authentication.isAuthenticated(source, Server.getApp(source).pin) Or isBroadcast() Then
                 'If Authentication.isAuthenticated(source, "") Then
                 parse()
             Else
@@ -37,15 +37,15 @@
         'Detect used API version
         Dim commandByte As Byte = data(0)
 
-        If commandByte.Equals(ApiV3.cmd_command + 1) Then
+        If commandByte.Equals(ApiV3.COMMAND_IDENTIFIER + 1) Then
             'Newer API than available
             api = Remote.latestApi
             'TODO: Notify user
             'TODO: Check for updates
-        ElseIf commandByte.Equals(ApiV3.cmd_command) Then
+        ElseIf commandByte.Equals(ApiV3.COMMAND_IDENTIFIER) Then
             'Android version 2.1.0 and up
             api = 3
-        ElseIf commandByte.Equals(ApiV2.cmd_command) Then
+        ElseIf commandByte.Equals(ApiV2.COMMAND_IDENTIFIER) Then
             'Android version 1.8.0 - 2.0.3
             api = 2
         Else
@@ -64,5 +64,13 @@
     Public Sub log()
         Logger.add(source & ": " & dataAsString())
     End Sub
+
+    Public Function isBroadcast() As Boolean
+        If ApiV1.isBroadcast(Me) Or ApiV2.isBroadcast(Me) Or ApiV3.isBroadcast(Me) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
 End Class

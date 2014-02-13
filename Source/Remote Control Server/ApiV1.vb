@@ -2,6 +2,8 @@
 
 Module ApiV1
 
+    'The first API commands for the Remote Control Collection were just strings sent from the device to the server
+
     Public Const cmd_info_device_name As String = "[cmd_15]"
     Public Const cmd_info_device_osversion As String = "[cmd_16]"
     Public Const cmd_info_app_name As String = "[cmd_17]"
@@ -25,6 +27,14 @@ Module ApiV1
     Public Const cmd_shortcut_string As String = "[cmd_short]"
 
     Public readableCommand As String = "Unknown"
+
+    Public Function isBroadcast(ByVal command As Command) As Boolean
+        If command.dataAsString.Contains(cmd_broadcast_string) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
     Public Sub parseCommand(ByRef command As Command)
         Dim cmd As String = command.dataAsString
