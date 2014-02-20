@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Media
 Imports System.Drawing
 Imports System.Drawing.Imaging
+Imports System.Text
 
 Module Converter
 
@@ -53,6 +54,14 @@ Module Converter
     Public Function byteToString(ByVal value As Byte(), ByVal index As Integer) As String
         Dim chars As Char() = System.Text.Encoding.UTF8.GetChars(value, index, value.Length - index)
         Return New String(chars)
+    End Function
+
+    Public Function byteToAsciiChar(ByVal b As Byte) As Char
+        Dim barr() As Byte = New Byte() {b}
+        'Dim carr() As Char = Encoding.ASCII.GetChars(barr)
+        Dim carr() As Char = Encoding.GetEncoding(850).GetChars(barr)
+
+        Return carr(0)
     End Function
 
     Public Function getPointDistance(ByVal P1 As System.Windows.Point, ByVal P2 As System.Windows.Point, Optional ByVal Digits As Integer = 2) As Decimal

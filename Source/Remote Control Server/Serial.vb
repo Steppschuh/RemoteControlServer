@@ -10,6 +10,7 @@
     Public Function openSerialPort(ByVal name As String) As Boolean
         Try
             serialPort = My.Computer.Ports.OpenSerialPort(name)
+            serialPort.WriteTimeout = 20
         Catch ex As Exception
             Logger.add("Unable to open serial port " & serialPortName & vbNewLine & ex.ToString)
         End Try

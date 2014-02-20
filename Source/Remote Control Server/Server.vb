@@ -37,6 +37,10 @@ Public Module Server
             gui.Close()
         End If
 
+        Logger.add(byteToAsciiChar(48))
+        Logger.add(byteToAsciiChar(227))
+
+
         Logger.add("UI ready")
     End Sub
 

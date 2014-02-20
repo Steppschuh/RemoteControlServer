@@ -147,4 +147,26 @@ Module Screenshot
         screenIndex = new_index
     End Sub
 
+    Public Function getAverageColor(ByVal bmp As Bitmap) As Color
+        Dim totalR As Integer = 0
+        Dim totalG As Integer = 0
+        Dim totalB As Integer = 0
+
+        For x As Integer = 0 To bmp.Width - 1
+            For y As Integer = 0 To bmp.Height - 1
+                Dim pixel As Color = bmp.GetPixel(x, y)
+                totalR += pixel.R
+                totalG += pixel.G
+                totalB += pixel.B
+            Next
+        Next
+
+        Dim totalPixels As Integer = bmp.Height * bmp.Width
+        Dim averageR As Integer = totalR \ totalPixels
+        Dim averageg As Integer = totalG \ totalPixels
+        Dim averageb As Integer = totalB \ totalPixels
+
+        Return Color.FromArgb(averageR, averageg, averageb)
+    End Function
+
 End Module

@@ -216,6 +216,22 @@ Module ApiV1
                 readableCommand = "Right"
                 Keyboard.sendKeyPress(Keys.Right)
                 Exit Sub
+            Else
+                If Settings.serialCommands Then
+                    readableCommand = getCommandValue(cmd)
+                    Dim command As New Command
+                    If readableCommand.Contains("<0>") Then
+                        command.data = New Byte() {0}
+                    ElseIf readableCommand.Contains("<1>") Then
+                        command.data = New Byte() {1}
+                    ElseIf readableCommand.Contains("<2>") Then
+                        command.data = New Byte() {2}
+                    Else
+                        command.data = New Byte() {0}
+                    End If
+                    Serial.sendCommand(command)
+                End If
+                Exit Sub
             End If
         Else
             Try

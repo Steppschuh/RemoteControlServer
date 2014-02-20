@@ -86,6 +86,12 @@ Partial Class SettingsWindow
         Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
+        Me.Misc = New System.Windows.Forms.TabPage()
+        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
+        Me.tb_serialPortName = New System.Windows.Forms.TextBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.tab_update = New System.Windows.Forms.TabPage()
@@ -113,12 +119,7 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.Misc = New System.Windows.Forms.TabPage()
-        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
-        Me.tb_serialPortName = New System.Windows.Forms.TextBox()
-        Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
+        Me.btn_reopenPort = New System.Windows.Forms.Button()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -146,6 +147,8 @@ Partial Class SettingsWindow
         Me.tab_slideshow.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Misc.SuspendLayout()
+        Me.GroupBox15.SuspendLayout()
         Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -155,8 +158,6 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.Misc.SuspendLayout()
-        Me.GroupBox15.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -884,6 +885,76 @@ Partial Class SettingsWindow
         Me.cb_clickOnLaserUp.Text = "Click when released"
         Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
         '
+        'Misc
+        '
+        Me.Misc.Controls.Add(Me.GroupBox15)
+        Me.Misc.Location = New System.Drawing.Point(4, 22)
+        Me.Misc.Name = "Misc"
+        Me.Misc.Padding = New System.Windows.Forms.Padding(3)
+        Me.Misc.Size = New System.Drawing.Size(447, 284)
+        Me.Misc.TabIndex = 5
+        Me.Misc.Text = "Misc"
+        Me.Misc.UseVisualStyleBackColor = True
+        '
+        'GroupBox15
+        '
+        Me.GroupBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox15.Controls.Add(Me.btn_reopenPort)
+        Me.GroupBox15.Controls.Add(Me.btn_sendDebugCommand)
+        Me.GroupBox15.Controls.Add(Me.tb_serialPortName)
+        Me.GroupBox15.Controls.Add(Me.CheckBox2)
+        Me.GroupBox15.Controls.Add(Me.cb_serialCommands)
+        Me.GroupBox15.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox15.Name = "GroupBox15"
+        Me.GroupBox15.Size = New System.Drawing.Size(435, 68)
+        Me.GroupBox15.TabIndex = 3
+        Me.GroupBox15.TabStop = False
+        Me.GroupBox15.Text = "Serial port"
+        '
+        'btn_sendDebugCommand
+        '
+        Me.btn_sendDebugCommand.Location = New System.Drawing.Point(322, 38)
+        Me.btn_sendDebugCommand.Name = "btn_sendDebugCommand"
+        Me.btn_sendDebugCommand.Size = New System.Drawing.Size(107, 23)
+        Me.btn_sendDebugCommand.TabIndex = 8
+        Me.btn_sendDebugCommand.Text = "Debug command"
+        Me.btn_sendDebugCommand.UseVisualStyleBackColor = True
+        '
+        'tb_serialPortName
+        '
+        Me.tb_serialPortName.Location = New System.Drawing.Point(109, 40)
+        Me.tb_serialPortName.Name = "tb_serialPortName"
+        Me.tb_serialPortName.Size = New System.Drawing.Size(67, 20)
+        Me.tb_serialPortName.TabIndex = 7
+        Me.tb_serialPortName.Text = "COM7"
+        Me.tb_serialPortName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = True
+        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox2.Enabled = False
+        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(77, 17)
+        Me.CheckBox2.TabIndex = 4
+        Me.CheckBox2.Text = "Select port"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'cb_serialCommands
+        '
+        Me.cb_serialCommands.AutoSize = True
+        Me.cb_serialCommands.Checked = True
+        Me.cb_serialCommands.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_serialCommands.Location = New System.Drawing.Point(6, 19)
+        Me.cb_serialCommands.Name = "cb_serialCommands"
+        Me.cb_serialCommands.Size = New System.Drawing.Size(161, 17)
+        Me.cb_serialCommands.TabIndex = 0
+        Me.cb_serialCommands.Text = "Enable serial port commands"
+        Me.cb_serialCommands.UseVisualStyleBackColor = True
+        '
         'tab_upgrade
         '
         Me.tab_upgrade.Controls.Add(Me.Label25)
@@ -1187,74 +1258,14 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'Misc
+        'btn_reopenPort
         '
-        Me.Misc.Controls.Add(Me.GroupBox15)
-        Me.Misc.Location = New System.Drawing.Point(4, 22)
-        Me.Misc.Name = "Misc"
-        Me.Misc.Padding = New System.Windows.Forms.Padding(3)
-        Me.Misc.Size = New System.Drawing.Size(447, 284)
-        Me.Misc.TabIndex = 5
-        Me.Misc.Text = "Misc"
-        Me.Misc.UseVisualStyleBackColor = True
-        '
-        'GroupBox15
-        '
-        Me.GroupBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox15.Controls.Add(Me.btn_sendDebugCommand)
-        Me.GroupBox15.Controls.Add(Me.tb_serialPortName)
-        Me.GroupBox15.Controls.Add(Me.CheckBox2)
-        Me.GroupBox15.Controls.Add(Me.cb_serialCommands)
-        Me.GroupBox15.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(435, 68)
-        Me.GroupBox15.TabIndex = 3
-        Me.GroupBox15.TabStop = False
-        Me.GroupBox15.Text = "Serial port"
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = True
-        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.Enabled = False
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(77, 17)
-        Me.CheckBox2.TabIndex = 4
-        Me.CheckBox2.Text = "Select port"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'cb_serialCommands
-        '
-        Me.cb_serialCommands.AutoSize = True
-        Me.cb_serialCommands.Checked = True
-        Me.cb_serialCommands.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cb_serialCommands.Location = New System.Drawing.Point(6, 19)
-        Me.cb_serialCommands.Name = "cb_serialCommands"
-        Me.cb_serialCommands.Size = New System.Drawing.Size(161, 17)
-        Me.cb_serialCommands.TabIndex = 0
-        Me.cb_serialCommands.Text = "Enable serial port commands"
-        Me.cb_serialCommands.UseVisualStyleBackColor = True
-        '
-        'tb_serialPortName
-        '
-        Me.tb_serialPortName.Location = New System.Drawing.Point(109, 40)
-        Me.tb_serialPortName.Name = "tb_serialPortName"
-        Me.tb_serialPortName.Size = New System.Drawing.Size(67, 20)
-        Me.tb_serialPortName.TabIndex = 7
-        Me.tb_serialPortName.Text = "COM7"
-        Me.tb_serialPortName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'btn_sendDebugCommand
-        '
-        Me.btn_sendDebugCommand.Location = New System.Drawing.Point(322, 38)
-        Me.btn_sendDebugCommand.Name = "btn_sendDebugCommand"
-        Me.btn_sendDebugCommand.Size = New System.Drawing.Size(107, 23)
-        Me.btn_sendDebugCommand.TabIndex = 8
-        Me.btn_sendDebugCommand.Text = "Debug command"
-        Me.btn_sendDebugCommand.UseVisualStyleBackColor = True
+        Me.btn_reopenPort.Location = New System.Drawing.Point(322, 13)
+        Me.btn_reopenPort.Name = "btn_reopenPort"
+        Me.btn_reopenPort.Size = New System.Drawing.Size(107, 23)
+        Me.btn_reopenPort.TabIndex = 9
+        Me.btn_reopenPort.Text = "Re-open port"
+        Me.btn_reopenPort.UseVisualStyleBackColor = True
         '
         'SettingsWindow
         '
@@ -1305,6 +1316,9 @@ Partial Class SettingsWindow
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Misc.ResumeLayout(False)
+        Me.GroupBox15.ResumeLayout(False)
+        Me.GroupBox15.PerformLayout()
         Me.tab_upgrade.ResumeLayout(False)
         Me.tab_upgrade.PerformLayout()
         Me.tab_update.ResumeLayout(False)
@@ -1317,9 +1331,6 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.Misc.ResumeLayout(False)
-        Me.GroupBox15.ResumeLayout(False)
-        Me.GroupBox15.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1419,4 +1430,5 @@ Partial Class SettingsWindow
     Friend WithEvents cb_serialCommands As System.Windows.Forms.CheckBox
     Friend WithEvents tb_serialPortName As System.Windows.Forms.TextBox
     Friend WithEvents btn_sendDebugCommand As System.Windows.Forms.Button
+    Friend WithEvents btn_reopenPort As System.Windows.Forms.Button
 End Class

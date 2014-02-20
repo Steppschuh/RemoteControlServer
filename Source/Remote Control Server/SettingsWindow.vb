@@ -199,6 +199,11 @@
         Serial.sendCommand(command)
     End Sub
 
+    Private Sub btn_reopenPort_Click(sender As Object, e As EventArgs) Handles btn_reopenPort.Click
+        Serial.closeSerialPort()
+        Serial.openSerialPort(Settings.serialPortName)
+    End Sub
+
     Private Sub tb_serialPortName_TextChanged(sender As Object, e As EventArgs) Handles tb_serialPortName.TextChanged
         Settings.serialPortName = tb_serialPortName.Text
     End Sub
@@ -252,5 +257,6 @@
 
 #End Region
 
+    
     
 End Class

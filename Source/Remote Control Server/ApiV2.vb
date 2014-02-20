@@ -23,6 +23,7 @@ Module ApiV2
     Public Const cmd_scroll As Byte = 26
     Public Const cmd_request As Byte = 27
     Public Const cmd_laser As Byte = 28
+    Public Const cmd_custom As Byte = 29
 
     Public Const cmd_media_play As Byte = 0
     Public Const cmd_media_stop As Byte = 1
@@ -143,6 +144,8 @@ Module ApiV2
                         app.lastControl = "Request"
                     Case cmd_laser
                         app.lastControl = "Laser"
+                    Case cmd_custom
+                        app.lastControl = "Custom"
                     Case Else
                         app.lastControl = "Unknown"
                 End Select
@@ -164,6 +167,8 @@ Module ApiV2
                 parseRequest(command)
             Case cmd_laser
                 parseLaserCommand(command)
+            Case cmd_custom
+                parseCustomCommand(command)
             Case Else
                 Logger.add("Unknown remote command")
         End Select
@@ -258,6 +263,76 @@ Module ApiV2
                 Screenshot.sendScreenshot(True)
         End Select
         Logger.add("Request: " & readableCommand)
+    End Sub
+
+    Private Sub parseCustomCommand(ByRef command As Command)
+        Select Case command.data(2)
+            Case 1
+                readableCommand = "Button 1"
+                Serial.sendMessage("<01>")
+            Case 2
+                readableCommand = "Button 2"
+                Serial.sendMessage("<02>")
+            Case 3
+                readableCommand = "Button 3"
+                Serial.sendMessage("<03>")
+            Case 4
+                readableCommand = "Button 4"
+                Serial.sendMessage("<04>")
+            Case 5
+                readableCommand = "Button 5"
+                Serial.sendMessage("<05>")
+            Case 6
+                readableCommand = "Button 6"
+                Serial.sendMessage("<06>")
+            Case 7
+                readableCommand = "Button 7"
+                Serial.sendMessage("<07>")
+            Case 8
+                readableCommand = "Button 8"
+                Serial.sendMessage("<08>")
+            Case 9
+                readableCommand = "Button 9"
+                Serial.sendMessage("<09>")
+            Case 0
+                readableCommand = "Button 0"
+                Serial.sendMessage("<00>")
+            Case 10
+                readableCommand = "Volume up"
+                Serial.sendMessage("<10>")
+            Case 11
+                readableCommand = "Volume down"
+                Serial.sendMessage("<11>")
+            Case 12
+                readableCommand = "Scrollbar move"
+                If (Mouse.X_Def = 0) Then
+                    Mouse.X_Def = command.data(3)
+                Else
+                    Mouse.X_Rel = Mouse.X_Def - command.data(3)
+                    If X_Rel < X_New - 10 Or X_Rel > X_New + 10 Then
+                        X_New = X_Rel
+                        Dim value As Integer = 64 + X_Rel
+                        If value > 127 Then
+                            value = 127
+                        ElseIf value < 0 Then
+                            value = 0
+                        End If
+                        readableCommand = "Scrollbar " & value
+                        Serial.sendMessage("<12" & Chr(value) & ">")
+                    End If
+                End If
+            Case 13
+                readableCommand = "Scrollbar down"
+                Mouse.X_Def = command.data(3)
+                Serial.sendMessage("<13>")
+            Case 14
+                readableCommand = "Scrollbar up"
+                Mouse.X_Def = 0
+                Serial.sendMessage("<14>")
+            Case Else
+                readableCommand = "Unknown"
+        End Select
+        Logger.add("Custom: " & readableCommand)
     End Sub
 
 End Module

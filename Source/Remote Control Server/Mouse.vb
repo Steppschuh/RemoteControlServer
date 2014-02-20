@@ -57,9 +57,9 @@ Module Mouse
     Public Const cmd_pointer_move As Byte = 2
     Public Const cmd_pointer_calibrate As Byte = 3
 
-    Dim X_New, Y_New, Z_New As Single
-    Dim X_Rel, Y_Rel, Z_Rel As Single
-    Dim X_Def, Y_Def, Z_Def As Single
+    Public X_New, Y_New, Z_New As Single
+    Public X_Rel, Y_Rel, Z_Rel As Single
+    Public X_Def, Y_Def, Z_Def As Single
 
     Structure PointAPI
         Public x As Int32
