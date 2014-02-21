@@ -120,6 +120,7 @@ Partial Class SettingsWindow
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
         Me.btn_reopenPort = New System.Windows.Forms.Button()
+        Me.pic_test = New System.Windows.Forms.PictureBox()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -158,6 +159,7 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -887,6 +889,7 @@ Partial Class SettingsWindow
         '
         'Misc
         '
+        Me.Misc.Controls.Add(Me.pic_test)
         Me.Misc.Controls.Add(Me.GroupBox15)
         Me.Misc.Location = New System.Drawing.Point(4, 22)
         Me.Misc.Name = "Misc"
@@ -1267,6 +1270,17 @@ Partial Class SettingsWindow
         Me.btn_reopenPort.Text = "Re-open port"
         Me.btn_reopenPort.UseVisualStyleBackColor = True
         '
+        'pic_test
+        '
+        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pic_test.Location = New System.Drawing.Point(6, 80)
+        Me.pic_test.Name = "pic_test"
+        Me.pic_test.Size = New System.Drawing.Size(435, 198)
+        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic_test.TabIndex = 4
+        Me.pic_test.TabStop = False
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1331,6 +1345,7 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1431,4 +1446,5 @@ Partial Class SettingsWindow
     Friend WithEvents tb_serialPortName As System.Windows.Forms.TextBox
     Friend WithEvents btn_sendDebugCommand As System.Windows.Forms.Button
     Friend WithEvents btn_reopenPort As System.Windows.Forms.Button
+    Friend WithEvents pic_test As System.Windows.Forms.PictureBox
 End Class

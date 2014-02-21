@@ -197,6 +197,8 @@
         Dim command As New Command
         command.data = New Byte() {2}
         Serial.sendCommand(command)
+
+        pic_test.Image = Converter.colorToBitmap(Screenshot.averageColor)
     End Sub
 
     Private Sub btn_reopenPort_Click(sender As Object, e As EventArgs) Handles btn_reopenPort.Click

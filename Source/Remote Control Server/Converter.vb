@@ -43,6 +43,18 @@ Module Converter
         Return MS.ToArray
     End Function
 
+    Public Function colorToBitmap(ByVal color As System.Drawing.Color) As Bitmap
+        Dim bmp As New Bitmap(10, 10, System.Drawing.Imaging.PixelFormat.Format32bppPArgb)
+        bmp.SetResolution(72, 72)
+        Using G = Graphics.FromImage(bmp)
+            G.Clear(color)
+            'G.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+            'G.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+            'G.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias
+        End Using
+        Return bmp
+    End Function
+
     Public Function stringToByte(ByVal value As String) As Byte()
         Return System.Text.Encoding.UTF8.GetBytes(value)
     End Function
@@ -62,6 +74,13 @@ Module Converter
         Dim carr() As Char = Encoding.GetEncoding(850).GetChars(barr)
 
         Return carr(0)
+    End Function
+
+    Public Function byteToAsciiNumber(ByVal b As Byte) As Byte
+        'Converts a value from 0 - 255 to a value from 0 - 9
+        Dim value As Byte = 0
+        value = (b * 9) / 255
+        Return value
     End Function
 
     Public Function getPointDistance(ByVal P1 As System.Windows.Point, ByVal P2 As System.Windows.Point, Optional ByVal Digits As Integer = 2) As Decimal

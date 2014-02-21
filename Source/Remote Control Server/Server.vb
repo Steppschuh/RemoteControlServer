@@ -27,6 +27,7 @@ Public Module Server
             Settings.loadSettings()
             Network.initialize()
             Updater.checkForUpdates(60)
+            Screenshot.startUpdateColorTimer()
 
             Dim initializeThread = New Thread(AddressOf initializeAsync)
             initializeThread.IsBackground = True
@@ -36,10 +37,6 @@ Public Module Server
             gui.stopRefreshUiTimer()
             gui.Close()
         End If
-
-        Logger.add(byteToAsciiChar(48))
-        Logger.add(byteToAsciiChar(227))
-
 
         Logger.add("UI ready")
     End Sub

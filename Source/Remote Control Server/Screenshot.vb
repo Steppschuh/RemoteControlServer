@@ -1,10 +1,18 @@
 ﻿Imports System.Drawing
 Imports System.Threading
+Imports System.Windows.Threading
 
 Module Screenshot
 
     Public screenIndex As Integer = 0 'For multiple monitors
     Public isSendingBitmap As Boolean = False
+
+    Public averageColor As Color = Color.White
+    Private lastAverageColor As Color = Color.White
+
+    Private colorDispatcherTimer As DispatcherTimer
+    Private colorDispatcherActive As Boolean = False
+    Private colorUpdateInterval As Integer = 2 'Update average color each x seconds
 
     Public Function getScreenShot(ByVal fullscreen As Boolean, ByVal index As Integer) As Bitmap
         Dim screenGrab As Bitmap
@@ -147,7 +155,111 @@ Module Screenshot
         screenIndex = new_index
     End Sub
 
+    Public Sub startUpdateColorTimer()
+        If Not colorDispatcherActive Then
+            colorDispatcherTimer = New DispatcherTimer
+            AddHandler colorDispatcherTimer.Tick, AddressOf updateAverageColorTimerTick
+            colorDispatcherTimer.Interval = New TimeSpan(0, 0, colorUpdateInterval)
+            colorDispatcherTimer.Start()
+            colorDispatcherActive = True
+        End If
+    End Sub
+
+    Private Sub updateAverageColorTimerTick(ByVal sender As Object, ByVal e As EventArgs)
+        Dim updateColorThread = New Thread(AddressOf updateAverageColor)
+        updateColorThread.IsBackground = True
+        updateColorThread.Start()
+    End Sub
+
+    Public Sub updateAverageColor()
+        averageColor = Screenshot.getApproximateAverageColor(Screenshot.getScreenShot(False, Screenshot.screenIndex))
+        If Settings.serialCommands And lastAverageColor <> averageColor Then
+            'Send fade to color command to arduino
+            Dim message As String = "<22" & _
+                Converter.byteToAsciiNumber(averageColor.R) & _
+                Converter.byteToAsciiNumber(averageColor.G) & _
+                Converter.byteToAsciiNumber(averageColor.B) & _
+                "9" & _
+                ">"
+            Serial.sendMessage(message)
+            lastAverageColor = averageColor
+        End If
+    End Sub
+
     Public Function getAverageColor(ByVal bmp As Bitmap) As Color
+        Dim totalR As Integer = 0
+        Dim totalG As Integer = 0
+        Dim totalB As Integer = 0
+        Dim count As Integer = 1
+
+        For x As Integer = 0 To bmp.Width - 1
+            For y As Integer = 0 To bmp.Height - 1
+                Dim pixel As Color = bmp.GetPixel(x, y)
+                If pixel.GetSaturation > 0.6 And pixel.GetBrightness > 0.2 Then
+                    totalR += pixel.R
+                    totalG += pixel.G
+                    totalB += pixel.B
+                    count += 1
+                End If
+            Next
+        Next
+
+        'Dim totalPixels As Integer = bmp.Height * bmp.Width
+        Dim averageR As Integer = totalR / count
+        Dim averageG As Integer = totalG / count
+        Dim averageB As Integer = totalB / count
+
+        Return Color.FromArgb(averageR, averageG, averageB)
+    End Function
+
+    Public Function getApproximateAverageColor(ByVal bmp As Bitmap) As Color
+        Dim totalR As Integer = 0
+        Dim totalG As Integer = 0
+        Dim totalB As Integer = 0
+        Dim count As Integer = 1
+
+        For x As Integer = 0 To bmp.Width - 1
+            For y As Integer = 0 To bmp.Height - 1
+                Dim pixel As Color = bmp.GetPixel(x, y)
+                If pixel.GetSaturation > 0.0 And pixel.GetBrightness > 0.0 Then
+                    totalR += pixel.R
+                    totalG += pixel.G
+                    totalB += pixel.B
+                    count += 1
+                End If
+            Next
+        Next
+
+        'Dim totalPixels As Integer = bmp.Height * bmp.Width
+        Dim averageR As Integer = totalR / count
+        Dim averageG As Integer = totalG / count
+        Dim averageB As Integer = totalB / count
+
+        Dim roundUp As Byte = 200
+        Dim roundDown As Byte = 100
+
+        If averageR > roundUp Then
+            averageR = 255
+        ElseIf averageR < roundDown Then
+            averageR = 0
+        End If
+
+        If averageG > roundUp Then
+            averageG = 255
+        ElseIf averageG < roundDown Then
+            averageG = 0
+        End If
+
+        If averageB > roundUp Then
+            averageB = 255
+        ElseIf averageB < roundDown Then
+            averageB = 0
+        End If
+
+        Return Color.FromArgb(averageR, averageG, averageB)
+    End Function
+
+    Public Function getRealAverageColor(ByVal bmp As Bitmap) As Color
         Dim totalR As Integer = 0
         Dim totalG As Integer = 0
         Dim totalB As Integer = 0
