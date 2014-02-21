@@ -949,8 +949,6 @@ Partial Class SettingsWindow
         'cb_serialCommands
         '
         Me.cb_serialCommands.AutoSize = True
-        Me.cb_serialCommands.Checked = True
-        Me.cb_serialCommands.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cb_serialCommands.Location = New System.Drawing.Point(6, 19)
         Me.cb_serialCommands.Name = "cb_serialCommands"
         Me.cb_serialCommands.Size = New System.Drawing.Size(161, 17)
