@@ -172,17 +172,19 @@ Module Screenshot
     End Sub
 
     Public Sub updateAverageColor()
-        averageColor = Screenshot.getApproximateAverageColor(Screenshot.getScreenShot(False, Screenshot.screenIndex))
-        If Settings.serialCommands And lastAverageColor <> averageColor Then
-            'Send fade to color command to arduino
-            Dim message As String = "<22" & _
-                Converter.byteToAsciiNumber(averageColor.R) & _
-                Converter.byteToAsciiNumber(averageColor.G) & _
-                Converter.byteToAsciiNumber(averageColor.B) & _
-                "9" & _
-                ">"
-            Serial.sendMessage(message)
-            lastAverageColor = averageColor
+        If Settings.updateAmbientColor Then
+            averageColor = Screenshot.getApproximateAverageColor(Screenshot.getScreenShot(False, Screenshot.screenIndex))
+            If Settings.serialCommands And lastAverageColor <> averageColor Then
+                'Send fade to color command to arduino
+                Dim message As String = "<22" & _
+                    Converter.byteToAsciiNumber(averageColor.R) & _
+                    Converter.byteToAsciiNumber(averageColor.G) & _
+                    Converter.byteToAsciiNumber(averageColor.B) & _
+                    "9" & _
+                    ">"
+                Serial.sendMessage(message)
+                lastAverageColor = averageColor
+            End If
         End If
     End Sub
 

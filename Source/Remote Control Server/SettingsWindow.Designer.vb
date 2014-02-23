@@ -87,7 +87,9 @@ Partial Class SettingsWindow
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
         Me.Misc = New System.Windows.Forms.TabPage()
+        Me.pic_test = New System.Windows.Forms.PictureBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.btn_reopenPort = New System.Windows.Forms.Button()
         Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
         Me.tb_serialPortName = New System.Windows.Forms.TextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
@@ -119,8 +121,10 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.btn_reopenPort = New System.Windows.Forms.Button()
-        Me.pic_test = New System.Windows.Forms.PictureBox()
+        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.btn_ledOn = New System.Windows.Forms.Button()
+        Me.btn_ledOff = New System.Windows.Forms.Button()
+        Me.cb_updateAmbientColor = New System.Windows.Forms.CheckBox()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -149,6 +153,7 @@ Partial Class SettingsWindow
         Me.GroupBox14.SuspendLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Misc.SuspendLayout()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
@@ -159,7 +164,7 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox16.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -889,6 +894,7 @@ Partial Class SettingsWindow
         '
         'Misc
         '
+        Me.Misc.Controls.Add(Me.GroupBox16)
         Me.Misc.Controls.Add(Me.pic_test)
         Me.Misc.Controls.Add(Me.GroupBox15)
         Me.Misc.Location = New System.Drawing.Point(4, 22)
@@ -898,6 +904,17 @@ Partial Class SettingsWindow
         Me.Misc.TabIndex = 5
         Me.Misc.Text = "Misc"
         Me.Misc.UseVisualStyleBackColor = True
+        '
+        'pic_test
+        '
+        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pic_test.Location = New System.Drawing.Point(6, 198)
+        Me.pic_test.Name = "pic_test"
+        Me.pic_test.Size = New System.Drawing.Size(435, 80)
+        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic_test.TabIndex = 4
+        Me.pic_test.TabStop = False
         '
         'GroupBox15
         '
@@ -910,10 +927,19 @@ Partial Class SettingsWindow
         Me.GroupBox15.Controls.Add(Me.cb_serialCommands)
         Me.GroupBox15.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(435, 68)
+        Me.GroupBox15.Size = New System.Drawing.Size(435, 69)
         Me.GroupBox15.TabIndex = 3
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Serial port"
+        '
+        'btn_reopenPort
+        '
+        Me.btn_reopenPort.Location = New System.Drawing.Point(322, 13)
+        Me.btn_reopenPort.Name = "btn_reopenPort"
+        Me.btn_reopenPort.Size = New System.Drawing.Size(107, 23)
+        Me.btn_reopenPort.TabIndex = 9
+        Me.btn_reopenPort.Text = "Re-open port"
+        Me.btn_reopenPort.UseVisualStyleBackColor = True
         '
         'btn_sendDebugCommand
         '
@@ -1259,25 +1285,47 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'btn_reopenPort
+        'GroupBox16
         '
-        Me.btn_reopenPort.Location = New System.Drawing.Point(322, 13)
-        Me.btn_reopenPort.Name = "btn_reopenPort"
-        Me.btn_reopenPort.Size = New System.Drawing.Size(107, 23)
-        Me.btn_reopenPort.TabIndex = 9
-        Me.btn_reopenPort.Text = "Re-open port"
-        Me.btn_reopenPort.UseVisualStyleBackColor = True
-        '
-        'pic_test
-        '
-        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox16.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pic_test.Location = New System.Drawing.Point(6, 80)
-        Me.pic_test.Name = "pic_test"
-        Me.pic_test.Size = New System.Drawing.Size(435, 198)
-        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic_test.TabIndex = 4
-        Me.pic_test.TabStop = False
+        Me.GroupBox16.Controls.Add(Me.btn_ledOn)
+        Me.GroupBox16.Controls.Add(Me.btn_ledOff)
+        Me.GroupBox16.Controls.Add(Me.cb_updateAmbientColor)
+        Me.GroupBox16.Location = New System.Drawing.Point(6, 81)
+        Me.GroupBox16.Name = "GroupBox16"
+        Me.GroupBox16.Size = New System.Drawing.Size(435, 69)
+        Me.GroupBox16.TabIndex = 5
+        Me.GroupBox16.TabStop = False
+        Me.GroupBox16.Text = "LED Strip"
+        '
+        'btn_ledOn
+        '
+        Me.btn_ledOn.Location = New System.Drawing.Point(322, 13)
+        Me.btn_ledOn.Name = "btn_ledOn"
+        Me.btn_ledOn.Size = New System.Drawing.Size(107, 23)
+        Me.btn_ledOn.TabIndex = 9
+        Me.btn_ledOn.Text = "Turn LED on"
+        Me.btn_ledOn.UseVisualStyleBackColor = True
+        '
+        'btn_ledOff
+        '
+        Me.btn_ledOff.Location = New System.Drawing.Point(322, 38)
+        Me.btn_ledOff.Name = "btn_ledOff"
+        Me.btn_ledOff.Size = New System.Drawing.Size(107, 23)
+        Me.btn_ledOff.TabIndex = 8
+        Me.btn_ledOff.Text = "Turn LED off"
+        Me.btn_ledOff.UseVisualStyleBackColor = True
+        '
+        'cb_updateAmbientColor
+        '
+        Me.cb_updateAmbientColor.AutoSize = True
+        Me.cb_updateAmbientColor.Location = New System.Drawing.Point(6, 19)
+        Me.cb_updateAmbientColor.Name = "cb_updateAmbientColor"
+        Me.cb_updateAmbientColor.Size = New System.Drawing.Size(127, 17)
+        Me.cb_updateAmbientColor.TabIndex = 0
+        Me.cb_updateAmbientColor.Text = "Update ambient color"
+        Me.cb_updateAmbientColor.UseVisualStyleBackColor = True
         '
         'SettingsWindow
         '
@@ -1329,6 +1377,7 @@ Partial Class SettingsWindow
         Me.GroupBox14.PerformLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Misc.ResumeLayout(False)
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
         Me.tab_upgrade.ResumeLayout(False)
@@ -1343,7 +1392,8 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox16.ResumeLayout(False)
+        Me.GroupBox16.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1445,4 +1495,8 @@ Partial Class SettingsWindow
     Friend WithEvents btn_sendDebugCommand As System.Windows.Forms.Button
     Friend WithEvents btn_reopenPort As System.Windows.Forms.Button
     Friend WithEvents pic_test As System.Windows.Forms.PictureBox
+    Friend WithEvents GroupBox16 As System.Windows.Forms.GroupBox
+    Friend WithEvents btn_ledOn As System.Windows.Forms.Button
+    Friend WithEvents btn_ledOff As System.Windows.Forms.Button
+    Friend WithEvents cb_updateAmbientColor As System.Windows.Forms.CheckBox
 End Class

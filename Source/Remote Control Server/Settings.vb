@@ -48,6 +48,7 @@ Module Settings
     'Misc
     Public serialPortName As String = "COM7"
     Public serialCommands As Boolean = False
+    Public updateAmbientColor As Boolean = False
 
     Public Sub loadSettings()
         Try
@@ -146,6 +147,7 @@ Module Settings
             'Misc
             appendSetting("serialCommands", Converter.boolToString(serialCommands), sw)
             appendSetting("serialPortName", serialPortName, sw)
+            appendSetting("updateAmbientColor", Converter.boolToString(updateAmbientColor), sw)
             sw.WriteLine()
 
             'Whitelist
@@ -254,6 +256,8 @@ Module Settings
             serialCommands = Converter.stringToBool(value)
         ElseIf name.Equals("serialPortName") Then
             serialPortName = value
+        ElseIf name.Equals("updateAmbientColor") Then
+            updateAmbientColor = Converter.stringToBool(value)
 
         Else
             Logger.add("Unknown config entry: " & name)

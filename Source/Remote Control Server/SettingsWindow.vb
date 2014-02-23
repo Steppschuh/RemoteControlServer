@@ -39,6 +39,7 @@
         '   Misc
         cb_serialCommands.Checked = Settings.serialCommands
         tb_serialPortName.Text = Settings.serialPortName
+        cb_updateAmbientColor.Checked = Settings.updateAmbientColor
 
         '   Protection
         cb_useWhitelist.Checked = Settings.useWhiteList
@@ -214,6 +215,18 @@
         Settings.serialCommands = cb_serialCommands.Checked
     End Sub
 
+    Private Sub cb_updateAmbientColor_CheckedChanged(sender As Object, e As EventArgs) Handles cb_updateAmbientColor.CheckedChanged
+        Settings.updateAmbientColor = cb_updateAmbientColor.Checked
+    End Sub
+
+    Private Sub btn_ledOn_Click(sender As Object, e As EventArgs) Handles btn_ledOn.Click
+        Serial.sendMessage("<02>")
+    End Sub
+
+    Private Sub btn_ledOff_Click(sender As Object, e As EventArgs) Handles btn_ledOff.Click
+        Serial.sendMessage("<01>")
+    End Sub
+
 #End Region
 
 #Region "Update"
@@ -259,6 +272,7 @@
 
 #End Region
 
+    
     
     
 End Class
