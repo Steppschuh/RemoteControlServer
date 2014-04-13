@@ -34,8 +34,7 @@
     <string name="dialog_info">Info</string>
     <string name="dialog_changelog">Aanpassingen</string>
 
-    <!-- TODO: translate changelog... -->
-    <string name="changelog">Thanks for updating the app. You might need to update the Remote Control Server to use the latest features. Here are the most recent changes:\n\nVersion 2.0.3.0:\n - Added dark theme\n - Language support: Spanish\n - Improved exception handling\n\nVersion 2.0.2.0:\n - Language support: German\n - Improved auto connect\n\nVersion 2.0.1.0:\n - Hotfix for license bug\n\nVersion 2.0.0.0:\n - New app design\n - Tablet support\n - Improved performance\n - Multiscreen support\n - Fullscreen support\n - New network scan\n\nVersion 1.8.0.0:\n - New live screen remote\n - Absolute cursor positioning\n - Smoother scrolling\n\nVersion 1.7.5.0:\n - New Remote Control Server\n - Optional white theme\n - Support for unlock codes</string>
+    <string name="changelog">Bedankt voor het updaten van de app. Mogelijk moet u de Remote Control Server ook updaten om gebruik te maken van de laatste functionaliteiten. Hier is een lijst met recente aanpassingen:\n\nVersie 2.0.3.0:\n - Nacht kleurthema toegevoegd\n - Ondersteuning voor de Spaanse taal\n - Betere foutafhandeling\n\nVersie 2.0.2.0:\n - Ondersteuning voor de Duitse taal\n - Verbeteringen in Automatisch verbinden\n\nVersie 2.0.1.0:\n - Hotfix voor een fout in licenties\n\nVersie 2.0.0.0:\n - Nieuw ontwerp voor de app\n - Ondersteuning voor tablets\n - Verbeterde prestaties\n - Ondersteuning voor meerdere schermen\n - Ondersteuning voor volledig scherm\n - Nieuwe netwerk scanner\n\nVersie 1.8.0.0:\n - Nieuwe Bureaublad afstandsbediening\n - Absolute muis verplaatsing\n - Vloeiender scrollen\n\nVersie 1.7.5.0:\n - Nieuwe Remote Control Server\n - Optioneel wit kleurthema\n - Ondersteuning voor ontgrendel codes</string>
 
     <string name="connection_success">Verbonden</string>
     <string name="connection_success_description">Uw apparaten zijn nu verbonden.</string>
@@ -60,7 +59,7 @@
 
     <string name="remote_mouse">Muis</string>
     <string name="remote_keyboard">Toetsenbord</string>
-    <string name="remote_live">Live scherm</string> <!-- Extern\live bureablad? -->
+    <string name="remote_live">Bureaublad</string>
     <string name="remote_media">Media</string>
     <string name="remote_slideshow">Diavoorstelling</string>
     <string name="remote_shortcuts">Sneltoetsen</string>
@@ -71,7 +70,7 @@
 
     <string name="license_free">Gratis</string>
     <string name="license_trial">Proef</string>
-    <string name="license_pro">Volledig</string>
+    <string name="license_pro">Pro</string>
     <string name="license_upgrade">Upgraded</string> <!-- TODO: Think about it -->
 
     <string name="home_commands_sent">Verzonden commando\'s</string>
@@ -136,7 +135,7 @@
     <string name="upgrade_ads">Verwijder advertenties</string>
     <string name="upgrade_ads_description">Houdt u niet van advertenties? Koop een van de upgrades hieronder om ze te verwijderen.</string>
 
-    <string name="upgrade_live">Live scherm</string> <!-- Extern bureablad -->
+    <string name="upgrade_live">Bureaublad</string>
     <string name="upgrade_live_description">Zie het scherm van uw PC op uw Android apparaat en bedien de muis. U kunt de resolutie aanpassen, tot aan volledige HD beelden.</string> <!-- TODO: Not too happy about the Full HD part-->
 
     <string name="upgrade_media">Media afstandsbediening</string>
