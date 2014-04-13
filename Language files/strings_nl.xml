@@ -51,7 +51,7 @@
     <string name="connection_error_help">Help</string>
 
     <string name="navigation_home">Startscherm</string>
-    <string name="navigation_remotes">Afstandsbedieningen</string> <!-- TODO: might be too long. 'Invoer\Invoer opties' might be an option then. (If changed update 'connection_success_remotes' to match) -->
+    <string name="navigation_remotes">Afstandsbedieningen</string> <!-- TODO: might be too long. 'Invoer\Invoer opties' might be an option then. (if changed update other uses to match) -->
     <string name="navigation_server">Server</string>
     <string name="navigation_info">Informatie</string>
     <string name="navigation_help">Help</string>
@@ -106,56 +106,56 @@
     <string name="help_contact_feedback_description">Heeft u iets te zeggen? Laat het ons weten! Uw feedback is nodig om te zorgen voor de constante verbetering van deze app.</string>
     <string name="help_contact_feedback_contact">Stuur feedback</string>
 
-    <string name="help_setup">Setup guide</string>
-    <string name="help_setup_descriptions">Not sure how to setup a connection to your PC? Follow this guide.</string>
-    <string name="help_troubleshooting">Troubleshooting</string>
-    <string name="help_troubleshooting_descriptions">Still can\'t setup a connection? Here are some advanced instructions.</string>
-    <string name="help_mac">Server for Mac</string>
-    <string name="help_mac_descriptions">We currently don\'t have a Mac / Linux server. We are working on it!</string>
-    <string name="help_bt">BlueTooth Connection</string>
-    <string name="help_bt_descriptions">You need a Wi-Fi network to control your PC, BlueTooth is not supported.</string>
+    <string name="help_setup">Installatie handleiding</string>
+    <string name="help_setup_descriptions">Weet u niet zeker hoe u moet verbinden met uw PC? Volg deze handleiding.</string>
+    <string name="help_troubleshooting">Probleemoplossing</string>
+    <string name="help_troubleshooting_descriptions">Lukt het maken van een verbinding nog steeds niet? Hier zijn wat geavanceerde instructions.</string>
+    <string name="help_mac">Server voor Mac</string>
+    <string name="help_mac_descriptions">Op dit moment hebben we nog geen server voor Mac of Linux. Hier wordt aan gewerkt!</string>
+    <string name="help_bt">BlueTooth verbinding</string>
+    <string name="help_bt_descriptions">U heeft een Wi-Fi verbinding nodig om te verbinden met uw PC. Verbinden via BlueTooth wordt niet ondersteund.</string>
     <string name="help_faq">FAQ</string>
-    <string name="help_faq_descriptions">List of questions we hear a lot. You might find yours in here.</string>
+    <string name="help_faq_descriptions">Hier vind u de lijst van de meest gestelde vragen. Mogelijk staat die van u hier ook tussen.</string>
 
-    <string name="upgrade_code">Unlock code</string>
-    <string name="upgrade_code_description">You can also unlock features by activating an unlock code. You can get a free code from our Facebook page.</string>
-    <string name="upgrade_code_button">Get a code</string>
+    <string name="upgrade_code">Ontgrendel code</string>
+    <string name="upgrade_code_description">U kunt ook functies activeren door een ontgrendel code in te vullen. U kunt er gratis een krijgen op onze Facebook pagina.</string>
+    <string name="upgrade_code_button">Krijg een code</string> <!-- TODO:  'Ik wil een code!' might exite users more and increase clicks -->
 
-    <string name="upgrade_get_code">Get a code</string>
-    <string name="upgrade_get_code_description">To get a code navigate your PC\'s browser to: \nhttp://code.android-remote.com</string>
+    <string name="upgrade_get_code">Krijg een code</string>
+    <string name="upgrade_get_code_description">U kunt een code krijgen door op uw PC te navigeren naar:\nhttp://code.android-remote.com</string>
 
-    <string name="upgrade_activate">Activate a code</string>
-    <string name="upgrade_activate_description">Got an unlock code? Enter it below and activate it.</string>
-    <string name="upgrade_activate_check">Activate</string>
-    <string name="upgrade_activate_reset">Reset</string>
-    <string name="upgrade_activate_isactive">Code is active</string>
+    <string name="upgrade_activate">Activeer een code</string>
+    <string name="upgrade_activate_description">Heeft u een ontgrendel code? Vul deze hier in en activeer hem.</string>
+    <string name="upgrade_activate_check">Activeer</string>
+    <string name="upgrade_activate_reset">Wis invoer</string>
+    <string name="upgrade_activate_isactive">Code is geactiveerd</string>
 
-    <string name="upgrade_thanks">Thanks!</string>
-    <string name="upgrade_thanks_description">Thanks for purchasing the pro version, we appreciate your support. Enjoy the app and its features!</string>
+    <string name="upgrade_thanks">Bedankt!</string>
+    <string name="upgrade_thanks_description">Bedankt voor het aanschaffen van de volledige versie, we waarderen uw steun. Veel plezier met het gebruik van de app en al zijn functies!</string>
 
-    <string name="upgrade_ads">Remove ads</string>
-    <string name="upgrade_ads_description">Don\'t like ads? Purchase any of the upgrades below to remove them.</string>
+    <string name="upgrade_ads">Verwijder advertenties</string>
+    <string name="upgrade_ads_description">Houdt u niet van advertenties? Koop een van de upgrades hieronder om ze te verwijderen.</string>
 
-    <string name="upgrade_live">Live screen</string>
-    <string name="upgrade_live_description">See your PC\'s screen right on your Android device and control the mouse. You can customize the resolution up to Full HD.</string>
+    <string name="upgrade_live">Live scherm</string> <!-- Extern bureablad -->
+    <string name="upgrade_live_description">Zie het scherm van uw PC op uw Android apparaat en bedien de muis. U kunt de resolutie aanpassen, tot aan volledige HD beelden.</string> <!-- TODO: Not too happy about the Full HD part-->
 
-    <string name="upgrade_media">Media remote</string>
-    <string name="upgrade_media_description">Control the media player of your choice! Supported are Windows Media Player, iTunes, VLC, Spotify, Songbird and more.</string>
+    <string name="upgrade_media">Media afstandsbediening</string>
+    <string name="upgrade_media_description">Bedien de media speler van uw keuze! Ondersteuning voor Windows Media Player, iTunes, VLC, Spotify, Songbird en meer.</string>
 
-    <string name="upgrade_slideshow">Slideshow remote</string>
-    <string name="upgrade_slideshow_description">Control your slideshows directly from your smartphone! The screen of your PC will be transmitted in real time. That works with Powerpoint, Impress, Adobe Reader, Windows Media Center and more.</string>
+    <string name="upgrade_slideshow">Diavoorstelling</string>
+    <string name="upgrade_slideshow_description">Bedien uw diavoorstellingen direct met uw smartphone! Het scherm van uw PC zal live worden overgestuurd. Het werkt met Powerpoint, Impress, Adobe Reader, Windows Media Center en meer.</string>
 
-    <string name="upgrade_pro">Pro version</string>
-    <string name="upgrade_pro_description">Unlock everything. You will also get every upcoming premium feature for free.</string>
+    <string name="upgrade_pro">Volledige versie</string>
+    <string name="upgrade_pro_description">Ontgrendel alles. U zult ook alle toekomstige functionaliteiten gratis krijgen.</string>
 
-    <string name="upgrade_purchase">Purchase</string>
-    <string name="upgrade_locked">Remote locked</string>
-    <string name="upgrade_locked_description">This remote is not available for free. Please purchase it or activate an unlock code in order to use it.</string>
+    <string name="upgrade_purchase">Koop</string>
+    <string name="upgrade_locked">Afstandsbediening vergrendeld</string> <!-- TODO: Check length -->
+    <string name="upgrade_locked_description">Deze afstandsbediening is niet gratis. Als u deze wilt gebruiken zult u hem moeten kopen of een ontgrendel code gebruiken.</string>
 
-    <string name="keyboard_send">Send</string>
-    <string name="keyboard_live">Live transfer</string>
-    <string name="keyboard_advanced">Advanced keys</string>
-    <string name="keyboard_lastsend">Last sent:</string>
+    <string name="keyboard_send">Stuur</string> <!-- TODO: Context 'Verstuur' might fit better -->
+    <string name="keyboard_live">Direct sturen</string>
+    <string name="keyboard_advanced">Geavanceerde toetsen</string>
+    <string name="keyboard_lastsend">Laatst verstuurd:</string>
     <string name="keyboard_ctrl">Ctrl</string>
     <string name="keyboard_shift">Shift</string>
     <string name="keyboard_alt">Alt</string>
@@ -164,39 +164,40 @@
     <string name="keyboard_esc">Esc</string>
     <string name="keyboard_del">Del</string>
     <string name="keyboard_ins">Ins</string>
-    <string name="keyboard_return">Ret</string>
-    <string name="keyboard_back">Back</string>
-    <string name="keyboard_left">Left</string>
-    <string name="keyboard_up">Up</string>
-    <string name="keyboard_right">Right</string>
-    <string name="keyboard_down">Down</string>
+    <string name="keyboard_return">Enter</string>
+    <string name="keyboard_back">Terug</string>
+    <string name="keyboard_left">Links</string>
+    <string name="keyboard_up">Omhoog</string>
+    <string name="keyboard_right">Rechts</string>
+    <string name="keyboard_down">Omlaag</string>
 
-    <string name="shortcut_desktop">Show Desktop</string>
-    <string name="shortcut_close">Close Window</string>
-    <string name="shortcut_shutdown">Shutdown</string>
-    <string name="shortcut_standby">Standby</string>
-    <string name="shortcut_lock">Lock PC</string>
-    <string name="shortcut_copy">Copy</string>
-    <string name="shortcut_paste">Paste</string>
-    <string name="shortcut_undo">Undo</string>
-    <string name="shortcut_select_all">Select All</string>
+    <string name="shortcut_desktop">Toon bureablad</string>
+    <string name="shortcut_close">Sluit venster</string>
+    <string name="shortcut_shutdown">Afsluiten</string>
+    <string name="shortcut_standby">Slaapstand</string>
+    <string name="shortcut_lock">Vergendel PC</string>
+    <string name="shortcut_copy">Kopiëren</string>
+    <string name="shortcut_paste">Plakken</string>
+    <string name="shortcut_undo">Ongedaan maken</string>
+    <string name="shortcut_select_all">Alles selecteren</string>
 
-    <string name="f_upgrade_error">Something went wrong, please try again.</string>
-    <string name="f_upgrade_overused">The registration limit of this code has been reached.</string>
-    <string name="f_upgrade_expired_title">Code expired</string>
-    <string name="f_upgrade_expired">This code expired, you can\'t activate it anymore.</string>
-    <string name="f_upgrade_trial_used">You have already used a trial code, you may only activate one code per device.</string>
-    <string name="f_upgrade_now_active">Code activated, you can now use the unlocked remotes.</string>
-    <string name="f_upgrade_result_invalid">Result did not match request.</string>
-    <string name="f_upgrade_payload_failed">Error purchasing. Authenticity verification failed.</string>
-    <string name="f_upgrade_thanks">Thanks for your purchase, you can now use the unlocked remotes.</string>
-    <string name="f_upgrade_no_billing">In-app billing is not supported on this device.</string>
+    <string name="f_upgrade_error">Er is een fout opgetreden, probeert u het nogmaals.</string>
+    <string name="f_upgrade_overused">Het registratie limiet van deze code is bereikt.</string>
+    <string name="f_upgrade_expired_title">Code verlopen</string>
+    <string name="f_upgrade_expired">Deze code is velopen, u kunt deze niet meer activeren.</string>
+    <string name="f_upgrade_trial_used">U heeft al eens een proefversie code ingevoerd. U mag dit slechts eenmaal per apparaat doen.</string>
+    <string name="f_upgrade_now_active">Code geactiveerd. U kunt nu de ontgrendelde afstandsbedieningen gebruiken.</string>
+    <string name="f_upgrade_result_invalid">Het resultaat paste niet bij het verzoek.</string> <!-- TODO: Context.-->
+    <string name="f_upgrade_payload_failed">Fout tijdens aankoop. Kon geldigheid niet valideren.</string>
+    <string name="f_upgrade_thanks">Bedankt voor uw aankoop. U kunt nu de ontgrendelde afstandsbedieningen gebruiken.</string>
+    <string name="f_upgrade_no_billing">In-app-aankopen worden niet ondersteund op dit apparaat.</string>
 
-    <string name="speech_talk">Talk again</string>
-    <string name="speech_send_cmd">Send command</string>
-    <string name="speech_send_text">Send text</string>
-    <string name="speech_na">Voice recognition is not available on your device.</string>
+    <string name="speech_talk">Spreek nogmaals</string>
+    <string name="speech_send_cmd">Stuur commando</string>
+    <string name="speech_send_text">Stuur tekst</string>
+    <string name="speech_na">Spraak herkenning is niet beschikbaar op dit apparaat.</string>
 
+    <!-- TODO: What do these do? -->
     <string name="v_identify_command">Kommando, Befehl, Remote, Steuerung, Command</string>
     <string name="v_identify_media">Media, Mediaplayer, iTunes, Musik, Titel, Track, Music</string>
     <string name="v_identify_audio">Lautstärke, Sound, Audio, Volume, Ton, Loudness</string>
@@ -210,22 +211,22 @@
     <string name="v_send">senden, enter, abschicken, send, return</string>
     <string name="v_delete">löschen, entfernen, rückgängig, undo, delete, clear</string>
 
-    <string name="settings_title">Settings</string>
-    <string name="settings_cat_general">General</string>
-    <string name="settings_reset_stats">Reset stats</string>
-    <string name="settings_reset_stats_sum">Clears collected data</string>
-    <string name="settings_reset_stats_toast">Collected data cleared</string>
-    <string name="settings_vibrate">Haptic feedback</string>
-    <string name="settings_vibrate_sum">Vibrates on success</string>
-    <string name="settings_low_traffic">Low transfer rate</string>
-    <string name="settings_low_traffic_sum">Decreases network traffic</string>
-    <string name="settings_autoconnect">Auto connect</string>
-    <string name="settings_autoconnect_sum">Connects on app start</string>
-    <string name="settings_dark">Dark theme</string>
-    <string name="settings_dark_sum">Switches to night mode</string>
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_cat_general">Algemeen</string>
+    <string name="settings_reset_stats">Wis statistieken</string>
+    <string name="settings_reset_stats_sum">Wis alle verzamelde data</string>
+    <string name="settings_reset_stats_toast">Data gewist</string>
+    <string name="settings_vibrate">Vibraties</string>
+    <string name="settings_vibrate_sum">Tril bij succes</string>
+    <string name="settings_low_traffic">Lage overdrachtssnelheid</string>
+    <string name="settings_low_traffic_sum">Verminder netwerk gebruik</string>
+    <string name="settings_autoconnect">Automatisch verbinden</string>
+    <string name="settings_autoconnect_sum">Verbind automatisch als de app opstart</string>
+    <string name="settings_dark">Donker kleurthema</string>
+    <string name="settings_dark_sum">Gebruik het Nacht kleurthema</string>
 
-    <string name="detail_commandcount">Counts the number of commands that have been sent to the Remote Control Server.</string>
-    <string name="detail_frequently_used">Shows the remotes that have been used a lot. Click to start the remote.</string>
-    <string name="detail_recent_connections">Lists the last servers that established a connection. Click to connect.</string>
-    <string name="detail_nowifi">You are currently not connected to any WiFi network. You won\'t be able to connect to your PC.</string>
+    <string name="detail_commandcount">Telt het aantal commando\'s dat is verstuurd naar de Remote Control Server.</string>
+    <string name="detail_frequently_used">Toont de afstandsbedieningen die u veel gebruikt. Door er op te klikken kunt u de afstandsbediening starten.</string>
+    <string name="detail_recent_connections">Lijst van de servers waar u het laatst mee bent verbonden. Door er op te klikken kunt u er mee verbinden.</string>
+    <string name="detail_nowifi">U bent momenteel niet verbonden met een Wi-Fi netwerk. U kunt zo niet verbinden met uw PC.</string>
 </resources>
