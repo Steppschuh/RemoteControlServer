@@ -216,6 +216,10 @@ Module ApiV1
                 readableCommand = "Right"
                 Keyboard.sendKeyPress(Keys.Right)
                 Exit Sub
+            ElseIf cmd.Contains("<space>") Then
+                readableCommand = "Space"
+                Keyboard.sendKeyPress(Keys.Space)
+                Exit Sub
             Else
                 If Settings.serialCommands Then
                     readableCommand = getCommandValue(cmd)

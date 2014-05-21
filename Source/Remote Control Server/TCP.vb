@@ -32,6 +32,7 @@ Public Class TCP
     Public Function sendData(ByRef command As Command) As Boolean
         Dim received As Boolean = False
         Try
+            Logger.add("Sending command: " & command.dataAsString())
             tcpClient = New System.Net.Sockets.TcpClient()
             tcpClient.Client.SendTimeout = sendTimeout
             tcpClient.Connect(command.destination, portSend)
@@ -40,6 +41,7 @@ Public Class TCP
             networkStream.Write(command.data, 0, command.data.Length)
             tcpClient.Close()
             received = True
+            Logger.add("Success")
         Catch ex As Exception
             Logger.add("Unable to send command to " & command.destination & ":" & portSend)
             Logger.add(ex.ToString)

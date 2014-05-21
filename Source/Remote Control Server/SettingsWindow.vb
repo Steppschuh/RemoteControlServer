@@ -220,11 +220,11 @@
     End Sub
 
     Private Sub btn_ledOn_Click(sender As Object, e As EventArgs) Handles btn_ledOn.Click
-        Serial.sendMessage("<02>")
+        Serial.sendMessage("<01>")
     End Sub
 
     Private Sub btn_ledOff_Click(sender As Object, e As EventArgs) Handles btn_ledOff.Click
-        Serial.sendMessage("<01>")
+        Serial.sendMessage("<02>")
     End Sub
 
 #End Region
