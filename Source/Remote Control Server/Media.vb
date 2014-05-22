@@ -31,7 +31,11 @@ Module Media
     End Sub
 
     Public Sub launchPlayer()
-        Dim path As String = defaultMediaPlayer()
+        Dim path As String = Settings.defaultMediaPlayer
+        If Not My.Computer.FileSystem.FileExists(path) Then
+            path = getDefaultMediaPlayerPath()
+        End If
+
         Try
             Process.Start(path)
         Catch ex As Exception
@@ -39,7 +43,7 @@ Module Media
         End Try
     End Sub
 
-    Public Function defaultMediaPlayer() As String
+    Public Function getDefaultMediaPlayerPath() As String
         Dim pathFound As String = ""
         Try
             Dim path As String

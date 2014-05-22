@@ -51,7 +51,7 @@
 
         '   Media
         If Not My.Computer.FileSystem.FileExists(Settings.defaultMediaPlayer) Then
-            Settings.defaultMediaPlayer = Media.defaultMediaPlayer
+            Settings.defaultMediaPlayer = Media.getDefaultMediaPlayerPath
         End If
         tb_defaultPlayer.Text = Settings.defaultMediaPlayer
 
@@ -218,7 +218,22 @@
 #Region "Media Settings"
 
     Private Sub btn_browseDefaultPlayer_Click(sender As Object, e As EventArgs) Handles btn_browseDefaultPlayer.Click
+        Dim fd As Forms.OpenFileDialog = New Forms.OpenFileDialog()
+        Dim defaultMediaPlayerPath As String = ""
 
+        fd.Title = "Select default media player"
+        'fd.InitialDirectory = "C:\"
+        fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+        If fd.ShowDialog() = Forms.DialogResult.OK Then
+            defaultMediaPlayerPath = fd.FileName
+        End If
+        If My.Computer.FileSystem.FileExists(defaultMediaPlayerPath) Then
+            Settings.defaultMediaPlayer = defaultMediaPlayerPath
+            tb_defaultPlayer.Text = defaultMediaPlayerPath
+        End If
     End Sub
 
     Private Sub tb_defaultPlayer_TextChanged(sender As Object, e As EventArgs) Handles tb_defaultPlayer.TextChanged
