@@ -38,12 +38,16 @@ Module Settings
     'Screen
     Public screenQuality As Byte = 30
     Public screenQualityFull As Byte = 50
-    Public screenScale As Single = 0.6
-    Public screenScaleFull As Single = 1
+    Public screenScale As Single = 0.5
+    Public screenScaleFull As Single = 0.8
 
     'Slideshow
     Public clickOnLaserUp As Boolean = False
     Public pointerDesign As Byte = 0
+    Public cropBlackBorder As Boolean = True
+
+    'Media
+    Public defaultMediaPlayer As String = ""
 
     'Misc
     Public serialPortName As String = "COM7"
@@ -142,6 +146,11 @@ Module Settings
             'Slideshow
             appendSetting("clickOnLaserUp", Converter.boolToString(clickOnLaserUp), sw)
             appendSetting("pointerDesign", pointerDesign.ToString, sw)
+            appendSetting("cropBlackBorder", Converter.boolToString(cropBlackBorder), sw)
+            sw.WriteLine()
+
+            'Media
+            appendSetting("defaultMediaPlayer", defaultMediaPlayer, sw)
             sw.WriteLine()
 
             'Misc
@@ -250,6 +259,12 @@ Module Settings
             clickOnLaserUp = Converter.stringToBool(value)
         ElseIf name.Equals("pointerDesign") Then
             pointerDesign = Integer.Parse(value)
+        ElseIf name.Equals("cropBlackBorder") Then
+            cropBlackBorder = Converter.stringToBool(value)
+
+            'Media
+        ElseIf name.Equals("defaultMediaPlayer") Then
+            defaultMediaPlayer = value
 
             'Misc
         ElseIf name.Equals("serialCommands") Then

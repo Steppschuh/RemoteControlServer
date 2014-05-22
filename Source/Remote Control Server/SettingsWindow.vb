@@ -26,6 +26,18 @@
         cb_showTrayNotoifications.Checked = Settings.showTrayNotoifications
         dropDown_backDesign.SelectedIndex = Settings.backDesign
 
+        '   Mouse and pointer
+        track_mouse_sensitivity.Value = Settings.mouseSensitivity
+        track_mouse_acceleration.Value = Settings.mouseAcceleration * 10
+        track_motion_filter.Value = Settings.motionFilter
+        track_motion_acceleration.Value = Settings.motionAcceleration * 10
+
+        '   Screen
+        track_screen_quality.Value = Settings.screenQuality
+        track_screen_scale.Value = Settings.screenScale * 100
+        track_screen_quality_full.Value = Settings.screenQualityFull
+        track_screen_scale_full.Value = Settings.screenScaleFull * 100
+
         '   Slideshow
         cb_clickOnLaserUp.Checked = Settings.clickOnLaserUp
         dropDown_pointerDesign.SelectedIndex = Settings.pointerDesign
@@ -35,6 +47,13 @@
             Case 1
                 img_pointer.Image = My.Resources.pointer
         End Select
+        cb_cropBlackBorder.Checked = Settings.cropBlackBorder
+
+        '   Media
+        If Not My.Computer.FileSystem.FileExists(Settings.defaultMediaPlayer) Then
+            Settings.defaultMediaPlayer = Media.defaultMediaPlayer
+        End If
+        tb_defaultPlayer.Text = Settings.defaultMediaPlayer
 
         '   Misc
         cb_serialCommands.Checked = Settings.serialCommands
@@ -190,6 +209,22 @@
         End If
     End Sub
 
+    Private Sub cb_cropBlackBorder_CheckedChanged(sender As Object, e As EventArgs) Handles cb_cropBlackBorder.CheckedChanged
+        Settings.cropBlackBorder = cb_cropBlackBorder.Checked
+    End Sub
+
+#End Region
+
+#Region "Media Settings"
+
+    Private Sub btn_browseDefaultPlayer_Click(sender As Object, e As EventArgs) Handles btn_browseDefaultPlayer.Click
+
+    End Sub
+
+    Private Sub tb_defaultPlayer_TextChanged(sender As Object, e As EventArgs) Handles tb_defaultPlayer.TextChanged
+
+    End Sub
+
 #End Region
 
 #Region "Misc settings"
@@ -272,7 +307,5 @@
 
 #End Region
 
-    
-    
     
 End Class

@@ -252,6 +252,9 @@ Module ApiV1
                         command.data = New Byte() {0}
                     End If
                     Serial.sendCommand(command)
+                ElseIf readableCommand = " " Then
+                    readableCommand = "Space"
+                    Keyboard.sendKeyPress(Keys.Space)
                 Else
                     Keyboard.sendEachKey(readableCommand)
                 End If

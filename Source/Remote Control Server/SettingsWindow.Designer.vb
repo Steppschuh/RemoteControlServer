@@ -82,11 +82,16 @@ Partial Class SettingsWindow
         Me.track_screen_quality = New System.Windows.Forms.TrackBar()
         Me.tab_slideshow = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.cb_cropBlackBorder = New System.Windows.Forms.CheckBox()
         Me.img_pointer = New System.Windows.Forms.PictureBox()
         Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.cb_setPointerTo = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
-        Me.Misc = New System.Windows.Forms.TabPage()
+        Me.tab_misc = New System.Windows.Forms.TabPage()
+        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.btn_ledOn = New System.Windows.Forms.Button()
+        Me.btn_ledOff = New System.Windows.Forms.Button()
+        Me.cb_updateAmbientColor = New System.Windows.Forms.CheckBox()
         Me.pic_test = New System.Windows.Forms.PictureBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.btn_reopenPort = New System.Windows.Forms.Button()
@@ -121,10 +126,11 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
-        Me.btn_ledOn = New System.Windows.Forms.Button()
-        Me.btn_ledOff = New System.Windows.Forms.Button()
-        Me.cb_updateAmbientColor = New System.Windows.Forms.CheckBox()
+        Me.tab_media = New System.Windows.Forms.TabPage()
+        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.btn_browseDefaultPlayer = New System.Windows.Forms.Button()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.tb_defaultPlayer = New System.Windows.Forms.TextBox()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -152,7 +158,8 @@ Partial Class SettingsWindow
         Me.tab_slideshow.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Misc.SuspendLayout()
+        Me.tab_misc.SuspendLayout()
+        Me.GroupBox16.SuspendLayout()
         CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         Me.tab_upgrade.SuspendLayout()
@@ -164,7 +171,8 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
+        Me.tab_media.SuspendLayout()
+        Me.GroupBox17.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -199,7 +207,8 @@ Partial Class SettingsWindow
         Me.TabControl1.Controls.Add(Me.tab_mouse)
         Me.TabControl1.Controls.Add(Me.tab_screen)
         Me.TabControl1.Controls.Add(Me.tab_slideshow)
-        Me.TabControl1.Controls.Add(Me.Misc)
+        Me.TabControl1.Controls.Add(Me.tab_media)
+        Me.TabControl1.Controls.Add(Me.tab_misc)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
@@ -495,11 +504,13 @@ Partial Class SettingsWindow
         Me.track_motion_acceleration.AutoSize = False
         Me.track_motion_acceleration.BackColor = System.Drawing.Color.White
         Me.track_motion_acceleration.Location = New System.Drawing.Point(109, 48)
+        Me.track_motion_acceleration.Maximum = 100
         Me.track_motion_acceleration.Minimum = 1
         Me.track_motion_acceleration.Name = "track_motion_acceleration"
         Me.track_motion_acceleration.Size = New System.Drawing.Size(320, 29)
         Me.track_motion_acceleration.TabIndex = 2
-        Me.track_motion_acceleration.Value = 3
+        Me.track_motion_acceleration.TickFrequency = 10
+        Me.track_motion_acceleration.Value = 30
         '
         'Label9
         '
@@ -835,16 +846,29 @@ Partial Class SettingsWindow
         '
         Me.GroupBox14.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox14.Controls.Add(Me.cb_cropBlackBorder)
         Me.GroupBox14.Controls.Add(Me.img_pointer)
         Me.GroupBox14.Controls.Add(Me.dropDown_pointerDesign)
-        Me.GroupBox14.Controls.Add(Me.CheckBox1)
+        Me.GroupBox14.Controls.Add(Me.cb_setPointerTo)
         Me.GroupBox14.Controls.Add(Me.cb_clickOnLaserUp)
         Me.GroupBox14.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(435, 73)
+        Me.GroupBox14.Size = New System.Drawing.Size(435, 92)
         Me.GroupBox14.TabIndex = 2
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Laser pointer"
+        '
+        'cb_cropBlackBorder
+        '
+        Me.cb_cropBlackBorder.AutoSize = True
+        Me.cb_cropBlackBorder.Checked = True
+        Me.cb_cropBlackBorder.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_cropBlackBorder.Location = New System.Drawing.Point(6, 65)
+        Me.cb_cropBlackBorder.Name = "cb_cropBlackBorder"
+        Me.cb_cropBlackBorder.Size = New System.Drawing.Size(110, 17)
+        Me.cb_cropBlackBorder.TabIndex = 7
+        Me.cb_cropBlackBorder.Text = "Crop black border"
+        Me.cb_cropBlackBorder.UseVisualStyleBackColor = True
         '
         'img_pointer
         '
@@ -854,7 +878,7 @@ Partial Class SettingsWindow
         Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
         Me.img_pointer.Location = New System.Drawing.Point(360, 16)
         Me.img_pointer.Name = "img_pointer"
-        Me.img_pointer.Size = New System.Drawing.Size(69, 49)
+        Me.img_pointer.Size = New System.Drawing.Size(69, 66)
         Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.img_pointer.TabIndex = 6
         Me.img_pointer.TabStop = False
@@ -869,18 +893,18 @@ Partial Class SettingsWindow
         Me.dropDown_pointerDesign.TabIndex = 5
         Me.dropDown_pointerDesign.Text = "White circle"
         '
-        'CheckBox1
+        'cb_setPointerTo
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Enabled = False
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(89, 17)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Set pointer to"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.cb_setPointerTo.AutoSize = True
+        Me.cb_setPointerTo.Checked = True
+        Me.cb_setPointerTo.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cb_setPointerTo.Enabled = False
+        Me.cb_setPointerTo.Location = New System.Drawing.Point(6, 42)
+        Me.cb_setPointerTo.Name = "cb_setPointerTo"
+        Me.cb_setPointerTo.Size = New System.Drawing.Size(89, 17)
+        Me.cb_setPointerTo.TabIndex = 4
+        Me.cb_setPointerTo.Text = "Set pointer to"
+        Me.cb_setPointerTo.UseVisualStyleBackColor = True
         '
         'cb_clickOnLaserUp
         '
@@ -892,18 +916,60 @@ Partial Class SettingsWindow
         Me.cb_clickOnLaserUp.Text = "Click when released"
         Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
         '
-        'Misc
+        'tab_misc
         '
-        Me.Misc.Controls.Add(Me.GroupBox16)
-        Me.Misc.Controls.Add(Me.pic_test)
-        Me.Misc.Controls.Add(Me.GroupBox15)
-        Me.Misc.Location = New System.Drawing.Point(4, 22)
-        Me.Misc.Name = "Misc"
-        Me.Misc.Padding = New System.Windows.Forms.Padding(3)
-        Me.Misc.Size = New System.Drawing.Size(447, 284)
-        Me.Misc.TabIndex = 5
-        Me.Misc.Text = "Misc"
-        Me.Misc.UseVisualStyleBackColor = True
+        Me.tab_misc.Controls.Add(Me.GroupBox16)
+        Me.tab_misc.Controls.Add(Me.pic_test)
+        Me.tab_misc.Controls.Add(Me.GroupBox15)
+        Me.tab_misc.Location = New System.Drawing.Point(4, 22)
+        Me.tab_misc.Name = "tab_misc"
+        Me.tab_misc.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_misc.Size = New System.Drawing.Size(447, 284)
+        Me.tab_misc.TabIndex = 5
+        Me.tab_misc.Text = "Misc"
+        Me.tab_misc.UseVisualStyleBackColor = True
+        '
+        'GroupBox16
+        '
+        Me.GroupBox16.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox16.Controls.Add(Me.btn_ledOn)
+        Me.GroupBox16.Controls.Add(Me.btn_ledOff)
+        Me.GroupBox16.Controls.Add(Me.cb_updateAmbientColor)
+        Me.GroupBox16.Location = New System.Drawing.Point(6, 81)
+        Me.GroupBox16.Name = "GroupBox16"
+        Me.GroupBox16.Size = New System.Drawing.Size(435, 69)
+        Me.GroupBox16.TabIndex = 5
+        Me.GroupBox16.TabStop = False
+        Me.GroupBox16.Text = "LED Strip"
+        '
+        'btn_ledOn
+        '
+        Me.btn_ledOn.Location = New System.Drawing.Point(322, 13)
+        Me.btn_ledOn.Name = "btn_ledOn"
+        Me.btn_ledOn.Size = New System.Drawing.Size(107, 23)
+        Me.btn_ledOn.TabIndex = 9
+        Me.btn_ledOn.Text = "Turn LED on"
+        Me.btn_ledOn.UseVisualStyleBackColor = True
+        '
+        'btn_ledOff
+        '
+        Me.btn_ledOff.Location = New System.Drawing.Point(322, 38)
+        Me.btn_ledOff.Name = "btn_ledOff"
+        Me.btn_ledOff.Size = New System.Drawing.Size(107, 23)
+        Me.btn_ledOff.TabIndex = 8
+        Me.btn_ledOff.Text = "Turn LED off"
+        Me.btn_ledOff.UseVisualStyleBackColor = True
+        '
+        'cb_updateAmbientColor
+        '
+        Me.cb_updateAmbientColor.AutoSize = True
+        Me.cb_updateAmbientColor.Location = New System.Drawing.Point(6, 19)
+        Me.cb_updateAmbientColor.Name = "cb_updateAmbientColor"
+        Me.cb_updateAmbientColor.Size = New System.Drawing.Size(127, 17)
+        Me.cb_updateAmbientColor.TabIndex = 0
+        Me.cb_updateAmbientColor.Text = "Update ambient color"
+        Me.cb_updateAmbientColor.UseVisualStyleBackColor = True
         '
         'pic_test
         '
@@ -1285,47 +1351,55 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'GroupBox16
+        'tab_media
         '
-        Me.GroupBox16.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tab_media.Controls.Add(Me.GroupBox17)
+        Me.tab_media.Location = New System.Drawing.Point(4, 22)
+        Me.tab_media.Name = "tab_media"
+        Me.tab_media.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_media.Size = New System.Drawing.Size(447, 284)
+        Me.tab_media.TabIndex = 6
+        Me.tab_media.Text = "Media"
+        Me.tab_media.UseVisualStyleBackColor = True
+        '
+        'GroupBox17
+        '
+        Me.GroupBox17.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox16.Controls.Add(Me.btn_ledOn)
-        Me.GroupBox16.Controls.Add(Me.btn_ledOff)
-        Me.GroupBox16.Controls.Add(Me.cb_updateAmbientColor)
-        Me.GroupBox16.Location = New System.Drawing.Point(6, 81)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(435, 69)
-        Me.GroupBox16.TabIndex = 5
-        Me.GroupBox16.TabStop = False
-        Me.GroupBox16.Text = "LED Strip"
+        Me.GroupBox17.Controls.Add(Me.tb_defaultPlayer)
+        Me.GroupBox17.Controls.Add(Me.Label30)
+        Me.GroupBox17.Controls.Add(Me.btn_browseDefaultPlayer)
+        Me.GroupBox17.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox17.Name = "GroupBox17"
+        Me.GroupBox17.Size = New System.Drawing.Size(435, 69)
+        Me.GroupBox17.TabIndex = 4
+        Me.GroupBox17.TabStop = False
+        Me.GroupBox17.Text = "Default player"
         '
-        'btn_ledOn
+        'btn_browseDefaultPlayer
         '
-        Me.btn_ledOn.Location = New System.Drawing.Point(322, 13)
-        Me.btn_ledOn.Name = "btn_ledOn"
-        Me.btn_ledOn.Size = New System.Drawing.Size(107, 23)
-        Me.btn_ledOn.TabIndex = 9
-        Me.btn_ledOn.Text = "Turn LED on"
-        Me.btn_ledOn.UseVisualStyleBackColor = True
+        Me.btn_browseDefaultPlayer.Location = New System.Drawing.Point(351, 35)
+        Me.btn_browseDefaultPlayer.Name = "btn_browseDefaultPlayer"
+        Me.btn_browseDefaultPlayer.Size = New System.Drawing.Size(78, 23)
+        Me.btn_browseDefaultPlayer.TabIndex = 8
+        Me.btn_browseDefaultPlayer.Text = "Browse"
+        Me.btn_browseDefaultPlayer.UseVisualStyleBackColor = True
         '
-        'btn_ledOff
+        'Label30
         '
-        Me.btn_ledOff.Location = New System.Drawing.Point(322, 38)
-        Me.btn_ledOff.Name = "btn_ledOff"
-        Me.btn_ledOff.Size = New System.Drawing.Size(107, 23)
-        Me.btn_ledOff.TabIndex = 8
-        Me.btn_ledOff.Text = "Turn LED off"
-        Me.btn_ledOff.UseVisualStyleBackColor = True
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(6, 18)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(230, 13)
+        Me.Label30.TabIndex = 10
+        Me.Label30.Text = "Launch this application as default media player:"
         '
-        'cb_updateAmbientColor
+        'tb_defaultPlayer
         '
-        Me.cb_updateAmbientColor.AutoSize = True
-        Me.cb_updateAmbientColor.Location = New System.Drawing.Point(6, 19)
-        Me.cb_updateAmbientColor.Name = "cb_updateAmbientColor"
-        Me.cb_updateAmbientColor.Size = New System.Drawing.Size(127, 17)
-        Me.cb_updateAmbientColor.TabIndex = 0
-        Me.cb_updateAmbientColor.Text = "Update ambient color"
-        Me.cb_updateAmbientColor.UseVisualStyleBackColor = True
+        Me.tb_defaultPlayer.Location = New System.Drawing.Point(6, 37)
+        Me.tb_defaultPlayer.Name = "tb_defaultPlayer"
+        Me.tb_defaultPlayer.Size = New System.Drawing.Size(339, 20)
+        Me.tb_defaultPlayer.TabIndex = 11
         '
         'SettingsWindow
         '
@@ -1376,7 +1450,9 @@ Partial Class SettingsWindow
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Misc.ResumeLayout(False)
+        Me.tab_misc.ResumeLayout(False)
+        Me.GroupBox16.ResumeLayout(False)
+        Me.GroupBox16.PerformLayout()
         CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
@@ -1392,8 +1468,9 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.GroupBox16.ResumeLayout(False)
-        Me.GroupBox16.PerformLayout()
+        Me.tab_media.ResumeLayout(False)
+        Me.GroupBox17.ResumeLayout(False)
+        Me.GroupBox17.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1485,9 +1562,9 @@ Partial Class SettingsWindow
     Friend WithEvents GroupBox14 As System.Windows.Forms.GroupBox
     Friend WithEvents cb_clickOnLaserUp As System.Windows.Forms.CheckBox
     Friend WithEvents dropDown_pointerDesign As System.Windows.Forms.ComboBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_setPointerTo As System.Windows.Forms.CheckBox
     Friend WithEvents img_pointer As System.Windows.Forms.PictureBox
-    Friend WithEvents Misc As System.Windows.Forms.TabPage
+    Friend WithEvents tab_misc As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents cb_serialCommands As System.Windows.Forms.CheckBox
@@ -1499,4 +1576,10 @@ Partial Class SettingsWindow
     Friend WithEvents btn_ledOn As System.Windows.Forms.Button
     Friend WithEvents btn_ledOff As System.Windows.Forms.Button
     Friend WithEvents cb_updateAmbientColor As System.Windows.Forms.CheckBox
+    Friend WithEvents cb_cropBlackBorder As System.Windows.Forms.CheckBox
+    Friend WithEvents tab_media As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox17 As System.Windows.Forms.GroupBox
+    Friend WithEvents btn_browseDefaultPlayer As System.Windows.Forms.Button
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents tb_defaultPlayer As System.Windows.Forms.TextBox
 End Class
