@@ -87,6 +87,11 @@ Partial Class SettingsWindow
         Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
         Me.cb_setPointerTo = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
+        Me.tab_media = New System.Windows.Forms.TabPage()
+        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.tb_defaultPlayer = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.btn_browseDefaultPlayer = New System.Windows.Forms.Button()
         Me.tab_misc = New System.Windows.Forms.TabPage()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.btn_ledOn = New System.Windows.Forms.Button()
@@ -126,11 +131,6 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.tab_media = New System.Windows.Forms.TabPage()
-        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
-        Me.btn_browseDefaultPlayer = New System.Windows.Forms.Button()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.tb_defaultPlayer = New System.Windows.Forms.TextBox()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -158,6 +158,8 @@ Partial Class SettingsWindow
         Me.tab_slideshow.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tab_media.SuspendLayout()
+        Me.GroupBox17.SuspendLayout()
         Me.tab_misc.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
         CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,8 +173,6 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.tab_media.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -685,6 +685,7 @@ Partial Class SettingsWindow
         '
         Me.track_screen_scale_full.AutoSize = False
         Me.track_screen_scale_full.BackColor = System.Drawing.Color.White
+        Me.track_screen_scale_full.Enabled = False
         Me.track_screen_scale_full.Location = New System.Drawing.Point(109, 85)
         Me.track_screen_scale_full.Maximum = 100
         Me.track_screen_scale_full.Minimum = 1
@@ -915,6 +916,56 @@ Partial Class SettingsWindow
         Me.cb_clickOnLaserUp.TabIndex = 0
         Me.cb_clickOnLaserUp.Text = "Click when released"
         Me.cb_clickOnLaserUp.UseVisualStyleBackColor = True
+        '
+        'tab_media
+        '
+        Me.tab_media.Controls.Add(Me.GroupBox17)
+        Me.tab_media.Location = New System.Drawing.Point(4, 22)
+        Me.tab_media.Name = "tab_media"
+        Me.tab_media.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_media.Size = New System.Drawing.Size(447, 284)
+        Me.tab_media.TabIndex = 6
+        Me.tab_media.Text = "Media"
+        Me.tab_media.UseVisualStyleBackColor = True
+        '
+        'GroupBox17
+        '
+        Me.GroupBox17.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox17.Controls.Add(Me.tb_defaultPlayer)
+        Me.GroupBox17.Controls.Add(Me.Label30)
+        Me.GroupBox17.Controls.Add(Me.btn_browseDefaultPlayer)
+        Me.GroupBox17.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox17.Name = "GroupBox17"
+        Me.GroupBox17.Size = New System.Drawing.Size(435, 69)
+        Me.GroupBox17.TabIndex = 4
+        Me.GroupBox17.TabStop = False
+        Me.GroupBox17.Text = "Default player"
+        '
+        'tb_defaultPlayer
+        '
+        Me.tb_defaultPlayer.Location = New System.Drawing.Point(6, 37)
+        Me.tb_defaultPlayer.Name = "tb_defaultPlayer"
+        Me.tb_defaultPlayer.Size = New System.Drawing.Size(339, 20)
+        Me.tb_defaultPlayer.TabIndex = 11
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(6, 18)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(230, 13)
+        Me.Label30.TabIndex = 10
+        Me.Label30.Text = "Launch this application as default media player:"
+        '
+        'btn_browseDefaultPlayer
+        '
+        Me.btn_browseDefaultPlayer.Location = New System.Drawing.Point(351, 35)
+        Me.btn_browseDefaultPlayer.Name = "btn_browseDefaultPlayer"
+        Me.btn_browseDefaultPlayer.Size = New System.Drawing.Size(78, 23)
+        Me.btn_browseDefaultPlayer.TabIndex = 8
+        Me.btn_browseDefaultPlayer.Text = "Browse"
+        Me.btn_browseDefaultPlayer.UseVisualStyleBackColor = True
         '
         'tab_misc
         '
@@ -1351,56 +1402,6 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'tab_media
-        '
-        Me.tab_media.Controls.Add(Me.GroupBox17)
-        Me.tab_media.Location = New System.Drawing.Point(4, 22)
-        Me.tab_media.Name = "tab_media"
-        Me.tab_media.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_media.Size = New System.Drawing.Size(447, 284)
-        Me.tab_media.TabIndex = 6
-        Me.tab_media.Text = "Media"
-        Me.tab_media.UseVisualStyleBackColor = True
-        '
-        'GroupBox17
-        '
-        Me.GroupBox17.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox17.Controls.Add(Me.tb_defaultPlayer)
-        Me.GroupBox17.Controls.Add(Me.Label30)
-        Me.GroupBox17.Controls.Add(Me.btn_browseDefaultPlayer)
-        Me.GroupBox17.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(435, 69)
-        Me.GroupBox17.TabIndex = 4
-        Me.GroupBox17.TabStop = False
-        Me.GroupBox17.Text = "Default player"
-        '
-        'btn_browseDefaultPlayer
-        '
-        Me.btn_browseDefaultPlayer.Location = New System.Drawing.Point(351, 35)
-        Me.btn_browseDefaultPlayer.Name = "btn_browseDefaultPlayer"
-        Me.btn_browseDefaultPlayer.Size = New System.Drawing.Size(78, 23)
-        Me.btn_browseDefaultPlayer.TabIndex = 8
-        Me.btn_browseDefaultPlayer.Text = "Browse"
-        Me.btn_browseDefaultPlayer.UseVisualStyleBackColor = True
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(6, 18)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(230, 13)
-        Me.Label30.TabIndex = 10
-        Me.Label30.Text = "Launch this application as default media player:"
-        '
-        'tb_defaultPlayer
-        '
-        Me.tb_defaultPlayer.Location = New System.Drawing.Point(6, 37)
-        Me.tb_defaultPlayer.Name = "tb_defaultPlayer"
-        Me.tb_defaultPlayer.Size = New System.Drawing.Size(339, 20)
-        Me.tb_defaultPlayer.TabIndex = 11
-        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1450,6 +1451,9 @@ Partial Class SettingsWindow
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tab_media.ResumeLayout(False)
+        Me.GroupBox17.ResumeLayout(False)
+        Me.GroupBox17.PerformLayout()
         Me.tab_misc.ResumeLayout(False)
         Me.GroupBox16.ResumeLayout(False)
         Me.GroupBox16.PerformLayout()
@@ -1468,9 +1472,6 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.tab_media.ResumeLayout(False)
-        Me.GroupBox17.ResumeLayout(False)
-        Me.GroupBox17.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

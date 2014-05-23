@@ -39,7 +39,7 @@ Module Settings
     Public screenQuality As Byte = 30
     Public screenQualityFull As Byte = 50
     Public screenScale As Single = 0.5
-    Public screenScaleFull As Single = 0.8
+    Public screenScaleFull As Single = 1
 
     'Slideshow
     Public clickOnLaserUp As Boolean = False
@@ -252,7 +252,8 @@ Module Settings
         ElseIf name.Equals("screenScale") Then
             screenScale = Single.Parse(value)
         ElseIf name.Equals("screenScaleFull") Then
-            screenScaleFull = Single.Parse(value)
+            'screenScaleFull = Single.Parse(value)
+            screenScaleFull = 1
 
             'Slideshow
         ElseIf name.Equals("clickOnLaserUp") Then
