@@ -2,12 +2,6 @@
 <resources>
     <string name="app_name">Remote Control Collection</string>
 
-    <string name="url_upgrade">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
-    <string name="url_setupguide">http://android-remote.com/setup/</string>
-    <string name="url_troubleshooting">http://android-remote.com/troubleshooting/</string>
-    <string name="url_faq">http://android-remote.com/m/faq.html</string>
-    <string name="url_website">http://android-remote.com/</string>
-
     <string name="next">Siguiente</string>
     <string name="prev">Atrás</string>
     <string name="finish">Cerrar</string>
@@ -34,7 +28,12 @@
     <string name="dialog_info">Información</string>
     <string name="dialog_changelog">Cambios</string>
 
-    <string name="changelog">Gracias por actualizar la aplicación. Es posible que también necesite actualizar Remote Control Server para usar las últimas características. Aquí se muestran algunos de los cambios recientes:\n\nVersion 2.0.3.0:\n - Added dark theme\n - Language support: Spanish\n - Improved exception handling\n\nVersión 2.0.2.0:\n - Soporte de idioma para: Alemán\n - Mejora de la función de autoconectar\n\nVersión 2.0.1.0:\n - Revisión y parche de bug en la licencia\n\nVersión 2.0.0.0:\n - Nuevo diseño de la aplicación\n - Soporte para tablets\n - Mejorado el rendimiento\n - Soporte para múltiples pantallas\n - Soporte de pantalla completa\n - Nuevo scaner de red\n\nVersión 1.8.0.0:\n - Nueva ventana de escritorio remoto\n - Posicionamiento absoluto del cursor\n - Suavizado del desplazamiento(scroll)\n\nVersión 1.7.5.0:\n - Nuevo Remote Control Server\n - Optional white theme\n - Soporte para desbloqueo por códigos</string>
+    <string name="dialog_rate">Feedback</string>
+    <string name="dialog_rate_text_1">You\'ve already sent</string>
+    <string name="dialog_rate_text_2">commands using this app!\n\nPlease let us know what you think and help us improving.</string>
+    <string name="dialog_rate_button">Rate</string>
+
+    <string name="changelog">Thanks for updating the app. You might need to update the Remote Control Server to use the latest features. Here are the most recent changes:\n\nVersion 2.0.3.0:\n -Automatic server detection\n -Live screen performance improvements\n -Scrolling in live screen via volume keys\n -Fixed keyboard issues\n -Fixed action bar icons\n -Fixed minor bugs</string>
 
     <string name="connection_success">Conectado</string>
     <string name="connection_success_description">Sus dispositivos están ahora conectados.</string>
@@ -43,6 +42,14 @@
 
     <string name="connection_search">Buscando</string>
     <string name="connection_search_description">Intentando buscar servidor...</string>
+    <string name="connection_search_failed">Análisis de la red sin éxito</string>
+
+    <string name="notification_network_scan">Network scan</string>
+    <string name="notification_network_scan_text">Searching for a server in your network</string>
+
+    <string name="notification_server_found">Server found</string>
+    <string name="notification_server_found_short">\u0020is available</string>
+    <string name="notification_server_found_long">\u0020is available in your current network at\u0020</string>
 
     <string name="connection_error">Inalcanzable</string>
     <string name="connection_error_description">No se puede conectar, servidor no encontrado.</string>
@@ -65,6 +72,7 @@
     <string name="remote_shortcuts">Accesos directos</string>
     <string name="remote_speech">Frase</string>
     <string name="remote_scroll">Desplazamiento</string>
+    <string name="remote_custom">Custom</string>
 
     <string name="menu_switch_screen">Cambiar de pantalla</string>
 
@@ -81,6 +89,7 @@
     <string name="home_license">Licencia:</string>
     <string name="home_ip">Dirección IP:</string>
     <string name="home_connected">Conectado</string>
+    <string name="home_social">Find us</string>
 
     <string name="server_invalid_title">No se puede guardar.</string>
     <string name="server_invalid_description">La dirección IP o el nombre del servidor que ha introducido, no son validos.</string>
@@ -93,6 +102,8 @@
     <string name="server_add_name_sample">e.j. Home PC</string>
     <string name="server_add_save">Guardar</string>
     <string name="server_add_scan">Buscar</string>
+    <string name="server_add_connect">Connect</string>
+    <string name="server_add_edit">Edit</string>
 
     <string name="server_add_first">Ningún servidor añadido</string>
     <string name="server_add_first_description">Aún no ha guardado ningún servidor. Necesita añadir antes un nuevo servidor.</string>
@@ -212,6 +223,7 @@
 
     <string name="settings_title">Ajustes</string>
     <string name="settings_cat_general">Generales</string>
+    <string name="settings_cat_service">Background Service</string>
     <string name="settings_reset_stats">Resetear estadísticas</string>
     <string name="settings_reset_stats_sum">Borrar datos almacenados</string>
     <string name="settings_reset_stats_toast">Datos almacenados borrados</string>
@@ -223,6 +235,10 @@
     <string name="settings_autoconnect_sum">Conectar al iniciar la aplicación</string>
     <string name="settings_dark">Diseño oscuro</string>
     <string name="settings_dark_sum">Cambia al modo nocturno</string>
+    <string name="settings_service_search_saved">Search saved servers</string>
+    <string name="settings_service_search_saved_sum">Tries to find known servers</string>
+    <string name="settings_service_search_unknown">Search new servers</string>
+    <string name="settings_service_search_unknown_sum">Tries to find unknown servers</string>
 
     <string name="detail_commandcount">Cuenta el número de comandos enviados a Remote Control Server.</string>
     <string name="detail_frequently_used">Muestra los controles remotos más usados. Haz click para iniciar el control remoto.</string>

@@ -2,12 +2,6 @@
 <resources>
     <string name="app_name">Remote Control Collection</string>
 
-    <string name="url_upgrade">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
-    <string name="url_setupguide">http://android-remote.com/setup/</string>
-    <string name="url_troubleshooting">http://android-remote.com/troubleshooting/</string>
-    <string name="url_faq">http://android-remote.com/m/faq.html</string>
-    <string name="url_website">http://android-remote.com/</string>
-
     <string name="next">Weiter</string>
     <string name="prev">Zurück</string>
     <string name="finish">Schließen</string>
@@ -34,7 +28,12 @@
     <string name="dialog_info">Information</string>
     <string name="dialog_changelog">Changelog</string>
 
-    <string name="changelog">Sie haben kürzlich ein Update für die App installiert. Möglicherweise hat auch der Remote Control Server ein Update erhalten. Hier sind die letzten Änderungen:\n\nVersion 2.0.3.0:\n - Added dark theme\n - Language support: Spanish\n - Improved exception handling\n\nVersion 2.0.2.0:\n - Language support: German\n - Improved auto connect\n\nVersion 2.0.1.0:\n - Hotfix for license bug\n\nVersion 2.0.0.0:\n - New app design\n - Tablet support\n - Improved performance\n - Multiscreen support\n - Fullscreen support\n - New network scan\n\nVersion 1.8.0.0:\n - New live screen remote\n - Absolute cursor positioning\n - Smoother scrolling\n\nVersion 1.7.5.0:\n - New Remote Control Server\n - Optional white theme\n - Support for unlock codes</string>
+    <string name="dialog_rate">Feedback</string>
+    <string name="dialog_rate_text_1">Sie haben bereits</string>
+    <string name="dialog_rate_text_2">Befehle mit der App gesendet!\n\nBitte bewerten Sie die App damit wir sie verbessern können.</string>
+    <string name="dialog_rate_button">Bewerten</string>
+
+    <string name="changelog">Thanks for updating the app. You might need to update the Remote Control Server to use the latest features. Here are the most recent changes:\n\nVersion 2.0.3.0:\n -Automatic server detection\n -Live screen performance improvements\n -Scrolling in live screen via volume keys\n -Fixed keyboard issues\n -Fixed action bar icons\n -Fixed minor bugs</string>
 
     <string name="connection_success">Verbunden</string>
     <string name="connection_success_description">Die Geräte sind nun verbunden</string>
@@ -43,6 +42,14 @@
 
     <string name="connection_search">Suche</string>
     <string name="connection_search_description">Suche nach einem Server...</string>
+    <string name="connection_search_failed">Netzwerkscan fehlgeschlagen</string>
+
+    <string name="notification_network_scan">Netzwerkscan</string>
+    <string name="notification_network_scan_text">Suche nach einem Server im Netzwerk</string>
+
+    <string name="notification_server_found">Server gefunden</string>
+    <string name="notification_server_found_short">\u0020ist erreichbar</string>
+    <string name="notification_server_found_long">\u0020ist erreichbar im Netzwerk unter\u0020</string>
 
     <string name="connection_error">Nicht erreichbar</string>
     <string name="connection_error_description">Verbindung fehlgeschlagen, es konnte kein Server gefunden werden.</string>
@@ -65,6 +72,7 @@
     <string name="remote_shortcuts">Shortcuts</string>
     <string name="remote_speech">Sprache</string>
     <string name="remote_scroll">Scrollen</string>
+    <string name="remote_custom">Custom</string>
 
     <string name="menu_switch_screen">Bildschirm wechseln</string>
 
@@ -81,6 +89,7 @@
     <string name="home_license">Lizens:</string>
     <string name="home_ip">IP Adresse:</string>
     <string name="home_connected">Verbunden</string>
+    <string name="home_social">Finden Sie uns</string>
 
     <string name="server_invalid_title">Speichern fehlgeschlagen</string>
     <string name="server_invalid_description">Die eingetragene IP Adresse oder Name ist nicht gültig.</string>
@@ -93,10 +102,11 @@
     <string name="server_add_name_sample">z.B. Heim PC</string>
     <string name="server_add_save">Speichern</string>
     <string name="server_add_scan">Suchen</string>
+    <string name="server_add_connect">Verbinden</string>
+    <string name="server_add_edit">Bearbeiten</string>
 
     <string name="server_add_first">Keine Server gespeichert</string>
     <string name="server_add_first_description">Sie haben noch keine Server hinzugefügt. Bitte speichern Sie zunächst einen Server.</string>
-
 
     <string name="help_contact_support">Support</string>
     <string name="help_contact_support_description">Sollten Sie Probleme haben, kontaktieren Sie uns. Wir sind da um Ihnen zu helfen. Bitte überprüfen Sie vorher, ob es nicht eine Anleitung für Ihr Problem gibt.</string>
@@ -212,6 +222,7 @@
 
     <string name="settings_title">Einstellungen</string>
     <string name="settings_cat_general">Allgemein</string>
+    <string name="settings_cat_service">Hintergrund Service</string>
     <string name="settings_reset_stats">Statistiken zurücksetzen</string>
     <string name="settings_reset_stats_sum">Löscht gesammelte Daten</string>
     <string name="settings_reset_stats_toast">Statistiken wurden gelöscht</string>
@@ -223,6 +234,10 @@
     <string name="settings_autoconnect_sum">Stellt beim Start eine Verbindung her</string>
     <string name="settings_dark">Dunkles Design</string>
     <string name="settings_dark_sum">Wechselt in den Nachtmodus</string>
+    <string name="settings_service_search_saved">Gespeicherte Server suchen</string>
+    <string name="settings_service_search_saved_sum">Sucht nach bekannten Servern</string>
+    <string name="settings_service_search_unknown">Neue Server scuhen</string>
+    <string name="settings_service_search_unknown_sum">Sucht nach unbekannten Servern</string>
 
     <string name="detail_commandcount">Zählt die Anzahl an Befehlen, die an den Server übertragen wurden.</string>
     <string name="detail_frequently_used">Zeigt die Steuerungen, die häufig verwendet werden. Klicken Sie um eine Steuerung zu starten.</string>

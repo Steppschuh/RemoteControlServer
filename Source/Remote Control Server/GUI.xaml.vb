@@ -61,7 +61,13 @@ Class MainWindow
         label_app_version.Content = app.appVersion
 
         label_server_ip.Content = Network.getServerIp()
-        label_server_status.Content = Server.status
+
+        If Network.commandCount > 2 Then
+            label_server_status.Content = Network.commandCount & " commands processed"
+        Else
+            label_server_status.Content = Server.status
+        End If
+
         label_server_version.Content = Server.getServerVersionName()
 
         If Updater.isUpdateAvailable Then

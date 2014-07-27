@@ -2,12 +2,6 @@
 <resources>
     <string name="app_name">Remote Control Collection</string>
 
-    <string name="url_upgrade">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
-    <string name="url_setupguide">http://android-remote.com/setup/</string>
-    <string name="url_troubleshooting">http://android-remote.com/troubleshooting/</string>
-    <string name="url_faq">http://android-remote.com/m/faq.html</string>
-    <string name="url_website">http://android-remote.com/</string>
-
     <string name="next">Volgende</string>
     <string name="prev">Vorige</string>
     <string name="finish">Sluiten</string>
@@ -34,7 +28,12 @@
     <string name="dialog_info">Info</string>
     <string name="dialog_changelog">Aanpassingen</string>
 
-    <string name="changelog">Bedankt voor het updaten van de app. Mogelijk moet u de Remote Control Server ook updaten om gebruik te maken van de laatste functionaliteiten. Hier is een lijst met recente aanpassingen:\n\nVersie 2.0.3.0:\n - Nacht kleurthema toegevoegd\n - Ondersteuning voor de Spaanse taal\n - Betere foutafhandeling\n\nVersie 2.0.2.0:\n - Ondersteuning voor de Duitse taal\n - Verbeteringen in Automatisch verbinden\n\nVersie 2.0.1.0:\n - Hotfix voor een fout in licenties\n\nVersie 2.0.0.0:\n - Nieuw ontwerp voor de app\n - Ondersteuning voor tablets\n - Verbeterde prestaties\n - Ondersteuning voor meerdere schermen\n - Ondersteuning voor volledig scherm\n - Nieuwe netwerk scanner\n\nVersie 1.8.0.0:\n - Nieuwe Bureaublad afstandsbediening\n - Absolute muis verplaatsing\n - Vloeiender scrollen\n\nVersie 1.7.5.0:\n - Nieuwe Remote Control Server\n - Optioneel wit kleurthema\n - Ondersteuning voor ontgrendel codes</string>
+    <string name="dialog_rate">Feedback</string>
+    <string name="dialog_rate_text_1">You\'ve already sent</string>
+    <string name="dialog_rate_text_2">commands using this app!\n\nPlease let us know what you think and help us improving.</string>
+    <string name="dialog_rate_button">Rate</string>
+
+    <string name="changelog">Thanks for updating the app. You might need to update the Remote Control Server to use the latest features. Here are the most recent changes:\n\nVersion 2.0.3.0:\n -Automatic server detection\n -Live screen performance improvements\n -Scrolling in live screen via volume keys\n -Fixed keyboard issues\n -Fixed action bar icons\n -Fixed minor bugs</string>
 
     <string name="connection_success">Verbonden</string>
     <string name="connection_success_description">Uw apparaten zijn nu verbonden.</string>
@@ -43,6 +42,14 @@
 
     <string name="connection_search">Zoekende</string>
     <string name="connection_search_description">Bezig met zoeken naar een server...</string>
+    <string name="connection_search_failed">Netwerkanalyse tevergeefs</string>
+
+    <string name="notification_network_scan">Network scan</string>
+    <string name="notification_network_scan_text">Searching for a server in your network</string>
+
+    <string name="notification_server_found">Server found</string>
+    <string name="notification_server_found_short">\u0020is available</string>
+    <string name="notification_server_found_long">\u0020is available in your current network at\u0020</string>
 
     <string name="connection_error">Onbereikbaar</string>
     <string name="connection_error_description">Kon geen verbinding maken, de server kon niet worden gevonden.</string>
@@ -65,6 +72,7 @@
     <string name="remote_shortcuts">Sneltoetsen</string>
     <string name="remote_speech">Spraak</string>
     <string name="remote_scroll">Scrollen</string>
+    <string name="remote_custom">Custom</string>
 
     <string name="menu_switch_screen">Wissel screen</string>
 
@@ -81,6 +89,7 @@
     <string name="home_license">Licentie:</string>
     <string name="home_ip">IP adres:</string>
     <string name="home_connected">Verbonden</string>
+    <string name="home_social">Find us</string>
 
     <string name="server_invalid_title">Kan dit niet opslaan</string>
     <string name="server_invalid_description">Het IP adres of de server naam is niet geldig.</string>
@@ -93,6 +102,8 @@
     <string name="server_add_name_sample">v.b. THUIS-PC</string>
     <string name="server_add_save">Opslaan</string>
     <string name="server_add_scan">Zoeken</string>
+    <string name="server_add_connect">Connect</string>
+    <string name="server_add_edit">Edit</string>
 
     <string name="server_add_first">Geen servers toegevoegd</string>
     <string name="server_add_first_description">U heeft nog geen servers toegevoegd. U moet eerst een server toevoegen.</string>
@@ -196,7 +207,6 @@
     <string name="speech_send_text">Stuur tekst</string>
     <string name="speech_na">Spraak herkenning is niet beschikbaar op dit apparaat.</string>
 
-    <!-- TODO: What do these do? -->
     <string name="v_identify_command">Kommando, Befehl, Remote, Steuerung, Command</string>
     <string name="v_identify_media">Media, Mediaplayer, iTunes, Musik, Titel, Track, Music</string>
     <string name="v_identify_audio">Lautstärke, Sound, Audio, Volume, Ton, Loudness</string>
@@ -212,6 +222,7 @@
 
     <string name="settings_title">Instellingen</string>
     <string name="settings_cat_general">Algemeen</string>
+    <string name="settings_cat_service">Background Service</string>
     <string name="settings_reset_stats">Wis statistieken</string>
     <string name="settings_reset_stats_sum">Wis alle verzamelde data</string>
     <string name="settings_reset_stats_toast">Data gewist</string>
@@ -223,6 +234,10 @@
     <string name="settings_autoconnect_sum">Verbind automatisch als de app opstart</string>
     <string name="settings_dark">Donker kleurthema</string>
     <string name="settings_dark_sum">Gebruik het Nacht kleurthema</string>
+    <string name="settings_service_search_saved">Search saved servers</string>
+    <string name="settings_service_search_saved_sum">Tries to find known servers</string>
+    <string name="settings_service_search_unknown">Search new servers</string>
+    <string name="settings_service_search_unknown_sum">Tries to find unknown servers</string>
 
     <string name="detail_commandcount">Telt het aantal commando\'s dat is verstuurd naar de Remote Control Server.</string>
     <string name="detail_frequently_used">Toont de afstandsbedieningen die u veel gebruikt. Door er op te klikken kunt u de afstandsbediening starten.</string>

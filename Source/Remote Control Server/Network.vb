@@ -11,6 +11,8 @@ Public Module Network
     Public tcp As TCP
     Public udp As UDP
 
+    Public commandCount As Long = 0
+
     Public Sub initialize()
         Logger.add("Initializing network")
 

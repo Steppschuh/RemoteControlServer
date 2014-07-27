@@ -55,6 +55,7 @@
             End If
 
             'Logger.add("Detected API version: " & api)
+            Network.commandCount += 1
             Remote.processCommand(Me)
         Catch ex As Exception
             Logger.add("Error while parsing command: " & vbNewLine & ex.ToString)
