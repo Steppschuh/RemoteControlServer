@@ -76,7 +76,7 @@ Module ApiV1
             Logger.add("Process: " & value)
         ElseIf cmd.Contains(cmd_google_string) Then
             Try
-                Process.Start("http://google.de/search?q=" & value)
+                Process.Start("http://google.com/search?q=" & value)
             Catch ex As Exception
             End Try
             Logger.add("Google: " & value)

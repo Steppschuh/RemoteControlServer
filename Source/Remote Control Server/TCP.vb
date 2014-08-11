@@ -38,7 +38,6 @@ Public Class TCP
                 Logger.add("Sending long command")
             End If
 
-
             Dim startTime As Long = My.Computer.Clock.TickCount
 
             tcpClient = New System.Net.Sockets.TcpClient()
