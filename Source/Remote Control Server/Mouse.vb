@@ -174,6 +174,16 @@ Module Mouse
         End If
     End Sub
 
+    Public Sub onMouseDown(ByVal messageBytes As Byte())
+        P1_Last = commandGetPoint(messageBytes, 0)
+    End Sub
+
+    Public Sub onMouseUp()
+        P1_Last = P_ORIGIN
+        P2_Last = P_ORIGIN
+        isMultitouch = False
+    End Sub
+
     Public Sub scrollRepeat(ByVal value As Integer, Optional ByVal count As Integer = 1)
         For i = 0 To count
             mouse_event(MOUSE_WHEEL, 0, 0, value, 0)

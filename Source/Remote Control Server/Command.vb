@@ -23,10 +23,10 @@
     Public Sub process()
         Try
             If Authentication.isAuthenticated(source, Server.getApp(source).pin) Or isBroadcast() Then
-                'If Authentication.isAuthenticated(source, "") Then
                 parse()
             Else
                 Logger.add("Refused a command from " & source)
+                Logger.add("Server protection is active")
             End If
         Catch ex As Exception
             Logger.add("Error while processing command: " & vbNewLine & ex.ToString)
