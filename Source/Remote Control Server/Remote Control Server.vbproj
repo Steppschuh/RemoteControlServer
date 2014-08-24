@@ -192,6 +192,7 @@
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsWindow.resx">
       <DependentUpon>SettingsWindow.vb</DependentUpon>
@@ -315,7 +316,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\back.png">
+    <Resource Include="Resources\back_android.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -336,6 +337,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ic_action_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

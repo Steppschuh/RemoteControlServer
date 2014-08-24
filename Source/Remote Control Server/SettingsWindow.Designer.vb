@@ -105,7 +105,6 @@ Partial Class SettingsWindow
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.tab_update = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.btn_update_changelog = New System.Windows.Forms.Button()
@@ -164,7 +163,6 @@ Partial Class SettingsWindow
         Me.GroupBox16.SuspendLayout()
         CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
-        Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -1101,7 +1099,6 @@ Partial Class SettingsWindow
         '
         'tab_upgrade
         '
-        Me.tab_upgrade.Controls.Add(Me.Label25)
         Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
         Me.tab_upgrade.Name = "tab_upgrade"
         Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
@@ -1109,15 +1106,6 @@ Partial Class SettingsWindow
         Me.tab_upgrade.TabIndex = 2
         Me.tab_upgrade.Text = "Upgrade"
         Me.tab_upgrade.UseVisualStyleBackColor = True
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(8, 7)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(259, 13)
-        Me.Label25.TabIndex = 0
-        Me.Label25.Text = "Not yet available, you are using a pre-release version!"
         '
         'tab_update
         '
@@ -1460,8 +1448,6 @@ Partial Class SettingsWindow
         CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
-        Me.tab_upgrade.ResumeLayout(False)
-        Me.tab_upgrade.PerformLayout()
         Me.tab_update.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -1547,7 +1533,6 @@ Partial Class SettingsWindow
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents track_screen_quality_full As System.Windows.Forms.TrackBar
     Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
     Friend WithEvents btn_help_setupguide As System.Windows.Forms.Button
     Friend WithEvents btn_help_troubleshooting As System.Windows.Forms.Button

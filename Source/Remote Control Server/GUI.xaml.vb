@@ -20,6 +20,7 @@ Class MainWindow
     Public Sub initialize()
         userName = Server.getServerName()
         Server.initialize(Me)
+
         refreshUi()
         startRefreshUiTimer()
 
@@ -62,12 +63,7 @@ Class MainWindow
 
         label_server_ip.Content = Network.getServerIp()
 
-        If Network.commandCount > 2 Then
-            label_server_status.Content = Network.commandCount & " commands processed"
-        Else
-            label_server_status.Content = Server.status
-        End If
-
+        label_server_status.Content = Server.status
         label_server_version.Content = Server.getServerVersionName()
 
         If Updater.isUpdateAvailable Then
@@ -105,18 +101,22 @@ Class MainWindow
         Select Case Settings.backDesign
             Case Settings.OS_DEFAULT
                 'Auto detect
+                If Not Settings.lastBackDesign = Settings.OS_DEFAULT Then
+                    'Rostore last connected device OS back
+                    app.detectedOs = Settings.lastBackDesign
+                End If
                 Select Case app.detectedOs
                     Case Settings.OS_DEFAULT
                         Converter.setImageDrawable(image_back, "back.png")
                     Case Settings.OS_ANDROID
-                        Converter.setImageDrawable(image_back, "back.png")
+                        Converter.setImageDrawable(image_back, "back_android.png")
                     Case Settings.OS_BLACKBERRY
                         Converter.setImageDrawable(image_back, "back_bb.png")
                     Case Settings.OS_IOS
                         Converter.setImageDrawable(image_back, "back_ios.png")
                 End Select
             Case Settings.OS_ANDROID
-                Converter.setImageDrawable(image_back, "back.png")
+                Converter.setImageDrawable(image_back, "back_android.png")
             Case Settings.OS_BLACKBERRY
                 Converter.setImageDrawable(image_back, "back_bb.png")
             Case Settings.OS_IOS

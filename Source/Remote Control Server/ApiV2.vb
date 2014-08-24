@@ -185,12 +185,6 @@ Module ApiV2
             Case cmd_mouse_scroll
                 readableCommand = "Scroll"
                 Mouse.parseScroll(command.data)
-            Case cmd_mouse_down
-                readableCommand = "Move cursor"
-                Mouse.onMouseDown(command.data)
-            Case cmd_mouse_up
-                readableCommand = "Move cursor"
-                Mouse.onMouseUp()
             Case Else
                 readableCommand = "Click"
                 Mouse.parseClick(command.data)

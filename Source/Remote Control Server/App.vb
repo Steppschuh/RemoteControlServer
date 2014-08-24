@@ -9,7 +9,7 @@
     Public status As String = "Unknown"
     Public pin As String = ""
 
-    Public detectedOs As Byte = 0
+    Public detectedOs As Byte = Settings.OS_DEFAULT
 
     Public lastControl As String = "Unknown"
     Public lastCommand As String = "Unknown"
@@ -111,8 +111,9 @@
         ElseIf osVersion.ToLower.Contains("ios") Then
             detectedOs = Settings.OS_IOS
         Else
-            detectedOs = Settings.OS_DEFAULT
+            detectedOs = Settings.lastBackDesign
         End If
+        lastBackDesign = detectedOs
     End Sub
 
 End Class

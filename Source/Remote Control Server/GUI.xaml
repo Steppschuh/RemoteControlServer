@@ -176,11 +176,11 @@
 
         <Grid Name="grid_footer">
             <Label x:Name="label_tooltip" Content="" HorizontalAlignment="Center" Height="auto" Margin="85,578,70,0" VerticalAlignment="Top" Width="245" Foreground="#FF7C7C7C" HorizontalContentAlignment="Center" Opacity="0"/>
-            <Rectangle x:Name="button_footer_close" Style="{StaticResource footerItem}" Margin="85,546,0,0" Width="83"/>
-            <Rectangle x:Name="button_footer_home" Style="{StaticResource footerItem}" Margin="168,546,0,0" Width="79"/>
-            <Rectangle x:Name="button_footer_hide" Style="{StaticResource footerItem}" Margin="247,546,0,0" Width="83"/>
+            <Rectangle x:Name="button_footer_close" Style="{StaticResource footerItem}" Margin="85,546,0,0" Width="83" Height="27"/>
+            <Rectangle x:Name="button_footer_home" Style="{StaticResource footerItem}" Margin="168,546,0,0" Width="79" Height="27"/>
+            <Rectangle x:Name="button_footer_hide" Style="{StaticResource footerItem}" Margin="247,546,0,0" Width="83" Height="27"/>
         </Grid>
-        
+
         <WebBrowser x:Name="browser" HorizontalAlignment="Left" Height="111" Margin="10,579,0,0" VerticalAlignment="Top" Width="380" Visibility="Hidden"/>
     </Grid>
 </Window>
