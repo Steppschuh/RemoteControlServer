@@ -39,7 +39,6 @@ Partial Class SettingsWindow
         Me.cb_autostart = New System.Windows.Forms.CheckBox()
         Me.tab_protection = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.btn_showPin = New System.Windows.Forms.PictureBox()
         Me.tb_pin = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cb_usePin = New System.Windows.Forms.CheckBox()
@@ -83,7 +82,6 @@ Partial Class SettingsWindow
         Me.tab_slideshow = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.cb_cropBlackBorder = New System.Windows.Forms.CheckBox()
-        Me.img_pointer = New System.Windows.Forms.PictureBox()
         Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
         Me.cb_setPointerTo = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
@@ -97,7 +95,6 @@ Partial Class SettingsWindow
         Me.btn_ledOn = New System.Windows.Forms.Button()
         Me.btn_ledOff = New System.Windows.Forms.Button()
         Me.cb_updateAmbientColor = New System.Windows.Forms.CheckBox()
-        Me.pic_test = New System.Windows.Forms.PictureBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.btn_reopenPort = New System.Windows.Forms.Button()
         Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
@@ -130,6 +127,12 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.btn_showPin = New System.Windows.Forms.PictureBox()
+        Me.img_pointer = New System.Windows.Forms.PictureBox()
+        Me.pic_test = New System.Windows.Forms.PictureBox()
+        Me.cb_screen_blackwhite = New System.Windows.Forms.CheckBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -138,7 +141,6 @@ Partial Class SettingsWindow
         Me.GroupBox2.SuspendLayout()
         Me.tab_protection.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
-        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.tab_mouse.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -156,12 +158,10 @@ Partial Class SettingsWindow
         CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_slideshow.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_media.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.tab_misc.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -171,6 +171,9 @@ Partial Class SettingsWindow
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -184,7 +187,7 @@ Partial Class SettingsWindow
         Me.TabControlMain.Location = New System.Drawing.Point(0, 0)
         Me.TabControlMain.Name = "TabControlMain"
         Me.TabControlMain.SelectedIndex = 0
-        Me.TabControlMain.Size = New System.Drawing.Size(469, 342)
+        Me.TabControlMain.Size = New System.Drawing.Size(469, 375)
         Me.TabControlMain.TabIndex = 0
         '
         'tab_settings
@@ -193,7 +196,7 @@ Partial Class SettingsWindow
         Me.tab_settings.Location = New System.Drawing.Point(4, 22)
         Me.tab_settings.Name = "tab_settings"
         Me.tab_settings.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_settings.Size = New System.Drawing.Size(461, 316)
+        Me.tab_settings.Size = New System.Drawing.Size(461, 349)
         Me.tab_settings.TabIndex = 1
         Me.tab_settings.Text = "Settings"
         Me.tab_settings.UseVisualStyleBackColor = True
@@ -211,7 +214,7 @@ Partial Class SettingsWindow
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(455, 310)
+        Me.TabControl1.Size = New System.Drawing.Size(455, 343)
         Me.TabControl1.TabIndex = 0
         '
         'tab_general
@@ -222,7 +225,7 @@ Partial Class SettingsWindow
         Me.tab_general.Location = New System.Drawing.Point(4, 22)
         Me.tab_general.Name = "tab_general"
         Me.tab_general.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_general.Size = New System.Drawing.Size(447, 284)
+        Me.tab_general.Size = New System.Drawing.Size(447, 317)
         Me.tab_general.TabIndex = 2
         Me.tab_general.Text = "General"
         Me.tab_general.UseVisualStyleBackColor = True
@@ -230,7 +233,7 @@ Partial Class SettingsWindow
         'btn_appData
         '
         Me.btn_appData.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_appData.Location = New System.Drawing.Point(276, 255)
+        Me.btn_appData.Location = New System.Drawing.Point(276, 288)
         Me.btn_appData.Name = "btn_appData"
         Me.btn_appData.Size = New System.Drawing.Size(165, 23)
         Me.btn_appData.TabIndex = 3
@@ -350,7 +353,7 @@ Partial Class SettingsWindow
         Me.tab_protection.Location = New System.Drawing.Point(4, 22)
         Me.tab_protection.Name = "tab_protection"
         Me.tab_protection.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_protection.Size = New System.Drawing.Size(447, 284)
+        Me.tab_protection.Size = New System.Drawing.Size(447, 317)
         Me.tab_protection.TabIndex = 3
         Me.tab_protection.Text = "Protection"
         Me.tab_protection.UseVisualStyleBackColor = True
@@ -359,6 +362,7 @@ Partial Class SettingsWindow
         '
         Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.Label31)
         Me.GroupBox6.Controls.Add(Me.btn_showPin)
         Me.GroupBox6.Controls.Add(Me.tb_pin)
         Me.GroupBox6.Controls.Add(Me.Label6)
@@ -369,17 +373,6 @@ Partial Class SettingsWindow
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Pin"
-        '
-        'btn_showPin
-        '
-        Me.btn_showPin.Cursor = System.Windows.Forms.Cursors.Help
-        Me.btn_showPin.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_search
-        Me.btn_showPin.Location = New System.Drawing.Point(115, 61)
-        Me.btn_showPin.Name = "btn_showPin"
-        Me.btn_showPin.Size = New System.Drawing.Size(29, 26)
-        Me.btn_showPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btn_showPin.TabIndex = 3
-        Me.btn_showPin.TabStop = False
         '
         'tb_pin
         '
@@ -468,7 +461,7 @@ Partial Class SettingsWindow
         Me.tab_mouse.Location = New System.Drawing.Point(4, 22)
         Me.tab_mouse.Name = "tab_mouse"
         Me.tab_mouse.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_mouse.Size = New System.Drawing.Size(447, 284)
+        Me.tab_mouse.Size = New System.Drawing.Size(447, 317)
         Me.tab_mouse.TabIndex = 0
         Me.tab_mouse.Text = "Mouse"
         Me.tab_mouse.UseVisualStyleBackColor = True
@@ -589,12 +582,14 @@ Partial Class SettingsWindow
         '
         'tab_screen
         '
+        Me.tab_screen.Controls.Add(Me.Label25)
+        Me.tab_screen.Controls.Add(Me.cb_screen_blackwhite)
         Me.tab_screen.Controls.Add(Me.GroupBox9)
         Me.tab_screen.Controls.Add(Me.GroupBox10)
         Me.tab_screen.Location = New System.Drawing.Point(4, 22)
         Me.tab_screen.Name = "tab_screen"
         Me.tab_screen.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_screen.Size = New System.Drawing.Size(447, 284)
+        Me.tab_screen.Size = New System.Drawing.Size(447, 317)
         Me.tab_screen.TabIndex = 1
         Me.tab_screen.Text = "Screen"
         Me.tab_screen.UseVisualStyleBackColor = True
@@ -836,7 +831,7 @@ Partial Class SettingsWindow
         Me.tab_slideshow.Location = New System.Drawing.Point(4, 22)
         Me.tab_slideshow.Name = "tab_slideshow"
         Me.tab_slideshow.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_slideshow.Size = New System.Drawing.Size(447, 284)
+        Me.tab_slideshow.Size = New System.Drawing.Size(447, 317)
         Me.tab_slideshow.TabIndex = 4
         Me.tab_slideshow.Text = "Slideshow"
         Me.tab_slideshow.UseVisualStyleBackColor = True
@@ -868,19 +863,6 @@ Partial Class SettingsWindow
         Me.cb_cropBlackBorder.TabIndex = 7
         Me.cb_cropBlackBorder.Text = "Crop black border"
         Me.cb_cropBlackBorder.UseVisualStyleBackColor = True
-        '
-        'img_pointer
-        '
-        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
-        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
-        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
-        Me.img_pointer.Name = "img_pointer"
-        Me.img_pointer.Size = New System.Drawing.Size(69, 66)
-        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.img_pointer.TabIndex = 6
-        Me.img_pointer.TabStop = False
         '
         'dropDown_pointerDesign
         '
@@ -921,7 +903,7 @@ Partial Class SettingsWindow
         Me.tab_media.Location = New System.Drawing.Point(4, 22)
         Me.tab_media.Name = "tab_media"
         Me.tab_media.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_media.Size = New System.Drawing.Size(447, 284)
+        Me.tab_media.Size = New System.Drawing.Size(447, 317)
         Me.tab_media.TabIndex = 6
         Me.tab_media.Text = "Media"
         Me.tab_media.UseVisualStyleBackColor = True
@@ -968,12 +950,12 @@ Partial Class SettingsWindow
         'tab_misc
         '
         Me.tab_misc.Controls.Add(Me.GroupBox16)
-        Me.tab_misc.Controls.Add(Me.pic_test)
         Me.tab_misc.Controls.Add(Me.GroupBox15)
+        Me.tab_misc.Controls.Add(Me.pic_test)
         Me.tab_misc.Location = New System.Drawing.Point(4, 22)
         Me.tab_misc.Name = "tab_misc"
         Me.tab_misc.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_misc.Size = New System.Drawing.Size(447, 284)
+        Me.tab_misc.Size = New System.Drawing.Size(447, 317)
         Me.tab_misc.TabIndex = 5
         Me.tab_misc.Text = "Misc"
         Me.tab_misc.UseVisualStyleBackColor = True
@@ -1019,17 +1001,6 @@ Partial Class SettingsWindow
         Me.cb_updateAmbientColor.TabIndex = 0
         Me.cb_updateAmbientColor.Text = "Update ambient color"
         Me.cb_updateAmbientColor.UseVisualStyleBackColor = True
-        '
-        'pic_test
-        '
-        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pic_test.Location = New System.Drawing.Point(6, 198)
-        Me.pic_test.Name = "pic_test"
-        Me.pic_test.Size = New System.Drawing.Size(435, 80)
-        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic_test.TabIndex = 4
-        Me.pic_test.TabStop = False
         '
         'GroupBox15
         '
@@ -1102,7 +1073,7 @@ Partial Class SettingsWindow
         Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
         Me.tab_upgrade.Name = "tab_upgrade"
         Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_upgrade.Size = New System.Drawing.Size(461, 316)
+        Me.tab_upgrade.Size = New System.Drawing.Size(461, 349)
         Me.tab_upgrade.TabIndex = 2
         Me.tab_upgrade.Text = "Upgrade"
         Me.tab_upgrade.UseVisualStyleBackColor = True
@@ -1114,7 +1085,7 @@ Partial Class SettingsWindow
         Me.tab_update.Location = New System.Drawing.Point(4, 22)
         Me.tab_update.Name = "tab_update"
         Me.tab_update.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_update.Size = New System.Drawing.Size(461, 316)
+        Me.tab_update.Size = New System.Drawing.Size(461, 349)
         Me.tab_update.TabIndex = 4
         Me.tab_update.Text = "Update"
         Me.tab_update.UseVisualStyleBackColor = True
@@ -1235,7 +1206,7 @@ Partial Class SettingsWindow
         Me.tab_help.Location = New System.Drawing.Point(4, 22)
         Me.tab_help.Name = "tab_help"
         Me.tab_help.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_help.Size = New System.Drawing.Size(461, 316)
+        Me.tab_help.Size = New System.Drawing.Size(461, 349)
         Me.tab_help.TabIndex = 3
         Me.tab_help.Text = "Help"
         Me.tab_help.UseVisualStyleBackColor = True
@@ -1245,7 +1216,7 @@ Partial Class SettingsWindow
         Me.Label29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label29.ForeColor = System.Drawing.Color.Maroon
-        Me.Label29.Location = New System.Drawing.Point(6, 251)
+        Me.Label29.Location = New System.Drawing.Point(6, 284)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(449, 60)
         Me.Label29.TabIndex = 9
@@ -1371,7 +1342,7 @@ Partial Class SettingsWindow
         Me.tab_log.Location = New System.Drawing.Point(4, 22)
         Me.tab_log.Name = "tab_log"
         Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_log.Size = New System.Drawing.Size(461, 316)
+        Me.tab_log.Size = New System.Drawing.Size(461, 349)
         Me.tab_log.TabIndex = 0
         Me.tab_log.Text = "Log"
         Me.tab_log.UseVisualStyleBackColor = True
@@ -1386,15 +1357,80 @@ Partial Class SettingsWindow
         Me.tb_log.Name = "tb_log"
         Me.tb_log.ReadOnly = True
         Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.tb_log.Size = New System.Drawing.Size(455, 310)
+        Me.tb_log.Size = New System.Drawing.Size(455, 343)
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
+        '
+        'btn_showPin
+        '
+        Me.btn_showPin.Cursor = System.Windows.Forms.Cursors.Help
+        Me.btn_showPin.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_search
+        Me.btn_showPin.Location = New System.Drawing.Point(115, 61)
+        Me.btn_showPin.Name = "btn_showPin"
+        Me.btn_showPin.Size = New System.Drawing.Size(29, 26)
+        Me.btn_showPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_showPin.TabIndex = 3
+        Me.btn_showPin.TabStop = False
+        '
+        'img_pointer
+        '
+        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
+        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
+        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
+        Me.img_pointer.Name = "img_pointer"
+        Me.img_pointer.Size = New System.Drawing.Size(69, 66)
+        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.img_pointer.TabIndex = 6
+        Me.img_pointer.TabStop = False
+        '
+        'pic_test
+        '
+        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pic_test.Location = New System.Drawing.Point(6, 198)
+        Me.pic_test.Name = "pic_test"
+        Me.pic_test.Size = New System.Drawing.Size(435, 80)
+        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic_test.TabIndex = 4
+        Me.pic_test.TabStop = False
+        '
+        'cb_screen_blackwhite
+        '
+        Me.cb_screen_blackwhite.AutoSize = True
+        Me.cb_screen_blackwhite.Location = New System.Drawing.Point(15, 287)
+        Me.cb_screen_blackwhite.Name = "cb_screen_blackwhite"
+        Me.cb_screen_blackwhite.Size = New System.Drawing.Size(123, 17)
+        Me.cb_screen_blackwhite.TabIndex = 10
+        Me.cb_screen_blackwhite.Text = "Convert to greyscale"
+        Me.cb_screen_blackwhite.UseVisualStyleBackColor = True
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.ForeColor = System.Drawing.Color.DimGray
+        Me.Label25.Location = New System.Drawing.Point(144, 288)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(207, 13)
+        Me.Label25.TabIndex = 11
+        Me.Label25.Text = "(improves performance on weak networks)"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label31.Location = New System.Drawing.Point(99, 42)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(231, 13)
+        Me.Label31.TabIndex = 12
+        Me.Label31.Text = "(caution: may not be supported by your app yet)"
         '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(469, 342)
+        Me.ClientSize = New System.Drawing.Size(469, 375)
         Me.Controls.Add(Me.TabControlMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1414,7 +1450,6 @@ Partial Class SettingsWindow
         Me.tab_protection.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
-        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.tab_mouse.ResumeLayout(False)
@@ -1427,6 +1462,7 @@ Partial Class SettingsWindow
         CType(Me.track_mouse_acceleration, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.track_mouse_sensitivity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_screen.ResumeLayout(False)
+        Me.tab_screen.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
         CType(Me.track_screen_scale_full, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1438,14 +1474,12 @@ Partial Class SettingsWindow
         Me.tab_slideshow.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_media.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
         Me.tab_misc.ResumeLayout(False)
         Me.GroupBox16.ResumeLayout(False)
         Me.GroupBox16.PerformLayout()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
         Me.tab_update.ResumeLayout(False)
@@ -1458,6 +1492,9 @@ Partial Class SettingsWindow
         Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1568,4 +1605,7 @@ Partial Class SettingsWindow
     Friend WithEvents btn_browseDefaultPlayer As System.Windows.Forms.Button
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents tb_defaultPlayer As System.Windows.Forms.TextBox
+    Friend WithEvents cb_screen_blackwhite As System.Windows.Forms.CheckBox
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents Label31 As System.Windows.Forms.Label
 End Class

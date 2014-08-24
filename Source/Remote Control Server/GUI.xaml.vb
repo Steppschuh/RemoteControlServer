@@ -18,6 +18,8 @@ Class MainWindow
 #Region "Form Methods"
 
     Public Sub initialize()
+        System.Windows.Forms.Application.EnableVisualStyles()
+
         userName = Server.getServerName()
         Server.initialize(Me)
 

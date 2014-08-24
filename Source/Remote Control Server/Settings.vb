@@ -40,6 +40,7 @@ Module Settings
     Public screenQualityFull As Byte = 50
     Public screenScale As Single = 0.5
     Public screenScaleFull As Single = 1
+    Public screenBlackWhite As Boolean = False
 
     'Slideshow
     Public clickOnLaserUp As Boolean = False
@@ -50,7 +51,7 @@ Module Settings
     Public defaultMediaPlayer As String = ""
 
     'Misc
-    Public serialPortName As String = "COM7"
+    Public serialPortName As String = "COM3"
     Public serialCommands As Boolean = False
     Public updateAmbientColor As Boolean = False
 
@@ -141,6 +142,7 @@ Module Settings
             appendSetting("screenQualityFull", screenQualityFull.ToString, sw)
             appendSetting("screenScale", screenScale.ToString, sw)
             appendSetting("screenScaleFull", screenScaleFull.ToString, sw)
+            appendSetting("screenBlackWhite", Converter.boolToString(screenBlackWhite), sw)
             sw.WriteLine()
 
             'Slideshow
@@ -252,8 +254,9 @@ Module Settings
         ElseIf name.Equals("screenScale") Then
             screenScale = Single.Parse(value)
         ElseIf name.Equals("screenScaleFull") Then
-            'screenScaleFull = Single.Parse(value)
             screenScaleFull = 1
+        ElseIf name.Equals("screenBlackWhite") Then
+            screenBlackWhite = Converter.stringToBool(value)
 
             'Slideshow
         ElseIf name.Equals("clickOnLaserUp") Then

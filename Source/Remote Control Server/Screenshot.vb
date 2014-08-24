@@ -40,9 +40,7 @@ Module Screenshot
             screenGrab = bm_dest
 
             'Greyscale
-            Dim convertToGreyScale As Boolean = True
-
-            If convertToGreyScale Then
+            If Settings.screenBlackWhite Then
                 screenGrab = convertToGrayscale(screenGrab)
             End If
 

@@ -37,6 +37,7 @@
         track_screen_scale.Value = Settings.screenScale * 100
         track_screen_quality_full.Value = Settings.screenQualityFull
         track_screen_scale_full.Value = Settings.screenScaleFull * 100
+        cb_screen_blackwhite.Checked = Settings.screenBlackWhite
 
         '   Slideshow
         cb_clickOnLaserUp.Checked = Settings.clickOnLaserUp
@@ -189,6 +190,10 @@
         Settings.screenScaleFull = track_screen_scale_full.Value / 100
     End Sub
 
+    Private Sub cb_screen_blackwhite_CheckedChanged(sender As Object, e As EventArgs) Handles cb_screen_blackwhite.CheckedChanged
+        Settings.screenBlackWhite = cb_screen_blackwhite.Checked
+    End Sub
+
 #End Region
 
 #Region "Slideshow settings"
@@ -322,5 +327,6 @@
 
 #End Region
 
+    
     
 End Class
