@@ -9,7 +9,7 @@
     Public status As String = "Unknown"
     Public pin As String = ""
 
-    Public detectedOs As Byte = Settings.OS_DEFAULT
+    Public detectedOs As Byte = Settings.OS_AUTO
 
     Public lastControl As String = "Unknown"
     Public lastCommand As String = "Unknown"
@@ -28,6 +28,7 @@
         Else
             Logger.trackEevent("App", "Connect", appName & " " & appVersion & " on a " & deviceName)
         End If
+        Settings.showGuide = False
     End Sub
 
     Public Sub onDisconnect()

@@ -26,6 +26,10 @@ Class MainWindow
         refreshUi()
         startRefreshUiTimer()
 
+        If Settings.showGuide Then
+            Server.showAdvancedWindow(Server.advanced.tab_ip)
+        End If
+
         If Settings.startMinimized Then
             hideUi()
         End If
@@ -90,7 +94,7 @@ Class MainWindow
 
         image_app_device.Visibility = Windows.Visibility.Visible
         Select Case app.detectedOs
-            Case Settings.OS_DEFAULT
+            Case Settings.OS_AUTO
                 image_app_device.Visibility = Windows.Visibility.Hidden
             Case Settings.OS_ANDROID
                 Converter.setImageDrawable(image_app_device, "icon_android.png")
@@ -101,14 +105,14 @@ Class MainWindow
         End Select
 
         Select Case Settings.backDesign
-            Case Settings.OS_DEFAULT
+            Case Settings.OS_AUTO
                 'Auto detect
-                If Not Settings.lastBackDesign = Settings.OS_DEFAULT Then
+                If Not Settings.lastBackDesign = Settings.OS_AUTO Then
                     'Rostore last connected device OS back
                     app.detectedOs = Settings.lastBackDesign
                 End If
                 Select Case app.detectedOs
-                    Case Settings.OS_DEFAULT
+                    Case Settings.OS_AUTO
                         Converter.setImageDrawable(image_back, "back.png")
                     Case Settings.OS_ANDROID
                         Converter.setImageDrawable(image_back, "back_android.png")
@@ -123,6 +127,8 @@ Class MainWindow
                 Converter.setImageDrawable(image_back, "back_bb.png")
             Case Settings.OS_IOS
                 Converter.setImageDrawable(image_back, "back_ios.png")
+            Case Settings.OS_GENERAL
+                Converter.setImageDrawable(image_back, "back.png")
         End Select
 
     End Sub

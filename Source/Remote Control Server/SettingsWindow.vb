@@ -83,6 +83,9 @@
 
         'Help
 
+        'IP
+        label_IP_address.Text = Network.getServerIp()
+
     End Sub
 
 #Region "Events"
@@ -302,12 +305,22 @@
 
 #Region "Help"
 
-    Private Sub btn_help_setupguide_Click(sender As Object, e As EventArgs) Handles btn_help_setupguide.Click
+    Private Sub btn_help_help_Click(sender As Object, e As EventArgs) Handles btn_help_help.Click
+        Logger.trackEevent("Server", "Click", "Help page")
+        Process.Start("http://remote-control-collection.com/help/")
+    End Sub
+
+    Private Sub btn_help_faq_Click(sender As Object, e As EventArgs) Handles btn_help_faq.Click
+        Logger.trackEevent("Server", "Click", "FAQ page")
+        Process.Start("http://remote-control-collection.com/help/faq/")
+    End Sub
+
+    Private Sub btn_help_setupguide_Click(sender As Object, e As EventArgs)
         Logger.trackEevent("Server", "Click", "Setup guide")
         Process.Start("http://remote-control-collection.com/help/connect/")
     End Sub
 
-    Private Sub btn_help_troubleshooting_Click(sender As Object, e As EventArgs) Handles btn_help_troubleshooting.Click
+    Private Sub btn_help_troubleshooting_Click(sender As Object, e As EventArgs)
         Logger.trackEevent("Server", "Click", "Troubleshooting")
         Process.Start("http://remote-control-collection.com/help/troubleshooting/")
     End Sub
@@ -325,8 +338,35 @@
 
 #End Region
 
+#Region "Upgrade"
+
+    Private Sub btn_upgrade_help_code_Click(sender As Object, e As EventArgs) Handles btn_upgrade_help_code.Click
+        Logger.trackEevent("Server", "Click", "Help Code")
+        Process.Start("http://remote-control-collection.com/help/code/")
+    End Sub
+
+    Private Sub btn_upgrade_get_code_Click(sender As Object, e As EventArgs) Handles btn_upgrade_get_code.Click
+        Logger.trackEevent("Server", "Click", "Get Code")
+        Process.Start("http://code.remote-control-collection.com/")
+    End Sub
+
+    Private Sub btn_upgrade_android_Click(sender As Object, e As EventArgs) Handles btn_upgrade_android.Click
+        Logger.trackEevent("Server", "Click", "Upgrade Android")
+        Process.Start("http://remote-control-collection.com/download/app/android/")
+    End Sub
+
+    Private Sub btn_upgrade_ios_Click(sender As Object, e As EventArgs) Handles btn_upgrade_ios.Click
+        Logger.trackEevent("Server", "Click", "Upgrade iOS")
+        Process.Start("http://remote-control-collection.com/download/app/ios/")
+    End Sub
+
+    Private Sub btn_upgrade_bb_Click(sender As Object, e As EventArgs) Handles btn_upgrade_bb.Click
+        Logger.trackEevent("Server", "Click", "Upgrade BlackBerry")
+        Process.Start("http://remote-control-collection.com/download/app/bb/")
+    End Sub
+
 #End Region
 
-    
-    
+#End Region
+
 End Class

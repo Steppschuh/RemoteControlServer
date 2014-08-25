@@ -98,6 +98,12 @@
     <Compile Include="Command.vb" />
     <Compile Include="Converter.vb" />
     <Compile Include="Helper.vb" />
+    <Compile Include="IpWindow.Designer.vb">
+      <DependentUpon>IpWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IpWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Logger.vb" />
     <Compile Include="Media.vb" />
     <Compile Include="Mouse.vb" />
@@ -188,6 +194,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="IpWindow.resx">
+      <DependentUpon>IpWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -327,9 +336,6 @@
     <Resource Include="Resources\back_ios.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Remote Control Server Updater.exe" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\icon_072.png" />
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +348,9 @@
     <Resource Include="Resources\back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remote Control Server Updater.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -39,6 +39,8 @@ Partial Class SettingsWindow
         Me.cb_autostart = New System.Windows.Forms.CheckBox()
         Me.tab_protection = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.btn_showPin = New System.Windows.Forms.PictureBox()
         Me.tb_pin = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cb_usePin = New System.Windows.Forms.CheckBox()
@@ -59,6 +61,8 @@ Partial Class SettingsWindow
         Me.Label2 = New System.Windows.Forms.Label()
         Me.track_mouse_sensitivity = New System.Windows.Forms.TrackBar()
         Me.tab_screen = New System.Windows.Forms.TabPage()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.cb_screen_blackwhite = New System.Windows.Forms.CheckBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -82,6 +86,7 @@ Partial Class SettingsWindow
         Me.tab_slideshow = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.cb_cropBlackBorder = New System.Windows.Forms.CheckBox()
+        Me.img_pointer = New System.Windows.Forms.PictureBox()
         Me.dropDown_pointerDesign = New System.Windows.Forms.ComboBox()
         Me.cb_setPointerTo = New System.Windows.Forms.CheckBox()
         Me.cb_clickOnLaserUp = New System.Windows.Forms.CheckBox()
@@ -101,6 +106,7 @@ Partial Class SettingsWindow
         Me.tb_serialPortName = New System.Windows.Forms.TextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
+        Me.pic_test = New System.Windows.Forms.PictureBox()
         Me.tab_upgrade = New System.Windows.Forms.TabPage()
         Me.tab_update = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -121,18 +127,31 @@ Partial Class SettingsWindow
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.btn_help_contact = New System.Windows.Forms.Button()
+        Me.tab_log = New System.Windows.Forms.TabPage()
+        Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.tab_ip = New System.Windows.Forms.TabPage()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.label_IP_address = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.btn_help_setupguide = New System.Windows.Forms.Button()
         Me.btn_help_troubleshooting = New System.Windows.Forms.Button()
-        Me.tab_log = New System.Windows.Forms.TabPage()
-        Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.btn_showPin = New System.Windows.Forms.PictureBox()
-        Me.img_pointer = New System.Windows.Forms.PictureBox()
-        Me.pic_test = New System.Windows.Forms.PictureBox()
-        Me.cb_screen_blackwhite = New System.Windows.Forms.CheckBox()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
+        Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.btn_help_help = New System.Windows.Forms.Button()
+        Me.btn_help_faq = New System.Windows.Forms.Button()
+        Me.GroupBox21 = New System.Windows.Forms.GroupBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.btn_upgrade_help_code = New System.Windows.Forms.Button()
+        Me.btn_upgrade_get_code = New System.Windows.Forms.Button()
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.btn_upgrade_android = New System.Windows.Forms.PictureBox()
+        Me.btn_upgrade_ios = New System.Windows.Forms.PictureBox()
+        Me.btn_upgrade_bb = New System.Windows.Forms.PictureBox()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -141,6 +160,7 @@ Partial Class SettingsWindow
         Me.GroupBox2.SuspendLayout()
         Me.tab_protection.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.tab_mouse.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -158,22 +178,30 @@ Partial Class SettingsWindow
         CType(Me.track_screen_quality, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_slideshow.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_media.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.tab_misc.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tab_upgrade.SuspendLayout()
         Me.tab_update.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.tab_help.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
-        Me.GroupBox11.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tab_ip.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        Me.GroupBox19.SuspendLayout()
+        Me.GroupBox21.SuspendLayout()
+        Me.GroupBox20.SuspendLayout()
+        CType(Me.btn_upgrade_android, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btn_upgrade_ios, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btn_upgrade_bb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -182,6 +210,7 @@ Partial Class SettingsWindow
         Me.TabControlMain.Controls.Add(Me.tab_upgrade)
         Me.TabControlMain.Controls.Add(Me.tab_update)
         Me.TabControlMain.Controls.Add(Me.tab_help)
+        Me.TabControlMain.Controls.Add(Me.tab_ip)
         Me.TabControlMain.Controls.Add(Me.tab_log)
         Me.TabControlMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlMain.Location = New System.Drawing.Point(0, 0)
@@ -258,7 +287,7 @@ Partial Class SettingsWindow
         'dropDown_backDesign
         '
         Me.dropDown_backDesign.FormattingEnabled = True
-        Me.dropDown_backDesign.Items.AddRange(New Object() {"Auto", "Android", "BlackBerry", "iOS"})
+        Me.dropDown_backDesign.Items.AddRange(New Object() {"Auto select", "Android", "BlackBerry", "iOS", "Default"})
         Me.dropDown_backDesign.Location = New System.Drawing.Point(149, 63)
         Me.dropDown_backDesign.Name = "dropDown_backDesign"
         Me.dropDown_backDesign.Size = New System.Drawing.Size(121, 21)
@@ -373,6 +402,27 @@ Partial Class SettingsWindow
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Pin"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label31.Location = New System.Drawing.Point(99, 42)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(231, 13)
+        Me.Label31.TabIndex = 12
+        Me.Label31.Text = "(caution: may not be supported by your app yet)"
+        '
+        'btn_showPin
+        '
+        Me.btn_showPin.Cursor = System.Windows.Forms.Cursors.Help
+        Me.btn_showPin.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_search
+        Me.btn_showPin.Location = New System.Drawing.Point(115, 61)
+        Me.btn_showPin.Name = "btn_showPin"
+        Me.btn_showPin.Size = New System.Drawing.Size(29, 26)
+        Me.btn_showPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_showPin.TabIndex = 3
+        Me.btn_showPin.TabStop = False
         '
         'tb_pin
         '
@@ -593,6 +643,26 @@ Partial Class SettingsWindow
         Me.tab_screen.TabIndex = 1
         Me.tab_screen.Text = "Screen"
         Me.tab_screen.UseVisualStyleBackColor = True
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.ForeColor = System.Drawing.Color.DimGray
+        Me.Label25.Location = New System.Drawing.Point(144, 288)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(207, 13)
+        Me.Label25.TabIndex = 11
+        Me.Label25.Text = "(improves performance on weak networks)"
+        '
+        'cb_screen_blackwhite
+        '
+        Me.cb_screen_blackwhite.AutoSize = True
+        Me.cb_screen_blackwhite.Location = New System.Drawing.Point(15, 287)
+        Me.cb_screen_blackwhite.Name = "cb_screen_blackwhite"
+        Me.cb_screen_blackwhite.Size = New System.Drawing.Size(123, 17)
+        Me.cb_screen_blackwhite.TabIndex = 10
+        Me.cb_screen_blackwhite.Text = "Convert to greyscale"
+        Me.cb_screen_blackwhite.UseVisualStyleBackColor = True
         '
         'GroupBox9
         '
@@ -864,6 +934,19 @@ Partial Class SettingsWindow
         Me.cb_cropBlackBorder.Text = "Crop black border"
         Me.cb_cropBlackBorder.UseVisualStyleBackColor = True
         '
+        'img_pointer
+        '
+        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
+        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
+        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
+        Me.img_pointer.Name = "img_pointer"
+        Me.img_pointer.Size = New System.Drawing.Size(69, 66)
+        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.img_pointer.TabIndex = 6
+        Me.img_pointer.TabStop = False
+        '
         'dropDown_pointerDesign
         '
         Me.dropDown_pointerDesign.FormattingEnabled = True
@@ -1068,8 +1151,21 @@ Partial Class SettingsWindow
         Me.cb_serialCommands.Text = "Enable serial port commands"
         Me.cb_serialCommands.UseVisualStyleBackColor = True
         '
+        'pic_test
+        '
+        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pic_test.Location = New System.Drawing.Point(6, 198)
+        Me.pic_test.Name = "pic_test"
+        Me.pic_test.Size = New System.Drawing.Size(435, 80)
+        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic_test.TabIndex = 4
+        Me.pic_test.TabStop = False
+        '
         'tab_upgrade
         '
+        Me.tab_upgrade.Controls.Add(Me.GroupBox20)
+        Me.tab_upgrade.Controls.Add(Me.GroupBox21)
         Me.tab_upgrade.Location = New System.Drawing.Point(4, 22)
         Me.tab_upgrade.Name = "tab_upgrade"
         Me.tab_upgrade.Padding = New System.Windows.Forms.Padding(3)
@@ -1112,7 +1208,7 @@ Partial Class SettingsWindow
         Me.btn_update_changelog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_update_changelog.Location = New System.Drawing.Point(6, 62)
         Me.btn_update_changelog.Name = "btn_update_changelog"
-        Me.btn_update_changelog.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_changelog.Size = New System.Drawing.Size(206, 23)
         Me.btn_update_changelog.TabIndex = 5
         Me.btn_update_changelog.Text = "Show changelog"
         Me.btn_update_changelog.UseVisualStyleBackColor = True
@@ -1120,9 +1216,9 @@ Partial Class SettingsWindow
         'btn_update_install
         '
         Me.btn_update_install.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_update_install.Location = New System.Drawing.Point(231, 62)
+        Me.btn_update_install.Location = New System.Drawing.Point(238, 62)
         Me.btn_update_install.Name = "btn_update_install"
-        Me.btn_update_install.Size = New System.Drawing.Size(212, 23)
+        Me.btn_update_install.Size = New System.Drawing.Size(205, 23)
         Me.btn_update_install.TabIndex = 4
         Me.btn_update_install.Text = "Install the latest Version"
         Me.btn_update_install.UseVisualStyleBackColor = True
@@ -1199,10 +1295,10 @@ Partial Class SettingsWindow
         '
         'tab_help
         '
+        Me.tab_help.Controls.Add(Me.GroupBox19)
         Me.tab_help.Controls.Add(Me.Label29)
         Me.tab_help.Controls.Add(Me.GroupBox13)
         Me.tab_help.Controls.Add(Me.GroupBox12)
-        Me.tab_help.Controls.Add(Me.GroupBox11)
         Me.tab_help.Location = New System.Drawing.Point(4, 22)
         Me.tab_help.Name = "tab_help"
         Me.tab_help.Padding = New System.Windows.Forms.Padding(3)
@@ -1216,9 +1312,9 @@ Partial Class SettingsWindow
         Me.Label29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label29.ForeColor = System.Drawing.Color.Maroon
-        Me.Label29.Location = New System.Drawing.Point(6, 284)
+        Me.Label29.Location = New System.Drawing.Point(6, 286)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(449, 60)
+        Me.Label29.Size = New System.Drawing.Size(449, 58)
         Me.Label29.TabIndex = 9
         Me.Label29.Text = "Please include as much information as possible when contacting us!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will hel" & _
     "p us solve your issue faster."
@@ -1292,17 +1388,105 @@ Partial Class SettingsWindow
         Me.btn_help_contact.Text = "Contact us"
         Me.btn_help_contact.UseVisualStyleBackColor = True
         '
+        'tab_log
+        '
+        Me.tab_log.Controls.Add(Me.tb_log)
+        Me.tab_log.Location = New System.Drawing.Point(4, 22)
+        Me.tab_log.Name = "tab_log"
+        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_log.Size = New System.Drawing.Size(461, 349)
+        Me.tab_log.TabIndex = 0
+        Me.tab_log.Text = "Log"
+        Me.tab_log.UseVisualStyleBackColor = True
+        '
+        'tb_log
+        '
+        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tb_log.ForeColor = System.Drawing.Color.White
+        Me.tb_log.Location = New System.Drawing.Point(3, 3)
+        Me.tb_log.Multiline = True
+        Me.tb_log.Name = "tb_log"
+        Me.tb_log.ReadOnly = True
+        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.tb_log.Size = New System.Drawing.Size(455, 343)
+        Me.tb_log.TabIndex = 0
+        Me.tb_log.Text = "Log"
+        '
+        'tab_ip
+        '
+        Me.tab_ip.Controls.Add(Me.GroupBox11)
+        Me.tab_ip.Controls.Add(Me.GroupBox18)
+        Me.tab_ip.Location = New System.Drawing.Point(4, 22)
+        Me.tab_ip.Name = "tab_ip"
+        Me.tab_ip.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab_ip.Size = New System.Drawing.Size(461, 349)
+        Me.tab_ip.TabIndex = 5
+        Me.tab_ip.Text = "Connect"
+        Me.tab_ip.UseVisualStyleBackColor = True
+        '
+        'Label32
+        '
+        Me.Label32.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label32.ForeColor = System.Drawing.Color.Gray
+        Me.Label32.Location = New System.Drawing.Point(6, 132)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(437, 34)
+        Me.Label32.TabIndex = 9
+        Me.Label32.Text = "( include the dots )"
+        Me.Label32.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'label_IP_address
+        '
+        Me.label_IP_address.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.label_IP_address.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label_IP_address.ForeColor = System.Drawing.Color.DeepSkyBlue
+        Me.label_IP_address.Location = New System.Drawing.Point(6, 88)
+        Me.label_IP_address.Name = "label_IP_address"
+        Me.label_IP_address.Size = New System.Drawing.Size(437, 43)
+        Me.label_IP_address.TabIndex = 8
+        Me.label_IP_address.Text = "Unknown"
+        Me.label_IP_address.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label33
+        '
+        Me.Label33.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label33.Location = New System.Drawing.Point(6, 16)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(437, 49)
+        Me.Label33.TabIndex = 7
+        Me.Label33.Text = "To connect with this PC, add the following IP address as a new Server in the Remo" & _
+    "te Control app. Your devices need to be connected to the same network."
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox18.Controls.Add(Me.Label33)
+        Me.GroupBox18.Controls.Add(Me.Label32)
+        Me.GroupBox18.Controls.Add(Me.label_IP_address)
+        Me.GroupBox18.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(449, 206)
+        Me.GroupBox18.TabIndex = 10
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "Server IP Address"
+        '
         'GroupBox11
         '
-        Me.GroupBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox11.Controls.Add(Me.Label26)
         Me.GroupBox11.Controls.Add(Me.btn_help_setupguide)
         Me.GroupBox11.Controls.Add(Me.btn_help_troubleshooting)
-        Me.GroupBox11.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox11.Location = New System.Drawing.Point(6, 218)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Size = New System.Drawing.Size(449, 123)
-        Me.GroupBox11.TabIndex = 4
+        Me.GroupBox11.TabIndex = 11
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Setting up a connection"
         '
@@ -1336,95 +1520,166 @@ Partial Class SettingsWindow
         Me.btn_help_troubleshooting.Text = "Troubleshooting"
         Me.btn_help_troubleshooting.UseVisualStyleBackColor = True
         '
-        'tab_log
+        'GroupBox19
         '
-        Me.tab_log.Controls.Add(Me.tb_log)
-        Me.tab_log.Location = New System.Drawing.Point(4, 22)
-        Me.tab_log.Name = "tab_log"
-        Me.tab_log.Padding = New System.Windows.Forms.Padding(3)
-        Me.tab_log.Size = New System.Drawing.Size(461, 349)
-        Me.tab_log.TabIndex = 0
-        Me.tab_log.Text = "Log"
-        Me.tab_log.UseVisualStyleBackColor = True
-        '
-        'tb_log
-        '
-        Me.tb_log.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.tb_log.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tb_log.ForeColor = System.Drawing.Color.White
-        Me.tb_log.Location = New System.Drawing.Point(3, 3)
-        Me.tb_log.Multiline = True
-        Me.tb_log.Name = "tb_log"
-        Me.tb_log.ReadOnly = True
-        Me.tb_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.tb_log.Size = New System.Drawing.Size(455, 343)
-        Me.tb_log.TabIndex = 0
-        Me.tb_log.Text = "Log"
-        '
-        'btn_showPin
-        '
-        Me.btn_showPin.Cursor = System.Windows.Forms.Cursors.Help
-        Me.btn_showPin.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_search
-        Me.btn_showPin.Location = New System.Drawing.Point(115, 61)
-        Me.btn_showPin.Name = "btn_showPin"
-        Me.btn_showPin.Size = New System.Drawing.Size(29, 26)
-        Me.btn_showPin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btn_showPin.TabIndex = 3
-        Me.btn_showPin.TabStop = False
-        '
-        'img_pointer
-        '
-        Me.img_pointer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.GroupBox19.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.img_pointer.Cursor = System.Windows.Forms.Cursors.Help
-        Me.img_pointer.Image = Global.RemoteControlServer.My.Resources.Resources.ic_action_help
-        Me.img_pointer.Location = New System.Drawing.Point(360, 16)
-        Me.img_pointer.Name = "img_pointer"
-        Me.img_pointer.Size = New System.Drawing.Size(69, 66)
-        Me.img_pointer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.img_pointer.TabIndex = 6
-        Me.img_pointer.TabStop = False
+        Me.GroupBox19.Controls.Add(Me.Label34)
+        Me.GroupBox19.Controls.Add(Me.btn_help_help)
+        Me.GroupBox19.Controls.Add(Me.btn_help_faq)
+        Me.GroupBox19.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(449, 123)
+        Me.GroupBox19.TabIndex = 12
+        Me.GroupBox19.TabStop = False
+        Me.GroupBox19.Text = "Help"
         '
-        'pic_test
+        'Label34
         '
-        Me.pic_test.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Label34.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pic_test.Location = New System.Drawing.Point(6, 198)
-        Me.pic_test.Name = "pic_test"
-        Me.pic_test.Size = New System.Drawing.Size(435, 80)
-        Me.pic_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic_test.TabIndex = 4
-        Me.pic_test.TabStop = False
+        Me.Label34.Location = New System.Drawing.Point(6, 16)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(437, 78)
+        Me.Label34.TabIndex = 6
+        Me.Label34.Text = resources.GetString("Label34.Text")
         '
-        'cb_screen_blackwhite
+        'btn_help_help
         '
-        Me.cb_screen_blackwhite.AutoSize = True
-        Me.cb_screen_blackwhite.Location = New System.Drawing.Point(15, 287)
-        Me.cb_screen_blackwhite.Name = "cb_screen_blackwhite"
-        Me.cb_screen_blackwhite.Size = New System.Drawing.Size(123, 17)
-        Me.cb_screen_blackwhite.TabIndex = 10
-        Me.cb_screen_blackwhite.Text = "Convert to greyscale"
-        Me.cb_screen_blackwhite.UseVisualStyleBackColor = True
+        Me.btn_help_help.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_help.Location = New System.Drawing.Point(6, 94)
+        Me.btn_help_help.Name = "btn_help_help"
+        Me.btn_help_help.Size = New System.Drawing.Size(206, 23)
+        Me.btn_help_help.TabIndex = 5
+        Me.btn_help_help.Text = "Help Page"
+        Me.btn_help_help.UseVisualStyleBackColor = True
         '
-        'Label25
+        'btn_help_faq
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.ForeColor = System.Drawing.Color.DimGray
-        Me.Label25.Location = New System.Drawing.Point(144, 288)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(207, 13)
-        Me.Label25.TabIndex = 11
-        Me.Label25.Text = "(improves performance on weak networks)"
+        Me.btn_help_faq.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_help_faq.Location = New System.Drawing.Point(238, 94)
+        Me.btn_help_faq.Name = "btn_help_faq"
+        Me.btn_help_faq.Size = New System.Drawing.Size(205, 23)
+        Me.btn_help_faq.TabIndex = 4
+        Me.btn_help_faq.Text = "FAQ Page"
+        Me.btn_help_faq.UseVisualStyleBackColor = True
         '
-        'Label31
+        'GroupBox21
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.ForeColor = System.Drawing.Color.DarkRed
-        Me.Label31.Location = New System.Drawing.Point(99, 42)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(231, 13)
-        Me.Label31.TabIndex = 12
-        Me.Label31.Text = "(caution: may not be supported by your app yet)"
+        Me.GroupBox21.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox21.Controls.Add(Me.Label36)
+        Me.GroupBox21.Controls.Add(Me.btn_upgrade_help_code)
+        Me.GroupBox21.Controls.Add(Me.btn_upgrade_get_code)
+        Me.GroupBox21.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox21.Name = "GroupBox21"
+        Me.GroupBox21.Size = New System.Drawing.Size(449, 123)
+        Me.GroupBox21.TabIndex = 14
+        Me.GroupBox21.TabStop = False
+        Me.GroupBox21.Text = "Unlock Code"
+        '
+        'Label36
+        '
+        Me.Label36.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label36.Location = New System.Drawing.Point(6, 16)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(437, 60)
+        Me.Label36.TabIndex = 6
+        Me.Label36.Text = "Activate an unlock code in the ""Upgrade"" section of the Remote Control Collection" & _
+    " app to unlock the advanced remotes." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You can get a free trial code from our F" & _
+    "acebook page."
+        '
+        'btn_upgrade_help_code
+        '
+        Me.btn_upgrade_help_code.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_upgrade_help_code.Location = New System.Drawing.Point(6, 94)
+        Me.btn_upgrade_help_code.Name = "btn_upgrade_help_code"
+        Me.btn_upgrade_help_code.Size = New System.Drawing.Size(206, 23)
+        Me.btn_upgrade_help_code.TabIndex = 5
+        Me.btn_upgrade_help_code.Text = "How to activate a Code"
+        Me.btn_upgrade_help_code.UseVisualStyleBackColor = True
+        '
+        'btn_upgrade_get_code
+        '
+        Me.btn_upgrade_get_code.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_upgrade_get_code.Location = New System.Drawing.Point(238, 94)
+        Me.btn_upgrade_get_code.Name = "btn_upgrade_get_code"
+        Me.btn_upgrade_get_code.Size = New System.Drawing.Size(205, 23)
+        Me.btn_upgrade_get_code.TabIndex = 4
+        Me.btn_upgrade_get_code.Text = "Get a free Code"
+        Me.btn_upgrade_get_code.UseVisualStyleBackColor = True
+        '
+        'GroupBox20
+        '
+        Me.GroupBox20.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox20.Controls.Add(Me.Label37)
+        Me.GroupBox20.Controls.Add(Me.btn_upgrade_bb)
+        Me.GroupBox20.Controls.Add(Me.btn_upgrade_ios)
+        Me.GroupBox20.Controls.Add(Me.btn_upgrade_android)
+        Me.GroupBox20.Controls.Add(Me.Label35)
+        Me.GroupBox20.Location = New System.Drawing.Point(6, 135)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(449, 123)
+        Me.GroupBox20.TabIndex = 15
+        Me.GroupBox20.TabStop = False
+        Me.GroupBox20.Text = "Purchase Upgrades"
+        '
+        'Label35
+        '
+        Me.Label35.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label35.Location = New System.Drawing.Point(6, 16)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(437, 60)
+        Me.Label35.TabIndex = 6
+        Me.Label35.Text = "Purchase an upgrade in the ""Upgrade"" section of the Remote Control Collection app" & _
+    " to unlock the advanced remotes." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You can use in-app purchases or get the Pro " & _
+    "version from your App Market."
+        '
+        'btn_upgrade_android
+        '
+        Me.btn_upgrade_android.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_upgrade_android.Image = Global.RemoteControlServer.My.Resources.Resources.icon_android
+        Me.btn_upgrade_android.Location = New System.Drawing.Point(6, 84)
+        Me.btn_upgrade_android.Name = "btn_upgrade_android"
+        Me.btn_upgrade_android.Size = New System.Drawing.Size(29, 26)
+        Me.btn_upgrade_android.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_upgrade_android.TabIndex = 7
+        Me.btn_upgrade_android.TabStop = False
+        '
+        'btn_upgrade_ios
+        '
+        Me.btn_upgrade_ios.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_upgrade_ios.Image = Global.RemoteControlServer.My.Resources.Resources.icon_ios
+        Me.btn_upgrade_ios.Location = New System.Drawing.Point(41, 84)
+        Me.btn_upgrade_ios.Name = "btn_upgrade_ios"
+        Me.btn_upgrade_ios.Size = New System.Drawing.Size(29, 26)
+        Me.btn_upgrade_ios.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_upgrade_ios.TabIndex = 8
+        Me.btn_upgrade_ios.TabStop = False
+        '
+        'btn_upgrade_bb
+        '
+        Me.btn_upgrade_bb.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_upgrade_bb.Image = Global.RemoteControlServer.My.Resources.Resources.icon_bb
+        Me.btn_upgrade_bb.Location = New System.Drawing.Point(76, 84)
+        Me.btn_upgrade_bb.Name = "btn_upgrade_bb"
+        Me.btn_upgrade_bb.Size = New System.Drawing.Size(29, 26)
+        Me.btn_upgrade_bb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btn_upgrade_bb.TabIndex = 16
+        Me.btn_upgrade_bb.TabStop = False
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.ForeColor = System.Drawing.Color.Gray
+        Me.Label37.Location = New System.Drawing.Point(113, 90)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(156, 13)
+        Me.Label37.TabIndex = 17
+        Me.Label37.Text = "( select your mobile device OS )"
         '
         'SettingsWindow
         '
@@ -1450,6 +1705,7 @@ Partial Class SettingsWindow
         Me.tab_protection.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
+        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.tab_mouse.ResumeLayout(False)
@@ -1474,6 +1730,7 @@ Partial Class SettingsWindow
         Me.tab_slideshow.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
+        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tab_media.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
@@ -1482,6 +1739,8 @@ Partial Class SettingsWindow
         Me.GroupBox16.PerformLayout()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
+        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tab_upgrade.ResumeLayout(False)
         Me.tab_update.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -1489,12 +1748,18 @@ Partial Class SettingsWindow
         Me.tab_help.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
         Me.GroupBox12.ResumeLayout(False)
-        Me.GroupBox11.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        CType(Me.btn_showPin, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic_test, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tab_ip.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox19.ResumeLayout(False)
+        Me.GroupBox21.ResumeLayout(False)
+        Me.GroupBox20.ResumeLayout(False)
+        Me.GroupBox20.PerformLayout()
+        CType(Me.btn_upgrade_android, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btn_upgrade_ios, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btn_upgrade_bb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1570,10 +1835,6 @@ Partial Class SettingsWindow
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents track_screen_quality_full As System.Windows.Forms.TrackBar
     Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
-    Friend WithEvents btn_help_setupguide As System.Windows.Forms.Button
-    Friend WithEvents btn_help_troubleshooting As System.Windows.Forms.Button
-    Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents GroupBox12 As System.Windows.Forms.GroupBox
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents btn_help_contact As System.Windows.Forms.Button
@@ -1608,4 +1869,27 @@ Partial Class SettingsWindow
     Friend WithEvents cb_screen_blackwhite As System.Windows.Forms.CheckBox
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents tab_ip As System.Windows.Forms.TabPage
+    Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents label_IP_address As System.Windows.Forms.Label
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox18 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents btn_help_setupguide As System.Windows.Forms.Button
+    Friend WithEvents btn_help_troubleshooting As System.Windows.Forms.Button
+    Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents btn_help_help As System.Windows.Forms.Button
+    Friend WithEvents btn_help_faq As System.Windows.Forms.Button
+    Friend WithEvents GroupBox21 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents btn_upgrade_help_code As System.Windows.Forms.Button
+    Friend WithEvents btn_upgrade_get_code As System.Windows.Forms.Button
+    Friend WithEvents GroupBox20 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents btn_upgrade_bb As System.Windows.Forms.PictureBox
+    Friend WithEvents btn_upgrade_ios As System.Windows.Forms.PictureBox
+    Friend WithEvents btn_upgrade_android As System.Windows.Forms.PictureBox
+    Friend WithEvents Label37 As System.Windows.Forms.Label
 End Class

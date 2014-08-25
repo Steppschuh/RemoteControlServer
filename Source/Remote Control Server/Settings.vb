@@ -8,10 +8,11 @@ Module Settings
 
     Public Const SETTINGS_PATH As String = "config.xml"
 
-    Public Const OS_DEFAULT As Byte = 0
+    Public Const OS_AUTO As Byte = 0
     Public Const OS_ANDROID As Byte = 1
     Public Const OS_BLACKBERRY As Byte = 2
     Public Const OS_IOS As Byte = 3
+    Public Const OS_GENERAL As Byte = 4
 
     'General
     Public autoStart As Boolean = False
@@ -20,8 +21,8 @@ Module Settings
     Public showTrayNotoifications As Boolean = True
 
     Public showGuide As Boolean = True
-    Public backDesign As Byte = 0
-    Public lastBackDesign As Byte = 0
+    Public backDesign As Byte = OS_AUTO
+    Public lastBackDesign As Byte = OS_AUTO
 
     'Authentication
     Public useWhiteList As Boolean = False
