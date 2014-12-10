@@ -15,9 +15,50 @@ Module Screenshot
     Private colorUpdateInterval As Integer = 2 'Update average color each x seconds
 
     Public Function getScreenShot(ByVal fullscreen As Boolean, ByVal index As Integer) As Bitmap
+        Dim screenshot As Bitmap
+        Try
+            screenshot = getScreenShot(index)
+
+            'Scale image
+            If fullscreen Then
+                Converter.scaleBitmap(screenshot, Settings.screenScaleFull)
+            Else
+                Converter.scaleBitmap(screenshot, Settings.screenScale)
+            End If
+
+            'Greyscale
+            If Settings.screenBlackWhite Then
+                screenshot = convertToGrayscale(screenshot)
+            End If
+
+            'Cut off black borders (Powerpoint)
+            removeBlackBorders(screenshot)
+
+        Catch ex As Exception
+            screenshot = New Bitmap(My.Resources.ic_action_warning)
+            Logger.add("Can't get screenshot:" & vbNewLine & ex.ToString)
+        End Try
+        Return screenshot
+    End Function
+
+    Public Function getResizedScreenshot(ByVal width As Integer) As Bitmap
+        Dim screenshot As Bitmap = getScreenshot(screenIndex)
+
+        'Scale down
+        If screenshot.Width > width Then
+            Converter.resizeBitmap(screenshot, width)
+        End If
+
+        'Greyscale
+        If Settings.screenBlackWhite Then
+            screenshot = convertToGrayscale(screenshot)
+        End If
+
+    End Function
+
+    Public Function getScreenShot(ByVal index As Integer) As Bitmap
         Dim screenGrab As Bitmap
         Try
-            'Get current screen
             Dim locations As Point() = getScreenBounds(index)
             Dim startLocation As Point = locations(0)
             Dim endLocation As Point = locations(1)
@@ -26,27 +67,6 @@ Module Screenshot
             screenGrab = New Bitmap(screenSize.Width, screenSize.Height)
             Dim g As Graphics = Graphics.FromImage(screenGrab)
             g.CopyFromScreen(startLocation, New Point(0, 0), screenSize)
-
-            'Scale image down
-            Dim gr_dest As Graphics
-            Dim bm_dest As Bitmap
-            If fullscreen Then
-                bm_dest = New Bitmap(CInt(screenGrab.Width * Settings.screenScaleFull), CInt(screenGrab.Height * Settings.screenScaleFull))
-            Else
-                bm_dest = New Bitmap(CInt(screenGrab.Width * Settings.screenScale), CInt(screenGrab.Height * Settings.screenScale))
-            End If
-            gr_dest = Graphics.FromImage(bm_dest)
-            gr_dest.DrawImage(screenGrab, 0, 0, bm_dest.Width + 1, bm_dest.Height + 1)
-            screenGrab = bm_dest
-
-            'Greyscale
-            If Settings.screenBlackWhite Then
-                screenGrab = convertToGrayscale(screenGrab)
-            End If
-
-            'Cut off black borders (Powerpoint)
-            removeBlackBorders(screenGrab)
-
         Catch ex As Exception
             screenGrab = New Bitmap(My.Resources.ic_action_warning)
             Logger.add("Can't get screenshot:" & vbNewLine & ex.ToString)

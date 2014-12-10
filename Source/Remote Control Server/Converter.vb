@@ -55,6 +55,25 @@ Module Converter
         Return bmp
     End Function
 
+    Public Function scaleBitmap(ByRef sourceBitmap As Bitmap, ByVal scale As Single)
+        If Not scale = 1 And scale > 0 Then
+            Dim destinationGraphics As Graphics
+            Dim destinationBitmap As Bitmap
+
+            destinationBitmap = New Bitmap(CInt(sourceBitmap.Width * scale), CInt(sourceBitmap.Height * scale))
+
+            destinationGraphics = Graphics.FromImage(destinationBitmap)
+            destinationGraphics.DrawImage(sourceBitmap, 0, 0, destinationBitmap.Width + 1, destinationBitmap.Height + 1)
+            sourceBitmap = destinationBitmap
+        End If
+    End Function
+
+    Public Function resizeBitmap(ByRef sourceBitmap As Bitmap, ByVal newWidth As Integer)
+        Dim scale As Single
+        scale = newWidth / sourceBitmap.Width
+        scaleBitmap(sourceBitmap, scale)
+    End Function
+
     Public Function stringToByte(ByVal value As String) As Byte()
         Return System.Text.Encoding.UTF8.GetBytes(value)
     End Function
@@ -81,6 +100,17 @@ Module Converter
         Dim value As Byte = 0
         value = (b * 9) / 255
         Return value
+    End Function
+
+    Public Function buildCommandData(ByVal identifier As Byte(), ByVal value As Byte()) As Byte()
+        addToByteArray(identifier, value)
+        Return identifier
+    End Function
+
+    Public Function addToByteArray(ByRef destination As Byte(), ByVal source As Byte())
+        Dim startIndex As Integer = destination.Length
+        Array.Resize(destination, destination.Length + source.Length)
+        source.CopyTo(destination, startIndex)
     End Function
 
     Public Function getPointDistance(ByVal P1 As System.Windows.Point, ByVal P2 As System.Windows.Point, Optional ByVal Digits As Integer = 2) As Decimal

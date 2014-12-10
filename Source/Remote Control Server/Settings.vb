@@ -37,8 +37,8 @@ Module Settings
     Public motionAcceleration As Byte = 3
 
     'Screen
-    Public screenQuality As Byte = 30
-    Public screenQualityFull As Byte = 50
+    Public screenQuality As Byte = 40
+    Public screenQualityFull As Byte = 60
     Public screenScale As Single = 0.5
     Public screenScaleFull As Single = 1
     Public screenBlackWhite As Boolean = False
