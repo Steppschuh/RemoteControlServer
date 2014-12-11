@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Module Mouse
+Module MouseV2
 
     Public Const cmd_mouse_down As Byte = 0
     Public Const cmd_mouse_up As Byte = 1
@@ -660,5 +660,5 @@ Module Mouse
 
 #End Region
 
-    
+
 End Module

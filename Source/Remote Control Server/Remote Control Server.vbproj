@@ -97,6 +97,7 @@
     <Compile Include="Authenticator.vb" />
     <Compile Include="Command.vb" />
     <Compile Include="Converter.vb" />
+    <Compile Include="MouseV3.vb" />
     <Compile Include="Helper.vb" />
     <Compile Include="IpWindow.Designer.vb">
       <DependentUpon>IpWindow.vb</DependentUpon>
@@ -106,7 +107,7 @@
     </Compile>
     <Compile Include="Logger.vb" />
     <Compile Include="Media.vb" />
-    <Compile Include="Mouse.vb" />
+    <Compile Include="MouseV2.vb" />
     <Compile Include="Network.vb" />
     <Compile Include="PointerWindow.xaml.vb">
       <DependentUpon>PointerWindow.xaml</DependentUpon>
@@ -125,6 +126,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TCP.vb" />
+    <Compile Include="TouchPoint.vb" />
     <Compile Include="UDP.vb" />
     <Compile Include="Updater.vb" />
     <Compile Include="UpgradeWindow.Designer.vb">

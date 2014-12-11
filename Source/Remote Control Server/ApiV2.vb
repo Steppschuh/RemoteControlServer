@@ -178,16 +178,16 @@ Module ApiV2
         Select Case command.data(2)
             Case cmd_mouse_move
                 readableCommand = "Move cursor"
-                Mouse.parseCursorMove(command.data)
+                MouseV2.parseCursorMove(command.data)
             Case cmd_mouse_set
                 readableCommand = "Set cursor"
-                Mouse.parseCursorSet(command.data)
+                MouseV2.parseCursorSet(command.data)
             Case cmd_mouse_scroll
                 readableCommand = "Scroll"
-                Mouse.parseScroll(command.data)
+                MouseV2.parseScroll(command.data)
             Case Else
                 readableCommand = "Click"
-                Mouse.parseClick(command.data)
+                MouseV2.parseClick(command.data)
         End Select
     End Sub
 
@@ -195,7 +195,7 @@ Module ApiV2
         Select Case command.data(2)
             Case cmd_pointer_move
                 readableCommand = "Move"
-                Mouse.parsePointer(command.data)
+                MouseV2.parsePointer(command.data)
                 Logger.add("Pointer: " & readableCommand)
             Case cmd_pointer_start
                 readableCommand = "Show"
@@ -207,14 +207,14 @@ Module ApiV2
                 Logger.add("Pointer: " & readableCommand)
             Case cmd_pointer_calibrate
                 readableCommand = "Calibrate"
-                Mouse.calibratePointer(command.data)
+                MouseV2.calibratePointer(command.data)
                 Logger.add("Pointer: " & readableCommand)
         End Select
     End Sub
 
     Private Sub parseLaserCommand(ByRef command As Command)
         readableCommand = "Move"
-        Mouse.parseLaser(command.data)
+        MouseV2.parseLaser(command.data)
         Logger.add("Laser: " & readableCommand)
     End Sub
 
@@ -305,13 +305,13 @@ Module ApiV2
                 Serial.sendMessage("<11>")
             Case 12
                 readableCommand = "Scrollbar move"
-                If (Mouse.X_Def = 0) Then
-                    Mouse.X_Def = command.data(3)
+                If (MouseV2.X_Def = 0) Then
+                    MouseV2.X_Def = command.data(3)
                 Else
-                    Mouse.X_Rel = Mouse.X_Def - command.data(3)
-                    If X_Rel < X_New - 10 Or X_Rel > X_New + 10 Then
-                        X_New = X_Rel
-                        Dim value As Integer = 64 + X_Rel
+                    MouseV2.X_Rel = MouseV2.X_Def - command.data(3)
+                    If MouseV2.X_Rel < MouseV2.X_New - 10 Or MouseV2.X_Rel > MouseV2.X_New + 10 Then
+                        MouseV2.X_New = MouseV2.X_Rel
+                        Dim value As Integer = 64 + MouseV2.X_Rel
                         If value > 127 Then
                             value = 127
                         ElseIf value < 0 Then
@@ -323,11 +323,11 @@ Module ApiV2
                 End If
             Case 13
                 readableCommand = "Scrollbar down"
-                Mouse.X_Def = command.data(3)
+                MouseV2.X_Def = command.data(3)
                 Serial.sendMessage("<13>")
             Case 14
                 readableCommand = "Scrollbar up"
-                Mouse.X_Def = 0
+                MouseV2.X_Def = 0
                 Serial.sendMessage("<14>")
             Case Else
                 readableCommand = "Unknown"

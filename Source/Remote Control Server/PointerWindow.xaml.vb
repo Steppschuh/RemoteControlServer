@@ -49,7 +49,7 @@ Public Class PointerWindow
 
         If Settings.clickOnLaserUp Then
             Me.Hide()
-            Mouse.leftClickRepeat(1)
+            MouseV2.leftClickRepeat(1)
         End If
     End Sub
 

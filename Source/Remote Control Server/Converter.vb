@@ -102,6 +102,14 @@ Module Converter
         Return value
     End Function
 
+    Public Function byteFromSByte(ByVal value As Byte) As Byte
+        If value > 127 Then
+            Return 127 - (255 - value)
+        Else
+            Return 128 + value
+        End If
+    End Function
+
     Public Function buildCommandData(ByVal identifier As Byte(), ByVal value As Byte()) As Byte()
         addToByteArray(identifier, value)
         Return identifier

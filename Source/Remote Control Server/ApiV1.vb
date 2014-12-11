@@ -131,7 +131,7 @@ Module ApiV1
     End Function
 
     Public Sub parseMouseCommand(ByVal cmd As String)
-        Mouse.parseMouse(cmd)
+        MouseV2.parseMouse(cmd)
     End Sub
 
     Public Sub parseKeyboardCommand(ByVal cmd As String)
@@ -297,10 +297,10 @@ Module ApiV1
         Dim value As String = getCommandValue(cmd)
         If value = "zoomin" Then
             readableCommand = "Zoom in"
-            Mouse.zoom(1, 1)
+            MouseV2.zoom(1, 1)
         ElseIf value = "zoomout" Then
             readableCommand = "Zoom out"
-            Mouse.zoom(-1, 1)
+            MouseV2.zoom(-1, 1)
         ElseIf value = "back" Then
             readableCommand = "Back"
             Keyboard.sendKeyPress(Keys.BrowserBack)

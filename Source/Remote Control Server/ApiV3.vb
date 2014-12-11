@@ -36,7 +36,14 @@
     Public Const cmd_get_screenshot As Byte = 5
     Public Const cmd_get_api_version As Byte = 6
 
-
+    Public Const cmd_mouse As Byte = 20
+    Public Const cmd_mouse_pointers As Byte = 1
+    Public Const cmd_mouse_pad_action As Byte = 2
+    Public Const cmd_mouse_left_action As Byte = 3
+    Public Const cmd_mouse_right_action As Byte = 4
+    Public Const cmd_mouse_action_up As Byte = 0
+    Public Const cmd_mouse_action_down As Byte = 1
+    Public Const cmd_mouse_action_click As Byte = 2
 
 
     Public Function isBroadcast(ByVal command As Command) As Boolean
@@ -83,6 +90,8 @@
                 parseConnectCommand(command)
             Case cmd_get
                 answerGetRequest(command)
+            Case cmd_mouse
+                parseMouseCommand(command)
             Case Else
                 Logger.add("Unknown command")
         End Select
@@ -157,6 +166,28 @@
         If Not responseCommand.data Is Nothing Then
             responseCommand.send()
         End If
+    End Sub
+
+#End Region
+
+#Region "Mouse"
+
+    Public Sub parseMouseCommand(ByRef command As Command)
+        Dim app As App = Server.getApp(command.source)
+
+        Select Case command.data(2)
+            Case cmd_mouse_pointers
+                MouseV3.parsePointerData(command.data)
+            Case cmd_mouse_pad_action
+                Select Case command.data(3)
+                    Case cmd_mouse_action_down
+                        Logger.add("Mouse pad down")
+                    Case Else
+                        Logger.add("Unknown mouse pad command")
+                End Select
+            Case Else
+                Logger.add("Unknown mouse command")
+        End Select
     End Sub
 
 #End Region
