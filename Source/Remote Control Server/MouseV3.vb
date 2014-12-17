@@ -77,17 +77,25 @@ Module MouseV3
 
     Public Sub parsePointerData(ByVal data As Byte())
         'Pointer data starts at byte index 3
-        'Each pointer has one byte for X and Y value
+        'Each pointer has two bytes for X and two for Y value
 
         Dim pointerDataOffset As Byte = 3
-        Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 2
+        Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 4
 
         pointers = New List(Of TouchPoint)
 
         For i As Byte = 0 To pointerCount - 1 Step 1
             Dim currentPointer As New TouchPoint
-            currentPointer.x = Converter.byteFromSByte(data(pointerDataOffset + i))
-            currentPointer.y = Converter.byteFromSByte(data(pointerDataOffset + i + 1))
+
+            Dim x As Integer = data(pointerDataOffset + i)
+            x = (x << 8) + data(pointerDataOffset + i + 1)
+
+            Dim y As Integer = data(pointerDataOffset + i + 2)
+            y = (y << 8) + data(pointerDataOffset + i + 3)
+
+            currentPointer.x = x
+            currentPointer.y = y
+
             currentPointer.timestamp = Date.Now.Ticks
 
             pointers.Add(currentPointer)

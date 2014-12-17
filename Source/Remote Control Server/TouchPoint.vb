@@ -1,7 +1,7 @@
 ﻿Public Class TouchPoint
 
-    Public x As Byte
-    Public y As Byte
+    Public x As Integer
+    Public y As Integer
 
     Public timestamp As Long
 
