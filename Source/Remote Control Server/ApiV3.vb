@@ -182,8 +182,34 @@
                 Select Case command.data(3)
                     Case cmd_mouse_action_down
                         Logger.add("Mouse pad down")
+                        MouseV3.pointersDown()
+                    Case cmd_mouse_action_up
+                        Logger.add("Mouse pad up")
+                        MouseV3.pointersUp()
                     Case Else
                         Logger.add("Unknown mouse pad command")
+                End Select
+            Case cmd_mouse_left_action
+                Select Case command.data(3)
+                    Case cmd_mouse_action_down
+                        Logger.add("Mouse left down")
+                        MouseV3.leftMouseDown()
+                    Case cmd_mouse_action_up
+                        Logger.add("Mouse left up")
+                        MouseV3.leftMouseUp()
+                    Case Else
+                        Logger.add("Unknown mouse left command")
+                End Select
+            Case cmd_mouse_right_action
+                Select Case command.data(3)
+                    Case cmd_mouse_action_down
+                        Logger.add("Mouse right down")
+                        MouseV3.rightMouseDown()
+                    Case cmd_mouse_action_up
+                        Logger.add("Mouse right up")
+                        MouseV3.rightMouseUp()
+                    Case Else
+                        Logger.add("Unknown mouse right command")
                 End Select
             Case Else
                 Logger.add("Unknown mouse command")
