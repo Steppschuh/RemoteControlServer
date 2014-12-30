@@ -10,7 +10,7 @@ Module MouseV3
     Private Const GESTURE_SCROLL As Byte = 2
 
     Private Const CLICK_OFFSET_TOLERANCE As Byte = 10 'dip
-    Private Const CLICK_DELAY_TOLERANCE As Integer = 500
+    Private Const CLICK_DELAY_TOLERANCE As Integer = 700
 
     Private Const MOUSE_LEFT_DOWN = &H2
     Private Const MOUSE_LEFT_UP = &H4
@@ -42,6 +42,7 @@ Module MouseV3
 
     Public Declare Function GetCursorPos Lib "user32" (ByRef lpPoint As PointAPI) As Boolean
 
+    Dim pointerLock As New Object
 
 
 #Region "Basic actions"
@@ -81,9 +82,15 @@ Module MouseV3
 #Region "Pointer handling"
 
     Public Sub pointersDown()
+        If mousePadDown Then
+            Return
+        End If
+
+        Logger.add("pointersDown 1")
+
         mousePadDown = True
-        P1_Last = P_ORIGIN
         P1_Start = P_ORIGIN
+        P1_Last = P_ORIGIN
 
         pointers = New List(Of TouchPoint)
         Dim currentPointer As New TouchPoint()
@@ -91,11 +98,23 @@ Module MouseV3
         currentPointer.y = 0
         currentPointer.timestamp = Date.Now.Ticks
         pointers.Add(currentPointer)
+
+        Logger.add("pointersDown 2")
     End Sub
 
     Public Sub pointersUp()
-        mousePadDown = False
+        Logger.add("pointersUp 1")
+
+        P1_Start = P_ORIGIN
+        P1_Last = P_ORIGIN
         checkForClick()
+
+        mousePadDown = False
+        pointers = New List(Of TouchPoint)
+        P1_Start = P_ORIGIN
+        P1_Last = P_ORIGIN
+
+        Logger.add("pointersUp 2")
     End Sub
 
     Public Sub parsePointerData(ByVal data As Byte())
@@ -126,17 +145,24 @@ Module MouseV3
     End Sub
 
     Private Sub updateCursorPosition()
-        'User last pointer data to modify cursor position
-        If Not pointers.Count = 1 Or Not mousePadDown Then
+        If Not pointers.Count = 1 Then
+            'No pointer data available or multitouch
             Return
         End If
 
+        If mousePadDown = False Then
+            'onMove event before onDown event received
+            pointersDown()
+            Return
+        End If
+
+        'User last pointer data to modify cursor position
         P1_New = New Point(pointers(0).x, pointers(0).y)
 
-        If P1_Last = P_ORIGIN Then
+        If P1_Start = P_ORIGIN Or P1_Start = P_ORIGIN Then
+            Logger.add("P_Start & P_Last set to P_New: " & P1_New.X & "|" & P1_New.Y)
             P1_Start = P1_New
             P1_Last = P1_New
-            pointers(0).timestamp = Date.Now.Ticks
             Return
         End If
 
@@ -151,26 +177,34 @@ Module MouseV3
             P1_Rel.X = (P1_New.X - P1_Last.X)
             P1_Rel.Y = (P1_New.Y - P1_Last.Y)
 
-            If P1_Rel.X > 0 Then
-                P1_Rel.X = (P1_Rel.X ^ Settings.mouseAcceleration) * Settings.mouseSensitivity
-            Else
-                P1_Rel.X = P1_Rel.X * (-1)
-                P1_Rel.X = (P1_Rel.X ^ Settings.mouseAcceleration)
-                P1_Rel.X = P1_Rel.X * Settings.mouseSensitivity
-                P1_Rel.X = P1_Rel.X * (-1)
-            End If
+            Logger.add("---------")
+            Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y & " New: " & P1_New.X & "|" & P1_New.Y & " Old: " & P1_Last.X & "|" & P1_Last.Y)
 
-            If P1_Rel.Y > 0 Then
-                P1_Rel.Y = (P1_Rel.Y ^ Settings.mouseAcceleration) * Settings.mouseSensitivity
-            Else
-                P1_Rel.Y = P1_Rel.Y * (-1)
-                P1_Rel.Y = (P1_Rel.Y ^ Settings.mouseAcceleration)
-                P1_Rel.Y = P1_Rel.Y * Settings.mouseSensitivity
-                P1_Rel.Y = P1_Rel.Y * (-1)
+
+            If Not (P1_Rel.X = 0 And P1_Rel.Y = 0) Then
+                If P1_Rel.X > 0 Then
+                    P1_Rel.X = (P1_Rel.X ^ Settings.mouseAcceleration) * Settings.mouseSensitivity
+                Else
+                    P1_Rel.X = P1_Rel.X * (-1)
+                    P1_Rel.X = (P1_Rel.X ^ Settings.mouseAcceleration)
+                    P1_Rel.X = P1_Rel.X * Settings.mouseSensitivity
+                    P1_Rel.X = P1_Rel.X * (-1)
+                End If
+
+                If P1_Rel.Y > 0 Then
+                    P1_Rel.Y = (P1_Rel.Y ^ Settings.mouseAcceleration) * Settings.mouseSensitivity
+                Else
+                    P1_Rel.Y = P1_Rel.Y * (-1)
+                    P1_Rel.Y = (P1_Rel.Y ^ Settings.mouseAcceleration)
+                    P1_Rel.Y = P1_Rel.Y * Settings.mouseSensitivity
+                    P1_Rel.Y = P1_Rel.Y * (-1)
+                End If
             End If
         End If
 
         P1_Last = P1_New
+
+        Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y)
 
         cursorPositonNew = cursorPositonCurrent + P1_Rel
         SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
@@ -190,7 +224,7 @@ Module MouseV3
                     leftClick()
                 End If
             Else
-                Logger.add("Dif: " & timeDelta)
+                'Logger.add("Delta: " & timeDelta)
             End If
         Next
     End Sub

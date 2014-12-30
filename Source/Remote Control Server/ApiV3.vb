@@ -28,7 +28,7 @@
     Public Const cmd_set_app_version As Byte = 1
     Public Const cmd_set_app_name As Byte = 2
     Public Const cmd_set_os_version As Byte = 3
-    Public Const cmd_set_os_name As Byte = 4
+    Public Const cmd_set_device_name As Byte = 5
 
     Public Const cmd_get_server_version As Byte = 1
     Public Const cmd_get_server_name As Byte = 2
@@ -90,6 +90,8 @@
                 parseConnectCommand(command)
             Case cmd_get
                 answerGetRequest(command)
+            Case cmd_set
+                setValue(command)
             Case cmd_mouse
                 parseMouseCommand(command)
             Case Else
@@ -106,6 +108,9 @@
             Case cmd_connection_connect
                 'App wants to connect with the server       
                 app.onConnect()
+            Case cmd_connection_disconnect
+                'App disconnected from the server       
+                app.onDisconnect()
             Case cmd_connection_reachable
                 'App checks if server is reachable
                 'Reply with the server name
@@ -116,7 +121,7 @@
                 End If
 
                 answerBroadCast(app)
-                Logger.add(app.ip & " checked reachability")
+                'Logger.add(app.ip & " checked reachability")
             Case Else
                 Logger.add("Unknown connection command")
         End Select
@@ -124,7 +129,7 @@
 
 #End Region
 
-#Region "Get requests"
+#Region "Get and Set requests"
 
     Public Sub answerGetRequest(ByRef requestCommand As Command)
         Dim app As App = Server.getApp(requestCommand.source)
@@ -153,11 +158,12 @@
                     width = requestCommand.data(3) * 10
 
                     If requestCommand.data.Length >= 4 Then
-                        width = requestCommand.data(4)
+                        quality = requestCommand.data(4)
                     End If
                 End If
 
                 Dim screenshotData As Byte() = Converter.bitmapToByte(Screenshot.getResizedScreenshot(width), quality)
+                commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, requestCommand.data(2), width / 10}
                 responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
             Case Else
                 Logger.add("Unknown get command")
@@ -166,6 +172,31 @@
         If Not responseCommand.data Is Nothing Then
             responseCommand.send()
         End If
+    End Sub
+
+    Public Sub setValue(ByRef setCommand As Command)
+        Dim app As App = Server.getApp(setCommand.source)
+
+        Select Case setCommand.data(2)
+            Case cmd_set_pin
+                app.pin = Converter.byteToString(setCommand.data, 3)
+                Logger.add("Pin from " & app.ip & " set to " & app.pin)
+            Case cmd_set_app_version
+                app.appVersion = Converter.byteToString(setCommand.data, 3)
+                Logger.add("App version from " & app.ip & " set to " & app.appVersion)
+            Case cmd_set_app_name
+                app.appName = Converter.byteToString(setCommand.data, 3)
+                Logger.add("App name from " & app.ip & " set to " & app.appName)
+            Case cmd_set_os_version
+                app.osVersion = Converter.byteToString(setCommand.data, 3)
+                Logger.add("OS version from " & app.ip & " set to " & app.osVersion)
+            Case cmd_set_device_name
+                app.deviceName = Converter.byteToString(setCommand.data, 3)
+                Logger.add("Device name from " & app.ip & " set to " & app.deviceName)
+            Case Else
+                Logger.add("Unknown set command")
+        End Select
+
     End Sub
 
 #End Region
@@ -181,10 +212,8 @@
             Case cmd_mouse_pad_action
                 Select Case command.data(3)
                     Case cmd_mouse_action_down
-                        Logger.add("Mouse pad down")
                         MouseV3.pointersDown()
                     Case cmd_mouse_action_up
-                        Logger.add("Mouse pad up")
                         MouseV3.pointersUp()
                     Case Else
                         Logger.add("Unknown mouse pad command")
