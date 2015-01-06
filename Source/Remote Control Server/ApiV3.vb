@@ -1,4 +1,7 @@
-﻿Module ApiV3
+﻿Imports System.Drawing
+Imports System.Threading
+
+Module ApiV3
 
     'API v3 uses commands similar to API v2 but supports communication from the server to an app
 
@@ -37,6 +40,7 @@
     Public Const cmd_get_api_version As Byte = 6
 
     Public Const cmd_mouse As Byte = 20
+    Public Const cmd_mouse_pointers_absolute As Byte = 0
     Public Const cmd_mouse_pointers As Byte = 1
     Public Const cmd_mouse_pad_action As Byte = 2
     Public Const cmd_mouse_left_action As Byte = 3
@@ -85,6 +89,12 @@
     End Sub
 
     Public Sub parseCommand(ByRef command As Command)
+        Dim localCommand As Command = command
+        Dim listenThread As Thread = New Thread(Sub() parseCommandThread(localCommand))
+        listenThread.Start()
+    End Sub
+
+    Public Sub parseCommandThread(ByRef command As Command)
         Select Case command.data(1)
             Case cmd_connection
                 parseConnectCommand(command)
@@ -121,7 +131,7 @@
                 End If
 
                 answerBroadCast(app)
-                'Logger.add(app.ip & " checked reachability")
+                Logger.add(app.ip & " checked reachability")
             Case Else
                 Logger.add("Unknown connection command")
         End Select
@@ -152,18 +162,20 @@
                 responseCommand.data = buildCommandData(commandIdentifier, New Byte() {3})
             Case cmd_get_screenshot
                 Dim width As Integer = 9999
-                Dim quality As Integer = Settings.screenQuality
+                Dim quality As Integer = Settings.screenQualityFull
 
-                If requestCommand.data.Length >= 3 Then
-                    width = requestCommand.data(3) * 10
+                Logger.add("Screenshot requested")
+                If requestCommand.data.Length > 3 Then
+                    width = requestCommand.data(3) * 100
 
-                    If requestCommand.data.Length >= 4 Then
+                    If requestCommand.data.Length > 4 Then
                         quality = requestCommand.data(4)
                     End If
                 End If
 
-                Dim screenshotData As Byte() = Converter.bitmapToByte(Screenshot.getResizedScreenshot(width), quality)
-                commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, requestCommand.data(2), width / 10}
+                Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(width)
+                Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, quality)
+                commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, requestCommand.data(2), width / 100}
                 responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
             Case Else
                 Logger.add("Unknown get command")
@@ -209,6 +221,8 @@
         Select Case command.data(2)
             Case cmd_mouse_pointers
                 MouseV3.parsePointerData(command.data)
+            Case cmd_mouse_pointers_absolute
+                MouseV3.parseAbsolutePointerData(command.data)
             Case cmd_mouse_pad_action
                 Select Case command.data(3)
                     Case cmd_mouse_action_down

@@ -33,7 +33,7 @@ Public Class TCP
         Dim received As Boolean = False
         Try
             If command.data.Length < 300 Then
-                'Logger.add("Sending command: " & command.dataAsString())
+                Logger.add("Sending command: " & command.dataAsString())
             Else
                 'Logger.add("Sending long command")
             End If
@@ -52,7 +52,7 @@ Public Class TCP
             Dim endTime As Long = My.Computer.Clock.TickCount
             Dim difTime As Long = endTime - startTime
 
-            'Logger.add("Success (" & difTime.ToString & "ms needed)")
+            Logger.add("Success (" & difTime.ToString & "ms needed)")
         Catch ex As Exception
             Logger.add("Unable to send command to " & command.destination & ":" & portSend)
             Logger.add(ex.ToString)

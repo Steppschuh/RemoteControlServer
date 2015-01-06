@@ -144,6 +144,38 @@ Module MouseV3
         updateCursorPosition()
     End Sub
 
+    Public Sub parseAbsolutePointerData(ByVal data As Byte())
+        'Pointer data starts at byte index 3
+        'Each pointer has two bytes for X and two for Y value
+
+        Dim absoluteMaximum As Integer = 32767
+        Dim pointerDataOffset As Byte = 3
+        Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 4
+
+        pointers = New List(Of TouchPoint)
+
+        Dim currentPointer As New TouchPoint
+
+        Dim x As Integer = data(pointerDataOffset)
+        x = (x << 8) + data(pointerDataOffset + 1)
+
+        Dim y As Integer = data(pointerDataOffset + 2)
+        y = (y << 8) + data(pointerDataOffset + 3)
+
+        Dim locations As System.Drawing.Point() = getScreenBounds(Screenshot.screenIndex)
+        Dim startLocation As System.Drawing.Point = locations(0)
+        Dim endLocation As System.Drawing.Point = locations(1)
+        Dim screenSize As Size = New Size(endLocation.X - startLocation.X, endLocation.Y - startLocation.Y)
+
+        currentPointer.x = (x * screenSize.Width) / absoluteMaximum
+        currentPointer.y = (y * screenSize.Height) / absoluteMaximum
+
+        cursorPositonNew.X = currentPointer.x
+        cursorPositonNew.Y = currentPointer.y
+
+        SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
+    End Sub
+
     Private Sub updateCursorPosition()
         If Not pointers.Count = 1 Then
             'No pointer data available or multitouch

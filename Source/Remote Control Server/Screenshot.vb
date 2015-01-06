@@ -54,6 +54,7 @@ Module Screenshot
             screenshot = convertToGrayscale(screenshot)
         End If
 
+        Return screenshot
     End Function
 
     Public Function getScreenShot(ByVal index As Integer) As Bitmap
