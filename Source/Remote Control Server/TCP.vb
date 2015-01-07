@@ -24,6 +24,9 @@ Public Class TCP
     Public isListening As Boolean = False
     Private listenTimer As DispatcherTimer
 
+    Dim sendDataLock As New Object
+
+
     Public Sub initialize()
         Logger.add("Initializing TCP")
         startListener()
@@ -31,32 +34,34 @@ Public Class TCP
 
     Public Function sendData(ByRef command As Command) As Boolean
         Dim received As Boolean = False
-        Try
-            If command.data.Length < 300 Then
-                Logger.add("Sending command: " & command.dataAsString())
-            Else
-                'Logger.add("Sending long command")
-            End If
+        SyncLock sendDataLock
+            Try
+                If command.data.Length < 300 Then
+                    Logger.add("Sending command: " & command.dataAsString())
+                Else
+                    'Logger.add("Sending long command")
+                End If
 
-            Dim startTime As Long = My.Computer.Clock.TickCount
+                Dim startTime As Long = My.Computer.Clock.TickCount
 
-            tcpClient = New System.Net.Sockets.TcpClient()
-            tcpClient.Client.SendTimeout = sendTimeout
-            tcpClient.Connect(command.destination, portSend)
-            Dim networkStream As NetworkStream = tcpClient.GetStream()
+                tcpClient = New System.Net.Sockets.TcpClient()
+                tcpClient.Client.SendTimeout = sendTimeout
+                tcpClient.Connect(command.destination, portSend)
+                Dim networkStream As NetworkStream = tcpClient.GetStream()
+                networkStream.Write(command.data, 0, command.data.Length)
+                tcpClient.Close()
+                received = True
 
-            networkStream.Write(command.data, 0, command.data.Length)
-            tcpClient.Close()
-            received = True
+                Dim endTime As Long = My.Computer.Clock.TickCount
+                Dim difTime As Long = endTime - startTime
 
-            Dim endTime As Long = My.Computer.Clock.TickCount
-            Dim difTime As Long = endTime - startTime
+                Logger.add("Success (" & difTime.ToString & "ms needed)")
+            Catch ex As Exception
+                Logger.add("Unable to send command to " & command.destination & ":" & portSend)
+                Logger.add(ex.ToString)
+            End Try
+        End SyncLock
 
-            Logger.add("Success (" & difTime.ToString & "ms needed)")
-        Catch ex As Exception
-            Logger.add("Unable to send command to " & command.destination & ":" & portSend)
-            Logger.add(ex.ToString)
-        End Try
         Return received
     End Function
 

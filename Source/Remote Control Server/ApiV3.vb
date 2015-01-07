@@ -184,7 +184,7 @@ Module ApiV3
         Dim width As Integer = 9999
         Dim quality As Integer = Settings.screenQualityFull
 
-        'Logger.add("Screenshot requested")
+
         If requestCommand.data.Length > 3 Then
             width = requestCommand.data(3) * 100
 
@@ -193,10 +193,13 @@ Module ApiV3
             End If
         End If
 
+        Logger.add("Screenshot requested with width: " & width & " quality: " & quality)
+
         Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(width)
         Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, quality)
         Dim commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, cmd_get_screenshot, width / 100}
         responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
+        responseCommand.priority = Command.PRIORITY_MEDIUM
         responseCommand.send()
     End Sub
 
