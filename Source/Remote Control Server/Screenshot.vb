@@ -4,8 +4,11 @@ Imports System.Windows.Threading
 
 Module Screenshot
 
+    Public Const screenUpdateInterval As Integer = 200
+
     Public screenIndex As Integer = 0 'For multiple monitors
-    Public isSendingBitmap As Boolean = False
+    Public isSendingScreenshot As Boolean = False
+    Public continueSendingScreenshots As Boolean = False
 
     Public averageColor As Color = Color.White
     Private lastAverageColor As Color = Color.White
@@ -159,9 +162,27 @@ Module Screenshot
         Return locations
     End Function
 
+    Public Sub keepSendingScreenshots(ByVal requestCommand As Command, ByVal responseCommand As Command)
+        Dim sendThread As Thread = New Thread(Sub() keepSendingScreenshotsThread(requestCommand, responseCommand))
+        sendThread.Start()
+    End Sub
+
+    Private Sub keepSendingScreenshotsThread(ByVal requestCommand As Command, ByVal responseCommand As Command)
+        isSendingScreenshot = True
+        Do While continueSendingScreenshots = True
+            continueSendingScreenshots = False
+            ApiV3.answerScreenGetRequest(requestCommand, responseCommand)
+            Thread.Sleep(screenUpdateInterval)
+            ApiV3.answerScreenGetRequest(requestCommand, responseCommand)
+            Thread.Sleep(screenUpdateInterval)
+            ApiV3.answerScreenGetRequest(requestCommand, responseCommand)
+        Loop
+        isSendingScreenshot = False
+    End Sub
+
     Public Sub sendBitmap(ByVal bmp As Bitmap, ByVal quality As Integer)
         Try
-            isSendingBitmap = True
+            isSendingScreenshot = True
             Dim command As New Command
             command.source = Network.getServerIp()
             command.destination = Remote.lastCommand.source
@@ -171,11 +192,11 @@ Module Screenshot
         Catch ex As Exception
             Logger.add("Can't send bitmap:" & vbNewLine & ex.ToString)
         End Try
-        isSendingBitmap = False
+        isSendingScreenshot = False
     End Sub
 
     Public Sub sendScreenshot(ByVal full As Boolean)
-        If Not isSendingBitmap Then
+        If Not isSendingScreenshot Then
             If full Then
                 sendBitmap(getScreenShot(True, screenIndex), Settings.screenQualityFull)
             Else

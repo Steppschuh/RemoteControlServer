@@ -37,6 +37,7 @@ Module ApiV3
     Public Const cmd_get_server_name As Byte = 2
     Public Const cmd_get_os_name As Byte = 4
     Public Const cmd_get_screenshot As Byte = 5
+    Public Const cmd_get_screenshots As Byte = 7
     Public Const cmd_get_api_version As Byte = 6
 
     Public Const cmd_mouse As Byte = 20
@@ -90,8 +91,8 @@ Module ApiV3
 
     Public Sub parseCommand(ByRef command As Command)
         Dim localCommand As Command = command
-        Dim listenThread As Thread = New Thread(Sub() parseCommandThread(localCommand))
-        listenThread.Start()
+        Dim parseThread As Thread = New Thread(Sub() parseCommandThread(localCommand))
+        parseThread.Start()
     End Sub
 
     Public Sub parseCommandThread(ByRef command As Command)
@@ -161,22 +162,15 @@ Module ApiV3
             Case cmd_get_api_version
                 responseCommand.data = buildCommandData(commandIdentifier, New Byte() {3})
             Case cmd_get_screenshot
-                Dim width As Integer = 9999
-                Dim quality As Integer = Settings.screenQualityFull
-
-                Logger.add("Screenshot requested")
-                If requestCommand.data.Length > 3 Then
-                    width = requestCommand.data(3) * 100
-
-                    If requestCommand.data.Length > 4 Then
-                        quality = requestCommand.data(4)
-                    End If
+                Screenshot.isSendingScreenshot = True
+                answerScreenGetRequest(requestCommand, responseCommand)
+                Screenshot.isSendingScreenshot = False
+            Case cmd_get_screenshots
+                If Screenshot.isSendingScreenshot Then
+                    Screenshot.continueSendingScreenshots = True
+                Else
+                    Screenshot.keepSendingScreenshots(requestCommand, responseCommand)
                 End If
-
-                Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(width)
-                Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, quality)
-                commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, requestCommand.data(2), width / 100}
-                responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
             Case Else
                 Logger.add("Unknown get command")
         End Select
@@ -184,6 +178,26 @@ Module ApiV3
         If Not responseCommand.data Is Nothing Then
             responseCommand.send()
         End If
+    End Sub
+
+    Public Sub answerScreenGetRequest(ByVal requestCommand As Command, ByVal responseCommand As Command)
+        Dim width As Integer = 9999
+        Dim quality As Integer = Settings.screenQualityFull
+
+        'Logger.add("Screenshot requested")
+        If requestCommand.data.Length > 3 Then
+            width = requestCommand.data(3) * 100
+
+            If requestCommand.data.Length > 4 Then
+                quality = requestCommand.data(4)
+            End If
+        End If
+
+        Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(width)
+        Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, quality)
+        Dim commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, cmd_get_screenshot, width / 100}
+        responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
+        responseCommand.send()
     End Sub
 
     Public Sub setValue(ByRef setCommand As Command)

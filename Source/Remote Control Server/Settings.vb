@@ -355,7 +355,7 @@ Module Settings
             End If
             Return True
         Catch ex As Exception
-            Logger.add("Unable to set autostart value, please start the server with administrator rights." & vbNewLine & ex.ToString)
+            Logger.add("Unable to set autostart value, please start the server with administrator rights.")
         End Try
         Return False
     End Function
