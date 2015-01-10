@@ -2,6 +2,9 @@
 
 Module Keyboard
 
+    'Keycodes, as used in Android
+    'http://developer.android.com/reference/android/view/KeyEvent.html
+
     Public Const KEYCODE_BACK As Integer = 4
     Public Const KEYCODE_CAPS_LOCK As Integer = 115
     Public Const KEYCODE_DEL As Integer = 67
@@ -28,18 +31,10 @@ Module Keyboard
     Public Const KEYCODE_F12 As Integer = 142
 
     Public Sub sendKeyPress(ByVal key As Keys)
-        sendKeyDown(key)
-        sendKeyUp(key)
-    End Sub
-
-    Public Sub sendKeyPress(ByVal keyCode As Integer)
-        Dim keyDescription As String = "Unknown"
-        Select Case keyCode
-            Case Else
-
-        End Select
-
-        Logger.add("Sending key press: " & keyDescription & " (" & keyCode & ")")
+        If Not key = Nothing Then
+            sendKeyDown(key)
+            sendKeyUp(key)
+        End If
     End Sub
 
     Public Sub sendUnicodeKeyPress(ByVal character As Char)
@@ -111,6 +106,36 @@ Module Keyboard
         Catch
             Return Keys.None
         End Try
+    End Function
+
+    Public Function keycodeToKey(ByVal keyCode As Integer) As Key
+        Select Case keyCode
+            Case KEYCODE_BACK
+                Return Keys.Back
+            Case KEYCODE_CAPS_LOCK
+                Return Keys.CapsLock
+            Case KEYCODE_DEL
+                Return Keys.Back
+            Case KEYCODE_ENTER
+                Return Keys.Return
+            Case KEYCODE_ESCAPE
+                Return Keys.Escape
+            Case KEYCODE_INSERT
+                Return Keys.Insert
+            Case KEYCODE_MOVE_END
+                Return Keys.End
+            Case KEYCODE_MOVE_HOME
+                Return Keys.Home
+            Case KEYCODE_PAGE_DOWN
+                Return Keys.PageDown
+            Case KEYCODE_PAGE_UP
+                Return Keys.PageUp
+            Case KEYCODE_SPACE
+                Return Keys.Space
+            Case KEYCODE_TAB
+                Return Keys.Tab
+        End Select
+        Return Nothing
     End Function
 
     Public Sub hibernate()

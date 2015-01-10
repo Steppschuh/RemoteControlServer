@@ -110,6 +110,8 @@ Module ApiV3
                 setValue(command)
             Case cmd_mouse
                 parseMouseCommand(command)
+            Case cmd_keyboard
+                parseKeyboardCommand(command)
             Case Else
                 Logger.add("Unknown command")
         End Select
@@ -290,12 +292,20 @@ Module ApiV3
 
         Select Case command.data(2)
             Case cmd_keyboard_keycode
-                Dim keyCode As Integer = command.data(3)
-                keyCode = (keyCode << 8) + command.data(4)
-                Keyboard.sendKeyPress(keyCode)
+                Dim keyCode As Integer = command.data(5)
+                keyCode = (keyCode << 8) + command.data(6)
+                Logger.add("Received key code: " & keyCode)
+                Keyboard.sendKeyPress(Keyboard.keycodeToKey(keyCode))
+            Case cmd_keyboard_string
+                Dim keyString As String = Converter.byteToString(command.data, 3)
+                Logger.add("Received key string: " & keyString)
+                'Keyboard.sendKeys(keyString)
+                Keyboard.sendEachKey(keyString)
+
             Case Else
                 Logger.add("Unknown keyboard command")
         End Select
+
     End Sub
 
 #End Region
