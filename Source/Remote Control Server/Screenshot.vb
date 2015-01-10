@@ -17,6 +17,9 @@ Module Screenshot
     Private colorDispatcherActive As Boolean = False
     Private colorUpdateInterval As Integer = 2 'Update average color each x seconds
 
+    Public lastRequestedWidth As Integer = 9999
+    Public lastRequestedQuality As Integer = Settings.screenQualityFull
+
     Public Function getScreenShot(ByVal fullscreen As Boolean, ByVal index As Integer) As Bitmap
         Dim screenshot As Bitmap
         Try

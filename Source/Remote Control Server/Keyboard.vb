@@ -2,9 +2,44 @@
 
 Module Keyboard
 
+    Public Const KEYCODE_BACK As Integer = 4
+    Public Const KEYCODE_CAPS_LOCK As Integer = 115
+    Public Const KEYCODE_DEL As Integer = 67
+    Public Const KEYCODE_ENTER As Integer = 66
+    Public Const KEYCODE_ESCAPE As Integer = 111
+    Public Const KEYCODE_INSERT As Integer = 124
+    Public Const KEYCODE_MOVE_END As Integer = 123
+    Public Const KEYCODE_MOVE_HOME As Integer = 122
+    Public Const KEYCODE_PAGE_DOWN As Integer = 93
+    Public Const KEYCODE_PAGE_UP As Integer = 92
+    Public Const KEYCODE_SPACE As Integer = 62
+    Public Const KEYCODE_TAB As Integer = 61
+    Public Const KEYCODE_F1 As Integer = 131
+    Public Const KEYCODE_F2 As Integer = 132
+    Public Const KEYCODE_F3 As Integer = 133
+    Public Const KEYCODE_F4 As Integer = 134
+    Public Const KEYCODE_F5 As Integer = 135
+    Public Const KEYCODE_F6 As Integer = 136
+    Public Const KEYCODE_F7 As Integer = 137
+    Public Const KEYCODE_F8 As Integer = 138
+    Public Const KEYCODE_F9 As Integer = 139
+    Public Const KEYCODE_F10 As Integer = 140
+    Public Const KEYCODE_F11 As Integer = 141
+    Public Const KEYCODE_F12 As Integer = 142
+
     Public Sub sendKeyPress(ByVal key As Keys)
         sendKeyDown(key)
         sendKeyUp(key)
+    End Sub
+
+    Public Sub sendKeyPress(ByVal keyCode As Integer)
+        Dim keyDescription As String = "Unknown"
+        Select Case keyCode
+            Case Else
+
+        End Select
+
+        Logger.add("Sending key press: " & keyDescription & " (" & keyCode & ")")
     End Sub
 
     Public Sub sendUnicodeKeyPress(ByVal character As Char)

@@ -50,6 +50,11 @@ Module ApiV3
     Public Const cmd_mouse_action_down As Byte = 1
     Public Const cmd_mouse_action_click As Byte = 2
 
+    Public Const cmd_keyboard As Byte = 21
+    Public Const cmd_keyboard_unicode As Byte = 0
+    Public Const cmd_keyboard_string As Byte = 1
+    Public Const cmd_keyboard_keycode As Byte = 2
+
 
     Public Function isBroadcast(ByVal command As Command) As Boolean
         If command.data.Equals(New Byte() {COMMAND_IDENTIFIER, cmd_broadcast}) Then
@@ -162,10 +167,12 @@ Module ApiV3
             Case cmd_get_api_version
                 responseCommand.data = buildCommandData(commandIdentifier, New Byte() {3})
             Case cmd_get_screenshot
+                parseScreenshotProperties(requestCommand)
                 Screenshot.isSendingScreenshot = True
                 answerScreenGetRequest(requestCommand, responseCommand)
                 Screenshot.isSendingScreenshot = False
             Case cmd_get_screenshots
+                parseScreenshotProperties(requestCommand)
                 If Screenshot.isSendingScreenshot Then
                     Screenshot.continueSendingScreenshots = True
                 Else
@@ -180,24 +187,26 @@ Module ApiV3
         End If
     End Sub
 
-    Public Sub answerScreenGetRequest(ByVal requestCommand As Command, ByVal responseCommand As Command)
-        Dim width As Integer = 9999
-        Dim quality As Integer = Settings.screenQualityFull
-
-
+    Public Sub parseScreenshotProperties(ByVal requestCommand As Command)
         If requestCommand.data.Length > 3 Then
-            width = requestCommand.data(3) * 100
+            Screenshot.lastRequestedWidth = requestCommand.data(3) * 100
 
             If requestCommand.data.Length > 4 Then
-                quality = requestCommand.data(4)
+                Screenshot.lastRequestedQuality = requestCommand.data(4)
+            Else
+                Screenshot.lastRequestedQuality = Settings.screenQualityFull
             End If
+        Else
+            Screenshot.lastRequestedWidth = 9999
         End If
+    End Sub
 
-        Logger.add("Screenshot requested with width: " & width & " quality: " & quality)
+    Public Sub answerScreenGetRequest(ByVal requestCommand As Command, ByVal responseCommand As Command)
+        Logger.add("Screenshot requested. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
 
-        Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(width)
-        Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, quality)
-        Dim commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, cmd_get_screenshot, width / 100}
+        Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(Screenshot.lastRequestedWidth)
+        Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, Screenshot.lastRequestedQuality)
+        Dim commandIdentifier = New Byte() {COMMAND_IDENTIFIER, cmd_get, cmd_get_screenshot, Screenshot.lastRequestedWidth / 100}
         responseCommand.data = buildCommandData(commandIdentifier, screenshotData)
         responseCommand.priority = Command.PRIORITY_MEDIUM
         responseCommand.send()
@@ -273,6 +282,19 @@ Module ApiV3
                 End Select
             Case Else
                 Logger.add("Unknown mouse command")
+        End Select
+    End Sub
+
+    Public Sub parseKeyboardCommand(ByRef command As Command)
+        Dim app As App = Server.getApp(command.source)
+
+        Select Case command.data(2)
+            Case cmd_keyboard_keycode
+                Dim keyCode As Integer = command.data(3)
+                keyCode = (keyCode << 8) + command.data(4)
+                Keyboard.sendKeyPress(keyCode)
+            Case Else
+                Logger.add("Unknown keyboard command")
         End Select
     End Sub
 
