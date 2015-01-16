@@ -117,15 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Label3.Text" xml:space="preserve">
-    <value>The Remote Control Server will check for updates one minute after it has been started. If you install an update for the Remote Control App, you may also need to update the Remote Control Server or added features won't work properly.
-
-If you have any issues, folllow this guide:</value>
-  </data>
   <data name="Label26.Text" xml:space="preserve">
     <value>If you are not able to connect your app with the server, take a few minutes and read the setup guide carefully.
 
 If following the setup guide doesn't work, have a look at the advanced troubleshooting guide. The Windows Firewall is the most common issue.</value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>The Remote Control Server will check for updates one minute after it has been started. If you install an update for the Remote Control App, you may also need to update the Remote Control Server or added features won't work properly.
+
+If you have any issues, folllow this guide:</value>
   </data>
   <data name="Label34.Text" xml:space="preserve">
     <value>If you need help, please take a look at our help page before contacting the support. Maybe there's a guide for your problem.

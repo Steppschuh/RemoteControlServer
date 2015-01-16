@@ -336,6 +336,16 @@
         Process.Start("https://github.com/Steppschuh/RemoteControlServer/issues")
     End Sub
 
+    Private Sub btn_help_setupguide_Click_1(sender As Object, e As EventArgs) Handles btn_help_setupguide.Click
+        Logger.trackEevent("Server", "Click", "Connection help page")
+        Process.Start("http://remote-control-collection.com/help/connect/")
+    End Sub
+
+    Private Sub btn_help_troubleshooting_Click_1(sender As Object, e As EventArgs) Handles btn_help_troubleshooting.Click
+        Logger.trackEevent("Server", "Click", "Troubleshooting page")
+        Process.Start("http://remote-control-collection.com/help/troubleshooting/")
+    End Sub
+
 #End Region
 
 #Region "Upgrade"
@@ -368,5 +378,6 @@
 #End Region
 
 #End Region
+
 
 End Class
