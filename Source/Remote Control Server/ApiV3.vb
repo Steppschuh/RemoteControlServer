@@ -26,6 +26,10 @@ Module ApiV3
     Public Const cmd_connection_connect As Byte = 2
     Public Const cmd_connection_disconnect As Byte = 3
 
+    Public Const cmd_action_up As Byte = 0
+    Public Const cmd_action_down As Byte = 1
+    Public Const cmd_action_click As Byte = 2
+
     'setter
     Public Const cmd_set_pin As Byte = 0
     Public Const cmd_set_app_version As Byte = 1
@@ -46,9 +50,6 @@ Module ApiV3
     Public Const cmd_mouse_pad_action As Byte = 2
     Public Const cmd_mouse_left_action As Byte = 3
     Public Const cmd_mouse_right_action As Byte = 4
-    Public Const cmd_mouse_action_up As Byte = 0
-    Public Const cmd_mouse_action_down As Byte = 1
-    Public Const cmd_mouse_action_click As Byte = 2
 
     Public Const cmd_keyboard As Byte = 21
     Public Const cmd_keyboard_unicode As Byte = 0
@@ -253,19 +254,19 @@ Module ApiV3
                 MouseV3.parseAbsolutePointerData(command.data)
             Case cmd_mouse_pad_action
                 Select Case command.data(3)
-                    Case cmd_mouse_action_down
+                    Case cmd_action_down
                         MouseV3.pointersDown()
-                    Case cmd_mouse_action_up
+                    Case cmd_action_up
                         MouseV3.pointersUp()
                     Case Else
                         Logger.add("Unknown mouse pad command")
                 End Select
             Case cmd_mouse_left_action
                 Select Case command.data(3)
-                    Case cmd_mouse_action_down
+                    Case cmd_action_down
                         Logger.add("Mouse left down")
                         MouseV3.leftMouseDown()
-                    Case cmd_mouse_action_up
+                    Case cmd_action_up
                         Logger.add("Mouse left up")
                         MouseV3.leftMouseUp()
                     Case Else
@@ -273,10 +274,10 @@ Module ApiV3
                 End Select
             Case cmd_mouse_right_action
                 Select Case command.data(3)
-                    Case cmd_mouse_action_down
+                    Case cmd_action_down
                         Logger.add("Mouse right down")
                         MouseV3.rightMouseDown()
-                    Case cmd_mouse_action_up
+                    Case cmd_action_up
                         Logger.add("Mouse right up")
                         MouseV3.rightMouseUp()
                     Case Else
@@ -292,10 +293,19 @@ Module ApiV3
 
         Select Case command.data(2)
             Case cmd_keyboard_keycode
-                Dim keyCode As Integer = command.data(5)
-                keyCode = (keyCode << 8) + command.data(6)
+                Dim action As Byte = command.data(3)
+                Dim keyCode As Integer = command.data(6)
+                keyCode = (keyCode << 8) + command.data(7)
                 Logger.add("Received key code: " & keyCode)
-                Keyboard.sendKeyPress(Keyboard.keycodeToKey(keyCode))
+
+                Select Case action
+                    Case cmd_action_down
+                        Keyboard.sendKeyDown(Keyboard.keycodeToKey(keyCode))
+                    Case cmd_action_up
+                        Keyboard.sendKeyUp(Keyboard.keycodeToKey(keyCode))
+                    Case cmd_action_click
+                        Keyboard.sendKeyPress(Keyboard.keycodeToKey(keyCode))
+                End Select
             Case cmd_keyboard_string
                 Dim keyString As String = Converter.byteToString(command.data, 3)
                 Logger.add("Received key string: " & keyString)

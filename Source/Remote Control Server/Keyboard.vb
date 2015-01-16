@@ -6,13 +6,22 @@ Module Keyboard
     'http://developer.android.com/reference/android/view/KeyEvent.html
 
     Public Const KEYCODE_BACK As Integer = 4
+    Public Const KEYCODE_UP As Integer = 19
+    Public Const KEYCODE_DOWN As Integer = 20
+    Public Const KEYCODE_LEFT As Integer = 21
+    Public Const KEYCODE_RIGHT As Integer = 22
+    Public Const KEYCODE_ALT As Integer = 57
+    Public Const KEYCODE_SHIFT As Integer = 59
     Public Const KEYCODE_CAPS_LOCK As Integer = 115
     Public Const KEYCODE_DEL As Integer = 67
     Public Const KEYCODE_ENTER As Integer = 66
     Public Const KEYCODE_ESCAPE As Integer = 111
+    Public Const KEYCODE_DEL_FORWARD As Integer = 112
+    Public Const KEYCODE_CONTROL As Integer = 113
     Public Const KEYCODE_INSERT As Integer = 124
     Public Const KEYCODE_MOVE_END As Integer = 123
     Public Const KEYCODE_MOVE_HOME As Integer = 122
+    Public Const KEYCODE_WINDOWS As Integer = 171
     Public Const KEYCODE_PAGE_DOWN As Integer = 93
     Public Const KEYCODE_PAGE_UP As Integer = 92
     Public Const KEYCODE_SPACE As Integer = 62
@@ -29,6 +38,7 @@ Module Keyboard
     Public Const KEYCODE_F10 As Integer = 140
     Public Const KEYCODE_F11 As Integer = 141
     Public Const KEYCODE_F12 As Integer = 142
+
 
     Public Sub sendKeyPress(ByVal key As Keys)
         If Not key = Nothing Then
@@ -54,7 +64,11 @@ Module Keyboard
     End Sub
 
     Public Sub sendKeyUp(ByVal key As Keys)
-        Remote.keybd_event(key, 0, 2, 0) 'Up
+        Try
+            Remote.keybd_event(key, 0, 2, 0) 'Up
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Sub sendEachKey(ByVal message As String)
@@ -134,7 +148,50 @@ Module Keyboard
                 Return Keys.Space
             Case KEYCODE_TAB
                 Return Keys.Tab
+            Case KEYCODE_UP
+                Return Keys.Up
+            Case KEYCODE_DOWN
+                Return Keys.Down
+            Case KEYCODE_LEFT
+                Return Keys.Left
+            Case KEYCODE_RIGHT
+                Return Keys.Right
+            Case KEYCODE_ALT
+                Return Keys.Alt
+            Case KEYCODE_CONTROL
+                Return Keys.ControlKey
+            Case KEYCODE_SHIFT
+                Return Keys.ShiftKey
+            Case KEYCODE_DEL_FORWARD
+                Return Keys.Delete
+            Case KEYCODE_WINDOWS
+                Return Keys.LWin
+            Case KEYCODE_F1
+                Return Keys.F1
+            Case KEYCODE_F2
+                Return Keys.F2
+            Case KEYCODE_F3
+                Return Keys.F3
+            Case KEYCODE_F4
+                Return Keys.F4
+            Case KEYCODE_F5
+                Return Keys.F5
+            Case KEYCODE_F6
+                Return Keys.F6
+            Case KEYCODE_F7
+                Return Keys.F7
+            Case KEYCODE_F8
+                Return Keys.F8
+            Case KEYCODE_F9
+                Return Keys.F9
+            Case KEYCODE_F10
+                Return Keys.F10
+            Case KEYCODE_F11
+                Return Keys.F11
+            Case KEYCODE_F12
+                Return Keys.F12
         End Select
+        Logger.add("Unable to send key event, unknown keycode")
         Return Nothing
     End Function
 
