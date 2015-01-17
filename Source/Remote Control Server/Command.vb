@@ -22,7 +22,7 @@
 
     Public Sub process()
         Try
-            If Authentication.isAuthenticated(source, Server.getApp(source).pin) Or isBroadcast() Then
+            If Authentication.isAuthenticated(source, Server.getApp(source).pin) Or isBroadcast() Or isConnectionCommand() Then
                 parse()
             Else
                 Logger.add("Refused a command from " & source)
@@ -72,6 +72,14 @@
 
     Public Function isBroadcast() As Boolean
         If ApiV1.isBroadcast(Me) Or ApiV2.isBroadcast(Me) Or ApiV3.isBroadcast(Me) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Function isConnectionCommand() As Boolean
+        If ApiV3.isConnectionCommand(Me) Then
             Return True
         Else
             Return False

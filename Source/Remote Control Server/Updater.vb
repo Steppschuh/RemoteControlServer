@@ -8,7 +8,7 @@ Module Updater
     Public Const URL_UPDATE_SERVER_BETA As String = "http://remote-control-collection.com/files/server/RemoteControlServerBeta.exe"
     Public Const URL_UPDATE_HELP As String = "http://remote-control-collection.com/help/update/"
 
-    Public Const currentVersionCode As Byte = 15
+    Public Const currentVersionCode As Byte = 16
 
     Public updateVersionCode As Byte = 0
     Public updateVersionName As String = ""
@@ -46,6 +46,7 @@ Module Updater
 
     Public Function parseUpdateResult(ByVal result As String) As Boolean
         'Callback function for the webrequest
+
         Try
             updateVersionCode = Integer.Parse(getValue("versioncode", result))
             updateVersionName = getValue("versionname", result)
@@ -58,6 +59,7 @@ Module Updater
                 Logger.add("Update available: " & updateVersionName)
                 isUpdateAvailable = True
                 gui.showNotification("Update available", "There is a new version of the Remote Control Server available")
+
             Else
                 Logger.add("No update available")
                 isUpdateAvailable = False
@@ -65,15 +67,26 @@ Module Updater
             hasUpdatesParsed = True
         Catch ex As Exception
             Logger.add("Error while parsing update info")
+            Logger.add(ex.Message)
         End Try
 
         Try
-            Server.advanced.refreshUi()
+            If isUpdateAvailable Then
+                Server.gui.Dispatcher.Invoke(DispatcherPriority.Normal, New Action(AddressOf showUpdateInfo))
+            End If
         Catch ex As Exception
+            Logger.add("Error while showing update info")
+            Logger.add(ex.Message)
         End Try
-
         Return True
     End Function
+
+    Public Sub showUpdateInfo()
+        Server.gui.showUI()
+        Server.showAdvancedWindow(Server.advanced.tab_update)
+        Server.advanced.refreshUi()
+        Server.advanced.BringToFront()
+    End Sub
 
     Function getValue(ByVal tag As String, source As String) As String
         Dim tmp As String = source

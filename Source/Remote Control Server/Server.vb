@@ -26,7 +26,7 @@ Public Module Server
         If isLatestServerRunning() Then
             Settings.loadSettings()
             Network.initialize()
-            Updater.checkForUpdates(60)
+            Updater.checkForUpdates(30)
             Screenshot.startUpdateColorTimer()
 
             Dim initializeThread = New Thread(AddressOf initializeAsync)
@@ -91,11 +91,14 @@ Public Module Server
     End Function
 
     Public Function getApp(ByVal ip As String) As App
-        For Each savedApp As App In apps
-            If savedApp.ip.Equals(ip) Then
-                Return savedApp
-            End If
-        Next
+        Try
+            For Each savedApp As App In apps
+                If savedApp.ip.Equals(ip) Then
+                    Return savedApp
+                End If
+            Next
+        Catch ex As Exception
+        End Try
 
         'No app found for the given IP, save a new one
         Dim app As App = New App

@@ -60,9 +60,21 @@ Module ApiV3
     Public Function isBroadcast(ByVal command As Command) As Boolean
         If command.data.Equals(New Byte() {COMMAND_IDENTIFIER, cmd_broadcast}) Then
             Return True
+        ElseIf command.data(2) = ApiV3.cmd_connection_reachable Then
+            Return True
         Else
             Return False
         End If
+    End Function
+
+    Public Function isConnectionCommand(ByVal command As Command) As Boolean
+        Select Case command.data(1)
+            Case cmd_connection
+                Return True
+            Case cmd_set
+                Return True
+        End Select
+        Return False
     End Function
 
     Public Sub requestPin(ByRef app As App)
@@ -74,6 +86,22 @@ Module ApiV3
 
         Dim serverName As Byte() = New Byte() {COMMAND_IDENTIFIER, cmd_connection, cmd_connection_protected}
         command.data = buildCommandData(serverName, Converter.stringToByte(Server.gui.userName))
+
+        command.send()
+    End Sub
+
+    Public Sub validatePin(ByRef app As App)
+        'Send if pin is valid or not
+        Dim command As New Command
+        command.source = Network.getServerIp()
+        command.destination = app.ip
+        command.priority = RemoteControlServer.Command.PRIORITY_HIGH
+
+        If (isAuthenticated(app.ip, app.pin)) Then
+            command.data = New Byte() {COMMAND_IDENTIFIER, cmd_connection, cmd_connection_connect}
+        Else
+            command.data = New Byte() {COMMAND_IDENTIFIER, cmd_connection, cmd_connection_disconnect}
+        End If
 
         command.send()
     End Sub
@@ -139,7 +167,8 @@ Module ApiV3
                     app.ip = Converter.byteToString(command.data, 3)
                 End If
 
-                answerBroadCast(app)
+                'answerBroadCast(app)
+                app.onBroadCast(command)
                 Logger.add(app.ip & " checked reachability")
             Case Else
                 Logger.add("Unknown connection command")
@@ -162,7 +191,8 @@ Module ApiV3
 
         Select Case requestCommand.data(2)
             Case cmd_get_server_version
-                responseCommand.data = buildCommandData(commandIdentifier, Converter.stringToByte(Server.getServerVersionName))
+                'responseCommand.data = buildCommandData(commandIdentifier, Converter.stringToByte(Server.getServerVersionName))
+                responseCommand.data = buildCommandData(commandIdentifier, New Byte() {Updater.currentVersionCode})
             Case cmd_get_server_name
                 responseCommand.data = buildCommandData(commandIdentifier, Converter.stringToByte(Server.gui.userName))
             Case cmd_get_os_name
@@ -171,14 +201,11 @@ Module ApiV3
                 responseCommand.data = buildCommandData(commandIdentifier, New Byte() {3})
             Case cmd_get_screenshot
                 parseScreenshotProperties(requestCommand)
-                Screenshot.isSendingScreenshot = True
                 answerScreenGetRequest(requestCommand, responseCommand)
-                Screenshot.isSendingScreenshot = False
             Case cmd_get_screenshots
                 parseScreenshotProperties(requestCommand)
-                If Screenshot.isSendingScreenshot Then
-                    Screenshot.continueSendingScreenshots = True
-                Else
+                Screenshot.continueSendingScreenshots = True
+                If Not Screenshot.isSendingScreenshot Then
                     Screenshot.keepSendingScreenshots(requestCommand, responseCommand)
                 End If
             Case Else
@@ -202,10 +229,12 @@ Module ApiV3
         Else
             Screenshot.lastRequestedWidth = 9999
         End If
+
+        Logger.add("Screenshot requested. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
     End Sub
 
     Public Sub answerScreenGetRequest(ByVal requestCommand As Command, ByVal responseCommand As Command)
-        Logger.add("Screenshot requested. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
+        Logger.add("Sending screenshot. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
 
         Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(Screenshot.lastRequestedWidth)
         Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, Screenshot.lastRequestedQuality)
@@ -222,6 +251,7 @@ Module ApiV3
             Case cmd_set_pin
                 app.pin = Converter.byteToString(setCommand.data, 3)
                 Logger.add("Pin from " & app.ip & " set to " & app.pin)
+                validatePin(app)
             Case cmd_set_app_version
                 app.appVersion = Converter.byteToString(setCommand.data, 3)
                 Logger.add("App version from " & app.ip & " set to " & app.appVersion)
