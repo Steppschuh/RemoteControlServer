@@ -1,7 +1,7 @@
 Remote Control Server
 ===================
 
-![Banner](http://remote-control-collection.com/files/posts/server_gui_advanced.png "Remote Control Collection")
+![Banner](https://raw.githubusercontent.com/Steppschuh/RemoteControlServer/master/Media/server_default_advanced_faded.png "Remote Control Collection")
 
 ### Description
 The Remote Control Server is needed to receive commands from any [Remote Control App](http://remote-control-collection.com/). The Remote Control apps allow you to remotely control your PC from your smartphone or tablet. You can download the latest stable version here: [Server Releases](https://github.com/Steppschuh/RemoteControlServer/releases)
@@ -32,8 +32,8 @@ The above snippet will send a data package to the last connected device. The pri
 Priority | Protocol | Tries
 --- | --- | ---
 `PRIORITY_LOW` | UDP | 1
-`PRIORITY_MEDIUM` | TCP | 1
-`PRIORITY_HIGH` | TCP | 3
+`PRIORITY_MEDIUM` | TCP | 3
+`PRIORITY_HIGH` | TCP | 5
 `PRIORITY_INDISPENSABLE` | TCP | Until received
 
 ### Receiving a data package
