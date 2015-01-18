@@ -230,11 +230,11 @@ Module ApiV3
             Screenshot.lastRequestedWidth = 9999
         End If
 
-        Logger.add("Screenshot requested. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
+        'Logger.add("Screenshot requested. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
     End Sub
 
     Public Sub answerScreenGetRequest(ByVal requestCommand As Command, ByVal responseCommand As Command)
-        Logger.add("Sending screenshot. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
+        'Logger.add("Sending screenshot. Width: " & Screenshot.lastRequestedWidth & " Quality: " & Screenshot.lastRequestedQuality)
 
         Dim screenshotBitmap As Bitmap = Screenshot.getResizedScreenshot(Screenshot.lastRequestedWidth)
         Dim screenshotData As Byte() = Converter.bitmapToByte(screenshotBitmap, Screenshot.lastRequestedQuality)
@@ -260,6 +260,7 @@ Module ApiV3
                 Logger.add("App name from " & app.ip & " set to " & app.appName)
             Case cmd_set_os_version
                 app.osVersion = Converter.byteToString(setCommand.data, 3)
+                app.detectOs()
                 Logger.add("OS version from " & app.ip & " set to " & app.osVersion)
             Case cmd_set_device_name
                 app.deviceName = Converter.byteToString(setCommand.data, 3)
@@ -326,8 +327,7 @@ Module ApiV3
                 Dim action As Byte = command.data(3)
                 Dim keyCode As Integer = command.data(6)
                 keyCode = (keyCode << 8) + command.data(7)
-                Logger.add("Received key code: " & keyCode)
-
+                'Logger.add("Received key code: " & keyCode)
                 Select Case action
                     Case cmd_action_down
                         Keyboard.sendKeyDown(Keyboard.keycodeToKey(keyCode))
@@ -338,8 +338,7 @@ Module ApiV3
                 End Select
             Case cmd_keyboard_string
                 Dim keyString As String = Converter.byteToString(command.data, 3)
-                Logger.add("Received key string: " & keyString)
-                'Keyboard.sendKeys(keyString)
+                'Logger.add("Received key string: " & keyString)
                 Keyboard.sendEachKey(keyString)
 
             Case Else

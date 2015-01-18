@@ -31,7 +31,7 @@ Module Settings
     Public whitelistedIps As List(Of String)
 
     'Mouse
-    Public mouseSensitivity As Single = 5
+    Public mouseSensitivity As Single = 2
     Public mouseAcceleration As Single = 1.5
     Public motionFilter As Byte = 1
     Public motionAcceleration As Byte = 3

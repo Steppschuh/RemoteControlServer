@@ -10,7 +10,7 @@ Module MouseV3
     Private Const GESTURE_SCROLL As Byte = 2
 
     Private Const CLICK_OFFSET_TOLERANCE As Byte = 10 'dip
-    Private Const CLICK_DELAY_TOLERANCE As Integer = 700
+    Private Const CLICK_DELAY_TOLERANCE As Integer = 500
 
     Private Const MOUSE_LEFT_DOWN = &H2
     Private Const MOUSE_LEFT_UP = &H4
@@ -31,7 +31,10 @@ Module MouseV3
     Private dateLeftDown As DateTime
     Private dateLeftUp As DateTime
 
+    Private pointDown As TouchPoint
     Private pointers As List(Of TouchPoint)
+    Private downEventIndex As Integer = -1
+    Private moveEventIndex As Integer = -1
 
     Public mousePadDown, mouseLeftDown, mouseRightDown, isMultitouch As Boolean
 
@@ -96,52 +99,85 @@ Module MouseV3
         Dim currentPointer As New TouchPoint()
         currentPointer.x = 0
         currentPointer.y = 0
-        currentPointer.timestamp = Date.Now.Ticks
         pointers.Add(currentPointer)
 
-        Logger.add("pointersDown 2")
+        pointDown = New TouchPoint()
+        pointDown.timestamp = Date.Now.Ticks / TimeSpan.TicksPerMillisecond
+
+        'Logger.add("pointersDown 2")
     End Sub
 
     Public Sub pointersUp()
         Logger.add("pointersUp 1")
 
+        checkForClick()
+
         P1_Start = P_ORIGIN
         P1_Last = P_ORIGIN
-        checkForClick()
+
 
         mousePadDown = False
         pointers = New List(Of TouchPoint)
         P1_Start = P_ORIGIN
         P1_Last = P_ORIGIN
 
-        Logger.add("pointersUp 2")
+        'Logger.add("pointersUp 2")
     End Sub
 
     Public Sub parsePointerData(ByVal data As Byte())
-        'Pointer data starts at byte index 3
-        'Each pointer has two bytes for X and two for Y value
+        Try
+            'Pointer data starts at byte index 3
+            'Each pointer has two bytes for X and two for Y value
 
-        Dim pointerDataOffset As Byte = 3
-        Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 4
+            Dim newDownEventIndex As Integer = data(3)
+            newDownEventIndex = (newDownEventIndex << 8) + data(4)
 
-        pointers = New List(Of TouchPoint)
+            Dim newMoveEventIndex As Integer = data(5)
+            newMoveEventIndex = (newMoveEventIndex << 8) + data(6)
 
-        For i As Byte = 0 To pointerCount - 1 Step 1
-            Dim currentPointer As New TouchPoint
+            'Check if command is old and should be ignored
+            If newDownEventIndex < downEventIndex Then
+                'Logger.add("Ignoring old command (down index)")
+                'Return
+            ElseIf newDownEventIndex < downEventIndex And newMoveEventIndex < moveEventIndex Then
+                'Logger.add("Ignoring old command (move index)")
+                'Return
+            End If
 
-            Dim x As Integer = data(pointerDataOffset + i)
-            x = (x << 8) + data(pointerDataOffset + i + 1)
+            Dim pointerDataOffset As Byte = 7
+            Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 4
 
-            Dim y As Integer = data(pointerDataOffset + i + 2)
-            y = (y << 8) + data(pointerDataOffset + i + 3)
+            pointers = New List(Of TouchPoint)
 
-            currentPointer.x = x
-            currentPointer.y = y
+            For i As Byte = 0 To pointerCount - 1 Step 1
+                Dim currentPointer As New TouchPoint
 
-            pointers.Add(currentPointer)
-        Next
+                Dim x As Integer = data(pointerDataOffset + i)
+                x = (x << 8) + data(pointerDataOffset + i + 1)
 
-        updateCursorPosition()
+                Dim y As Integer = data(pointerDataOffset + i + 2)
+                y = (y << 8) + data(pointerDataOffset + i + 3)
+
+                currentPointer.x = x
+                currentPointer.y = y
+
+                pointers.Add(currentPointer)
+            Next
+
+            'Logger.add("Down #" & newDownEventIndex & " Move #" & newMoveEventIndex & " " & pointers(0).x & "|" & pointers(0).y)
+
+            If newDownEventIndex > downEventIndex Then
+                'New cursor update should be processed after pointerUp and pointerDown event
+                moveEventIndex = -1
+                pointersUp()
+            End If
+
+            downEventIndex = newDownEventIndex
+            moveEventIndex = newMoveEventIndex
+
+            updateCursorPosition()
+        Catch ex As Exception
+        End Try
     End Sub
 
     Public Sub parseAbsolutePointerData(ByVal data As Byte())
@@ -174,6 +210,12 @@ Module MouseV3
         cursorPositonNew.Y = currentPointer.y
 
         SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
+
+        'Add absolute pointer position to pointer list to enable click detection
+        pointers.Add(currentPointer)
+
+        P1_Start.X = currentPointer.x
+        P1_Start.Y = currentPointer.y
     End Sub
 
     Private Sub updateCursorPosition()
@@ -184,6 +226,7 @@ Module MouseV3
 
         If mousePadDown = False Then
             'onMove event before onDown event received
+            'Logger.add("onMove event before onDown event received")
             pointersDown()
             Return
         End If
@@ -192,7 +235,7 @@ Module MouseV3
         P1_New = New Point(pointers(0).x, pointers(0).y)
 
         If P1_Start = P_ORIGIN Or P1_Start = P_ORIGIN Then
-            Logger.add("P_Start & P_Last set to P_New: " & P1_New.X & "|" & P1_New.Y)
+            'Logger.add("P_Start & P_Last set to P_New: " & P1_New.X & "|" & P1_New.Y)
             P1_Start = P1_New
             P1_Last = P1_New
             Return
@@ -208,10 +251,6 @@ Module MouseV3
             'Acceleration
             P1_Rel.X = (P1_New.X - P1_Last.X)
             P1_Rel.Y = (P1_New.Y - P1_Last.Y)
-
-            Logger.add("---------")
-            Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y & " New: " & P1_New.X & "|" & P1_New.Y & " Old: " & P1_Last.X & "|" & P1_Last.Y)
-
 
             If Not (P1_Rel.X = 0 And P1_Rel.Y = 0) Then
                 If P1_Rel.X > 0 Then
@@ -234,23 +273,30 @@ Module MouseV3
             End If
         End If
 
+        If P1_Rel.X < -700 Or P1_Rel.X > 700 Or P1_Rel.Y < -700 Or P1_Rel.Y > 700 Then
+            'Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y & " New: " & P1_New.X & "|" & P1_New.Y & " Old: " & P1_Last.X & "|" & P1_Last.Y)
+            pointersUp()
+            Return
+        End If
+
         P1_Last = P1_New
 
-        Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y)
+        'Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y)
 
         cursorPositonNew = cursorPositonCurrent + P1_Rel
         SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
     End Sub
 
     Private Sub checkForClick()
-        For Each pointer As TouchPoint In pointers
+        Try
             'Down and Up event timestamp in a short timeframe?
-            Dim timeDelta As Long = (Date.Now.Ticks - pointer.timestamp) / 1000000
+            Dim timeDelta As Long = ((Date.Now.Ticks / TimeSpan.TicksPerMillisecond) - pointDown.timestamp)
 
             If timeDelta < CLICK_DELAY_TOLERANCE Then
+                Logger.add("Click delay: " & timeDelta)
                 'Down and Up event in the same location?
-                Dim offsetX As Integer = Math.Sqrt((P1_Start.X - pointer.x) ^ 2)
-                Dim offsetY As Integer = Math.Sqrt((P1_Start.Y - pointer.y) ^ 2)
+                Dim offsetX As Integer = Math.Sqrt((P1_Start.X - pointers(0).x) ^ 2)
+                Dim offsetY As Integer = Math.Sqrt((P1_Start.Y - pointers(0).y) ^ 2)
 
                 If offsetX < CLICK_OFFSET_TOLERANCE And offsetY < CLICK_OFFSET_TOLERANCE Then
                     leftClick()
@@ -258,7 +304,8 @@ Module MouseV3
             Else
                 'Logger.add("Delta: " & timeDelta)
             End If
-        Next
+        Catch ex As Exception
+        End Try
     End Sub
 
 #End Region
