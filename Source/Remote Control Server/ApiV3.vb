@@ -17,6 +17,7 @@ Module ApiV3
     Public Const cmd_broadcast As Byte = 16
     Public Const cmd_set As Byte = 17
     Public Const cmd_get As Byte = 19
+    Public Const cmd_open As Byte = 18
 
 
     'second index
@@ -26,9 +27,11 @@ Module ApiV3
     Public Const cmd_connection_connect As Byte = 2
     Public Const cmd_connection_disconnect As Byte = 3
 
+    'action
     Public Const cmd_action_up As Byte = 0
     Public Const cmd_action_down As Byte = 1
     Public Const cmd_action_click As Byte = 2
+    Public Const cmd_action_process As Byte = 3
 
     'setter
     Public Const cmd_set_pin As Byte = 0
@@ -37,6 +40,7 @@ Module ApiV3
     Public Const cmd_set_os_version As Byte = 3
     Public Const cmd_set_device_name As Byte = 5
 
+    'getter
     Public Const cmd_get_server_version As Byte = 1
     Public Const cmd_get_server_name As Byte = 2
     Public Const cmd_get_os_name As Byte = 4
@@ -44,13 +48,16 @@ Module ApiV3
     Public Const cmd_get_screenshots As Byte = 7
     Public Const cmd_get_api_version As Byte = 6
 
+    'mouse
     Public Const cmd_mouse As Byte = 20
-    Public Const cmd_mouse_pointers_absolute As Byte = 0
     Public Const cmd_mouse_pointers As Byte = 1
+    Public Const cmd_mouse_pointers_absolute As Byte = 0
+    Public Const cmd_mouse_pointers_absolute_presenter As Byte = 5
     Public Const cmd_mouse_pad_action As Byte = 2
     Public Const cmd_mouse_left_action As Byte = 3
     Public Const cmd_mouse_right_action As Byte = 4
 
+    'keyboard
     Public Const cmd_keyboard As Byte = 21
     Public Const cmd_keyboard_unicode As Byte = 0
     Public Const cmd_keyboard_string As Byte = 1
@@ -141,6 +148,8 @@ Module ApiV3
                 parseMouseCommand(command)
             Case cmd_keyboard
                 parseKeyboardCommand(command)
+            Case cmd_open
+                parseOpenCommand(command)
             Case Else
                 Logger.add("Unknown command")
         End Select
@@ -172,6 +181,27 @@ Module ApiV3
                 Logger.add(app.ip & " checked reachability")
             Case Else
                 Logger.add("Unknown connection command")
+        End Select
+    End Sub
+
+#End Region
+
+#Region "Open"
+
+    Public Sub parseOpenCommand(ByRef command As Command)
+        Dim app As App = Server.getApp(command.source)
+
+        Select Case command.data(2)
+            Case cmd_action_process
+                Dim processString As String = Converter.byteToString(command.data, 3)
+                Logger.add("Starting process: " & processString)
+                Try
+                    Process.Start(processString)
+                Catch ex As Exception
+                    Logger.add(ex.Message)
+                End Try
+            Case Else
+                Logger.add("Unknown open command")
         End Select
     End Sub
 
@@ -282,7 +312,9 @@ Module ApiV3
             Case cmd_mouse_pointers
                 MouseV3.parsePointerData(command.data)
             Case cmd_mouse_pointers_absolute
-                MouseV3.parseAbsolutePointerData(command.data)
+                MouseV3.parseAbsolutePointerData(command.data, False)
+            Case cmd_mouse_pointers_absolute_presenter
+                MouseV3.parseAbsolutePointerData(command.data, True)
             Case cmd_mouse_pad_action
                 Select Case command.data(3)
                     Case cmd_action_down

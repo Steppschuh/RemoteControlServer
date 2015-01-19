@@ -11,6 +11,8 @@ Public Class PointerWindow
     Private fadeOutDelayTimer As DispatcherTimer
     Private lowerOpacityTimer As DispatcherTimer
 
+    Public isVisible As Boolean = False
+
     Public Sub showPointer()
         If Not Me.Dispatcher.CheckAccess Then
             Me.Dispatcher.Invoke(New invalidateDelegate(AddressOf showPointer))
@@ -23,7 +25,7 @@ Public Class PointerWindow
                 Case 1
                     Converter.setImageDrawable(image_back, "pointer.png")
             End Select
-
+            isVisible = True
         End If
     End Sub
 
@@ -32,6 +34,7 @@ Public Class PointerWindow
             Me.Dispatcher.Invoke(New invalidateDelegate(AddressOf hidePointer))
         Else
             Me.Opacity = 0
+            isVisible = False
         End If
     End Sub
 
@@ -60,6 +63,7 @@ Public Class PointerWindow
         Else
             isFadingOut = False
             lowerOpacityTimer.Stop()
+            isVisible = False
         End If
     End Sub
 

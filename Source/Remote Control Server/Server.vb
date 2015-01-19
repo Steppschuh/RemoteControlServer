@@ -83,7 +83,7 @@ Public Module Server
                 Else
                     Return True
                 End If
-            Catch ex As Exception                
+            Catch ex As Exception
                 Logger.add("A new version of the Remote Control Server is available but could not be started." & vbNewLine & path_dl)
                 Return True
             End Try

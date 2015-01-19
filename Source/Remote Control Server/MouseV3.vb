@@ -12,6 +12,8 @@ Module MouseV3
     Private Const CLICK_OFFSET_TOLERANCE As Byte = 10 'dip
     Private Const CLICK_DELAY_TOLERANCE As Integer = 500
 
+    Private Const SCROLL_OFFSET_TOLERANCE As Integer = 50
+
     Private Const MOUSE_LEFT_DOWN = &H2
     Private Const MOUSE_LEFT_UP = &H4
     Private Const MOUSE_RIGHT_DOWN = &H8
@@ -89,7 +91,7 @@ Module MouseV3
             Return
         End If
 
-        Logger.add("pointersDown 1")
+        'Logger.add("pointersDown 1")
 
         mousePadDown = True
         P1_Start = P_ORIGIN
@@ -108,18 +110,22 @@ Module MouseV3
     End Sub
 
     Public Sub pointersUp()
-        Logger.add("pointersUp 1")
+        'Logger.add("pointersUp 1")
 
         checkForClick()
 
         P1_Start = P_ORIGIN
         P1_Last = P_ORIGIN
-
+        P2_Start = P_ORIGIN
+        P2_Last = P_ORIGIN
+        P3_Start = P_ORIGIN
+        P3_Last = P_ORIGIN
+        P3_Vektor_Start = 0
+        P3_Vektor_Last = 0
 
         mousePadDown = False
+        currentGesture = GESTURE_NONE
         pointers = New List(Of TouchPoint)
-        P1_Start = P_ORIGIN
-        P1_Last = P_ORIGIN
 
         'Logger.add("pointersUp 2")
     End Sub
@@ -145,18 +151,19 @@ Module MouseV3
             End If
 
             Dim pointerDataOffset As Byte = 7
-            Dim pointerCount As Byte = (data.Length - pointerDataOffset) / 4
+            Dim pointerLength As Byte = 4
+            Dim pointerCount As Byte = (data.Length - pointerDataOffset) / pointerLength
 
             pointers = New List(Of TouchPoint)
 
             For i As Byte = 0 To pointerCount - 1 Step 1
                 Dim currentPointer As New TouchPoint
 
-                Dim x As Integer = data(pointerDataOffset + i)
-                x = (x << 8) + data(pointerDataOffset + i + 1)
+                Dim x As Integer = data(pointerDataOffset + (i * pointerLength))
+                x = (x << 8) + data(pointerDataOffset + (i * pointerLength) + 1)
 
-                Dim y As Integer = data(pointerDataOffset + i + 2)
-                y = (y << 8) + data(pointerDataOffset + i + 3)
+                Dim y As Integer = data(pointerDataOffset + (i * pointerLength) + 2)
+                y = (y << 8) + data(pointerDataOffset + (i * pointerLength) + 3)
 
                 currentPointer.x = x
                 currentPointer.y = y
@@ -175,12 +182,17 @@ Module MouseV3
             downEventIndex = newDownEventIndex
             moveEventIndex = newMoveEventIndex
 
-            updateCursorPosition()
+            If pointers.Count = 1 Then
+                updateCursorPosition()
+            ElseIf pointers.Count > 1 Then
+                parseMultitouch()
+            End If
+
         Catch ex As Exception
         End Try
     End Sub
 
-    Public Sub parseAbsolutePointerData(ByVal data As Byte())
+    Public Sub parseAbsolutePointerData(ByVal data As Byte(), Optional ByVal isPresenter As Boolean = False)
         'Pointer data starts at byte index 3
         'Each pointer has two bytes for X and two for Y value
 
@@ -209,21 +221,48 @@ Module MouseV3
         cursorPositonNew.X = currentPointer.x
         cursorPositonNew.Y = currentPointer.y
 
-        SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
-
         'Add absolute pointer position to pointer list to enable click detection
         pointers.Add(currentPointer)
 
         P1_Start.X = currentPointer.x
         P1_Start.Y = currentPointer.y
+
+        SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
+
+        If isPresenter Then
+            updatePointerPosition()
+        Else
+
+        End If
+    End Sub
+
+    Private Sub updatePointerPosition()
+        If pointers.Count > 0 Then
+            If Not Server.pointer.isVisible Then
+                Server.pointer.showPointer()
+            End If
+            Dim locations As System.Drawing.Point() = Screenshot.getScreenBounds(Screenshot.screenIndex)
+
+            Dim startLocation As System.Drawing.Point = locations(0)
+            Dim endLocation As System.Drawing.Point = locations(1)
+            Dim screenSize As Size = New Size(endLocation.X - startLocation.X, endLocation.Y - startLocation.Y)
+
+            Dim width As Integer = screenSize.Width
+            Dim height As Integer = screenSize.Height
+
+            Dim pointerPosition As New Point
+            Dim pointerOffset As Integer = 50
+            pointerPosition.X = Math.Max(0, pointers(0).x - pointerOffset)
+            pointerPosition.X = Math.Min(width - 100, pointerPosition.X)
+            pointerPosition.Y = Math.Max(0, pointers(0).y - pointerOffset)
+            pointerPosition.Y = Math.Min(height - 100, pointerPosition.Y)
+
+            Server.pointer.setPointerPosition(pointerPosition)
+            Server.pointer.fadeOutPointer()
+        End If
     End Sub
 
     Private Sub updateCursorPosition()
-        If Not pointers.Count = 1 Then
-            'No pointer data available or multitouch
-            Return
-        End If
-
         If mousePadDown = False Then
             'onMove event before onDown event received
             'Logger.add("onMove event before onDown event received")
@@ -285,6 +324,109 @@ Module MouseV3
 
         cursorPositonNew = cursorPositonCurrent + P1_Rel
         SetCursorPos(cursorPositonNew.X, cursorPositonNew.Y)
+    End Sub
+
+    Private Sub parseMultitouch()
+        If mousePadDown = False Then
+            'onMove event before onDown event received
+            'Logger.add("onMove event before onDown event received")
+            pointersDown()
+            Return
+        End If
+
+        'User last pointer data to modify cursor position
+        P1_New = New Point(pointers(0).x, pointers(0).y)
+        P2_New = New Point(pointers(1).x, pointers(1).y)
+
+        If P1_Start = P_ORIGIN Or P1_Last = P_ORIGIN Or P2_Start = P_ORIGIN Or P2_Last = P_ORIGIN Then
+            'Logger.add("P_Start & P_Last set to P_New: " & P1_New.X & "|" & P1_New.Y)
+            P1_Start = P1_New
+            P1_Last = P1_New
+            P2_Start = P2_New
+            P2_Last = P2_New
+            Return
+        End If
+
+        P1_Rel.X = (P1_New.X - P1_Last.X) * Settings.mouseSensitivity
+        P1_Rel.Y = (P1_New.Y - P1_Last.Y) * Settings.mouseSensitivity
+
+        If P1_Rel.X < -700 Or P1_Rel.X > 700 Or P1_Rel.Y < -700 Or P1_Rel.Y > 700 Then
+            'Logger.add("Rel: " & P1_Rel.X & "|" & P1_Rel.Y & " New: " & P1_New.X & "|" & P1_New.Y & " Old: " & P1_Last.X & "|" & P1_Last.Y)
+            pointersUp()
+            Return
+        End If
+
+        P1_Last = P1_New
+        P2_Last = P2_New
+
+        processMultitouch()
+    End Sub
+
+    Public Sub processMultitouch()
+        P3_New.X = Math.Round((P1_New.X + P2_New.X) / 2)
+        P3_New.Y = Math.Round((P1_New.Y + P2_New.Y) / 2)
+        P3_Vektor_New = Converter.getPointDistance(P1_New, P2_New)
+
+
+        If P3_Start = P_ORIGIN Then
+            P3_Start = P3_New
+        End If
+
+        If P3_Vektor_Start = 0 Then
+            P3_Vektor_Start = P3_Vektor_New
+        End If
+
+        If currentGesture = GESTURE_NONE Then
+            'Logger.add("P1: " & P1_New.X & "|" & P1_New.Y & " " & "P2: " & P2_New.X & "|" & P2_New.Y & " " & "P3: " & P3_New.X & "|" & P3_New.Y)
+            'Logger.add("Determining gesture. Distance: " & P3_Vektor_New & " X: " & P3_New.X - P3_Start.X & " Y: " & P3_New.Y - P3_Start.Y)
+
+            If valueMatchesTolerance(P3_Vektor_New, P3_Vektor_Start, SCROLL_OFFSET_TOLERANCE) Then
+                'distance constant
+                If valueMatchesTolerance(P3_New.X, P3_Start.X, SCROLL_OFFSET_TOLERANCE) Then
+                    'horizontal constant
+                    If valueMatchesTolerance(P3_New.Y, P3_Start.Y, SCROLL_OFFSET_TOLERANCE / 2) Then
+                        'vertical constant
+                    Else
+                        'scroll
+                        'Logger.add("Gesture set to scroll")
+                        currentGesture = GESTURE_SCROLL
+                    End If
+                End If
+            Else
+                'zoom
+                'Logger.add("Gesture set to zoom")
+                currentGesture = GESTURE_ZOOM
+                p3_Vektor_Event = P3_Vektor_New + 20
+            End If
+        End If
+
+        If currentGesture = GESTURE_ZOOM Then
+            'zoom
+            If Not valueMatchesTolerance(P3_Vektor_New, p3_Vektor_Event, 25) Then
+                scrollAmount = (P3_Vektor_New - P3_Vektor_Last) * (P3_Vektor_New - P3_Vektor_Last)
+                If P3_Vektor_New > P3_Vektor_Last Then
+                    zoom(1, 1)
+                Else
+                    'zoom out
+                    zoom(-1, 1)
+                End If
+                p3_Vektor_Event = P3_Vektor_New
+            End If
+
+        ElseIf currentGesture = GESTURE_SCROLL Then
+            'scroll
+            scrollAmount = (P3_New.Y - P3_Last.Y) * (P3_New.Y - P3_Last.Y)
+            If P3_New.Y > P3_Last.Y Then
+                'scroll down
+                scrollRepeat(-30 - scrollAmount, 1)
+            ElseIf P3_New.Y < P3_Last.Y Then
+                'scroll up
+                scrollRepeat(30 + scrollAmount, 1)
+            End If
+        End If
+
+        P3_Last = P3_New
+        P3_Vektor_Last = P3_Vektor_New
     End Sub
 
     Private Sub checkForClick()

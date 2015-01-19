@@ -8,7 +8,7 @@ Module Updater
     Public Const URL_UPDATE_SERVER_BETA As String = "http://remote-control-collection.com/files/server/RemoteControlServerBeta.exe"
     Public Const URL_UPDATE_HELP As String = "http://remote-control-collection.com/help/update/"
 
-    Public Const currentVersionCode As Byte = 16
+    Public Const currentVersionCode As Byte = 17
 
     Public updateVersionCode As Byte = 0
     Public updateVersionName As String = ""
