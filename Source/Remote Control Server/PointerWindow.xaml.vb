@@ -54,6 +54,8 @@ Public Class PointerWindow
             Me.Hide()
             MouseV2.leftClickRepeat(1)
         End If
+
+        isVisible = False
     End Sub
 
     Private Sub lowerOpacity()

@@ -231,8 +231,6 @@ Module MouseV3
 
         If isPresenter Then
             updatePointerPosition()
-        Else
-
         End If
     End Sub
 
@@ -240,7 +238,9 @@ Module MouseV3
         If pointers.Count > 0 Then
             If Not Server.pointer.isVisible Then
                 Server.pointer.showPointer()
+                Logger.add("Showing pointer")
             End If
+
             Dim locations As System.Drawing.Point() = Screenshot.getScreenBounds(Screenshot.screenIndex)
 
             Dim startLocation As System.Drawing.Point = locations(0)

@@ -5,6 +5,7 @@ Module Keyboard
     'Keycodes, as used in Android
     'http://developer.android.com/reference/android/view/KeyEvent.html
 
+    Public Const KEYCODE_UNKOWN As Integer = 0
     Public Const KEYCODE_BACK As Integer = 4
     Public Const KEYCODE_UP As Integer = 19
     Public Const KEYCODE_DOWN As Integer = 20
@@ -26,6 +27,7 @@ Module Keyboard
     Public Const KEYCODE_PAGE_UP As Integer = 92
     Public Const KEYCODE_SPACE As Integer = 62
     Public Const KEYCODE_TAB As Integer = 61
+
     Public Const KEYCODE_F1 As Integer = 131
     Public Const KEYCODE_F2 As Integer = 132
     Public Const KEYCODE_F3 As Integer = 133
@@ -38,6 +40,17 @@ Module Keyboard
     Public Const KEYCODE_F10 As Integer = 140
     Public Const KEYCODE_F11 As Integer = 141
     Public Const KEYCODE_F12 As Integer = 142
+
+    Public Const KEYCODE_COPY As Integer = 201
+    Public Const KEYCODE_PASTE As Integer = 202
+    Public Const KEYCODE_SELECT_ALL As Integer = 203
+    Public Const KEYCODE_CUT As Integer = 204
+    Public Const KEYCODE_SHOW_DESKTOP As Integer = 205
+    Public Const KEYCODE_ZOOM_IN As Integer = 206
+    Public Const KEYCODE_ZOOM_OUT As Integer = 207
+    Public Const KEYCODE_CLOSE As Integer = 208
+    Public Const KEYCODE_SHUTDOWN As Integer = 209
+    Public Const KEYCODE_STANDBY As Integer = 210
 
 
     Public Sub sendKeyPress(ByVal key As Keys)
@@ -122,6 +135,33 @@ Module Keyboard
         End Try
     End Function
 
+    Public Sub keycodeToShortcut(ByVal keyCode As Integer)
+        Select Case keyCode
+            Case KEYCODE_COPY
+                sendShortcut(New List(Of Key) From {Keys.ControlKey, Keys.C})
+            Case KEYCODE_PASTE
+                sendShortcut(New List(Of Key) From {Keys.ControlKey, Keys.V})
+            Case KEYCODE_SELECT_ALL
+                sendShortcut(New List(Of Key) From {Keys.ControlKey, Keys.A})
+            Case KEYCODE_CUT
+                sendShortcut(New List(Of Key) From {Keys.ControlKey, Keys.X})
+            Case KEYCODE_SHOW_DESKTOP
+                sendShortcut(New List(Of Key) From {Keys.LWin, Keys.D})
+            Case KEYCODE_ZOOM_IN
+                MouseV2.zoom(1, 1)
+            Case KEYCODE_ZOOM_OUT
+                MouseV2.zoom(-1, 1)
+            Case KEYCODE_CLOSE
+                Keyboard.sendKeys("%{F4}")
+            Case KEYCODE_SHUTDOWN
+                shutdown()
+            Case KEYCODE_STANDBY
+                standby()
+            Case Else
+                Logger.add("Unknown keyboard command")
+        End Select
+    End Sub
+
     Public Function keycodeToKey(ByVal keyCode As Integer) As Key
         Select Case keyCode
             Case KEYCODE_BACK
@@ -191,7 +231,6 @@ Module Keyboard
             Case KEYCODE_F12
                 Return Keys.F12
         End Select
-        Logger.add("Unable to send key event, unknown keycode")
         Return Nothing
     End Function
 

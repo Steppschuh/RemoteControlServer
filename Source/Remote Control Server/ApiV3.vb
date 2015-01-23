@@ -366,7 +366,12 @@ Module ApiV3
                     Case cmd_action_up
                         Keyboard.sendKeyUp(Keyboard.keycodeToKey(keyCode))
                     Case cmd_action_click
-                        Keyboard.sendKeyPress(Keyboard.keycodeToKey(keyCode))
+                        Dim keyboardKey As Key = Keyboard.keycodeToKey(keyCode)
+                        If keyboardKey = Keyboard.KEYCODE_UNKOWN Then
+                            Keyboard.keycodeToShortcut(keyCode)
+                        Else
+                            Keyboard.sendKeyPress(keyboardKey)
+                        End If
                 End Select
             Case cmd_keyboard_string
                 Dim keyString As String = Converter.byteToString(command.data, 3)
