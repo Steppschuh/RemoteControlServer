@@ -341,7 +341,7 @@ Class MainWindow
     End Sub
 
     Private Sub button_upgrade_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles button_upgrade.MouseUp
-        Server.showAdvancedWindow(Server.advanced.tab_upgrade)
+        Server.showAdvancedWindow(Server.advanced.tab_update)
     End Sub
 
     'Server version
