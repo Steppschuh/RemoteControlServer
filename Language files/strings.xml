@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
     <!-- General -->
     <string name="app_name" translatable="false">Remote Control Collection</string>
@@ -78,6 +80,30 @@
     <string name="keyboard_advanced_placeholder_desc">You will find shortcuts and function keys here soon.</string>
     <string name="keyboard_send_general">Common keys</string>
     <string name="keyboard_send_advances">Function keys</string>
+    <string name="keyboard_copy">Copy</string>
+    <string name="keyboard_paste">Paste</string>
+    <string name="keyboard_select_all">Select\nall</string>
+    <string name="keyboard_zoom_in">Zoom\nin</string>
+    <string name="keyboard_zoom_out">Zoom\nout</string>
+    <string name="keyboard_cut">Cut</string>
+    <string name="keyboard_close">Close</string>
+    <string name="keyboard_shutdown">Shut\ndown</string>
+    <string name="keyboard_fullscreen">Full\nscreen</string>
+    <string name="keyboard_page_down">Page\ndown</string>
+    <string name="keyboard_page_up">Page\nup</string>
+    <string name="keyboard_desktop">Show\ndesktop</string>
+    <string name="keyboard_function">Function key</string>
+
+    <!-- Speech -->
+    <string name="speech">Speech</string>
+    <string name="speech_identify_media">media,music,track,song,movie</string>
+    <string name="speech_identify_media_next">next,skip,forward</string>
+    <string name="speech_identify_media_previous">back,previous,last</string>
+    <string name="speech_identify_media_pause">pause,resume,play,stop</string>
+    <string name="speech_identify_volume">volume,audio</string>
+    <string name="speech_identify_volume_up">up,increase,louder</string>
+    <string name="speech_identify_volume_down">down,decrease</string>
+    <string name="speech_identify_volume_mute">mute,silence</string>
 
     <!-- Upgrades -->
     <string name="upgrade_code_title">Free upgrades</string>
@@ -165,7 +191,6 @@
     <string name="error_trial_used">You have already used a trial code, you may only activate one code per device.</string>
     <string name="error_iap_not_supported">In-app billing is not supported on this device.</string>
 
-
     <!-- Dialogs -->
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
@@ -179,6 +204,16 @@
     <!-- Updates -->
     <string name="update_server_required">Server update</string>
     <string name="update_server_required_desc">This app version requires the Remote Control Server version 3.0 or newer.\n\nPlease update your Server or download the latest version from:\nhttp://server.android-remote.com</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Did you know?</string>
+    <string name="hint_close_button">Got it</string>
+    <string name="hint_mouse_multitouch">You can use multitouch gestures for scrolling and zooming.</string>
+    <string name="hint_media_volume_buttons">You can use the volume keys to control your remote system volume.</string>
+    <string name="hint_presenter_volume_buttons">You can use the volume keys to switch between slides.</string>
+    <string name="hint_keyboard_advanced">You can swipe left to show function keys and advanced shortcuts.</string>
+    <string name="hint_free_trial">You can try out the pro version for free by activating an unlock code.\n\nGo to Upgrade to learn more.</string>
+    <string name="hint_remove_ads">You can remove ads by unlocking any premium remote.\n\nGo to Upgrade to learn more.</string>
 
     <!-- Misc. Stuff -->
     <string name="work_in_progress">Work in progress</string>

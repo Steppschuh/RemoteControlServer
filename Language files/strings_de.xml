@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
     <!-- Start -->
     <string name="start_remotes">Steuerungen</string>
@@ -22,7 +24,6 @@
     <string name="devicecs_add">Gerät hinzufügen</string>
     <string name="devicecs_ip">IP Adresse</string>
     <string name="devicecs_name">Name</string>
-    <string name="devicecs_ip_hint" translatable="false">192.168.1.23</string>
     <string name="devicecs_name_hint">Media PC</string>
     <string name="devicecs_in_network">PC in </string>
     <string name="devicecs_unknown">Unbekannt</string>
@@ -113,14 +114,9 @@
     <string name="info_commands_received">Erhalten</string>
 
     <string name="info_links">Find Us</string>
-    <string name="info_links_facebook" translatable="false">Facebook</string>
-    <string name="info_links_google" translatable="false">Google+</string>
-    <string name="info_links_store" translatable="false">Play Store</string>
 
     <string name="info_disclaimer">Disclaimer</string>
-    <string name="info_disclaimer_app" translatable="false">@string/app_name</string>
     <string name="info_disclaimer_app_desc">Available for Android, BlackBerry and iOS.\nCopyright © Steppschuh, license details at:\nremote-control-collection.com</string>
-    <string name="info_disclaimer_server">Remote Control Server</string>
     <string name="info_disclaimer_server_desc">Available for Windows. The source code is available at GitHub and may be modified for private use.\nCopyright © Steppschuh, license details at:\ngithub.com/Steppschuh/RemoteControlServer</string>
     <string name="info_disclaimer_icons">Icons</string>
     <string name="info_disclaimer_icons_desc">All icons are either released under an Attribution 4.0 International license by Google Inc. or by Steppschuh.</string>
