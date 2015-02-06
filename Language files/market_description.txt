@@ -1,0 +1,60 @@
+Use your Android device as a remote for your Windows PC - Control the mouse, keyboard, media, presentations and more!<br>
+The Remote Control Collection is a compilation of remotes, which you can use to wirelessly control your Windows PC. The unified remotes enable you to control the PC beyond mouse and keyboard!<br>
+<b>Included remote controls are:</b>
+-Mouse
+-Keyboard
+-Live Screen (Pro)
+-Media Player (Pro)
+-Slideshows (Pro)
+-Speech Recognition
+<br/>
+
+<b>What others say:</b>
+DotTech.org: <i>Very responsive and very convenient to use</i>
+UnlockPWD.com: <i>There are many remotes out there, this one is on another level</i>
+Android-User.de: <i>Setting up this app is a no-brainer</i>
+TomsGuide.com: <i>Top app for controlling your PC</i>
+Chip.de: <i>Solid application with brilliant simplicity</i>
+
+<b>Mouse Remote</b>
+Imagine your PC’s touchpad right on your Android device. Multitouch gestures like scrolling and zooming are supported. You can toggle the keyboard to send keys at the same time.
+
+<b>Keyboard Remote</b>
+Use the physical or virtual Android keyboard to type characters and they will appear on your PC. Important keys like Windows, Escape and Control are also available.
+
+<b>Live Screen Remote</b>
+See your PC's screen right on your Android device live and control the mouse in real time. 
+
+<b>Media Remote</b>
+Control the media player of your choice! Supported are Windows Media Player, iTunes, VLC, Media Monkey, Songbird and more.
+
+<b>Slideshow Remote</b>
+Control your slideshows directly from your smartphone! The screen of your PC will be transmitted to your smartphone in real time! That works with Powerpoint, Impress and Adobe Reader, Windows Media Center and more.
+
+<b>Speech recognition</b>
+Simply say what you want to be typed on your PC. You can also use voice commands to control your PC's media, e.g. "skip this track" or "turn the volume up".
+
+<b>Android Wear Support</b>
+You can now control your PC directly from your wrist! Super handy for presentations or controlling a media player.
+
+<b>Much more</b>
+The Remote Control Server is open source and can be used to control any device in your network. You can use this app to control all your internet of things (IOT) ready devices - like Arduino, Raspberry Pi and so on.
+
+<small>To receive the commands from the Remote Control App, you will need the Remote Control Server. You can download it for free from:
+http://server.android-remote.com
+
+If you have trouble setting up a connection, follow this step-by-step guide or watch the video tutorial at: 
+http://setup.android-remote.com/
+
+Facebook fans can test the pro version for free:
+http://facebook.com/RemoteControlApps</small>
+
+<b>Permissions:</b>
+<small>Network communication
+For creating network sockets and using custom network protocols to connect with the pc.
+
+Phone calls
+Is needed to create a unique device id. Used to verify purchases and register unlock codes.
+
+Vibration
+For haptic feedback.</small>
