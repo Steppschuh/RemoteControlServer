@@ -1,0 +1,65 @@
+<b>Benutze dein Android Gerät als Fernbedienung für deinen PC - Steuere die Maus, Tastatur, Media Player, Präsentationen und mehr!</b>
+Die Remote Control Collection ist eine Sammlung von Fernbedienungen, mit denen du deinen PC drahtlos steuern kannst. Die Remotes ermöglichen einen Steuerung des Computers jenseits von Maus und Tastatur!
+<br>
+
+<b>Was andere sagen:</b>
+<i>Sehr komfortabel zu benutzen</i> - DotTech.org
+<i>Diese App spielt in einer anderen Liga</i> - UnlockPWD.com
+<i>Die App einzurichten ist ein Kinderspiel</i> - Android-User.de
+<i>Top App zum PC steuern</i> - TomsGuide.com
+<i>Die Konfiguration ist einfach und reibungslos</i> - Chip.de
+<br/>
+
+<b>Enthaltene Fernbedienungen:</b>
+-Maus
+-Tastatur
+-Live Bildschirm (Pro)
+-Mediaplayer (Pro)
+-Präsentationen (Pro)
+-Sprachsteuerung
+<br/>
+
+<b>Maus Remote</b>
+Stelle dir das Touchpad deines Laptops auf dem Android Gerät vor. Multitouch Gesten wie Scrollen und Zoomen werden auch unterstützt. Du kannst auch gleichzeitig mit der Android Tastatur Zeichen an den PC schicken.
+
+<b>Tastatur Remote</b>
+Nutze die physische oder virtuelle Android Tastatur um direkt Zeichen an den PC zu schicken. Wichtige Sondertasten wie Escape oder Windows, häufig verwendete Shortcuts und Funktionstasten sind ebenfalls verfügbar.
+
+<b>Live Bildschirm</b>
+Übertrage den Bildschirminhalt deines PCs direkt auf dein Android Gerät und steuere die Maus.
+
+<b>Media Remote</b>
+Steuere deinen Media Player und die Systemlautstärke. Unterstützt werden unter anderem Windows Media Player, iTunes, VLC, Media Monkey, Songbird und weitere.
+
+<b>Slideshow Remote</b>
+Kontrolliere deine Präsentationen direkt mit dem Smartphone! Der Bildschirm deines PCs wird live auf dein Smartphone übertragen! Das funktioniert mit Powerpoint, Impress und Adobe Reader aber auch mit dem Windows Media Center für Fotoalben.
+
+<b>Spracherkennung</b>
+Sage einfach was du am PC tippen willst und es wird übertragen. Du kannst auch Sprachbefehle senden, wie z.B. “Spiele das nächste Lied” oder “Schalte den Ton aus”.
+
+<b>Android Wear Unterstützung</b>
+Du kannst nun auch deinen PC direkt vom Handgelenk aus steuern. Super nützlich für Präsentationen oder die Media Steuerung.
+
+<b>Vieles mehr</b>
+Der Remote Control Server ist Open Source, er kann genutzt werden, um beliebige Netzwerkgeräte zu steuern. Zum Beispiel Arduino, Raspberry Pi und vergleichbares.
+<br/>
+
+<small>Um die Befehle der Remote Control App empfangen zu können, benötigst du auf deinem PC den Remote Control Server. Du kannst ihn hier kostenlos herunterladen:
+http://server.android-remote.com
+
+Solltest du Probleme beim Einrichten der Verbindung haben, folge der Schritt für Schritt Anleitung oder dem Video Tutorial:
+http://setup.android-remote.com/
+
+Facebook Fans können die Pro-Version kostenlos testen:
+http://facebook.com/RemoteControlApps</small>
+<br/>
+
+<b>Berechtigungen:</b>
+<small>Netzwerkkommunikation
+Erstellung von Netzwerk-Sockets und die Verwendung eigener Netzwerkprotokolle um eine Verbindung zum PC herzustellen.
+
+Telefonanrufe
+Wird benötigt, um eine eindeutige Geräte ID zu erstellen. Mit dieser werden Käufe verifiziert und Unlock Codes registriert.
+
+Vibration
+Ermöglicht haptisches Feedback für übertragene Befehle.</small>
