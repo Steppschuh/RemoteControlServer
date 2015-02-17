@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- Translated by Stephen da Silva Madeira -->
+
+    <!-- Start -->
+    <string name="start_remotes">Controles</string>
+    <string name="start_remotes_desc">Controle um dispositivo</string>
+    <string name="start_devices">Dispositivos</string>
+    <string name="start_devices_desc">Adicionar ou gerenciar dispositivos</string>
+
+    <!-- Navigation -->
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Fechar</string>
+
+    <string name="title_remotes">Controles</string>
+    <string name="title_devices">Dispositivos</string>
+    <string name="title_info">Informações</string>
+    <string name="title_help">Ajuda</string>
+    <string name="title_settings">Configurações</string>
+    <string name="title_upgrade">Upgrades</string>
+
+    <!-- Devices -->
+    <string name="devicecs_add">Adicionar um novo dispositivo</string>
+    <string name="devicecs_ip">Endereço de IP</string>
+    <string name="devicecs_name">Nome</string>
+    <string name="devicecs_ip_hint">192.168.1.23</string>
+    <string name="devicecs_name_hint">Media PC</string>
+    <string name="devicecs_in_network">PC em </string>
+    <string name="devicecs_unknown">Desconhecido</string>
+
+    <string name="devicecs_pin_title">Protegido por PIN</string>
+    <string name="devicecs_pin_desc">está protegido. Favor inserir o PIN para autenticar.</string> <!-- starts with device name -->
+    <string name="devicecs_pin_refused">O dispositivo se recusa a conectar.</string>
+    <string name="devicecs_pin_accepted">Dispositivo autenticado.</string>
+
+    <string name="devicecs_none_title">Sem dispositivos</string>
+    <string name="devicecs_none_desc">Por favor, certifique-se que você iniciou o Servidor de Controle Remoto no PC que você deseja controlar. \n\nVocê pode baixar o servidor em:\nhttp://server.android-remote.com</string>
+    <string name="devicecs_none_desc2">Se seu PC não aparece aqui, insira manualmente o endereço de IP e certifique-se que seus dispositivos estão conectados à mesma rede. \n\nVocê pode achar instruções avançadas de solução de problemas na seção de ajuda.</string>
+
+    <!-- Device Status -->
+    <string name="status_unknown">Desconhecido</string>
+    <string name="status_connected">Conectado</string>
+    <string name="status_disconnected">Desconectado</string>
+    <string name="status_unavailable">Indisponível</string>
+    <string name="status_available">Disponível</string>
+    <string name="status_connecting">Conectando</string>
+    <string name="status_searching">Procurando</string>
+    <string name="status_authenticating">Autenticando</string>
+
+    <!-- Remotes -->
+    <string name="remote_mouse">Mouse</string>
+    <string name="remote_keyboard">Teclado</string>
+    <string name="remote_browser">Navegador</string>
+    <string name="remote_desktop">Desktop</string>
+    <string name="remote_presenter">Apresentador</string>
+    <string name="remote_shortcuts">Atalhos</string>
+    <string name="remote_voice">Voz</string>
+    <string name="remote_media">Mídia</string>
+    <string name="remote_custom">Personalizado</string>
+    <string name="remote_premium">Versão Pro</string>
+
+    <string name="remote_mouse_desc">Controle o cursor do seu mouse como em um touchpad de laptop</string>
+    <string name="remote_keyboard_desc">Use o teclado do programa para digitar no seu PC</string>
+    <string name="remote_browser_desc">Ações comuns para navegar remotamente na web de forma fácil</string>
+    <string name="remote_desktop_desc">Veja sua tela do PC no seu dispositivo em tempo real</string>
+    <string name="remote_presenter_desc">Controle apresentações e veja o conteúdo do slide</string>
+    <string name="remote_shortcuts_desc">Acesso rápido para os atalhos usados frequentemente</string>
+    <string name="remote_voice_desc">Use sua voz para enviar comandos ao PC</string>
+    <string name="remote_media_desc">Controle media players comuns e o volume do seu sistema</string>
+    <string name="remote_custom_desc">Defina ações personalizadas no Servidor de Controle Remoto</string>
+    <string name="remote_premium_desc">Desbloqueie todos os controles premium e futuros recursos</string>
+
+    <!-- Keyboard -->
+    <string name="keyboard_advanced_placeholder_desc">Você encontrará atalhos e teclas de funções aqui em breve.</string>
+    <string name="keyboard_send_general">Teclas comuns</string>
+    <string name="keyboard_send_advances">Teclas de funções</string>
+    <string name="keyboard_copy">Copiar</string>
+    <string name="keyboard_paste">Colar</string>
+    <string name="keyboard_select_all">Selecionar\ntudo</string>
+    <string name="keyboard_zoom_in">Aproximar</string>
+    <string name="keyboard_zoom_out">Afastar</string>
+    <string name="keyboard_cut">Recortar</string>
+    <string name="keyboard_close">Fechar</string>
+    <string name="keyboard_shutdown">Desligar</string>
+    <string name="keyboard_fullscreen">Tela\ncheia</string>
+    <string name="keyboard_page_down">Descer\na página</string>
+    <string name="keyboard_page_up">Subir\na página</string>
+    <string name="keyboard_desktop">Mostrar a área\nde trabalho</string>
+    <string name="keyboard_function">Teclas de funções</string>
+
+    <!-- Speech -->
+    <string name="speech">Fala</string>
+    <string name="speech_identify_media">mídia, música, faixa, canção, filme</string>
+    <string name="speech_identify_media_next">próximo, pular, avançar</string>
+    <string name="speech_identify_media_previous">voltar, anterior, último</string>
+    <string name="speech_identify_media_pause">pausar, continuar, tocar, parar</string>
+    <string name="speech_identify_volume">volume, áudio</string>
+    <string name="speech_identify_volume_up">aumentar</string>
+    <string name="speech_identify_volume_down">abaixar</string>
+    <string name="speech_identify_volume_mute">mudo, silenciar</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_code_title">Upgrades gratuitos</string>
+    <string name="upgrade_code_description">Obter ou ativar um código de desbloqueio</string>
+    <string name="upgrade_iap_title">Upgrades pagos</string>
+    <string name="upgrade_iap_description">Comprar controles premium</string>
+
+    <string name="upgrade_code_activate">Ativar um código</string>
+    <string name="upgrade_code_hint_inactive">Insira um código de desbloqueio aqui</string>
+    <string name="upgrade_code_hint_active">Código de desbloqueio está ativado</string>
+
+    <string name="upgrade_code_get_title">Sobre os códigos de desbloqueio</string>
+    <string name="upgrade_code_get_desc">Você pode desbloquear os recursos premium de graça ativando códigos de desbloqueio.\n\nAlguns códigos são válidos por tempo limitado, outros não expiram. Códigos trial podem ser ativados apenas uma vez.</string>
+    <string name="upgrade_iap_get_title">Sobre upgrades pagos</string>
+    <string name="upgrade_iap_get_desc">Upgrades pagos não expiram e serão desbloqueados em todos os seus dispositivos.\n\nQualquer upgrade também removerá os anúncios.</string>
+
+    <string name="upgrade_code_facebook_title">Facebook</string>
+    <string name="upgrade_code_facebook_description">Para começar, você pode obter um código trial gratuito na nossa paǵina no Facebook.\n\nPara receber seu código, acesse:\nhttp://code.android-remote.com</string>
+    <string name="upgrade_code_google_title">Google+</string>
+    <string name="upgrade_code_google_description">Se você se conectar como um testador beta no Google+, você também obterá um código trial gratuito.\n\nPara receber seu código, acesse:\nhttp://beta.android-remote.com</string>
+    <string name="upgrade_code_ad_title">Vídeo patrocinado</string>
+    <string name="upgrade_code_ad_description">Assitir um vídeo patrocinado desbloquerá todos os controles premium por UMA sessão.\n\nEsta opção pode não estar sempre disponível.</string>
+
+    <string name="upgrade_trial_activated">O código trial foi ativado.</string>
+    <string name="upgrade_pro_activated">Versão pro foi ativada.</string>
+
+    <string name="upgrade_remote_locked">Controle bloqueado</string>
+    <string name="upgrade_remote_locked_desc">Este controle é um recurso pro. Você pode ativar um código de desbloqueio ou comprar um upgrade para usá-lo.</string>
+
+    <!-- Info -->
+    <string name="info_app">Informações do dispositivo</string>
+    <string name="info_app_version">Versão do app</string>
+    <string name="info_app_ip">Endereço de IP</string>
+    <string name="info_app_ssid">SSID da rede</string>
+
+    <string name="info_commands">Comandos</string>
+    <string name="info_commands_sent">Enviados</string>
+    <string name="info_commands_received">Recebidos</string>
+
+    <string name="info_links">Encontre-nos</string>
+    <string name="info_links_facebook">Facebook</string>
+    <string name="info_links_google">Google+</string>
+    <string name="info_links_store">Play Store</string>
+
+    <string name="info_disclaimer">Aviso legal</string>
+    <string name="info_disclaimer_app">@string/app_name</string>
+    <string name="info_disclaimer_app_desc">Disponível para Android, BlackBerry e iOS.\nCopyright © Steppschuh, tradução por Stephen da Silva Madeira. Detalhes da licensa em:\nremote-control-collection.com</string>
+    <string name="info_disclaimer_server">Servidor de Controle Remoto</string>
+    <string name="info_disclaimer_server_desc">Disponível apenas para Windows. Ajude-nos a desenvolver o programa para Linux! O código-fonte está disponível no GitHub e pode ser modificado para uso pessoal .\nCopyright © Steppschuh, detalhes da licensa em:\ngithub.com/Steppschuh/RemoteControlServer</string>
+    <string name="info_disclaimer_icons">Ícones</string>
+    <string name="info_disclaimer_icons_desc">Todos os ícones são ou lançados sob uma Atribuição de licensa Internacional 4.0 por Google Inc. ou por Steppschuh.</string>
+    <string name="info_disclaimer_analytics">Analytics</string>
+    <string name="info_disclaimer_analytics_desc">Este app usa o Google Analyitcs para coletar dados anônimos sobre uso, incluindo sua língua, gênero, idade e quais os seus controles preferidos. Isso nos ajuda a melhorar sua experiência de uso deste app.</string>
+    <string name="info_disclaimer_admob">AdMob</string>
+    <string name="info_disclaimer_admob_desc">AdMob é um serviço de propagandas provido pela Google Inc. que permite-nos mostrar propagandas baseadas em seus interesse a fim de monetizar este app livre. As propagandas serão removidas por qualquer upgrade pago.</string>
+
+    <!-- Help -->
+    <string name="help_first_start">Começando</string>
+    <string name="help_first_start_desc">Para começar a controlar seu PC, abra este site no dispositivo que você quer controlar:\n\nhttp://setup.android-remote.com</string>
+    <string name="help_connect">Configurando uma conexão</string>
+    <string name="help_connect_desc">Siga este guia para aprender a configurar a conexão entre seus dispositivos.</string>
+    <string name="help_troubleshooting">Solução de problemas</string>
+    <string name="help_troubleshooting_desc">Se tiver problemas ao seguir este guia, leia isto para aprender como resolver os problemas mais comuns.</string>
+    <string name="help_faq">FAQ</string>
+    <string name="help_faq_desc">Questões relacionadas a esse app ou ao Servidor de Controle Remoto podem já ter sido respondidas. Você pode também adicionar suas dúvidas aqui.</string>
+    <string name="help_support">Suporte</string>
+    <string name="help_support_desc">Se estiver tendo qualquer problema, sinta-se livre para nos contatar. Nós responderemos o mais rápido possível.\n\nE faça-nos o favor de ler os guias e FAQ antes de nos procurar.</string>
+    <string name="help_feedback">Feedback</string>
+    <string name="help_feedback_desc">Diga-nos o que você pensa: seu feedback é o que nos ajuda a melhorar este app!</string>
+
+    <!-- Units -->
+    <string name="unit_day">dia</string>
+    <string name="unit_days">dias</string>
+
+    <!-- Errors -->
+    <string name="error_device_name_empty">O nome do dispositivo não pode estar em branco</string>
+    <string name="error_device_ip_empty">Por favor insira o endereço de IP do seu PC</string>
+    <string name="error_device_ip_invalid">Por favor insira um endereço de IP válido</string>
+
+    <string name="error_code_invalid">Este não é um código válido.</string>
+    <string name="error_unknown">Algo deu errado. Tente novamente.</string>
+    <string name="error_code_limit_reached">O limite de registro deste código foi atingido.</string>
+    <string name="error_code_expired">Este código expirou. Você não pode usá-lo mais.</string>
+    <string name="error_trial_expired">Seu código trial expirou.</string>
+    <string name="error_trial_used">Você já usou este código. Você pode ativar apenas um código por dispositivo.</string>
+    <string name="error_iap_not_supported">Pagamentos pelo app não são suportados neste dispositivo.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_later">Depois</string>
+    <string name="dialog_unlock">Desbloquear</string>
+    <string name="dialog_success">Sucesso</string>
+    <string name="dialog_error">Erro</string>
+    <string name="dialog_info">Informações</string>
+    <string name="dialog_changelog">Changelog</string>
+
+    <!-- Updates -->
+    <string name="update_server_required">Atualização do Servidor</string>
+    <string name="update_server_required_desc">Este app requer o Servidor de Controle Remoto versão 3.0 ou mais recente.\n\nFavor atualizar seu Servidor ou baixe a última versão em:\nhttp://server.android-remote.com</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Você sabia?</string>
+    <string name="hint_close_button">Entendi</string>
+    <string name="hint_mouse_multitouch">Você pode usar gestos multitoque para rolar e dar zoom.</string>
+    <string name="hint_media_volume_buttons">Você pode usar os botões de volume para controlar o volume do seu sistema remoto.</string>
+    <string name="hint_presenter_volume_buttons">Você pode usar os botões de volume para mudar os slides.</string>
+    <string name="hint_keyboard_advanced">Você pode deslizar para a esquerda para ver as teclas de funções e atalhos avançados.</string>
+    <string name="hint_free_trial">Você pode testar gratuitamente a versão pro ativando um código de desbloqueio.\n\nVá em Upgrade para saber mais.</string>
+    <string name="hint_remove_ads">Você pode remover as propagandas desbloqueando qualquer controle premium.\n\nVá em Upgrade para saber mais.</string>
+
+    <!-- Misc. Stuff -->
+    <string name="work_in_progress">Trabalhando...</string>
+
+</resources>

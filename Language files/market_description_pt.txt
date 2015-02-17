@@ -1,0 +1,72 @@
+<b>Use seu dispositivo Android como um controle remoto para seu PC - Controle o mouse, teclado, mídias, apresentações e muito mais!</b>
+A Coleção de Controles Remotos é uma compilação de controles, que você pode usar controlar seu PC via Wireless. Os controles unificados permitem que você controle além do mouse e teclado do PC!
+<br/>
+
+<b>O que os outros dizem:</b>
+DotTech.org:
+<i>Muito responsivo e conveniente de se usar</i>
+
+Chip.de:
+<i>Aplicação sólida com uma brilhante simplicidade</i>
+
+UnlockPWD.com:
+<i>Há vários controles por aí. Este esta em outro nível</i>
+
+Android-User.de:
+<i>Setting up this app is a no-brainer</i>
+
+TomsGuide.com:
+<i>Melhor app para controlar seu PC</i>
+<br/>
+
+<b>Os controles incluídos são:</b>
+-Mouse
+-Teclado
+-Tela em tempo real (Pro)
+-Media Player (Pro)
+-Apresentadores de slides (Pro)
+-Comandos de voz
+<br/>
+
+<b>Mouse Remoto</b>
+Imagine o touchpad do seu PC exatamente no seu dispositivo Android. Gestos multitoque como rolar e dar zoom são suportados. Você pode alternar o teclado para usar algumas teclas ao mesmo tempo.
+
+<b>Teclado Remoto</b>
+Use o teclado físico ou virtual do Android para digitar letras e elas aparecerão no seu PC. Teclas importantes como Windows, Esc e Control também estão disponíveis.
+
+<b>Tela ao vivo</b>
+Veja a tela do seu PC no seu dispositivo Android e o controle o mouse em tempo real
+
+<b>Mídia Remota</b>
+Controle o media player de sua escolha! Compatível com Windows Media Player, iTunes, VLC, Media Monkey, Songbird e outros.
+
+<b>Apresentadores de slides Remoto</b>
+Controle seus slides diretamente pelo seu smartphone! A tela do seu PC será transmitida em tempo real para seu smartphone! Funciona com Powerpoint, Impress e Adobe Reader, Windows Media Center e outros.
+
+<b>Comandos de voz</b>
+Simplesmente diga o que você quer que seja escrito no seu PC. Você também usar comandos de voz para controlar a mídia do seu PC, ex. "Pule esta faixa" ou "aumente o volume".
+
+<b>Suporte ao Android Wear</b>
+Você pode controlar seu PC diretamente do seu relógio! Extremamente útil, discreto, inovador e fascinante para apresentações ou controlar o media player.
+
+<b>Muito mais</b>
+O Servidor de Controle Remoto é open source e pode ser usado para controlar qualquer dispositivo na sua rede. Você pode usar este app para controlar todos os seus dispositivos compatíveis com internet of things (IOT) - como Arduino, Raspberry Pi e semelhantes.<br/>
+
+<small>Para receber os comandos do App de Controle Remoto, você precisará baixar o Servidor de Controle Remoto. Você pode baixá-lo gratuitamente em:
+http://server.android-remote.com
+
+Se tiver problemas ao configurar uma conexão, siga este guia passo-a-passo ou assista o vídeo (em inglês apenas!) em: 
+http://setup.android-remote.com/
+
+Fans no Facebook podem <b>testar</b> a versão pro de graça:
+http://facebook.com/RemoteControlApps<br/>
+
+<b>Permissões:</b>
+Comunicação com a rede
+Para criar sockets de rede e usar protocolos de rede personalizados para conectar com o PC.
+
+Chamadas telefônicas
+Necessário para criar um ID de dispositivo único. Usado para verificar suas compras e registrar códigos de desbloqueio.
+
+Vibração
+Para resposta háptica.</small>

@@ -75,6 +75,17 @@
     <string name="keyboard_send_general">Haupttasten</string>
     <string name="keyboard_send_advances">Sondertasten</string>
 
+    <!-- Speech -->
+    <string name="speech">Spracherkennung</string>
+    <string name="speech_identify_media">media,musik,track,song,film,lied</string>
+    <string name="speech_identify_media_next">nächster,nächsten,nächstes,nächste,überspringe</string>
+    <string name="speech_identify_media_previous">zurück,letzte,letztes,letzten,vorheriges,vorherige</string>
+    <string name="speech_identify_media_pause">pause,pausiere,weiter,play,stop,anhalten</string>
+    <string name="speech_identify_volume">lautstärke,ton,audio,sound</string>
+    <string name="speech_identify_volume_up">auf,hoch,höher,erhöhe,lauter</string>
+    <string name="speech_identify_volume_down">runter,leise,leiser</string>
+    <string name="speech_identify_volume_mute">aus,stumm,an</string>
+
     <!-- Upgrades -->
     <string name="upgrade_code_title">Kostenlose Upgrades</string>
     <string name="upgrade_code_description">Einen Code erhalten oder aktivieren</string>

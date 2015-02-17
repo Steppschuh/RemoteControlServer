@@ -103,7 +103,7 @@
     <string name="speech_identify_volume">volume,audio</string>
     <string name="speech_identify_volume_up">up,increase,louder</string>
     <string name="speech_identify_volume_down">down,decrease</string>
-    <string name="speech_identify_volume_mute">mute,silence</string>
+    <string name="speech_identify_volume_mute">mute,unmute,off,on,silence</string>
 
     <!-- Upgrades -->
     <string name="upgrade_code_title">Free upgrades</string>
