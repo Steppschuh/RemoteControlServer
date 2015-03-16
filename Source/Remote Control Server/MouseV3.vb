@@ -218,8 +218,8 @@ Module MouseV3
         currentPointer.x = (x * screenSize.Width) / absoluteMaximum
         currentPointer.y = (y * screenSize.Height) / absoluteMaximum
 
-        cursorPositonNew.X = currentPointer.x
-        cursorPositonNew.Y = currentPointer.y
+        cursorPositonNew.X = startLocation.X + currentPointer.x
+        cursorPositonNew.Y = startLocation.Y + currentPointer.y
 
         'Add absolute pointer position to pointer list to enable click detection
         pointers.Add(currentPointer)

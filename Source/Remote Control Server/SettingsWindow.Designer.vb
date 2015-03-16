@@ -152,6 +152,11 @@ Partial Class SettingsWindow
         Me.label_IP_address = New System.Windows.Forms.Label()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.tab_custom = New System.Windows.Forms.TabPage()
+        Me.GroupBox22 = New System.Windows.Forms.GroupBox()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.btn_manageCustom = New System.Windows.Forms.Button()
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -202,6 +207,8 @@ Partial Class SettingsWindow
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.tab_log.SuspendLayout()
+        Me.tab_custom.SuspendLayout()
+        Me.GroupBox22.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -238,6 +245,7 @@ Partial Class SettingsWindow
         Me.TabControl1.Controls.Add(Me.tab_screen)
         Me.TabControl1.Controls.Add(Me.tab_slideshow)
         Me.TabControl1.Controls.Add(Me.tab_media)
+        Me.TabControl1.Controls.Add(Me.tab_custom)
         Me.TabControl1.Controls.Add(Me.tab_misc)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
@@ -1681,6 +1689,57 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
+        'tab_custom
+        '
+        Me.tab_custom.Controls.Add(Me.GroupBox22)
+        Me.tab_custom.Location = New System.Drawing.Point(4, 22)
+        Me.tab_custom.Name = "tab_custom"
+        Me.tab_custom.Size = New System.Drawing.Size(447, 317)
+        Me.tab_custom.TabIndex = 7
+        Me.tab_custom.Text = "Custom"
+        Me.tab_custom.UseVisualStyleBackColor = True
+        '
+        'GroupBox22
+        '
+        Me.GroupBox22.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox22.Controls.Add(Me.Label38)
+        Me.GroupBox22.Controls.Add(Me.btn_manageCustom)
+        Me.GroupBox22.Controls.Add(Me.Label39)
+        Me.GroupBox22.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox22.Name = "GroupBox22"
+        Me.GroupBox22.Size = New System.Drawing.Size(435, 100)
+        Me.GroupBox22.TabIndex = 1
+        Me.GroupBox22.TabStop = False
+        Me.GroupBox22.Text = "Custom actions"
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.ForeColor = System.Drawing.Color.DimGray
+        Me.Label38.Location = New System.Drawing.Point(131, 42)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(0, 13)
+        Me.Label38.TabIndex = 3
+        '
+        'btn_manageCustom
+        '
+        Me.btn_manageCustom.Location = New System.Drawing.Point(6, 64)
+        Me.btn_manageCustom.Name = "btn_manageCustom"
+        Me.btn_manageCustom.Size = New System.Drawing.Size(145, 23)
+        Me.btn_manageCustom.TabIndex = 2
+        Me.btn_manageCustom.Text = "Manage custom actions"
+        Me.btn_manageCustom.UseVisualStyleBackColor = True
+        '
+        'Label39
+        '
+        Me.Label39.Location = New System.Drawing.Point(10, 16)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(419, 39)
+        Me.Label39.TabIndex = 1
+        Me.Label39.Text = "You can set the actions for custom key events here. Supported values are paths to" & _
+    " files or webpages."
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1760,6 +1819,9 @@ Partial Class SettingsWindow
         Me.GroupBox18.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
+        Me.tab_custom.ResumeLayout(False)
+        Me.GroupBox22.ResumeLayout(False)
+        Me.GroupBox22.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1892,4 +1954,9 @@ Partial Class SettingsWindow
     Friend WithEvents btn_upgrade_ios As System.Windows.Forms.PictureBox
     Friend WithEvents btn_upgrade_android As System.Windows.Forms.PictureBox
     Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents tab_custom As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox22 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label38 As System.Windows.Forms.Label
+    Friend WithEvents btn_manageCustom As System.Windows.Forms.Button
+    Friend WithEvents Label39 As System.Windows.Forms.Label
 End Class

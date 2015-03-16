@@ -303,7 +303,7 @@ Module ApiV3
 
 #End Region
 
-#Region "Mouse"
+#Region "Mouse & Keyboard"
 
     Public Sub parseMouseCommand(ByRef command As Command)
         Dim app As App = Server.getApp(command.source)
@@ -360,26 +360,49 @@ Module ApiV3
                 Dim keyCode As Integer = command.data(6)
                 keyCode = (keyCode << 8) + command.data(7)
                 'Logger.add("Received key code: " & keyCode)
-                Select Case action
-                    Case cmd_action_down
-                        Keyboard.sendKeyDown(Keyboard.keycodeToKey(keyCode))
-                    Case cmd_action_up
-                        Keyboard.sendKeyUp(Keyboard.keycodeToKey(keyCode))
-                    Case cmd_action_click
-                        Dim keyboardKey As Key = Keyboard.keycodeToKey(keyCode)
-                        If keyboardKey = Keyboard.KEYCODE_UNKOWN Then
-                            Keyboard.keycodeToShortcut(keyCode)
-                        Else
-                            Keyboard.sendKeyPress(keyboardKey)
-                        End If
-                End Select
+
+                If keyCode < Keyboard.KEYCODE_C1 Or keyCode > Keyboard.KEYCODE_C12 Then
+                    Select Case action
+                        Case cmd_action_down
+                            Keyboard.sendKeyDown(Keyboard.keycodeToKey(keyCode))
+                        Case cmd_action_up
+                            Keyboard.sendKeyUp(Keyboard.keycodeToKey(keyCode))
+                        Case cmd_action_click
+                            Dim keyboardKey As Key = Keyboard.keycodeToKey(keyCode)
+                            If keyboardKey = Keyboard.KEYCODE_UNKOWN Then
+                                Keyboard.keycodeToShortcut(keyCode)
+                            Else
+                                Keyboard.sendKeyPress(keyboardKey)
+                            End If
+                    End Select
+                Else
+                    'It's a custom key, get action from config
+                    Dim actionIndex = keyCode - Keyboard.KEYCODE_C1
+                    Logger.add("Received custom key code: " & (actionIndex + 1))
+
+                    If actionIndex > Settings.customActions.Count - 1 Then
+                        Logger.add("No custom action set")
+                        Process.Start("http://remote-control-collection.com/help/custom/")
+                        Logger.trackEevent("Server", "Custom", "Not set")
+                    Else
+                        Try
+                            Dim path As String = Settings.customActions(actionIndex)
+                            Process.Start(path)
+                            Logger.trackEevent("Server", "Custom", path)
+                        Catch ex As Exception
+                            Logger.add("Unable to invoke custom action:")
+                            Logger.add(ex.ToString)
+                        End Try
+                    End If
+
+
+                End If
             Case cmd_keyboard_string
                 Dim keyString As String = Converter.byteToString(command.data, 3)
                 'Logger.add("Received key string: " & keyString)
                 Keyboard.sendEachKey(keyString)
-
             Case Else
-                Logger.add("Unknown keyboard command")
+                Logger.add("Unknown keyboard command: " & Converter.commandToString(command))
         End Select
 
     End Sub

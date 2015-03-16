@@ -28,7 +28,7 @@ Module Settings
     Public useWhiteList As Boolean = False
     Public usePin As Boolean = False
     Public pin As String = "0000"
-    Public whitelistedIps As List(Of String)
+    Public whitelistedIps As New List(Of String)
 
     'Mouse
     Public mouseSensitivity As Single = 2
@@ -50,6 +50,9 @@ Module Settings
 
     'Media
     Public defaultMediaPlayer As String = ""
+
+    'Custom
+    Public customActions As New List(Of String)
 
     'Misc
     Public serialPortName As String = "COM3"
@@ -85,6 +88,7 @@ Module Settings
                 xmlString = sr.ReadToEnd()
                 parseSettings(xmlString)
                 parseWhitelist(xmlString)
+                parseCustomActions(xmlString)
             Else
                 Throw New FileNotFoundException
             End If
@@ -162,14 +166,21 @@ Module Settings
             appendSetting("updateAmbientColor", Converter.boolToString(updateAmbientColor), sw)
             sw.WriteLine()
 
+            'Custom
+            sw.Write("  <customActions>")
+            sw.WriteLine()
+            For i As Integer = 0 To customActions.Count - 1
+                appendCustomAction(i, sw)
+            Next
+            sw.Write("  </customActions>")
+            sw.WriteLine()
+
             'Whitelist
             sw.Write("  <whitelist>")
             sw.WriteLine()
-
             For Each appIp As String In whitelistedIps
                 appendWhitelistIp(appIp, sw)
             Next
-
             sw.Write("  </whitelist>")
             sw.WriteLine()
 
@@ -271,6 +282,10 @@ Module Settings
         ElseIf name.Equals("defaultMediaPlayer") Then
             defaultMediaPlayer = value
 
+            'Media
+        ElseIf name.Contains("customAction") Then
+            defaultMediaPlayer = value
+
             'Misc
         ElseIf name.Equals("serialCommands") Then
             serialCommands = Converter.stringToBool(value)
@@ -292,6 +307,40 @@ Module Settings
     Private Sub appendWhitelistIp(ByVal ip As String, ByVal sw As StreamWriter)
         sw.Write("    <app ip=" & Chr(34) & ip & Chr(34) & "/>")
         sw.WriteLine()
+    End Sub
+
+    Private Sub appendCustomAction(ByVal i As String, ByVal sw As StreamWriter)
+        sw.Write("    <custom path=" & Chr(34) & customActions(i) & Chr(34) & "/>")
+        sw.WriteLine()
+    End Sub
+
+    Private Sub parseCustomActions(ByVal xmlString As String)
+        Try
+            Logger.add("Parsing custom actions")
+
+            Dim xmldoc As New XmlDocument()
+            xmldoc.LoadXml(xmlString)
+
+            Dim xml_nodelist As XmlNodeList = xmldoc.GetElementsByTagName("/customActions")
+            Dim path As String
+
+            For Each mxmlnode As XmlNode In xmldoc.GetElementsByTagName("custom")
+                Try
+                    path = mxmlnode.Attributes.ItemOf("path").InnerText
+                    customActions.Add(path)
+                Catch ex As Exception
+                    Logger.add(ex.ToString)
+                End Try
+            Next
+            Logger.add("custom actions restored, " & customActions.Count & " actions found")
+        Catch ex As Exception
+            Logger.add("Error while parsing custom actions:")
+            Logger.add(ex.ToString)
+        End Try
+        If customActions.Count = 0 Then
+            'Add one action to show the syntax
+            customActions.Add("http://remote-control-collection.com/help/custom/")
+        End If
     End Sub
 
     Private Sub parseWhitelist(ByVal xmlString As String)

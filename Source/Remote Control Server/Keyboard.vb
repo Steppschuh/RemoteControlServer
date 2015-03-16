@@ -41,6 +41,19 @@ Module Keyboard
     Public Const KEYCODE_F11 As Integer = 141
     Public Const KEYCODE_F12 As Integer = 142
 
+    Public Const KEYCODE_C1 As Integer = 221
+    Public Const KEYCODE_C2 As Integer = 222
+    Public Const KEYCODE_C3 As Integer = 223
+    Public Const KEYCODE_C4 As Integer = 224
+    Public Const KEYCODE_C5 As Integer = 225
+    Public Const KEYCODE_C6 As Integer = 226
+    Public Const KEYCODE_C7 As Integer = 227
+    Public Const KEYCODE_C8 As Integer = 228
+    Public Const KEYCODE_C9 As Integer = 229
+    Public Const KEYCODE_C10 As Integer = 230
+    Public Const KEYCODE_C11 As Integer = 231
+    Public Const KEYCODE_C12 As Integer = 232
+
     Public Const KEYCODE_COPY As Integer = 201
     Public Const KEYCODE_PASTE As Integer = 202
     Public Const KEYCODE_SELECT_ALL As Integer = 203

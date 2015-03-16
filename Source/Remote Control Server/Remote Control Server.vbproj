@@ -103,6 +103,12 @@
     <Compile Include="Authenticator.vb" />
     <Compile Include="Command.vb" />
     <Compile Include="Converter.vb" />
+    <Compile Include="CustomWindow.Designer.vb">
+      <DependentUpon>CustomWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustomWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MouseV3.vb" />
     <Compile Include="Helper.vb" />
     <Compile Include="IpWindow.Designer.vb">
@@ -202,6 +208,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="CustomWindow.resx">
+      <DependentUpon>CustomWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IpWindow.resx">
       <DependentUpon>IpWindow.vb</DependentUpon>
     </EmbeddedResource>

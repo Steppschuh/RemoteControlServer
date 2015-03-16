@@ -287,6 +287,15 @@
 
 #End Region
 
+#Region "Custom"
+
+    Private Sub btn_manageCustom_Click(sender As Object, e As EventArgs) Handles btn_manageCustom.Click
+        Dim editor As New CustomWindow
+        editor.ShowDialog()
+    End Sub
+
+#End Region
+
 #Region "Update"
 
     Private Sub btn_update_install_Click(sender As Object, e As EventArgs) Handles btn_update_install.Click
@@ -378,6 +387,7 @@
 #End Region
 
 #End Region
+
 
 
 End Class
