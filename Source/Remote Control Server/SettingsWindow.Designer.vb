@@ -95,6 +95,11 @@ Partial Class SettingsWindow
         Me.tb_defaultPlayer = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.btn_browseDefaultPlayer = New System.Windows.Forms.Button()
+        Me.tab_custom = New System.Windows.Forms.TabPage()
+        Me.GroupBox22 = New System.Windows.Forms.GroupBox()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.btn_manageCustom = New System.Windows.Forms.Button()
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.tab_misc = New System.Windows.Forms.TabPage()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.btn_ledOn = New System.Windows.Forms.Button()
@@ -152,11 +157,6 @@ Partial Class SettingsWindow
         Me.label_IP_address = New System.Windows.Forms.Label()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
-        Me.tab_custom = New System.Windows.Forms.TabPage()
-        Me.GroupBox22 = New System.Windows.Forms.GroupBox()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.btn_manageCustom = New System.Windows.Forms.Button()
-        Me.Label39 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -186,6 +186,8 @@ Partial Class SettingsWindow
         CType(Me.img_pointer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_media.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
+        Me.tab_custom.SuspendLayout()
+        Me.GroupBox22.SuspendLayout()
         Me.tab_misc.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
@@ -207,8 +209,6 @@ Partial Class SettingsWindow
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.tab_log.SuspendLayout()
-        Me.tab_custom.SuspendLayout()
-        Me.GroupBox22.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControlMain
@@ -1038,6 +1038,57 @@ Partial Class SettingsWindow
         Me.btn_browseDefaultPlayer.Text = "Browse"
         Me.btn_browseDefaultPlayer.UseVisualStyleBackColor = True
         '
+        'tab_custom
+        '
+        Me.tab_custom.Controls.Add(Me.GroupBox22)
+        Me.tab_custom.Location = New System.Drawing.Point(4, 22)
+        Me.tab_custom.Name = "tab_custom"
+        Me.tab_custom.Size = New System.Drawing.Size(447, 317)
+        Me.tab_custom.TabIndex = 7
+        Me.tab_custom.Text = "Custom"
+        Me.tab_custom.UseVisualStyleBackColor = True
+        '
+        'GroupBox22
+        '
+        Me.GroupBox22.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox22.Controls.Add(Me.Label38)
+        Me.GroupBox22.Controls.Add(Me.btn_manageCustom)
+        Me.GroupBox22.Controls.Add(Me.Label39)
+        Me.GroupBox22.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox22.Name = "GroupBox22"
+        Me.GroupBox22.Size = New System.Drawing.Size(435, 100)
+        Me.GroupBox22.TabIndex = 1
+        Me.GroupBox22.TabStop = False
+        Me.GroupBox22.Text = "Custom actions"
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.ForeColor = System.Drawing.Color.DimGray
+        Me.Label38.Location = New System.Drawing.Point(131, 42)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(0, 13)
+        Me.Label38.TabIndex = 3
+        '
+        'btn_manageCustom
+        '
+        Me.btn_manageCustom.Location = New System.Drawing.Point(6, 64)
+        Me.btn_manageCustom.Name = "btn_manageCustom"
+        Me.btn_manageCustom.Size = New System.Drawing.Size(145, 23)
+        Me.btn_manageCustom.TabIndex = 2
+        Me.btn_manageCustom.Text = "Manage custom actions"
+        Me.btn_manageCustom.UseVisualStyleBackColor = True
+        '
+        'Label39
+        '
+        Me.Label39.Location = New System.Drawing.Point(10, 16)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(419, 39)
+        Me.Label39.TabIndex = 1
+        Me.Label39.Text = "You can set the actions for custom key events here. Supported values are paths to" & _
+    " files or webpages."
+        '
         'tab_misc
         '
         Me.tab_misc.Controls.Add(Me.GroupBox16)
@@ -1689,57 +1740,6 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
-        'tab_custom
-        '
-        Me.tab_custom.Controls.Add(Me.GroupBox22)
-        Me.tab_custom.Location = New System.Drawing.Point(4, 22)
-        Me.tab_custom.Name = "tab_custom"
-        Me.tab_custom.Size = New System.Drawing.Size(447, 317)
-        Me.tab_custom.TabIndex = 7
-        Me.tab_custom.Text = "Custom"
-        Me.tab_custom.UseVisualStyleBackColor = True
-        '
-        'GroupBox22
-        '
-        Me.GroupBox22.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox22.Controls.Add(Me.Label38)
-        Me.GroupBox22.Controls.Add(Me.btn_manageCustom)
-        Me.GroupBox22.Controls.Add(Me.Label39)
-        Me.GroupBox22.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox22.Name = "GroupBox22"
-        Me.GroupBox22.Size = New System.Drawing.Size(435, 100)
-        Me.GroupBox22.TabIndex = 1
-        Me.GroupBox22.TabStop = False
-        Me.GroupBox22.Text = "Custom actions"
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.ForeColor = System.Drawing.Color.DimGray
-        Me.Label38.Location = New System.Drawing.Point(131, 42)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(0, 13)
-        Me.Label38.TabIndex = 3
-        '
-        'btn_manageCustom
-        '
-        Me.btn_manageCustom.Location = New System.Drawing.Point(6, 64)
-        Me.btn_manageCustom.Name = "btn_manageCustom"
-        Me.btn_manageCustom.Size = New System.Drawing.Size(145, 23)
-        Me.btn_manageCustom.TabIndex = 2
-        Me.btn_manageCustom.Text = "Manage custom actions"
-        Me.btn_manageCustom.UseVisualStyleBackColor = True
-        '
-        'Label39
-        '
-        Me.Label39.Location = New System.Drawing.Point(10, 16)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(419, 39)
-        Me.Label39.TabIndex = 1
-        Me.Label39.Text = "You can set the actions for custom key events here. Supported values are paths to" & _
-    " files or webpages."
-        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1793,6 +1793,9 @@ Partial Class SettingsWindow
         Me.tab_media.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
+        Me.tab_custom.ResumeLayout(False)
+        Me.GroupBox22.ResumeLayout(False)
+        Me.GroupBox22.PerformLayout()
         Me.tab_misc.ResumeLayout(False)
         Me.GroupBox16.ResumeLayout(False)
         Me.GroupBox16.PerformLayout()
@@ -1819,9 +1822,6 @@ Partial Class SettingsWindow
         Me.GroupBox18.ResumeLayout(False)
         Me.tab_log.ResumeLayout(False)
         Me.tab_log.PerformLayout()
-        Me.tab_custom.ResumeLayout(False)
-        Me.GroupBox22.ResumeLayout(False)
-        Me.GroupBox22.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

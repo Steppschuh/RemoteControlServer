@@ -151,7 +151,7 @@ Module ApiV3
             Case cmd_open
                 parseOpenCommand(command)
             Case Else
-                Logger.add("Unknown command")
+                Logger.add("Unknown command: " & Converter.commandToString(command))
         End Select
     End Sub
 
@@ -180,7 +180,7 @@ Module ApiV3
                 app.onBroadCast(command)
                 Logger.add(app.ip & " checked reachability")
             Case Else
-                Logger.add("Unknown connection command")
+                Logger.add("Unknown connection command: " & Converter.commandToString(command))
         End Select
     End Sub
 
@@ -201,7 +201,7 @@ Module ApiV3
                     Logger.add(ex.Message)
                 End Try
             Case Else
-                Logger.add("Unknown open command")
+                Logger.add("Unknown open command: " & Converter.commandToString(command))
         End Select
     End Sub
 
@@ -239,7 +239,7 @@ Module ApiV3
                     Screenshot.keepSendingScreenshots(requestCommand, responseCommand)
                 End If
             Case Else
-                Logger.add("Unknown get command")
+                Logger.add("Unknown get command: " & Converter.commandToString(requestCommand))
         End Select
 
         If Not responseCommand.data Is Nothing Then
@@ -296,7 +296,7 @@ Module ApiV3
                 app.deviceName = Converter.byteToString(setCommand.data, 3)
                 Logger.add("Device name from " & app.ip & " set to " & app.deviceName)
             Case Else
-                Logger.add("Unknown set command")
+                Logger.add("Unknown set command: " & Converter.commandToString(setCommand))
         End Select
 
     End Sub
@@ -347,7 +347,7 @@ Module ApiV3
                         Logger.add("Unknown mouse right command")
                 End Select
             Case Else
-                Logger.add("Unknown mouse command")
+                Logger.add("Unknown mouse command: " & Converter.commandToString(command))
         End Select
     End Sub
 
