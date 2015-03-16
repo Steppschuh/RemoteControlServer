@@ -394,8 +394,6 @@ Module ApiV3
                             Logger.add(ex.ToString)
                         End Try
                     End If
-
-
                 End If
             Case cmd_keyboard_string
                 Dim keyString As String = Converter.byteToString(command.data, 3)

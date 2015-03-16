@@ -93,6 +93,9 @@ Module Settings
                 Throw New FileNotFoundException
             End If
         Catch ex As Exception
+            parseCustomActions("")
+            parseWhitelist("")
+
             Logger.add("Error while reading settings file from:" & vbNewLine & path)
             Logger.add(ex.ToString)
         End Try
@@ -340,6 +343,9 @@ Module Settings
         If customActions.Count = 0 Then
             'Add one action to show the syntax
             customActions.Add("http://remote-control-collection.com/help/custom/")
+            customActions.Add("https://www.google.com/?q=This+is+a+sample+custom+action")
+            customActions.Add("explorer")
+            customActions.Add("calc")
         End If
     End Sub
 

@@ -67,8 +67,8 @@ Partial Class CustomWindow
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(385, 34)
         Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Add a path or URL for a custom action below. The custom key C1 will invoke a proc" & _
-    "ess with the value of line 1."
+        Me.Label1.Text = "Add a path or URL for a custom action below. Enter one action per line. The custo" & _
+    "m key C1 will invoke a process with the value of line 1."
         '
         'Label2
         '

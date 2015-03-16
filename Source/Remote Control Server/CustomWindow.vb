@@ -6,7 +6,11 @@
         Next
 
         'Remove last linebreak
-        tb_customActions.Text = tb_customActions.Text.Substring(0, tb_customActions.Text.LastIndexOf(vbNewLine))
+        Try
+            tb_customActions.Text = tb_customActions.Text.Substring(0, tb_customActions.Text.LastIndexOf(vbNewLine))
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
