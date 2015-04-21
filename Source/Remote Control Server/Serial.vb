@@ -8,7 +8,7 @@ Module Serial
     Public Const commandEnd As Char = ">"
     Public Const writeTimeout As Integer = 100
 
-    Public serialPort As IO.Ports.SerialPort
+    Public WithEvents serialPort As IO.Ports.SerialPort
 
     Public isSending As Boolean = False
     Public shouldListen As Boolean = True
@@ -23,9 +23,20 @@ Module Serial
                 End If
             End If
             currentSerialPortName = name
-            serialPort = My.Computer.Ports.OpenSerialPort(name)
-            serialPort.WriteTimeout = writeTimeout
-            startReading()
+
+            serialPort = New IO.Ports.SerialPort
+
+            With serialPort
+                .PortName = currentSerialPortName
+                .RtsEnable = True
+                .DataBits = 8
+                .BaudRate = 9600
+                .Parity = IO.Ports.Parity.None
+                .WriteTimeout = writeTimeout
+                .Open()
+            End With
+
+            'startReading()
         Catch ex As Exception
             Logger.add("Unable to open serial port " & currentSerialPortName & ": " & ex.Message)
         End Try
@@ -93,8 +104,34 @@ Module Serial
         End While
     End Sub
 
+    Private Sub SerialPort_DataReceived(sender As Object, e As System.IO.Ports.SerialDataReceivedEventArgs) Handles serialPort.DataReceived
+        Dim DataFromPort As String = serialPort.ReadLine
+        Logger.add("Received from serial: " & DataFromPort)
+    End Sub
+
     Public Sub sendCommand(ByVal command As Command)
-        sendMessage(commandStart & command.dataAsString & commandEnd)
+        'sendMessage(Converter.commandToSerialString(command))
+        isSending = True
+        Try
+            If serialPort Is Nothing Then
+                openSerialPort(serialPortName)
+            End If
+            If Not serialPort.IsOpen Then
+                openSerialPort(serialPortName)
+            End If
+
+            'Add command identifiers to byte array
+            Dim data(command.data.Length + 2) As Byte
+            data(0) = 60 '<
+            command.data.CopyTo(data, 1)
+            data(command.data.Length + 1) = 62 '>
+
+            serialPort.Write(data, 0, data.Length)
+            Logger.add("Sent to " & currentSerialPortName & ": " & Converter.commandToString(command))
+        Catch ex As Exception
+            Logger.add("Unable to send message to " & currentSerialPortName & ": " & ex.Message)
+        End Try
+        isSending = False
     End Sub
 
 End Module

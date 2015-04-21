@@ -119,6 +119,15 @@ Module Converter
         Return commandString
     End Function
 
+    Public Function commandToSerialString(ByVal command As Command) As String
+        Dim commandString As String = Serial.commandStart
+        For Each commandByte As Byte In command.data
+            commandString = commandString & commandByte & " "
+        Next
+        commandString = commandString & Serial.commandEnd
+        Return commandString
+    End Function
+
     Public Function buildCommandData(ByVal identifier As Byte(), ByVal value As Byte()) As Byte()
         addToByteArray(identifier, value)
         Return identifier
