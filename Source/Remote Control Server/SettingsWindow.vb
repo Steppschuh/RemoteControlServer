@@ -8,6 +8,10 @@
         isUserAction = True
     End Sub
 
+    Private Sub SettingsWindow_FormClosed(sender As Object, e As Forms.FormClosedEventArgs) Handles Me.FormClosed
+        Settings.saveSettings()
+    End Sub
+
     Private Delegate Sub refreshUiDelegate()
     Public Sub refreshUi()
         If Me.InvokeRequired() Then
@@ -252,7 +256,7 @@
 
 #Region "Misc settings"
 
-    Private Sub btn_sendDebugCommand_Click(sender As Object, e As EventArgs) Handles btn_sendDebugCommand.Click
+    Private Sub btn_sendDebugCommand_Click(sender As Object, e As EventArgs)
         Dim command As New Command
         command.data = New Byte() {2}
         Serial.sendCommand(command)
@@ -387,7 +391,5 @@
 #End Region
 
 #End Region
-
-
 
 End Class

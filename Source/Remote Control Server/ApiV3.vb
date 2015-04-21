@@ -221,6 +221,7 @@ Module ApiV3
 
         Select Case requestCommand.data(2)
             Case cmd_get_server_version
+                Logger.add("Server version requested")
                 'responseCommand.data = buildCommandData(commandIdentifier, Converter.stringToByte(Server.getServerVersionName))
                 responseCommand.data = buildCommandData(commandIdentifier, New Byte() {Updater.currentVersionCode})
             Case cmd_get_server_name
@@ -380,19 +381,25 @@ Module ApiV3
                     Dim actionIndex = keyCode - Keyboard.KEYCODE_C1
                     Logger.add("Received custom key code: " & (actionIndex + 1))
 
-                    If actionIndex > Settings.customActions.Count - 1 Then
-                        Logger.add("No custom action set")
-                        Process.Start("http://remote-control-collection.com/help/custom/")
-                        Logger.trackEevent("Server", "Custom", "Not set")
+                    If Settings.serialCommands Then
+                        'Forward command to serial port
+                        Serial.sendCommand(command)
                     Else
-                        Try
-                            Dim path As String = Settings.customActions(actionIndex)
-                            Process.Start(path)
-                            Logger.trackEevent("Server", "Custom", path)
-                        Catch ex As Exception
-                            Logger.add("Unable to invoke custom action:")
-                            Logger.add(ex.ToString)
-                        End Try
+                        'Process custom action
+                        If actionIndex > Settings.customActions.Count - 1 Then
+                            Logger.add("No custom action set")
+                            Process.Start("http://remote-control-collection.com/help/custom/")
+                            Logger.trackEevent("Server", "Custom", "Not set")
+                        Else
+                            Try
+                                Dim path As String = Settings.customActions(actionIndex)
+                                Process.Start(path)
+                                Logger.trackEevent("Server", "Custom", path)
+                            Catch ex As Exception
+                                Logger.add("Unable to invoke custom action:")
+                                Logger.add(ex.ToString)
+                            End Try
+                        End If
                     End If
                 End If
             Case cmd_keyboard_string

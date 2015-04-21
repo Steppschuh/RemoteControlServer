@@ -107,7 +107,6 @@ Partial Class SettingsWindow
         Me.cb_updateAmbientColor = New System.Windows.Forms.CheckBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.btn_reopenPort = New System.Windows.Forms.Button()
-        Me.btn_sendDebugCommand = New System.Windows.Forms.Button()
         Me.tb_serialPortName = New System.Windows.Forms.TextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.cb_serialCommands = New System.Windows.Forms.CheckBox()
@@ -157,6 +156,7 @@ Partial Class SettingsWindow
         Me.label_IP_address = New System.Windows.Forms.Label()
         Me.tab_log = New System.Windows.Forms.TabPage()
         Me.tb_log = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
         Me.TabControlMain.SuspendLayout()
         Me.tab_settings.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -1148,8 +1148,8 @@ Partial Class SettingsWindow
         '
         Me.GroupBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox15.Controls.Add(Me.Label40)
         Me.GroupBox15.Controls.Add(Me.btn_reopenPort)
-        Me.GroupBox15.Controls.Add(Me.btn_sendDebugCommand)
         Me.GroupBox15.Controls.Add(Me.tb_serialPortName)
         Me.GroupBox15.Controls.Add(Me.CheckBox2)
         Me.GroupBox15.Controls.Add(Me.cb_serialCommands)
@@ -1169,22 +1169,13 @@ Partial Class SettingsWindow
         Me.btn_reopenPort.Text = "Re-open port"
         Me.btn_reopenPort.UseVisualStyleBackColor = True
         '
-        'btn_sendDebugCommand
-        '
-        Me.btn_sendDebugCommand.Location = New System.Drawing.Point(322, 38)
-        Me.btn_sendDebugCommand.Name = "btn_sendDebugCommand"
-        Me.btn_sendDebugCommand.Size = New System.Drawing.Size(107, 23)
-        Me.btn_sendDebugCommand.TabIndex = 8
-        Me.btn_sendDebugCommand.Text = "Debug command"
-        Me.btn_sendDebugCommand.UseVisualStyleBackColor = True
-        '
         'tb_serialPortName
         '
-        Me.tb_serialPortName.Location = New System.Drawing.Point(109, 40)
+        Me.tb_serialPortName.Location = New System.Drawing.Point(121, 40)
         Me.tb_serialPortName.Name = "tb_serialPortName"
         Me.tb_serialPortName.Size = New System.Drawing.Size(67, 20)
         Me.tb_serialPortName.TabIndex = 7
-        Me.tb_serialPortName.Text = "COM7"
+        Me.tb_serialPortName.Text = "COM3"
         Me.tb_serialPortName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'CheckBox2
@@ -1195,9 +1186,9 @@ Partial Class SettingsWindow
         Me.CheckBox2.Enabled = False
         Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(77, 17)
+        Me.CheckBox2.Size = New System.Drawing.Size(106, 17)
         Me.CheckBox2.TabIndex = 4
-        Me.CheckBox2.Text = "Select port"
+        Me.CheckBox2.Text = "Select port name"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'cb_serialCommands
@@ -1740,6 +1731,16 @@ Partial Class SettingsWindow
         Me.tb_log.TabIndex = 0
         Me.tb_log.Text = "Log"
         '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.ForeColor = System.Drawing.Color.DimGray
+        Me.Label40.Location = New System.Drawing.Point(194, 43)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(153, 13)
+        Me.Label40.TabIndex = 12
+        Me.Label40.Text = "(write 'auto' to use the last port)"
+        '
         'SettingsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1915,7 +1916,6 @@ Partial Class SettingsWindow
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents cb_serialCommands As System.Windows.Forms.CheckBox
     Friend WithEvents tb_serialPortName As System.Windows.Forms.TextBox
-    Friend WithEvents btn_sendDebugCommand As System.Windows.Forms.Button
     Friend WithEvents btn_reopenPort As System.Windows.Forms.Button
     Friend WithEvents pic_test As System.Windows.Forms.PictureBox
     Friend WithEvents GroupBox16 As System.Windows.Forms.GroupBox
@@ -1959,4 +1959,5 @@ Partial Class SettingsWindow
     Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents btn_manageCustom As System.Windows.Forms.Button
     Friend WithEvents Label39 As System.Windows.Forms.Label
+    Friend WithEvents Label40 As System.Windows.Forms.Label
 End Class

@@ -3,9 +3,7 @@
 Module Serial
 
     'This module can be used to control an arduino using the remote control app
-
-    Public serialPortName As String = "COM7"
-
+    Public currentSerialPortName As String = "auto"
     Public Const commandStart As Char = "<"
     Public Const commandEnd As Char = ">"
     Public Const writeTimeout As Integer = 100
@@ -17,11 +15,19 @@ Module Serial
 
     Public Function openSerialPort(ByVal name As String) As Boolean
         Try
+            If name.ToLower = "auto" Then
+                If My.Computer.Ports.SerialPortNames.Count > 0 Then
+                    name = My.Computer.Ports.SerialPortNames.Item(My.Computer.Ports.SerialPortNames.Count - 1)
+                Else
+                    Throw New Exception
+                End If
+            End If
+            currentSerialPortName = name
             serialPort = My.Computer.Ports.OpenSerialPort(name)
-            serialPort.WriteTimeout = 20
+            serialPort.WriteTimeout = writeTimeout
             startReading()
         Catch ex As Exception
-            Logger.add("Unable to open serial port " & name & ": " & ex.Message)
+            Logger.add("Unable to open serial port " & currentSerialPortName & ": " & ex.Message)
         End Try
     End Function
 
@@ -30,7 +36,7 @@ Module Serial
             stopReading()
             serialPort.Close()
         Catch ex As Exception
-            Logger.add("Unable to close serial port " & serialPortName & ": " & ex.Message)
+            Logger.add("Unable to close serial port " & currentSerialPortName & ": " & ex.Message)
         End Try
     End Function
 
@@ -43,11 +49,10 @@ Module Serial
             If Not serialPort.IsOpen Then
                 openSerialPort(serialPortName)
             End If
-            serialPort.WriteTimeout = writeTimeout
             serialPort.WriteLine(message)
-            Logger.add("Sent: " & message)
+            Logger.add("Sent to " & currentSerialPortName & ": " & message)
         Catch ex As Exception
-            Logger.add("Unable to send message to " & serialPortName & ": " & ex.Message)
+            Logger.add("Unable to send message to " & currentSerialPortName & ": " & ex.Message)
         End Try
         isSending = False
     End Sub

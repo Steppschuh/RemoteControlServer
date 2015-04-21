@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("www.remote-control-collection.com")> 
 <Assembly: AssemblyCompany("Steppschuh")> 
 <Assembly: AssemblyProduct("Remote Control Server")> 
-<Assembly: AssemblyCopyright("Copyright © Steppschuh 2014")> 
+<Assembly: AssemblyCopyright("Copyright © Steppschuh 2015")> 
 <Assembly: AssemblyTrademark("Steppschuh")> 
 <Assembly: ComVisible(True)> 
 
@@ -55,5 +55,5 @@ Imports System.Windows
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("3.1.1.12")> 
-<Assembly: AssemblyFileVersion("3.1.1.12")> 
+<Assembly: AssemblyVersion("3.2.3.5")> 
+<Assembly: AssemblyFileVersion("3.2.3.5")> 

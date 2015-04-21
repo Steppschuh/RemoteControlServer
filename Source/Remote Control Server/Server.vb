@@ -51,16 +51,17 @@ Public Module Server
 
     Public Sub finish()
         Try
+            Settings.saveSettings()
+
             'Stop listener threads
             Network.tcp.stopListener()
             Network.udp.stopListener()
+            Serial.closeSerialPort()
 
             'Close all windows
             pointer.Close()
             upgrade.Close()
             advanced.Close()
-
-            Settings.saveSettings()
         Catch ex As Exception
 
         End Try

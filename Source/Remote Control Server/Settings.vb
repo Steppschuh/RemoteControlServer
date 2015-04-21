@@ -55,7 +55,7 @@ Module Settings
     Public customActions As New List(Of String)
 
     'Misc
-    Public serialPortName As String = "COM3"
+    Public serialPortName As String = "auto"
     Public serialCommands As Boolean = False
     Public updateAmbientColor As Boolean = False
 
