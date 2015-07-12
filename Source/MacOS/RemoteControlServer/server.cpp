@@ -2,6 +2,6 @@
 
 Server::Server()
 {
-    Logger->Instance()->add("Initializing Server");
+    Logger::Instance()->add("Initializing Server");
 }
 

@@ -91,10 +91,10 @@ QString Logger::getLastEntry()
     return entry;
 }
 
-//void Logger::trackLaunchEvent()
-//{
-//    Logger::trackEvent("Server", "Launch", );
-//}
+void Logger::trackLaunchEvent()
+{
+    Logger::trackEvent("Server", "Launch", APP_VERSION);
+}
 
 void Logger::trackEvent(QString category, QString action, QString label)
 {

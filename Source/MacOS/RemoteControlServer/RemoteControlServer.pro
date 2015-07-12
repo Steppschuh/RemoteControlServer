@@ -8,6 +8,10 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+VERSION = 0.1
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
 TARGET = RemoteControlServer
 TEMPLATE = app
 
