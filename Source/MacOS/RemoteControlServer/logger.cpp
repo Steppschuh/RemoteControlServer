@@ -1,4 +1,5 @@
 #include "logger.h"
+#include <QDebug>
 
 Logger* Logger::instance = NULL;
 
@@ -10,8 +11,6 @@ Logger* Logger::Instance()
     }
     return instance;
 }
-
-//QString Logger::lastEntry = "";
 
 Logger::Logger():
   URL_TRACKER("http://remote-control-collection.com/api/tracker/"),
@@ -36,11 +35,11 @@ void Logger::add(QString message)
     //Update UI log
     if (QDateTime().currentMSecsSinceEpoch() > lastUpdate.toMSecsSinceEpoch() + 500) // if 500 Milliseconds have passed by sind last update
     {
-        //this->invalidateLog();
+        this->invalidateLog();
     }
     else
     {
-        //this->startInvalidateTimer();
+        this->startInvalidateTimer();
     }
 }
 
@@ -50,6 +49,28 @@ void Logger::add(QString message, bool isDebug)
     {
         this->add(message);
     }
+}
+
+void Logger::invalidateLog()
+{
+    //tbd
+}
+
+void Logger::startInvalidateTimer()
+{
+    if (!dispatcherActive)
+    {
+        // Creates a Timer that invokes the invalidateTimerTick method every 1000 milliseconds
+        int timerRunTimeInMillis = 1000;
+        dispatcherTimer = new QTimer(this);
+        connect(dispatcherTimer, SIGNAL(timeout()), this, SLOT(InvalidateTimerTick()));
+        dispatcherTimer->start(timerRunTimeInMillis);
+    }
+}
+
+void Logger::InvalidateTimerTick()
+{
+    this->invalidateLog();
 }
 
 void Logger::clearLog()
@@ -104,7 +125,7 @@ void Logger::trackEvent(QString category, QString action, QString label)
                     + "?category=" + category
                     + "&action=" + action
                     + "&label=" + label;
-       //Network->Instance()->loadInBrowser(url);
+       //Network::Instance()->loadInBrowser(url);
     }
 }
 
