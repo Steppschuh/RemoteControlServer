@@ -12,12 +12,15 @@ class Logger : public QObject
 
 public:
     static Logger* Instance();
+
+    QStringList *logMessages;
+
     void add(QString message);
     void add(QString message, bool isDebug);
     void invalidateLog();
-    void clearLog();
-    QString getString();
     QString getLastEntry();
+    void trackLaunchEvent();
+    void trackEvent(QString category, QString action, QString label);
 
 public slots:
     void InvalidateTimerTick();
@@ -32,8 +35,6 @@ private:
     const bool showDebug;
     const int maxItems;
 
-    QStringList *logMessages;
-
     QDateTime lastUpdate;
     QTimer *dispatcherTimer;
     bool dispatcherActive;
@@ -42,8 +43,7 @@ private:
 
     void startInvalidateTimer();
     void trim();
-    void trackLaunchEvent();
-    void trackEvent(QString category, QString action, QString label);
+    QString getString();
 };
 
 #endif // LOGGER_H

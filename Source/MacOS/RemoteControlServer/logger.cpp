@@ -33,14 +33,14 @@ void Logger::add(QString message)
     Logger::trim();
 
     //Update UI log
-    if (QDateTime().currentMSecsSinceEpoch() > lastUpdate.toMSecsSinceEpoch() + 500) // if 500 Milliseconds have passed by sind last update
-    {
-        this->invalidateLog();
-    }
-    else
-    {
-        this->startInvalidateTimer();
-    }
+//    if (QDateTime().currentMSecsSinceEpoch() > lastUpdate.toMSecsSinceEpoch() + 500) // if 500 Milliseconds have passed by sind last update
+//    {
+//        this->invalidateLog();
+//    }
+//    else
+//    {
+//        this->startInvalidateTimer();
+//    }
 }
 
 void Logger::add(QString message, bool isDebug)
@@ -71,11 +71,6 @@ void Logger::startInvalidateTimer()
 void Logger::InvalidateTimerTick()
 {
     this->invalidateLog();
-}
-
-void Logger::clearLog()
-{
-    logMessages->clear();
 }
 
 void Logger::trim()
