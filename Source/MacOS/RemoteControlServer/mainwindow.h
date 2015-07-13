@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <server.h>
+#include <QString>
+
+#include "server.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +18,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui;
-    Server *server;
+    QString userName;
 };
 
 #endif // MAINWINDOW_H

@@ -11,11 +11,11 @@ class TestLogger : public QObject
 private slots:
     void initTestCase();
     void testAdd();
-    void testAddWithDebugBool();
-    void testInvalidateLog();
-    void testGetLastEntry();
-    void testTrackLaunchEvent();
-    void testTrackEvent();
+//    void testAddWithDebugBool();
+//    void testInvalidateLog();
+//    void testGetLastEntry();
+//    void testTrackLaunchEvent();
+//    void testTrackEvent();
     void cleanupTestCase();
 };
 

@@ -11,8 +11,8 @@ Network* Network::Instance()
     return instance;
 }
 
-Network::Network():
-    localHost("127.0.0.1")
+Network::Network()//:
+//    localHost("127.0.0.1")
 {
 
 }

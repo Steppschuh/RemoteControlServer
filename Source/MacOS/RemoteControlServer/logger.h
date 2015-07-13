@@ -16,34 +16,36 @@ public:
     QStringList *logMessages;
 
     void add(QString message);
-    void add(QString message, bool isDebug);
-    void invalidateLog();
-    QString getLastEntry();
-    void trackLaunchEvent();
-    void trackEvent(QString category, QString action, QString label);
 
-public slots:
-    void InvalidateTimerTick();
+//public slots:
+//    void InvalidateTimerTick();
 
 private:
     Logger();
     static Logger* instance;
 
-    const QString URL_TRACKER;
+//    const QString URL_TRACKER;
 
-    const bool trackEvents;
-    const bool showDebug;
+//    const bool trackEvents;
+//    const bool showDebug;
     const int maxItems;
 
     QDateTime lastUpdate;
-    QTimer *dispatcherTimer;
-    bool dispatcherActive;
+//    QTimer *dispatcherTimer;
+//    bool dispatcherActive;
 
     QString lastEntry;
 
-    void startInvalidateTimer();
+//    void add(QString message, bool isDebug);
+//    void invalidateLog();
+//    void startInvalidateTimer();
+//    void clearLog();
     void trim();
-    QString getString();
+//    QString getString();
+//    QString getLastEntry();
+//    void trackLaunchEvent();
+//    void trackEvent(QString category, QString action, QString label);
+//    bool eventTracked(QString result);
 };
 
 #endif // LOGGER_H

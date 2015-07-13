@@ -1,19 +1,21 @@
 #ifndef REMOTE_H
 #define REMOTE_H
 
-#include <command.h>
+#include "command.h"
 
 class Remote
 {
 public:
-    Remote();
-
-    char latestApi;
-
-    void processCommand(Command &command);
+    Remote *Instance();
 
 private:
-    Command *lastCommand;
+    Remote();
+    Remote *instance;
+
+//    char latestApi;
+//    Command *lastCommand;
+
+//    void processCommand(Command &command);
 };
 
 #endif // REMOTE_H

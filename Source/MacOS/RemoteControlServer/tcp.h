@@ -1,8 +1,9 @@
 #ifndef TCP_H
 #define TCP_H
 
-#include <logger.h>
 #include <QTimer>
+
+#include "logger.h"
 
 class TCP : public QObject
 {
@@ -15,18 +16,18 @@ private:
     TCP();
     static TCP* instance;
 
-    const int portReceive;
-    const int portSend;
+//    const int portReceive;
+//    const int portSend;
 
-    const int buffer;
-    const int receiveTimeout;
+//    const int buffer;
+//    const int receiveTimeout;
 
-    const int retries;
-    const int retryTimeout;
-    const int sendTimeout;
+//    const int retries;
+//    const int retryTimeout;
+//    const int sendTimeout;
 
-    bool isListening;
-    QTimer *listenTimer;
+//    bool isListening;
+//    QTimer *listenTimer;
 };
 
 #endif // TCP_H

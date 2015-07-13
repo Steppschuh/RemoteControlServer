@@ -2,11 +2,11 @@
 
 Remote::Remote()
 {
-    latestApi = 3;
-    lastCommand = new Command();
+//    latestApi = 3;
+//    lastCommand = new Command();
 }
 
-void Remote::processCommand(Command &command)
-{
-    lastCommand = &command;
-}
+//void Remote::processCommand(Command &command)
+//{
+//    lastCommand = &command;
+//}

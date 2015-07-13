@@ -11,17 +11,17 @@ TCP* TCP::Instance()
     return instance;
 }
 
-TCP::TCP() :
-    portReceive(1925),
-    portSend(1927),
-    buffer(1024),
-    receiveTimeout(2000),
-    retries(3),
-    retryTimeout(1100),
-    sendTimeout(1000)
+TCP::TCP() //:
+//    portReceive(1925),
+//    portSend(1927),
+//    buffer(1024),
+//    receiveTimeout(2000),
+//    retries(3),
+//    retryTimeout(1100),
+//    sendTimeout(1000)
 {
-    isListening = false;
+//    isListening = false;
 
-    Logger::Instance()->add("Initializing TCP");
+//    Logger::Instance()->add("Initializing TCP");
 }
 
