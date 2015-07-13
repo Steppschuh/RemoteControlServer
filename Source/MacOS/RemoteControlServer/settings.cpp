@@ -66,7 +66,11 @@ void Settings::saveSettingsToFile()
         QDir().mkdir(getAppDataDirectory());
     }
     QFile file(path);
-    if (file.open(QIODevice::ReadWrite))
+    if (!file.open(QIODevice::ReadWrite))
+    {
+        Logger::Instance()->add("Error while saving settings file to:/n" + path);
+    }
+    else
     {
             QTextStream stream(&file);
             stream << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
@@ -116,6 +120,7 @@ void Settings::parseSettings(QString xmlString)
 
 void Settings::assignSetting(QString name, QString value)
 {
+    // General
     if (name == "autoStart")
     {
         autoStart = Converter::Instance()->stringToBool(value);
@@ -146,11 +151,52 @@ void Settings::appendCustomAction(int i, QTextStream &writer)
 void Settings::parseCustomActions(QString xmlString)
 {
     Logger::Instance()->add("Parsing custom actions");
+
+    QDomDocument *xmldoc = new QDomDocument();
+    xmldoc->setContent(xmlString);
+    QDomNodeList xml_nodelist = xmldoc->elementsByTagName("custom");
+    QString path;
+    QDomNode xmlnode;
+
+    for (int i = 0; i < xml_nodelist.length(); ++i)
+    {
+        xmlnode = xml_nodelist.item(i);
+        path = xmlnode.attributes().namedItem("path").nodeValue();
+        customActions.append(path);
+    }
+    Logger::Instance()->add("Custom actions restored, " + QString(customActions.size()) +  " actions found");
+
+    if (customActions.size() == 0)
+    {
+        customActions.append("http://remote-control-collection.com/help/custom/");
+        customActions.append("https://www.google.com/?q=This+is+a+sample+custom+action");
+        customActions.append("explorer");
+        customActions.append("calc");
+    }
 }
 
 void Settings::parseWhitelist(QString xmlString)
 {
+    Logger::Instance()->add("Parsing whitelist");
 
+    QDomDocument *xmldoc = new QDomDocument();
+    xmldoc->setContent(xmlString);
+    QDomNodeList xml_nodelist = xmldoc->elementsByTagName("custom");
+    QString appIp;
+    QDomNode xmlnode;
+
+    for (int i = 0; i < xml_nodelist.length(); ++i)
+    {
+        xmlnode = xml_nodelist.item(i);
+        appIp = xmlnode.attributes().namedItem("ip").nodeValue();
+        whitelistedIps->append(appIp);
+    }
+    Logger::Instance()->add("Whitelist restored, " + QString(whitelistedIps->size()) +  " IPs restored");
+
+    if (whitelistedIps->size() == 0)
+    {
+        whitelistedIps->append("127.0.0.1");
+    }
 }
 
 QString Settings::getAppDataDirectory()
@@ -168,5 +214,5 @@ QString Settings::getConfigPath()
 
 bool Settings::setAutostart(bool value)
 {
-
+    return false;
 }

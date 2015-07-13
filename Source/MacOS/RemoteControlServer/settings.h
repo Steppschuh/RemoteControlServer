@@ -11,6 +11,7 @@ public:
     static Settings *Instance();
 
     bool autoStart;
+
     QStringList customActions;
 
     void loadSettings();
