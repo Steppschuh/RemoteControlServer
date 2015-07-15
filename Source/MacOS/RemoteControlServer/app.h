@@ -10,8 +10,9 @@ class App
 public:
     App();
 
+    QString ip;
+
 private:
-//    QString ip;
 //    QString appVersion;
 //    QString appName;
 //    QString osVersion;

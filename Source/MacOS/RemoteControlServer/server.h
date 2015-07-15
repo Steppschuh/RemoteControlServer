@@ -27,18 +27,17 @@ private:
 //    // upgradeHandle
 //    // pointer
     QString status;
-//    QList<App> apps;
+    QList<App> *apps;
 
-//    void initializeAsync();
     bool isLatestServerRunning();
-//    App getApp(QString ip);
-//    App getCurrentApp();
+    App getApp(QString ip);
+    App getCurrentApp();
 //    void showAdvancedWindow();
 //    // void showAdvancedWindow(tab);
 //    void showUpgradeWindow();
 //    void showUpgradeWindowInvalidated();
-//    QString getServerVersionName();
-//    QString getServerOs();
+    QString getServerVersionName();
+    QString getServerOs();
 
 };
 

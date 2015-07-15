@@ -13,12 +13,13 @@ public:
 //    static const char PRIORITY_HIGH; //TCP retry
 //    static const char PRIORITY_INDISPENSABLE; //TCP retry forever
 
+    QString source;
+
 private:
-//    QString source;
 //    QString destination;
 //    char priority;
 //    char type;
-//    QByteArray data;
+    QByteArray data;
 //    char api;
 
 //    void send();

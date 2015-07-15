@@ -6,14 +6,16 @@
 class Remote
 {
 public:
-    Remote *Instance();
+    static Remote *Instance();
+
+    Command *lastCommand;
+
 
 private:
     Remote();
-    Remote *instance;
+    static Remote *instance;
 
 //    char latestApi;
-//    Command *lastCommand;
 
 //    void processCommand(Command &command);
 };

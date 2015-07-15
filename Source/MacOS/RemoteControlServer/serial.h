@@ -8,11 +8,13 @@
 class Serial
 {
 public:
-    Serial *Instance();
+    static Serial *Instance();
+
+    void closeSerialPort();
 
 private:
     Serial();
-    Serial *instance;
+    static Serial *instance;
 
 //    QString currentSerialPortName;
 //    const char commandStart;
@@ -23,7 +25,6 @@ private:
 //    bool shouldListen;
 
 //    bool openSerialPort(QString name);
-//    void closeSerialPort();
 //    void sendMessage(QString message);
 //    void sendMessageAsync(QString message);
 //    void startReading();

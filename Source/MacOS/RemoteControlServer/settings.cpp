@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QDomDocument>
-#include <QDomNodeList>
 #include <QFile>
 #include <QStandardPaths>
 
@@ -24,12 +23,13 @@ Settings::Settings() :
     SETTINGS_PATH("config.xml")
 {
     autoStart = false;
+    customActions = new QStringList();
+    whitelistedIps = new QStringList();
 }
 
 void Settings::loadSettings()
 {
     Logger::Instance()->add("Loading settings");
-    whitelistedIps = new QStringList();
     readSettingsFromFile();
 }
 
@@ -81,7 +81,7 @@ void Settings::saveSettingsToFile()
             stream << endl;
 
             stream << "  <customActions>" << endl;
-            for (int i = 0; i < customActions.length(); ++i)
+            for (int i = 0; i < customActions->length(); ++i)
             {
                 appendCustomAction(i, stream);
             }
@@ -100,11 +100,7 @@ void Settings::saveSettingsToFile()
 
 void Settings::parseSettings(QString xmlString)
 {
-    Logger::Instance()->add("Parsing config file");
-
-    QDomDocument *xmldoc = new QDomDocument();
-    xmldoc->setContent(xmlString);
-    QDomNodeList xml_nodelist = xmldoc->elementsByTagName("setting");
+    QDomNodeList xml_nodelist = prepareParsing("Parsing config file", xmlString, "setting");
     QString itemName, itemValue;
     QDomNode xmlnode;
 
@@ -145,16 +141,12 @@ void Settings::appendWhitelistIp(QString ip, QTextStream &writer)
 
 void Settings::appendCustomAction(int i, QTextStream &writer)
 {
-    writer << "    <custom path=\"" << customActions.at(i) << "\"/>" << endl;
+    writer << "    <custom path=\"" << customActions->at(i) << "\"/>" << endl;
 }
 
 void Settings::parseCustomActions(QString xmlString)
 {
-    Logger::Instance()->add("Parsing custom actions");
-
-    QDomDocument *xmldoc = new QDomDocument();
-    xmldoc->setContent(xmlString);
-    QDomNodeList xml_nodelist = xmldoc->elementsByTagName("custom");
+    QDomNodeList xml_nodelist = prepareParsing("Parsing custom actions", xmlString, "custom");
     QString path;
     QDomNode xmlnode;
 
@@ -162,26 +154,22 @@ void Settings::parseCustomActions(QString xmlString)
     {
         xmlnode = xml_nodelist.item(i);
         path = xmlnode.attributes().namedItem("path").nodeValue();
-        customActions.append(path);
+        customActions->append(path);
     }
-    Logger::Instance()->add("Custom actions restored, " + QString(customActions.size()) +  " actions found");
+    Logger::Instance()->add("Custom actions restored, " + QString(customActions->size()) +  " actions found");
 
-    if (customActions.size() == 0)
+    if (customActions->size() == 0)
     {
-        customActions.append("http://remote-control-collection.com/help/custom/");
-        customActions.append("https://www.google.com/?q=This+is+a+sample+custom+action");
-        customActions.append("explorer");
-        customActions.append("calc");
+        customActions->append("http://remote-control-collection.com/help/custom/");
+        customActions->append("https://www.google.com/?q=This+is+a+sample+custom+action");
+        customActions->append("explorer");
+        customActions->append("calc");
     }
 }
 
 void Settings::parseWhitelist(QString xmlString)
 {
-    Logger::Instance()->add("Parsing whitelist");
-
-    QDomDocument *xmldoc = new QDomDocument();
-    xmldoc->setContent(xmlString);
-    QDomNodeList xml_nodelist = xmldoc->elementsByTagName("custom");
+    QDomNodeList xml_nodelist = prepareParsing("Parsing whitelist", xmlString, "app");
     QString appIp;
     QDomNode xmlnode;
 
@@ -197,6 +185,15 @@ void Settings::parseWhitelist(QString xmlString)
     {
         whitelistedIps->append("127.0.0.1");
     }
+}
+
+QDomNodeList Settings::prepareParsing(QString initialLogMessage, QString xmlString, QString tagName)
+{
+    Logger::Instance()->add(initialLogMessage);
+
+    QDomDocument *xmldoc = new QDomDocument();
+    xmldoc->setContent(xmlString);
+    return xmldoc->elementsByTagName(tagName);
 }
 
 QString Settings::getAppDataDirectory()

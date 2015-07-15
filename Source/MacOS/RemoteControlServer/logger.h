@@ -16,6 +16,7 @@ public:
     QStringList *logMessages;
 
     void add(QString message);
+    void trackLaunchEvent();
 
 //public slots:
 //    void InvalidateTimerTick();
@@ -24,9 +25,9 @@ private:
     Logger();
     static Logger* instance;
 
-//    const QString URL_TRACKER;
+    const QString URL_TRACKER;
 
-//    const bool trackEvents;
+    const bool trackEvents;
 //    const bool showDebug;
     const int maxItems;
 
@@ -43,8 +44,7 @@ private:
     void trim();
 //    QString getString();
 //    QString getLastEntry();
-//    void trackLaunchEvent();
-//    void trackEvent(QString category, QString action, QString label);
+    void trackEvent(QString category, QString action, QString label);
 //    bool eventTracked(QString result);
 };
 

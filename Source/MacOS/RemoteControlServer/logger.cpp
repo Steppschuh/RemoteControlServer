@@ -12,8 +12,8 @@ Logger* Logger::Instance()
 }
 
 Logger::Logger() :
-//  URL_TRACKER("http://remote-control-collection.com/api/tracker/"),
-//  trackEvents(true),
+  URL_TRACKER("http://remote-control-collection.com/api/tracker/"),
+  trackEvents(true),
 //  showDebug(true),
   maxItems(100)
 {
@@ -106,20 +106,20 @@ void Logger::trim()
 //    return entry;
 //}
 
-//void Logger::trackLaunchEvent()
-//{
-//    Logger::trackEvent("Server", "Launch", APP_VERSION);
-//}
+void Logger::trackLaunchEvent()
+{
+    Logger::trackEvent("Server", "Launch", APP_VERSION);
+}
 
-//void Logger::trackEvent(QString category, QString action, QString label)
-//{
-//    if (trackEvents)
-//    {
-//       QString url = URL_TRACKER
-//                    + "?category=" + category
-//                    + "&action=" + action
-//                    + "&label=" + label;
-//       //Network::Instance()->loadInBrowser(url);
-//    }
-//}
+void Logger::trackEvent(QString category, QString action, QString label)
+{
+    if (trackEvents)
+    {
+       QString url = URL_TRACKER
+                    + "?category=" + category
+                    + "&action=" + action
+                    + "&label=" + label;
+       //Network::Instance()->loadInBrowser(url);
+    }
+}
 

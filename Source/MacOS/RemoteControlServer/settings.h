@@ -1,6 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <QDomNodeList>
 #include <QString>
 #include <QStringList>
 #include <QTextStream>
@@ -11,8 +12,6 @@ public:
     static Settings *Instance();
 
     bool autoStart;
-
-    QStringList customActions;
 
     void loadSettings();
     void saveSettings();
@@ -40,6 +39,7 @@ private:
 //    bool useWhiteList;
 //    bool usePin;
 //    QString pin;
+    QStringList *customActions;
     QStringList *whitelistedIps;
 
     void readSettingsFromFile();
@@ -51,6 +51,7 @@ private:
     void appendCustomAction(int i, QTextStream &writer);
     void parseCustomActions(QString xmlString);
     void parseWhitelist(QString xmlString);
+    QDomNodeList prepareParsing(QString initialLogMessage, QString xmlString, QString tagName);
     QString getAppDataDirectory();
     QString getConfigPath();
 };

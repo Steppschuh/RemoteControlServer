@@ -5,11 +5,16 @@
 #include <QStringList>
 
 #include "command.h"
+#include "tcp.h"
+#include "udp.h"
 
 class Network
 {
 public:
     static Network* Instance();
+
+    TCP *tcp;
+    UDP *udp;
 
 private:
     Network();
