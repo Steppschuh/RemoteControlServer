@@ -13,21 +13,23 @@ class Network
 public:
     static Network* Instance();
 
+    QStringList *hostIps;
+
     TCP *tcp;
     UDP *udp;
+
+    QString getServerIp();
 
 private:
     Network();
     static Network* instance;
 
 //    const QString localHost;
-//    QStringList hostIps;
 //    //anyIpEndPoint;
 //    long int commandCount;
 
 //    bool checkListenersRunning();
 //    void getHostIps();
-//    QString getServerIp();
 //    void sendCommand(Command *command);
 //    void getWebRequestAsync(QString url, void (*callback)(QString, bool));
 //    void getWebRequest(QString url, void (*callback)(QString, bool));

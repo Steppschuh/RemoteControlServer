@@ -10,21 +10,22 @@ public:
     Command();
 //    static const char PRIORITY_LOW; //UDP
 //    static const char PRIORITY_MEDIUM; //TCP
-//    static const char PRIORITY_HIGH; //TCP retry
+    static const char PRIORITY_HIGH; //TCP retry
 //    static const char PRIORITY_INDISPENSABLE; //TCP retry forever
 
     QString source;
+    QString destination;
+    char priority;
+    QByteArray *data;
+    char api;
+
+    void send();
+    void process();
 
 private:
-//    QString destination;
-//    char priority;
 //    char type;
-    QByteArray data;
-//    char api;
 
-//    void send();
-//    void process();
-//    void parse();
+    //    void parse();
 //    QString dataAsString();
 //    void log();
 //    bool isBroadcast();

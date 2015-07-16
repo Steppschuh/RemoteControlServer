@@ -6,8 +6,6 @@ class UDP
 public:
     static UDP *Instance();
 
-    void stopListener();
-
 private:
     UDP();
     static UDP *instance;

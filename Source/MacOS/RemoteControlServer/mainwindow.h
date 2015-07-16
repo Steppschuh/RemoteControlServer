@@ -18,11 +18,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    QString userName;
+
     void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MainWindow *ui;
-    QString userName;
 };
 
 #endif // MAINWINDOW_H

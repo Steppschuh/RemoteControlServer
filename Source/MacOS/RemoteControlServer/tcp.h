@@ -13,8 +13,6 @@ class TCP : public QObject
 public:
     static TCP* Instance();
 
-    void stopListener();
-
 public slots:
     void listenTimerTick();
 
@@ -23,14 +21,14 @@ private:
     static TCP* instance;
 
     const int portReceive;
-//    const int portSend;
+    const int portSend;
 
     const int buffer;
-//    const int receiveTimeout;
+    const int receiveTimeout;
 
-//    const int retries;
-//    const int retryTimeout;
-//    const int sendTimeout;
+    const int retries;
+    const int retryTimeout;
+    const int sendTimeout;
 
     QTcpServer *tcpServer;
 
@@ -38,7 +36,7 @@ private:
 //    QTimer *listenTimer;
 
     bool sendData(Command *command);
-//    void sendDataRetry(Command *command);
+    void sendDataRetry(Command *command);
 //    void sendDataUntilReceived(Command *command);
     void startListener();
     void listen();

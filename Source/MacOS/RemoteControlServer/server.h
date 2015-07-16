@@ -2,18 +2,19 @@
 #define SERVER_H
 
 #include <QList>
+#include <QObject>
 #include <QString>
 
 #include "app.h"
 #include "logger.h"
 #include "mainwindow.h"
 
-namespace Ui { class MainWindow; }
-
 class Server
 {
 public:
     static Server *Instance();
+
+//    QMainWindow *gui;
 
     void finish();
     QString getServerName();

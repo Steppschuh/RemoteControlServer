@@ -16,8 +16,3 @@ UDP::UDP()
 {
 
 }
-
-void UDP::stopListener()
-{
-
-}

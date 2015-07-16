@@ -8,14 +8,13 @@ class Remote
 public:
     static Remote *Instance();
 
+    char latestApi;
     Command *lastCommand;
 
 
 private:
     Remote();
     static Remote *instance;
-
-//    char latestApi;
 
 //    void processCommand(Command &command);
 };

@@ -11,11 +11,13 @@ class ApiV2
 public:
     static ApiV2 *Instance();
 
+    void answerBroadCast(App *app);
+
 private:
     ApiV2();
     static ApiV2 *instance;
 
-//    const char COMMAND_IDENTIFIER;
+    const char COMMAND_IDENTIFIER;
 
 //    const char cmd_connect;
 //    const char cmd_disconnect;
@@ -23,7 +25,7 @@ private:
 //    const char cmd_resume;
 //    const char cmd_control;
 //    const char cmd_pin;
-//    const char cmd_broadcast;
+    const char cmd_broadcast;
 
 //    const char cmd_media;
 //    const char cmd_mouse;
@@ -32,7 +34,7 @@ private:
 //    const char cmd_motion;
 //    const char cmd_keyboard;
 //    const char cmd_scroll;
-//    const char cmd_request;
+    const char cmd_request;
 //    const char cmd_laser;
 //    const char cmd_custom;
 
@@ -68,13 +70,12 @@ private:
 //    const char cmd_request_screen_full;
 //    const char cmd_request_screen_next;
 //    const char cmd_request_connect;
-//    const char cmd_request_pin;
+    const char cmd_request_pin;
 
 //    QString readableCommand;
 
-//    bool isBroadcast(Command *command);
-//    void requestPin(App *app);
-//    void answerBroadCast(App *app);
+    bool isBroadcast(Command *command);
+    void requestPin(App *app);
 //    void refuseBroadCast(App *app);
 //    void parseCommand(Command *command);
 //    void parseGeneralCommand(Command *command);

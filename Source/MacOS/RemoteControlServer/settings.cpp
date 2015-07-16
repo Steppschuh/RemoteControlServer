@@ -22,9 +22,18 @@ Settings* Settings::Instance()
 Settings::Settings() :
     SETTINGS_PATH("config.xml")
 {
+    // General
     autoStart = false;
-    customActions = new QStringList();
+
+    showGuide = true;
+
+    // Authentication
+    useWhitelist = false;
+    usePin = false;
+    pin = "0000";
     whitelistedIps = new QStringList();
+
+    customActions = new QStringList();
 }
 
 void Settings::loadSettings()
@@ -78,6 +87,13 @@ void Settings::saveSettingsToFile()
 
             // General
             appendSetting("autoStart", Converter::Instance()->boolToString(autoStart), stream);
+            appendSetting("showGuide", Converter::Instance()->boolToString(showGuide), stream);
+            stream << endl;
+
+            // Authentication
+            appendSetting("useWhiteList", Converter::Instance()->boolToString(useWhitelist), stream);
+            appendSetting("usePin", Converter::Instance()->boolToString(usePin), stream);
+            appendSetting("pin", pin, stream);
             stream << endl;
 
             stream << "  <customActions>" << endl;
@@ -122,7 +138,24 @@ void Settings::assignSetting(QString name, QString value)
         autoStart = Converter::Instance()->stringToBool(value);
         setAutostart(autoStart);
     }
+    else if (name == "showGuide")
+    {
+        showGuide = Converter::Instance()->stringToBool(value);
+    }
 
+    // Authentication
+    else if (name == "useWhitelist")
+    {
+        useWhitelist = Converter::Instance()->stringToBool(value);
+    }
+    else if (name == "usePin")
+    {
+        usePin = Converter::Instance()->stringToBool(value);
+    }
+    else if (name == "pin")
+    {
+        pin = value;
+    }
     else
     {
         Logger::Instance()->add("Unknown config entry: " + name);

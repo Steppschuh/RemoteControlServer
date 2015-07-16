@@ -11,7 +11,16 @@ class Settings
 public:
     static Settings *Instance();
 
+    // General
     bool autoStart;
+
+    bool showGuide;
+
+    // Authentication
+    bool useWhitelist;
+    bool usePin;
+    QString pin;
+    QStringList *whitelistedIps;
 
     void loadSettings();
     void saveSettings();
@@ -40,7 +49,6 @@ private:
 //    bool usePin;
 //    QString pin;
     QStringList *customActions;
-    QStringList *whitelistedIps;
 
     void readSettingsFromFile();
     void saveSettingsToFile();

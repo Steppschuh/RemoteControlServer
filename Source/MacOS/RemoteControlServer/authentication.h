@@ -8,15 +8,16 @@
 class Authentication
 {
 public:
-    Authentication *Instance();
+    static Authentication *Instance();
+
+    bool isAuthenticated(QString ip, QString pin);
 
 private:
     Authentication();
-    Authentication *instance;
+    static Authentication *instance;
 
-//    bool isProtected();
-//    bool isAuthenticated(QString ip, QString pin);
-//    bool isWhitelisted(QString ip);
+    bool isProtected();
+    bool isWhitelisted(QString ip);
 //    bool isWhitelisted(App *app);
 //    void addToWhiteList(QString ip);
 //    void removeFromWhiteList(QString ip);

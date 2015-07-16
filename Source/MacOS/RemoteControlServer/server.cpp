@@ -25,7 +25,7 @@ Server::Server()
     if (isLatestServerRunning())
     {
         Settings::Instance()->loadSettings();
-        Network::Instance();
+        Network::Instance();        // In order to initialize the network
         apps = new QList<App>();
         Logger::Instance()->trackLaunchEvent();
         Logger::Instance()->add("Server ready");
@@ -36,8 +36,6 @@ Server::Server()
 void Server::finish()
 {
     Settings::Instance()->saveSettings();
-    Network::Instance()->tcp->stopListener();
-    Network::Instance()->udp->stopListener();
     Serial::Instance()->closeSerialPort();
 }
 

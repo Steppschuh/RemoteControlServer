@@ -17,6 +17,7 @@ public:
 
     void add(QString message);
     void trackLaunchEvent();
+    void trackEvent(QString category, QString action, QString label);
 
 //public slots:
 //    void InvalidateTimerTick();
@@ -44,7 +45,6 @@ private:
     void trim();
 //    QString getString();
 //    QString getLastEntry();
-    void trackEvent(QString category, QString action, QString label);
 //    bool eventTracked(QString result);
 };
 

@@ -2,6 +2,8 @@
 #include "tcp.h"
 
 #include <QByteArray>
+#include <QTcpSocket>
+#include <QThread>
 
 TCP* TCP::instance = NULL;
 
@@ -16,12 +18,12 @@ TCP* TCP::Instance()
 
 TCP::TCP() :
     portReceive(1925),
-//    portSend(1927),
-    buffer(1024)
-//    receiveTimeout(2000),
-//    retries(3),
-//    retryTimeout(1100),
-//    sendTimeout(1000)
+    portSend(1927),
+    buffer(1024),
+    receiveTimeout(2000),
+    retries(3),
+    retryTimeout(1100),
+    sendTimeout(1000)
 {
     isListening = false;
 
@@ -32,6 +34,29 @@ TCP::TCP() :
 bool TCP::sendData(Command *command)
 {
     bool received = false;
+    QTcpSocket *socket = new QTcpSocket(this);
+    socket->connectToHost(command->destination, portSend);
+    if (socket->waitForConnected(sendTimeout))
+    {
+        socket->write(*(command->data));
+        received = true;
+        socket->close();
+    }
+    else
+    {
+        Logger::Instance()->add("Unable to send command to " + command->destination + ":" + QString(portSend));
+    }
+    return received;
+}
+
+void TCP::sendDataRetry(Command *command)
+{
+    bool received = false;
+    while (!received)
+    {
+        received = sendData(command);
+        QThread::sleep(retryTimeout);
+    }
 }
 
 void TCP::startListener()
@@ -57,11 +82,6 @@ void TCP::startListener()
     }
 }
 
-void TCP::stopListener()
-{
-
-}
-
 void TCP::listenTimerTick()
 {
     listen();
@@ -70,7 +90,11 @@ void TCP::listenTimerTick()
 void TCP::listen()
 {
     QTcpSocket *socket = tcpServer->nextPendingConnection();
-    char messageData[buffer];
-//    socket->read(messageData, buffer);
+    QByteArray messageData = socket->read(buffer);
+    Command *command = new Command();
+    command->source = socket->peerAddress().toString();
+    command->destination = socket->localAddress().toString();
+    command->data = &(messageData);
+    command->process();
 }
 

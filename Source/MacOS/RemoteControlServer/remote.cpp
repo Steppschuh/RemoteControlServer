@@ -13,7 +13,7 @@ Remote* Remote::Instance()
 
 Remote::Remote()
 {
-//    latestApi = 3;
+    latestApi = 3;
     lastCommand = new Command();
 }
 
