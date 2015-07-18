@@ -9,7 +9,7 @@ public:
     static Converter *Instance();
 
     QString boolToString(bool value);
-    bool stringToBool(QString value);
+    bool stringToBool(QString &value);
 
 private:
     Converter();

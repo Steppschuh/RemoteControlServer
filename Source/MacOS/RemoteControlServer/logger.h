@@ -15,9 +15,9 @@ public:
 
     QStringList *logMessages;
 
-    void add(QString message);
+    void add(const QString &message);
     void trackLaunchEvent();
-    void trackEvent(QString category, QString action, QString label);
+    void trackEvent(const QString &category, const QString &action, const QString &label);
 
 //public slots:
 //    void InvalidateTimerTick();

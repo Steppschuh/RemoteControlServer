@@ -3,6 +3,7 @@
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
+#include "tcp.h"
 
 #include <QSysInfo>
 
@@ -36,6 +37,7 @@ Server::Server()
 void Server::finish()
 {
     Settings::Instance()->saveSettings();
+    TCP::Instance()->stopListener();
     Serial::Instance()->closeSerialPort();
 }
 
@@ -45,19 +47,19 @@ bool Server::isLatestServerRunning()
     return true;
 }
 
-App Server::getApp(QString ip)
+App Server::getApp(QString &ip)
 {
-    foreach (App savedApp, *apps)
+    for (int i = 0; i < apps->length(); ++i)
     {
-        if (savedApp.ip == ip)
+        if (apps->at(i).ip == ip)
         {
-            return savedApp;
+            return apps->at(i);
         }
-        App *app = new App();
-        app->ip = ip;
-        apps->append(*app);
-        return *app;
     }
+    App *app = new App();
+    app->ip = ip;
+    apps->append(*app);
+    return *app;
 }
 
 App Server::getCurrentApp()

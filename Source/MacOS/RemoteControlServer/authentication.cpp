@@ -22,7 +22,7 @@ bool Authentication::isProtected()
     return (Settings::Instance()->usePin || Settings::Instance()->useWhitelist) ? true : false;
 }
 
-bool Authentication::isAuthenticated(QString ip, QString pin)
+bool Authentication::isAuthenticated(const QString &ip, const QString &pin)
 {
     if (!isProtected())
     {
@@ -36,7 +36,7 @@ bool Authentication::isAuthenticated(QString ip, QString pin)
     }
 }
 
-bool Authentication::isWhitelisted(QString ip)
+bool Authentication::isWhitelisted(const QString &ip)
 {
     return (Settings::Instance()->whitelistedIps->contains(ip)) ? true : false;
 }

@@ -11,12 +11,11 @@ public:
     char latestApi;
     Command *lastCommand;
 
+    void processCommand(Command &command);
 
 private:
     Remote();
     static Remote *instance;
-
-//    void processCommand(Command &command);
 };
 
 #endif // REMOTE_H

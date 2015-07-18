@@ -31,25 +31,36 @@ TCP::TCP() :
     startListener();
 }
 
-bool TCP::sendData(Command *command)
+bool TCP::sendData(Command &command)
 {
     bool received = false;
     QTcpSocket *socket = new QTcpSocket(this);
-    socket->connectToHost(command->destination, portSend);
+    socket->connectToHost(command.destination, portSend);
     if (socket->waitForConnected(sendTimeout))
     {
-        socket->write(*(command->data));
+        socket->write(command.data);
         received = true;
         socket->close();
     }
     else
     {
-        Logger::Instance()->add("Unable to send command to " + command->destination + ":" + QString(portSend));
+        Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString(portSend));
     }
     return received;
 }
 
-void TCP::sendDataRetry(Command *command)
+void TCP::sendDataRetry(Command &command)
+{
+    for (int i = 0; i < retries; ++i)
+    {
+        if (sendData(command))
+        {
+            break;
+        }
+    }
+}
+
+void TCP::sendDataUntilReceived(Command &command)
 {
     bool received = false;
     while (!received)
@@ -82,6 +93,11 @@ void TCP::startListener()
     }
 }
 
+void TCP::stopListener()
+{
+    tcpServer->close();
+}
+
 void TCP::listenTimerTick()
 {
     listen();
@@ -94,7 +110,7 @@ void TCP::listen()
     Command *command = new Command();
     command->source = socket->peerAddress().toString();
     command->destination = socket->localAddress().toString();
-    command->data = &(messageData);
+    command->data = messageData;
     command->process();
 }
 

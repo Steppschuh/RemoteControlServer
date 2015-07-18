@@ -17,7 +17,7 @@ Remote::Remote()
     lastCommand = new Command();
 }
 
-//void Remote::processCommand(Command &command)
-//{
+void Remote::processCommand(Command &command)
+{
 //    lastCommand = &command;
-//}
+}

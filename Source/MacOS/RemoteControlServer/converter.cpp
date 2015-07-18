@@ -20,7 +20,7 @@ QString Converter::boolToString(bool value)
     return value ? "1" : "0";
 }
 
-bool Converter::stringToBool(QString value)
+bool Converter::stringToBool(QString &value)
 {
     return (value == "1") ? true : false;
 }

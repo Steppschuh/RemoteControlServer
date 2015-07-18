@@ -9,11 +9,14 @@ class ApiV3
 public:
     static ApiV3 *Instance();
 
+    char COMMAND_IDENTIFIER;
+
+    bool isBroadcast(Command &command);
+    bool isConnectionCommand(Command &command);
+
 private:
     ApiV3();
     static ApiV3 *instance;
-
-//    char COMMAND_IDENTIFIER;
 
 //    const char cmd_connectio;
 //    const char cmd_disconnect;
@@ -62,8 +65,6 @@ private:
 //    const char cmd_keyboard_string;
 //    const char cmd_keyboard_keycode;
 
-//    bool isBroadcast(Command *command);
-//    bool isConnectionCommand(Command *command);
 //    void requestPin(App *app);
 //    void validatePin(App *app);
 //    void answerBroadCast(App *app);

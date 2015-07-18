@@ -2,7 +2,6 @@
 #define TCP_H
 
 #include <QTcpServer>
-#include <QTimer>
 
 #include "command.h"
 
@@ -12,6 +11,13 @@ class TCP : public QObject
 
 public:
     static TCP* Instance();
+
+    bool isListening;
+
+    bool sendData(Command &command);
+    void sendDataRetry(Command &command);
+    void sendDataUntilReceived(Command &command);
+    void stopListener();
 
 public slots:
     void listenTimerTick();
@@ -32,12 +38,6 @@ private:
 
     QTcpServer *tcpServer;
 
-    bool isListening;
-//    QTimer *listenTimer;
-
-    bool sendData(Command *command);
-    void sendDataRetry(Command *command);
-//    void sendDataUntilReceived(Command *command);
     void startListener();
     void listen();
 };

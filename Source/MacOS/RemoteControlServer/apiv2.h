@@ -11,13 +11,14 @@ class ApiV2
 public:
     static ApiV2 *Instance();
 
-    void answerBroadCast(App *app);
+    const char COMMAND_IDENTIFIER;
+
+    bool isBroadcast(Command &command);
+    void answerBroadCast(App &app);
 
 private:
     ApiV2();
     static ApiV2 *instance;
-
-    const char COMMAND_IDENTIFIER;
 
 //    const char cmd_connect;
 //    const char cmd_disconnect;
@@ -74,8 +75,7 @@ private:
 
 //    QString readableCommand;
 
-    bool isBroadcast(Command *command);
-    void requestPin(App *app);
+    void requestPin(App &app);
 //    void refuseBroadCast(App *app);
 //    void parseCommand(Command *command);
 //    void parseGeneralCommand(Command *command);

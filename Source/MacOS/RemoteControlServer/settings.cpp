@@ -114,7 +114,7 @@ void Settings::saveSettingsToFile()
     }
 }
 
-void Settings::parseSettings(QString xmlString)
+void Settings::parseSettings(QString &xmlString)
 {
     QDomNodeList xml_nodelist = prepareParsing("Parsing config file", xmlString, "setting");
     QString itemName, itemValue;
@@ -130,7 +130,7 @@ void Settings::parseSettings(QString xmlString)
     Logger::Instance()->add("Settings restored");
 }
 
-void Settings::assignSetting(QString name, QString value)
+void Settings::assignSetting(QString &name, QString &value)
 {
     // General
     if (name == "autoStart")
@@ -162,12 +162,12 @@ void Settings::assignSetting(QString name, QString value)
     }
 }
 
-void Settings::appendSetting(QString name, QString value, QTextStream &writer)
+void Settings::appendSetting(const QString &name, const QString &value, QTextStream &writer)
 {
     writer << "  <setting name=\"" << name << "\" value=\"" << value << "\"/>" << endl;
 }
 
-void Settings::appendWhitelistIp(QString ip, QTextStream &writer)
+void Settings::appendWhitelistIp(QString &ip, QTextStream &writer)
 {
     writer << "    <app ip=\"" << ip << "\"/>" << endl;
 }
@@ -177,7 +177,7 @@ void Settings::appendCustomAction(int i, QTextStream &writer)
     writer << "    <custom path=\"" << customActions->at(i) << "\"/>" << endl;
 }
 
-void Settings::parseCustomActions(QString xmlString)
+void Settings::parseCustomActions(QString &xmlString)
 {
     QDomNodeList xml_nodelist = prepareParsing("Parsing custom actions", xmlString, "custom");
     QString path;
@@ -200,7 +200,7 @@ void Settings::parseCustomActions(QString xmlString)
     }
 }
 
-void Settings::parseWhitelist(QString xmlString)
+void Settings::parseWhitelist(QString &xmlString)
 {
     QDomNodeList xml_nodelist = prepareParsing("Parsing whitelist", xmlString, "app");
     QString appIp;
@@ -220,7 +220,7 @@ void Settings::parseWhitelist(QString xmlString)
     }
 }
 
-QDomNodeList Settings::prepareParsing(QString initialLogMessage, QString xmlString, QString tagName)
+QDomNodeList Settings::prepareParsing(const QString &initialLogMessage, const QString &xmlString, const QString &tagName)
 {
     Logger::Instance()->add(initialLogMessage);
 

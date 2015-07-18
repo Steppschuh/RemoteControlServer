@@ -1,27 +1,8 @@
-VERSION = 0.2
+VERSION = 0.3
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 INCLUDEPATH += ../RemoteControlServer
-
-SOURCES += ../RemoteControlServer/mainwindow.cpp \
-    ../RemoteControlServer/apiv2.cpp \
-    ../RemoteControlServer/apiv3.cpp \
-    ../RemoteControlServer/app.cpp \
-    ../RemoteControlServer/authentication.cpp \
-    ../RemoteControlServer/command.cpp \
-    ../RemoteControlServer/converter.cpp \
-    ../RemoteControlServer/helper.cpp \
-    ../RemoteControlServer/keyboard.cpp \
-    ../RemoteControlServer/logger.cpp \
-    ../RemoteControlServer/media.cpp \
-    ../RemoteControlServer/network.cpp \
-    ../RemoteControlServer/remote.cpp \
-    ../RemoteControlServer/serial.cpp \
-    ../RemoteControlServer/server.cpp \
-    ../RemoteControlServer/settings.cpp \
-    ../RemoteControlServer/tcp.cpp \
-    ../RemoteControlServer/udp.cpp
 
 HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/apiv2.h \
@@ -41,5 +22,24 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/settings.h \
     ../RemoteControlServer/tcp.h \
     ../RemoteControlServer/udp.h
+
+SOURCES += ../RemoteControlServer/mainwindow.cpp \
+    ../RemoteControlServer/apiv2.cpp \
+    ../RemoteControlServer/apiv3.cpp \
+    ../RemoteControlServer/app.cpp \
+    ../RemoteControlServer/authentication.cpp \
+    ../RemoteControlServer/command.cpp \
+    ../RemoteControlServer/converter.cpp \
+    ../RemoteControlServer/helper.cpp \
+    ../RemoteControlServer/keyboard.cpp \
+    ../RemoteControlServer/logger.cpp \
+    ../RemoteControlServer/media.cpp \
+    ../RemoteControlServer/network.cpp \
+    ../RemoteControlServer/remote.cpp \
+    ../RemoteControlServer/serial.cpp \
+    ../RemoteControlServer/server.cpp \
+    ../RemoteControlServer/settings.cpp \
+    ../RemoteControlServer/tcp.cpp \
+    ../RemoteControlServer/udp.cpp
 
 FORMS    += ../RemoteControlServer/mainwindow.ui

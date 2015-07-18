@@ -24,7 +24,7 @@ Logger::Logger() :
     logMessages = new QStringList();
 }
 
-void Logger::add(QString message)
+void Logger::add(const QString &message)
 {
     QString timestamp = QTime().currentTime().toString();
     lastEntry = message;
@@ -111,7 +111,7 @@ void Logger::trackLaunchEvent()
     Logger::trackEvent("Server", "Launch", APP_VERSION);
 }
 
-void Logger::trackEvent(QString category, QString action, QString label)
+void Logger::trackEvent(const QString &category, const QString &action, const QString &label)
 {
     if (trackEvents)
     {

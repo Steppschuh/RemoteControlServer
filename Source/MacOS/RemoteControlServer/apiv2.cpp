@@ -22,15 +22,15 @@ ApiV2::ApiV2():
 {
 }
 
-bool ApiV2::isBroadcast(Command *command)
+bool ApiV2::isBroadcast(Command &command)
 {
     QByteArray *byteArray = new QByteArray();
     byteArray->append(COMMAND_IDENTIFIER);
     byteArray->append(cmd_broadcast);
-    return (command->data == byteArray) ? true : false;
+    return (command.data == byteArray) ? true : false;
 }
 
-void ApiV2::requestPin(App *app)
+void ApiV2::requestPin(App &app)
 {
     QByteArray *data = new QByteArray();
     data->append(COMMAND_IDENTIFIER);
@@ -38,13 +38,13 @@ void ApiV2::requestPin(App *app)
     data->append(cmd_request_pin);
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app->ip;
+    command->destination = app.ip;
     command->priority = Command::PRIORITY_HIGH;
 //    command->data = data;
     command->send();
 }
 
-void ApiV2::answerBroadCast(App *app)
+void ApiV2::answerBroadCast(App &app)
 {
 //    Command *command = new Command();
 //    command->source = Network::Instance()->getServerIp();

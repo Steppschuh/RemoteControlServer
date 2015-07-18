@@ -11,6 +11,7 @@ public:
     App();
 
     QString ip;
+    QString pin;
 
 private:
     QString appVersion;
@@ -18,7 +19,6 @@ private:
 //    QString osVersion;
     QString deviceName;
 //    QString status;
-    QString pin;
 
 //    char detectedOs;
 
@@ -31,8 +31,8 @@ private:
     void onDisconnect();
     void onPause();
     void onResume();
-    void onBroadCast(Command *command);
-    void answerBroadCast(Command *command);
+    void onBroadCast(Command &command);
+    void answerBroadCast(Command &command);
 //    void refuseBroadCast(Command *command);
 //    void requestPin(Command *command);
 //    void detectOs();

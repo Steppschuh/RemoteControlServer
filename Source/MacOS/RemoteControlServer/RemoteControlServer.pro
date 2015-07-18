@@ -7,12 +7,13 @@
 QT       += core gui
 QT       += xml
 QT       += network
+QT       += concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RemoteControlServer
 TEMPLATE = app
 
-SOURCES += main.cpp
-
 include(RemoteControlServerSrc.pri)
+
+SOURCES += main.cpp

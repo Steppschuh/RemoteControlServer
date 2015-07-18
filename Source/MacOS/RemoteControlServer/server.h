@@ -18,6 +18,7 @@ public:
 
     void finish();
     QString getServerName();
+    App getApp(QString &ip);
 
 private:
     Server();
@@ -31,7 +32,6 @@ private:
     QList<App> *apps;
 
     bool isLatestServerRunning();
-    App getApp(QString ip);
     App getCurrentApp();
 //    void showAdvancedWindow();
 //    // void showAdvancedWindow(tab);

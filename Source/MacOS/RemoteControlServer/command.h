@@ -8,28 +8,32 @@ class Command
 {
 public:
     Command();
-//    static const char PRIORITY_LOW; //UDP
-//    static const char PRIORITY_MEDIUM; //TCP
-    static const char PRIORITY_HIGH; //TCP retry
-//    static const char PRIORITY_INDISPENSABLE; //TCP retry forever
+
+    enum
+    {
+        PRIORITY_LOW = 0, //UDP
+        PRIORITY_MEDIUM = 1, //TCP
+        PRIORITY_HIGH = 2, //TCP retry
+        PRIORITY_INDISPENSABLE = 3, //TCP retry forever
+    };
 
     QString source;
     QString destination;
     char priority;
-    QByteArray *data;
+    QByteArray data;
     char api;
 
     void send();
     void process();
 
 private:
-//    char type;
+    char type;
 
-    //    void parse();
-//    QString dataAsString();
-//    void log();
-//    bool isBroadcast();
-//    bool isConnectionCommand();
+    void parse();
+    QString dataAsString();
+    void log();
+    bool isBroadcast();
+    bool isConnectionCommand();
 };
 
 #endif // COMMAND_H

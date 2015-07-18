@@ -19,10 +19,10 @@ App::App()
 void App::onConnect()
 {
     isConnected = true;
-    Logger::Instance()->add(QString(deviceName) + " connected");
+    Logger::Instance()->add(deviceName + " connected");
     // Server.gui.showNotification
     QString label = (appName == "Unknown" || appVersion == "Unknown")
-            ? deviceName: QString(appName) + " " + QString(appVersion) + " on a " + QString(deviceName);
+            ? deviceName : appName + " " + appVersion + " on a " + deviceName;
     Logger::Instance()->trackEvent("App", "Connect", label);
     Settings::Instance()->showGuide = false;
 }
@@ -30,20 +30,20 @@ void App::onConnect()
 void App::onDisconnect()
 {
     isConnected = false;
-    Logger::Instance()->add(QString(deviceName) + " disconnected");
+    Logger::Instance()->add(deviceName + " disconnected");
 }
 
 void App::onPause()
 {
-    Logger::Instance()->add(QString(deviceName) + " paused the connection");
+    Logger::Instance()->add(deviceName + " paused the connection");
 }
 
 void App::onResume()
 {
-    Logger::Instance()->add(QString(deviceName) + " resumed the connection");
+    Logger::Instance()->add(deviceName + " resumed the connection");
 }
 
-void App::onBroadCast(Command *command)
+void App::onBroadCast(Command &command)
 {
     Logger::Instance()->add("Connection request from " + ip);
     if (Authentication::Instance()->isAuthenticated(ip, pin))
@@ -52,9 +52,9 @@ void App::onBroadCast(Command *command)
     }
 }
 
-void App::answerBroadCast(Command *command)
+void App::answerBroadCast(Command &command)
 {
-    switch (command->api) {
+    switch (command.api) {
     case (3):
 //        ApiV2::Instance()->answerBroadcast
         break;

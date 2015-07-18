@@ -52,14 +52,14 @@ private:
 
     void readSettingsFromFile();
     void saveSettingsToFile();
-    void parseSettings(QString xmlString);
-    void assignSetting(QString name, QString value);
-    void appendSetting(QString name, QString value, QTextStream &writer);
-    void appendWhitelistIp(QString ip, QTextStream &writer);
+    void parseSettings(QString &xmlString);
+    void assignSetting(QString &name, QString &value);
+    void appendSetting(const QString &name, const QString &value, QTextStream &writer);
+    void appendWhitelistIp(QString &ip, QTextStream &writer);
     void appendCustomAction(int i, QTextStream &writer);
-    void parseCustomActions(QString xmlString);
-    void parseWhitelist(QString xmlString);
-    QDomNodeList prepareParsing(QString initialLogMessage, QString xmlString, QString tagName);
+    void parseCustomActions(QString &xmlString);
+    void parseWhitelist(QString &xmlString);
+    QDomNodeList prepareParsing(const QString &initialLogMessage, const QString &xmlString, const QString &tagName);
     QString getAppDataDirectory();
     QString getConfigPath();
 };
