@@ -36,15 +36,18 @@ bool TCP::sendData(Command &command)
     bool received = false;
     QTcpSocket *socket = new QTcpSocket(this);
     socket->connectToHost(command.destination, portSend);
+    qDebug() << socket->state();
     if (socket->waitForConnected(sendTimeout))
     {
-        socket->write(command.data);
+        qDebug() << *command.data;
+        socket->write(*command.data);
         received = true;
         socket->close();
     }
     else
     {
         Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString(portSend));
+        qDebug() << socket->errorString();
     }
     return received;
 }
@@ -110,7 +113,7 @@ void TCP::listen()
     Command *command = new Command();
     command->source = socket->peerAddress().toString();
     command->destination = socket->localAddress().toString();
-    command->data = messageData;
+    command->data = &messageData;
     command->process();
 }
 

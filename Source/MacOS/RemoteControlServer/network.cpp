@@ -61,7 +61,7 @@ QString Network::getServerIp()
     QString ip = "Unknown";
     if (hostIps->length() > 0)
     {
-        ip = hostIps->at(hostIps->length() - 1);
+        ip = hostIps->at(hostIps->length() - 2);
     }
     if (hostIps->contains(Remote::Instance()->lastCommand->destination))
     {

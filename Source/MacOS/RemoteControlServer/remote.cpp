@@ -1,7 +1,10 @@
+#include "apiv1.h"
 #include "apiv2.h"
 #include "apiv3.h"
 #include "remote.h"
 #include "server.h"
+
+#include <QDebug>
 
 Remote* Remote::instance = NULL;
 
@@ -30,14 +33,18 @@ void Remote::processCommand(Command &command)
     switch (command.api)
     {
     case 3:
-        ApiV3::Instance()->parseCommand(&command);
+        ApiV3::Instance()->parseCommand(command);
         break;
     case 2:
-        ApiV2::Instance()->parseCommand(&command);
+        ApiV2::Instance()->parseCommand(command);
+        break;
+    case 1:
+        ApiV1::Instance()->parseCommand(command);
+        break;
     default:
-        ApiV3::Instance()->parseCommand(&command);
+        ApiV3::Instance()->parseCommand(command);
+        break;
     }
-
     Server::Instance()->status = "active";
     Server::Instance()->getApp(command.source)->status = "Active";
     Server::Instance()->getApp(command.source)->isConnected = false;

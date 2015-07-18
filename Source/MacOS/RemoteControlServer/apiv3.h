@@ -9,17 +9,23 @@ class ApiV3
 public:
     static ApiV3 *Instance();
 
-    char COMMAND_IDENTIFIER;
+    const char COMMAND_IDENTIFIER;
 
     bool isBroadcast(Command &command);
     bool isConnectionCommand(Command &command);
-    void parseCommand(Command *command);
+    void parseCommand(Command &command);
+    void answerBroadCast(App &app);
 
 private:
     ApiV3();
     static ApiV3 *instance;
 
-//    const char cmd_connectio;
+    enum{
+        cmd_connection = 10,
+        cmd_connection_reachable = 0,
+        cmd_get = 19,
+        cmd_get_server_name = 2
+    };
 //    const char cmd_disconnect;
 //    const char cmd_pause;
 //    const char cmd_resume;
@@ -27,10 +33,8 @@ private:
 //    const char cmd_pin;
 //    const char cmd_broadcast;
 //    const char cmd_set;
-//    const char cmd_get;
 //    const char cmd_open;
 
-//    const char cmd_connection_reachable;
 //    const char cmd_connection_protected;
 //    const char cmd_connection_connect;
 //    const char cmd_connection_disconnect;
@@ -47,7 +51,6 @@ private:
 //    const char cmd_set_device_name;
 
 //    const char cmd_get_server_version;
-//    const char cmd_get_server_name;
 //    const char cmd_get_os_name;
 //    const char cmd_get_screenshot;
 //    const char cmd_get_screenshots;
@@ -68,10 +71,9 @@ private:
 
 //    void requestPin(App *app);
 //    void validatePin(App *app);
-//    void answerBroadCast(App *app);
 //    void refuseBroadCast(App *app);
-//    void parseCommandThread(Command *command);
-//    void parseConnectCommand(Command *command);
+    void parseCommandThread(Command &command);
+    void parseConnectCommand(Command &command);
 //    void parseOpenCommand(Command *command);
 //    void answerGetRequest(Command *command);
 //    void parseScrenshotProperties(Command *command);

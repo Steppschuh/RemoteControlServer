@@ -5,6 +5,7 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 INCLUDEPATH += ../RemoteControlServer
 
 HEADERS  += ../RemoteControlServer/mainwindow.h \
+    ../RemoteControlServer/apiv1.h \
     ../RemoteControlServer/apiv2.h \
     ../RemoteControlServer/apiv3.h \
     ../RemoteControlServer/app.h \
@@ -13,6 +14,7 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/converter.h \
     ../RemoteControlServer/helper.h \
     ../RemoteControlServer/keyboard.h \
+    ../RemoteControlServer/license.h \
     ../RemoteControlServer/logger.h \
     ../RemoteControlServer/media.h \
     ../RemoteControlServer/network.h \
@@ -24,6 +26,7 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/udp.h
 
 SOURCES += ../RemoteControlServer/mainwindow.cpp \
+    ../RemoteControlServer/apiv1.cpp \
     ../RemoteControlServer/apiv2.cpp \
     ../RemoteControlServer/apiv3.cpp \
     ../RemoteControlServer/app.cpp \
@@ -32,6 +35,7 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/converter.cpp \
     ../RemoteControlServer/helper.cpp \
     ../RemoteControlServer/keyboard.cpp \
+    ../RemoteControlServer/license.cpp \
     ../RemoteControlServer/logger.cpp \
     ../RemoteControlServer/media.cpp \
     ../RemoteControlServer/network.cpp \

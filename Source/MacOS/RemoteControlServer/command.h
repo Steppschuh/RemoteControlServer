@@ -20,15 +20,15 @@ public:
     QString source;
     QString destination;
     char priority;
-    QByteArray data;
+    QByteArray *data;
     char api;
 
     void send();
     void process();
+    QString dataAsString();
 
 private:
     void parse();
-    QString dataAsString();
     void log();
     bool isBroadcast();
     bool isConnectionCommand();

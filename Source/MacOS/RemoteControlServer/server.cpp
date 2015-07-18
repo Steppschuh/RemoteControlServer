@@ -7,6 +7,8 @@
 
 #include <QSysInfo>
 
+#include <QDebug>
+
 Server* Server::instance = NULL;
 
 Server* Server::Instance()
@@ -50,7 +52,7 @@ bool Server::isLatestServerRunning()
 
 App* Server::getApp(QString &ip)
 {
-    for (int i = 0; i < apps->length(); ++i)
+    for (int i = 0; i < this->apps->length(); ++i)
     {
         if (apps->at(i)->ip == ip)
         {
@@ -59,7 +61,7 @@ App* Server::getApp(QString &ip)
     }
     App *app = new App();
     app->ip = ip;
-    apps->append(app);
+    this->apps->append(app);
     return app;
 }
 

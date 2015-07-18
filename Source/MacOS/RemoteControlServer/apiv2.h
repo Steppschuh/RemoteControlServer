@@ -15,30 +15,31 @@ public:
 
     bool isBroadcast(Command &command);
     void answerBroadCast(App &app);
-    void parseCommand(Command *command);
+    void parseCommand(Command &command);
 
 private:
     ApiV2();
     static ApiV2 *instance;
 
-//    const char cmd_connect;
-//    const char cmd_disconnect;
-//    const char cmd_pause;
-//    const char cmd_resume;
-//    const char cmd_control;
-//    const char cmd_pin;
-    const char cmd_broadcast;
+    enum{
+        cmd_connect = 10,
+        cmd_disconnect = 11,
+        cmd_pause = 12,
+        cmd_resume = 13,
+        cmd_control = 14,
+        cmd_pin = 15,
+        cmd_broadcast = 16,
 
-//    const char cmd_media;
-//    const char cmd_mouse;
-//    const char cmd_pointer;
-//    const char cmd_slideshow;
-//    const char cmd_motion;
-//    const char cmd_keyboard;
-//    const char cmd_scroll;
-    const char cmd_request;
-//    const char cmd_laser;
-//    const char cmd_custom;
+        cmd_media = 20,
+        cmd_mouse = 21,
+        cmd_pointer = 22,
+        cmd_slideshow = 23,
+        cmd_motion = 24,
+        cmd_keyboard = 25,
+        cmd_scroll = 26,
+        cmd_request = 27,
+        cmd_laser = 28,
+        cmd_custom = 29,
 
 //    const char cmd_media_play;
 //    const char cmd_media_stop;
@@ -72,20 +73,21 @@ private:
 //    const char cmd_request_screen_full;
 //    const char cmd_request_screen_next;
 //    const char cmd_request_connect;
-    const char cmd_request_pin;
+        cmd_request_pin = 4
+    };
 
 //    QString readableCommand;
 
     void requestPin(App &app);
-//    void refuseBroadCast(App *app);
-//    void parseGeneralCommand(Command *command);
-//    void parseRemoteCommand(Command *command);
-//    void parseMouseCommand(Command *command);
-//    void parsePointerCommand(Command *command);
-//    void parseLaserCommand(Command *command);
-//    void parseMediaCommand(Command *command);
-//    void parseRequest(Command *command);
-//    void parseCustomCommand(Command *command);
+//    void refuseBroadCast(App &app);
+    void parseGeneralCommand(Command &command);
+    void parseRemoteCommand(Command &command);
+//    void parseMouseCommand(Command &command);
+//    void parsePointerCommand(Command &command);
+//    void parseLaserCommand(Command &command);
+//    void parseMediaCommand(Command &command);
+//    void parseRequest(Command &command);
+//    void parseCustomCommand(Command &command);
 };
 
 #endif // APIV2_H

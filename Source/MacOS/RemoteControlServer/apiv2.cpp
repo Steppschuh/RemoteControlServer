@@ -3,6 +3,8 @@
 #include "network.h"
 #include "server.h"
 
+#include <QDebug>
+
 ApiV2* ApiV2::instance = NULL;
 
 ApiV2* ApiV2::Instance()
@@ -15,10 +17,7 @@ ApiV2* ApiV2::Instance()
 }
 
 ApiV2::ApiV2():
-    COMMAND_IDENTIFIER(128),
-    cmd_broadcast(16),
-    cmd_request(27),
-    cmd_request_pin(4)
+    COMMAND_IDENTIFIER(128)
 {
 }
 
@@ -40,7 +39,7 @@ void ApiV2::requestPin(App &app)
     command->source = Network::Instance()->getServerIp();
     command->destination = app.ip;
     command->priority = Command::PRIORITY_HIGH;
-    command->data = *data;
+    command->data = data;
     command->send();
 }
 
@@ -50,11 +49,54 @@ void ApiV2::answerBroadCast(App &app)
     command->source = Network::Instance()->getServerIp();
     command->destination = app.ip;
     command->priority = Command::PRIORITY_HIGH;
-    command->data = Server::Instance()->getServerName().toUtf8();
+    command->data = new QByteArray(Server::Instance()->getServerName().toUtf8());
     command->send();
 }
 
-void ApiV2::parseCommand(Command *command)
+void ApiV2::parseCommand(Command &command)
 {
+    char typeBit = command.data->at(1);
+    if (typeBit < 20)
+    {
+        parseGeneralCommand(command);
+    }
+    else
+    {
+        parseRemoteCommand(command);
+    }
+}
 
+void ApiV2::parseGeneralCommand(Command &command)
+{
+    App *app = Server::Instance()->getApp(command.source);
+
+    switch (command.data->at(1))
+    {
+    case cmd_connect:
+        app->onConnect();
+        break;
+    case cmd_disconnect:
+        app->onDisconnect();
+        break;
+    case cmd_pause:
+        app->onPause();
+        break;
+    case cmd_resume:
+        app->onResume();
+        break;
+    case cmd_pin:
+        app->pin = Converter::Instance()->byteToString(*command.data, 2);
+        break;
+    }
+}
+
+void ApiV2::parseRemoteCommand(Command &command)
+{
+//    switch (command.data.at(1)) {
+//    case cmd_mouse:
+
+//        break;
+//    default:
+//        break;
+//    }
 }

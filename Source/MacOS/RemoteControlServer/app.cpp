@@ -5,26 +5,20 @@
 #include "logger.h"
 #include "settings.h"
 
+#include <QDebug>
+
 App::App()
 {
     ip = "Unknown";
+    license = new License();
     appVersion = "Unknown";
     appName = "Unknown";
     deviceName = "Unknown";
+    osVersion = "Unknown";
     status = "Unknown";
     pin = "";
 
     isConnected = false;
-}
-
-void App::setStatus(QString &newStatus)
-{
-    status = newStatus;
-}
-
-void App::setIsConnected(bool newValue)
-{
-    isConnected = newValue;
 }
 
 void App::onConnect()
@@ -56,18 +50,57 @@ void App::onResume()
 
 void App::onBroadCast(Command &command)
 {
+    qDebug() << "onBroadcast";
     Logger::Instance()->add("Connection request from " + ip);
     if (Authentication::Instance()->isAuthenticated(ip, pin))
     {
+        qDebug() << "isauthenticated";
         Logger::Instance()->add("Allowing to connec");
+        answerBroadCast(command);
+    }
+    else if (Settings::Instance()->usePin)
+    {
+        qDebug() << "requestpin";
+        Logger::Instance()->add("Requesting Pin");
+        requestPin(command);
+    }
+    else
+    {
+        qDebug() << "else";
+        Logger::Instance()->add("Connection blocked");
+        refuseBroadCast(command);
+        //Server.gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
     }
 }
 
 void App::answerBroadCast(Command &command)
 {
     switch (command.api) {
-    case (3):
-//        ApiV2::Instance()->answerBroadcast
+    case 3:
+        ApiV3::Instance()->answerBroadCast(*this);
+        break;
+    case 2:
+    case 1:
+        qDebug() << "version 1 or 2";
+        ApiV2::Instance()->answerBroadCast(*this);
+        break;
+    default:
+        ApiV3::Instance()->answerBroadCast(*this);
         break;
     }
+}
+
+void App::refuseBroadCast(Command &command)
+{
+
+}
+
+void App::requestPin(Command &command)
+{
+
+}
+
+void App::detectOs()
+{
+
 }

@@ -73,7 +73,7 @@ void UDP::listen()
             Command *command = new Command();
             command->source = Remote::Instance()->lastCommand->source;
             command->destination = Remote::Instance()->lastCommand->destination;
-            command->data = *message_data;
+            command->data = message_data;
             command->process();
         }
         else

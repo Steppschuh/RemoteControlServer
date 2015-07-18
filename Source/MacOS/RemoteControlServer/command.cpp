@@ -1,3 +1,4 @@
+#include "apiv1.h"
 #include "apiv2.h"
 #include "apiv3.h"
 #include "authentication.h"
@@ -6,6 +7,8 @@
 #include "network.h"
 #include "remote.h"
 #include "server.h"
+
+#include <QDebug>
 
 Command::Command()
 {
@@ -22,7 +25,7 @@ void Command::send()
 
 void Command::process()
 {
-    if (Authentication::Instance()->isAuthenticated(source, Server::Instance()->getApp(source).pin) || isBroadcast() || isConnectionCommand())
+    if (Authentication::Instance()->isAuthenticated(source, Server::Instance()->getApp(source)->pin) || isBroadcast() || isConnectionCommand())
     {
         parse();
     }
@@ -30,35 +33,43 @@ void Command::process()
     {
         Logger::Instance()->add("Refused a command from " + source);
         Logger::Instance()->add("Server protection is active");
+        qDebug() << "command did not work";
     }
 }
 
 void Command::parse()
 {
-    char commandByte = data.at(0);
-    if (commandByte == ApiV3::Instance()->COMMAND_IDENTIFIER + 1)
+    if (data->length() > 0)
     {
-        api = Remote::Instance()->latestApi;
-    }
-    else if (commandByte == ApiV3::Instance()->COMMAND_IDENTIFIER)
-    {
-        api = 3;
-    }
-    else if (commandByte == ApiV2::Instance()->COMMAND_IDENTIFIER)
-    {
-        api = 2;
+        char commandByte = data->at(0);
+        if (commandByte == ApiV3::Instance()->COMMAND_IDENTIFIER + 1)
+        {
+            api = Remote::Instance()->latestApi;
+        }
+        else if (commandByte == ApiV3::Instance()->COMMAND_IDENTIFIER)
+        {
+            api = 3;
+        }
+        else if (commandByte == ApiV2::Instance()->COMMAND_IDENTIFIER)
+        {
+            api = 2;
+        }
+        else
+        {
+            api = 1;
+        }
+        Network::Instance()->commandCount += 1;
+        Remote::Instance()->processCommand(*this);
     }
     else
     {
-        api = 2;
+        Logger::Instance()->add("Could not parse command");
     }
-    Network::Instance()->commandCount += 1;
-    Remote::Instance()->processCommand(*this);
 }
 
 QString Command::dataAsString()
 {
-    return data;
+    return *data;
 }
 
 void Command::log()
@@ -68,7 +79,7 @@ void Command::log()
 
 bool Command::isBroadcast()
 {
-    return (ApiV2::Instance()->isBroadcast(*this) || ApiV3::Instance()->isBroadcast(*this)) ? true : false;
+    return (ApiV1::Instance()->isBroadcast(*this) || ApiV2::Instance()->isBroadcast(*this) || ApiV3::Instance()->isBroadcast(*this)) ? true : false;
 }
 
 bool Command::isConnectionCommand()

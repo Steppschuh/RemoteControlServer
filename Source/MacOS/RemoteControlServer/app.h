@@ -4,6 +4,7 @@
 #include <QString>
 
 #include "command.h"
+#include "license.h"
 
 class App
 {
@@ -11,34 +12,34 @@ public:
     App();
 
     QString ip;
+    License *license;
     QString status;
     QString pin;
+    QString appName;
+    QString appVersion;
+
+    QString deviceName;
+    QString osVersion;
 
     bool isConnected;
-
-    void setStatus(QString &newStatus);
-    void setIsConnected(bool newValue);
-
-private:
-    QString appVersion;
-    QString appName;
-//    QString osVersion;
-    QString deviceName;
-
-//    char detectedOs;
-
-//    QString lastControl;
-//    QString lastCommand;
 
     void onConnect();
     void onDisconnect();
     void onPause();
     void onResume();
     void onBroadCast(Command &command);
+
+    void detectOs();
+
+private:
+//    char detectedOs;
+
+//    QString lastControl;
+//    QString lastCommand;
+
     void answerBroadCast(Command &command);
-//    void refuseBroadCast(Command *command);
-//    void requestPin(Command *command);
-//    void detectOs();
+    void refuseBroadCast(Command &command);
+    void requestPin(Command &command);
 };
 
 #endif // APP_H
