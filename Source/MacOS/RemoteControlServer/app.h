@@ -11,21 +11,24 @@ public:
     App();
 
     QString ip;
+    QString status;
     QString pin;
+
+    bool isConnected;
+
+    void setStatus(QString &newStatus);
+    void setIsConnected(bool newValue);
 
 private:
     QString appVersion;
     QString appName;
 //    QString osVersion;
     QString deviceName;
-//    QString status;
 
 //    char detectedOs;
 
 //    QString lastControl;
 //    QString lastCommand;
-
-    bool isConnected;
 
     void onConnect();
     void onDisconnect();

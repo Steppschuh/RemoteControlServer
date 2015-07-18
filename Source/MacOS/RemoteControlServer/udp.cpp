@@ -3,6 +3,7 @@
 #include "udp.h"
 
 #include <QByteArray>
+#include <QDebug>
 
 UDP* UDP::instance = NULL;
 

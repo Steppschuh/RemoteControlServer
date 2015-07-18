@@ -27,8 +27,6 @@ public:
     void process();
 
 private:
-    char type;
-
     void parse();
     QString dataAsString();
     void log();

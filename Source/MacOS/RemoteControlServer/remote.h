@@ -11,6 +11,7 @@ public:
     char latestApi;
     Command *lastCommand;
 
+    void initializeLastCommand();
     void processCommand(Command &command);
 
 private:

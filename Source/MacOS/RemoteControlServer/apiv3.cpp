@@ -25,3 +25,8 @@ bool ApiV3::isConnectionCommand(Command &command)
 {
     return false;
 }
+
+void ApiV3::parseCommand(Command *command)
+{
+
+}

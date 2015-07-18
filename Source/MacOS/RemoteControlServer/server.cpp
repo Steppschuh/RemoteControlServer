@@ -26,8 +26,9 @@ Server::Server()
     if (isLatestServerRunning())
     {
         Settings::Instance()->loadSettings();
-        Network::Instance();        // In order to initialize the network
-        apps = new QList<App>();
+        Network::Instance();                            // In order to initialize the network
+        Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
+        apps = new QList<App*>();
         Logger::Instance()->trackLaunchEvent();
         Logger::Instance()->add("Server ready");
         status = "Ready";
@@ -47,22 +48,22 @@ bool Server::isLatestServerRunning()
     return true;
 }
 
-App Server::getApp(QString &ip)
+App* Server::getApp(QString &ip)
 {
     for (int i = 0; i < apps->length(); ++i)
     {
-        if (apps->at(i).ip == ip)
+        if (apps->at(i)->ip == ip)
         {
             return apps->at(i);
         }
     }
     App *app = new App();
     app->ip = ip;
-    apps->append(*app);
-    return *app;
+    apps->append(app);
+    return app;
 }
 
-App Server::getCurrentApp()
+App* Server::getCurrentApp()
 {
     return getApp(Remote::Instance()->lastCommand->source);
 }

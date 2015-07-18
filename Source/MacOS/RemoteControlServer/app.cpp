@@ -11,9 +11,20 @@ App::App()
     appVersion = "Unknown";
     appName = "Unknown";
     deviceName = "Unknown";
+    status = "Unknown";
     pin = "";
 
     isConnected = false;
+}
+
+void App::setStatus(QString &newStatus)
+{
+    status = newStatus;
+}
+
+void App::setIsConnected(bool newValue)
+{
+    isConnected = newValue;
 }
 
 void App::onConnect()

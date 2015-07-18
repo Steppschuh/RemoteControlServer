@@ -13,6 +13,7 @@ public:
 
     bool isBroadcast(Command &command);
     bool isConnectionCommand(Command &command);
+    void parseCommand(Command *command);
 
 private:
     ApiV3();
@@ -69,7 +70,6 @@ private:
 //    void validatePin(App *app);
 //    void answerBroadCast(App *app);
 //    void refuseBroadCast(App *app);
-//    void parseCommand(Command *command);
 //    void parseCommandThread(Command *command);
 //    void parseConnectCommand(Command *command);
 //    void parseOpenCommand(Command *command);

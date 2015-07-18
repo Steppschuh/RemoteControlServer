@@ -40,16 +40,21 @@ void ApiV2::requestPin(App &app)
     command->source = Network::Instance()->getServerIp();
     command->destination = app.ip;
     command->priority = Command::PRIORITY_HIGH;
-//    command->data = data;
+    command->data = *data;
     command->send();
 }
 
 void ApiV2::answerBroadCast(App &app)
 {
-//    Command *command = new Command();
-//    command->source = Network::Instance()->getServerIp();
-//    command->destination = app->ip;
-//    command->priority = Command::PRIORITY_HIGH;
-//    command->data = Server::Instance()->getServerName().toUtf8();
-//    command->send();
+    Command *command = new Command();
+    command->source = Network::Instance()->getServerIp();
+    command->destination = app.ip;
+    command->priority = Command::PRIORITY_HIGH;
+    command->data = Server::Instance()->getServerName().toUtf8();
+    command->send();
+}
+
+void ApiV2::parseCommand(Command *command)
+{
+
 }

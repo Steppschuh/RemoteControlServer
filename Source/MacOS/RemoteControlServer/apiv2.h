@@ -15,6 +15,7 @@ public:
 
     bool isBroadcast(Command &command);
     void answerBroadCast(App &app);
+    void parseCommand(Command *command);
 
 private:
     ApiV2();
@@ -77,7 +78,6 @@ private:
 
     void requestPin(App &app);
 //    void refuseBroadCast(App *app);
-//    void parseCommand(Command *command);
 //    void parseGeneralCommand(Command *command);
 //    void parseRemoteCommand(Command *command);
 //    void parseMouseCommand(Command *command);

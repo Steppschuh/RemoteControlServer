@@ -15,10 +15,11 @@ public:
     static Server *Instance();
 
 //    QMainWindow *gui;
+    QString status;
 
     void finish();
     QString getServerName();
-    App getApp(QString &ip);
+    App *getApp(QString &ip);
 
 private:
     Server();
@@ -28,11 +29,10 @@ private:
 //    // upgrade UpgradeWindow
 //    // upgradeHandle
 //    // pointer
-    QString status;
-    QList<App> *apps;
+    QList<App*> *apps;
 
     bool isLatestServerRunning();
-    App getCurrentApp();
+    App *getCurrentApp();
 //    void showAdvancedWindow();
 //    // void showAdvancedWindow(tab);
 //    void showUpgradeWindow();
