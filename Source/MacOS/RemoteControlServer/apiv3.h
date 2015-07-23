@@ -13,8 +13,9 @@ public:
 
     bool isBroadcast(Command &command);
     bool isConnectionCommand(Command &command);
-    void parseCommand(Command &command);
+    void requestPin(App &app);
     void answerBroadCast(App &app);
+    void parseCommand(Command &command);
 
 private:
     ApiV3();
@@ -22,9 +23,34 @@ private:
 
     enum{
         cmd_connection = 10,
-        cmd_connection_reachable = 0,
+        cmd_broadcast = 16,
+        cmd_set = 17,
+        cmd_open = 18,
         cmd_get = 19,
-        cmd_get_server_name = 2
+
+        cmd_connection_reachable = 0,
+        cmd_connection_protected = 1,
+        cmd_connection_connect = 2,
+        cmd_connection_disconnect = 3,
+
+        cmd_action_process = 3,
+
+        cmd_set_pin = 0,
+        cmd_set_app_version = 1,
+        cmd_set_app_name = 2,
+        cmd_set_os_version = 3,
+        cmd_set_device_name = 5,
+
+        cmd_get_server_version = 1,
+        cmd_get_server_name = 2,
+        cmd_get_os_name = 4,
+        cmd_get_screenshot = 5,
+        cmd_get_api_version = 6,
+        cmd_get_screenshots = 7,
+
+        cmd_mouse = 20,
+
+        cmd_keyboard = 21
     };
 //    const char cmd_disconnect;
 //    const char cmd_pause;
@@ -69,16 +95,13 @@ private:
 //    const char cmd_keyboard_string;
 //    const char cmd_keyboard_keycode;
 
-//    void requestPin(App *app);
-//    void validatePin(App *app);
-//    void refuseBroadCast(App *app);
-    void parseCommandThread(Command &command);
+    void validatePin(App &app);
     void parseConnectCommand(Command &command);
-//    void parseOpenCommand(Command *command);
-//    void answerGetRequest(Command *command);
+    void parseOpenCommand(Command &command);
+    void answerGetRequest(Command &requestCommand);
 //    void parseScrenshotProperties(Command *command);
 //    void answerScreenGetRequest(Command *requestCommand, Command *responseCommand);
-//    void setValue(Command *command);
+    void setValue(Command &setCommand);
 //    void parseMouseCommand(Command *command);
 //    void parseKeyboardCommand(Command *command);
 };

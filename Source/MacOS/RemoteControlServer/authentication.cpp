@@ -40,3 +40,24 @@ bool Authentication::isWhitelisted(const QString &ip)
 {
     return (Settings::Instance()->whitelistedIps->contains(ip)) ? true : false;
 }
+
+bool Authentication::isWhitelisted(App *app)
+{
+    return isWhitelisted(app->ip);
+}
+
+void Authentication::addToWhiteList(QString ip)
+{
+    if (!isWhitelisted(ip))
+    {
+        Settings::Instance()->whitelistedIps->append(ip);
+    }
+}
+
+void Authentication::removeFromWhiteList(QString ip)
+{
+    if (isWhitelisted(ip))
+    {
+        Settings::Instance()->whitelistedIps->removeOne(ip);
+    }
+}

@@ -24,6 +24,7 @@ Server::Server()
 {
     Logger::Instance()->add("Initializing server");
     status = "Initializing";
+    userName = "";
 
     if (isLatestServerRunning())
     {

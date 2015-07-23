@@ -1,6 +1,8 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
+#include <command.h>
+
 #include <QByteArray>
 #include <QString>
 
@@ -12,7 +14,7 @@ public:
     QString byteToString(QByteArray &value, int index);
     QString boolToString(bool value);
     bool stringToBool(QString &value);
-//    QByteArray *buildCommandData(QByteArray)
+    QString commandToString(Command &command);
 
 private:
     Converter();

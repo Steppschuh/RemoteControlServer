@@ -81,7 +81,6 @@ void App::answerBroadCast(Command &command)
         break;
     case 2:
     case 1:
-        qDebug() << "version 1 or 2";
         ApiV2::Instance()->answerBroadCast(*this);
         break;
     default:
@@ -92,12 +91,22 @@ void App::answerBroadCast(Command &command)
 
 void App::refuseBroadCast(Command &command)
 {
-
+    // refuseBroadcast, do nothing
 }
 
 void App::requestPin(Command &command)
 {
-
+    switch (command.api) {
+    case 3:
+        ApiV3::Instance()->requestPin(*this);
+        break;
+    case 2:
+    case 1:
+        ApiV2::Instance()->requestPin(*this);
+        break;
+    default:
+        ApiV3::Instance()->requestPin(*this);
+    }
 }
 
 void App::detectOs()

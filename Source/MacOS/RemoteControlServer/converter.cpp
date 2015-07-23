@@ -29,3 +29,14 @@ bool Converter::stringToBool(QString &value)
 {
     return (value == "1") ? true : false;
 }
+
+QString Converter::commandToString(Command &command)
+{
+    QString commandString = "[ ";
+    for (int i = 0; i < command.data->length(); ++i)
+    {
+        commandString += command.data->at(i) + " ";
+    }
+    commandString += "]";
+    return commandString;
+}

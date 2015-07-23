@@ -6,8 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    userName = Server::Instance()->getServerName();
-//    Server::Instance()->gui = this;
+    Server::Instance()->userName = Server::Instance()->getServerName();
 }
 
 MainWindow::~MainWindow()

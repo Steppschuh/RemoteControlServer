@@ -18,9 +18,9 @@ private:
 
     bool isProtected();
     bool isWhitelisted(const QString &ip);
-//    bool isWhitelisted(App *app);
-//    void addToWhiteList(QString ip);
-//    void removeFromWhiteList(QString ip);
+    bool isWhitelisted(App *app);
+    void addToWhiteList(QString ip);
+    void removeFromWhiteList(QString ip);
 };
 
 #endif // AUTHENTICATION_H

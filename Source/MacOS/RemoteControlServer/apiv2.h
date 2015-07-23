@@ -16,6 +16,7 @@ public:
     bool isBroadcast(Command &command);
     void answerBroadCast(App &app);
     void parseCommand(Command &command);
+    void requestPin(App &app);
 
 private:
     ApiV2();
@@ -78,8 +79,6 @@ private:
 
 //    QString readableCommand;
 
-    void requestPin(App &app);
-//    void refuseBroadCast(App &app);
     void parseGeneralCommand(Command &command);
     void parseRemoteCommand(Command &command);
 //    void parseMouseCommand(Command &command);

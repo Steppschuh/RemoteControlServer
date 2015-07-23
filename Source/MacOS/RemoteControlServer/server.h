@@ -14,12 +14,13 @@ class Server
 public:
     static Server *Instance();
 
-//    QMainWindow *gui;
+    QString userName;
     QString status;
 
     void finish();
     QString getServerName();
     App *getApp(QString &ip);
+    QString getServerOs();
 
 private:
     Server();
@@ -38,7 +39,6 @@ private:
 //    void showUpgradeWindow();
 //    void showUpgradeWindowInvalidated();
     QString getServerVersionName();
-    QString getServerOs();
 
 };
 
