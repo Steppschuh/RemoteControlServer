@@ -1,91 +1,80 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include <QString>
 
 class Keyboard
 {
 public:
-    Keyboard *Instance();
+    static Keyboard* Instance();
+
+//    void sendKeyPress();
 
 private:
+    static Keyboard* instance;
     Keyboard();
-    Keyboard *instance;
 
-//    int KEYCODE_UNKOWN;
-//    int KEYCODE_BACK;
-//    int KEYCODE_UP;
-//    int KEYCODE_DOWN;
-//    int KEYCODE_LEFT;
-//    int KEYCODE_RIGHT;
-//    int KEYCODE_ALT;
-//    int KEYCODE_SHIFT;
-//    int KEYCODE_CAPS_LOCK;
-//    int KEYCODE_DEL;
-//    int KEYCODE_ENTER;
-//    int KEYCODE_ESCAPE;
-//    int KEYCODE_DEL_FORWARD;
-//    int KEYCODE_CONTROL;
-//    int KEYCODE_INSERT;
-//    int KEYCODE_MOVE_END;
-//    int KEYCODE_MOVE_HOME;
-//    int KEYCODE_WINDOWS;
-//    int KEYCODE_PAGE_DOWN;
-//    int KEYCODE_PAGE_UP;
-//    int KEYCODE_SPACE;
-//    int KEYCODE_TAB;
-    
-//    int KEYCODE_F1;
-//    int KEYCODE_F2;
-//    int KEYCODE_F3;
-//    int KEYCODE_F4;
-//    int KEYCODE_F5;
-//    int KEYCODE_F6;
-//    int KEYCODE_F7;
-//    int KEYCODE_F8;
-//    int KEYCODE_F9;
-//    int KEYCODE_F10;
-//    int KEYCODE_F11;
-//    int KEYCODE_F12;
+    enum
+    {
+        KEYCODE_UNKOWN = 0,
+        KEYCODE_BACK = 4,
+        KEYCODE_UP = 19,
+        KEYCODE_DOWN = 20,
+        KEYCODE_LEFT = 21,
+        KEYCODE_RIGHT = 22,
+        KEYCODE_ALT = 57,
+        KEYCODE_SHIFT = 59,
+        KEYCODE_CAPS_LOCK = 115,
+        KEYCODE_DEL = 67,
+        KEYCODE_ENTER = 66,
+        KEYCODE_ESCAPE = 111,
+        KEYCODE_DEL_FORWARD = 112,
+        KEYCODE_CONTROL = 113,
+        KEYCODE_INSERT = 124,
+        KEYCODE_MOVE_END = 123,
+        KEYCODE_MOVE_HOME = 122,
+        KEYCODE_WINDOWS = 171,
+        KEYCODE_PAGE_DOWN = 93,
+        KEYCODE_PAGE_UP = 92,
+        KEYCODE_SPACE = 62,
+        KEYCODE_TAB = 61,
 
-//    int KEYCODE_C1;
-//    int KEYCODE_C2;
-//    int KEYCODE_C3;
-//    int KEYCODE_C4;
-//    int KEYCODE_C5;
-//    int KEYCODE_C6;
-//    int KEYCODE_C7;
-//    int KEYCODE_C8;
-//    int KEYCODE_C9;
-//    int KEYCODE_C10;
-//    int KEYCODE_C11;
-//    int KEYCODE_C12;
+        KEYCODE_F1 = 131,
+        KEYCODE_F2 = 132,
+        KEYCODE_F3 = 133,
+        KEYCODE_F4 = 134,
+        KEYCODE_F5 = 135,
+        KEYCODE_F6 = 136,
+        KEYCODE_F7 = 137,
+        KEYCODE_F8 = 138,
+        KEYCODE_F9 = 139,
+        KEYCODE_F10 = 140,
+        KEYCODE_F11 = 141,
+        KEYCODE_F12 = 142,
 
-//    int KEYCODE_COPY;
-//    int KEYCODE_PASTE;
-//    int KEYCODE_SELECT_ALL;
-//    int KEYCODE_CUT;
-//    int KEYCODE_SHOW_DESKTOP;
-//    int KEYCODE_ZOOM_IN;
-//    int KEYCODE_ZOOM_OUT;
-//    int KEYCODE_CLOSE;
-//    int KEYCODE_SHUTDOWN;
-//    int KEYCODE_STANDBY;
-
-//    void sendKeyPress(!!);
-//    void sendUnicodeKeyPress(char character);
-//    void sendKeyDown(!!);
-//    void sendKeyUp(!!);
-//    void sendEachKey(QString message);
-//    void sendShortcut(!!);
-//    !! stringToKey(QString key);
-//    void keycodeToShortcut(int keycode);
-//    !! keycodeToKey(int keycode);
-//    void hibernate();
-//    void standby();
-//    void shutdown();
-//    void restart();
-
+        KEYCODE_C1 = 221,
+        KEYCODE_C2 = 222,
+        KEYCODE_C3 = 223,
+        KEYCODE_C4 = 224,
+        KEYCODE_C5 = 225,
+        KEYCODE_C6 = 226,
+        KEYCODE_C7 = 227,
+        KEYCODE_C8 = 228,
+        KEYCODE_C9 = 229,
+        KEYCODE_C10 = 230,
+        KEYCODE_C11 = 231,
+        KEYCODE_C12 = 232,
+        
+        KEYCODE_COPY = 201,
+        KEYCODE_PASTE = 202,
+        KEYCODE_SELECT_ALL = 203,
+        KEYCODE_CUT = 204,
+        KEYCODE_SHOW_DESKTOP = 205,
+        KEYCODE_ZOOM_IN = 206,
+        KEYCODE_ZOOM_OUT = 207,
+        KEYCODE_CLOSE = 208,
+        KEYCODE_SHUTDOWN = 209,
+        KEYCODE_STANDBY = 210
+    };
 };
 
 #endif // KEYBOARD_H

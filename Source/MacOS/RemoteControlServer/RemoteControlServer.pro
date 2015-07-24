@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 CONFIG +=c++11
+LIBS += -framework ApplicationServices
 
 QT       += core gui
 QT       += xml

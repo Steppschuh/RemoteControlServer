@@ -22,6 +22,10 @@ public:
     QString pin;
     QStringList *whitelistedIps;
 
+    //Mouse
+    float mouseSensitivity;
+    float mouseAcceleration;
+
     void loadSettings();
     void saveSettings();
     bool setAutostart(bool value);

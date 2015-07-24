@@ -5,6 +5,8 @@
 #include <QTcpSocket>
 #include <QThread>
 
+#include <QDebug>
+
 TCP* TCP::instance = NULL;
 
 TCP* TCP::Instance()
@@ -36,10 +38,8 @@ bool TCP::sendData(Command &command)
     bool received = false;
     QTcpSocket *socket = new QTcpSocket(this);
     socket->connectToHost(command.destination, portSend);
-    qDebug() << socket->state();
     if (socket->waitForConnected(sendTimeout))
     {
-        qDebug() << *command.data;
         socket->write(*command.data);
         received = true;
         socket->close();
@@ -47,7 +47,6 @@ bool TCP::sendData(Command &command)
     else
     {
         Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString(portSend));
-        qDebug() << socket->errorString();
     }
     return received;
 }
@@ -109,11 +108,14 @@ void TCP::listenTimerTick()
 void TCP::listen()
 {
     QTcpSocket *socket = tcpServer->nextPendingConnection();
-    QByteArray messageData = socket->read(buffer);
-    Command *command = new Command();
-    command->source = socket->peerAddress().toString();
-    command->destination = socket->localAddress().toString();
-    command->data = &messageData;
-    command->process();
+    if (socket->waitForReadyRead())
+    {
+        QByteArray messageData = socket->readAll();
+        Command *command = new Command();
+        command->source = socket->peerAddress().toString();
+        command->destination = socket->localAddress().toString();
+        command->data = &messageData;
+        command->process();
+    }
 }
 

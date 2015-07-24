@@ -14,7 +14,6 @@ Authentication* Authentication::Instance()
 
 Authentication::Authentication()
 {
-
 }
 
 bool Authentication::isProtected()

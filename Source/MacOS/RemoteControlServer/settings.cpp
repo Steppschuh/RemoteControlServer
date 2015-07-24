@@ -33,6 +33,10 @@ Settings::Settings() :
     pin = "0000";
     whitelistedIps = new QStringList();
 
+    // Mouse
+    mouseSensitivity = 1.0;
+    mouseAcceleration = 1.0;
+
     customActions = new QStringList();
 }
 
@@ -96,6 +100,10 @@ void Settings::saveSettingsToFile()
             appendSetting("pin", pin, stream);
             stream << endl;
 
+            // Mouse and Pointer
+            appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
+            appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
+
             stream << "  <customActions>" << endl;
             for (int i = 0; i < customActions->length(); ++i)
             {
@@ -156,6 +164,16 @@ void Settings::assignSetting(QString &name, QString &value)
     {
         pin = value;
     }
+
+    // Mouse and Pointer
+//    else if (name == "mouseSensitivity")
+//    {
+//        mouseSensitivity = value.toFloat();
+//    }
+//    else if (name == "mouseAcceleration")
+//    {
+//        mouseAcceleration = value.toFloat();
+//    }
     else
     {
         Logger::Instance()->add("Unknown config entry: " + name);

@@ -16,6 +16,7 @@ Command::Command()
     destination = "Unknown";
     priority = 0;
     api = Remote::Instance()->latestApi;
+    data = new QByteArray();
 }
 
 void Command::send()
@@ -33,7 +34,6 @@ void Command::process()
     {
         Logger::Instance()->add("Refused a command from " + source);
         Logger::Instance()->add("Server protection is active");
-        qDebug() << "command did not work";
     }
 }
 

@@ -23,10 +23,13 @@ Network* Network::Instance()
 Network::Network():
     localHost("127.0.0.1")
 {
+    Logger::Instance()->add("Initializing network");
     hostIps = new QStringList();
     getHostIps();
     TCP::Instance();
     UDP::Instance();
+
+    commandCount = 0;
 
     checkListenersRunning();
 }
@@ -61,7 +64,7 @@ QString Network::getServerIp()
     QString ip = "Unknown";
     if (hostIps->length() > 0)
     {
-        ip = hostIps->at(hostIps->length() - 2);
+        ip = hostIps->at(hostIps->length() - 1);
     }
     if (hostIps->contains(Remote::Instance()->lastCommand->destination))
     {
@@ -70,7 +73,7 @@ QString Network::getServerIp()
     return ip;
 }
 
-void Network::sendCommandThread(Command &command)
+void Network::sendCommand(Command &command)
 {
     switch (command.priority)
     {
@@ -89,11 +92,6 @@ void Network::sendCommandThread(Command &command)
     default:
         TCP::Instance()->sendData(command);
     }
-}
-
-void Network::sendCommand(Command &command)
-{
-    sendCommandThread(command);
 }
 
 void Network::loadInBrowser(QString &url)

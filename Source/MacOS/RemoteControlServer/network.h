@@ -28,7 +28,6 @@ private:
     void getHostIps();
     void loadInBrowser(QString &url);
     bool isValidIp(QString &ip);
-    void sendCommandThread(Command &command);
 };
 
 #endif // NETWORK_H

@@ -50,23 +50,19 @@ void App::onResume()
 
 void App::onBroadCast(Command &command)
 {
-    qDebug() << "onBroadcast";
     Logger::Instance()->add("Connection request from " + ip);
     if (Authentication::Instance()->isAuthenticated(ip, pin))
     {
-        qDebug() << "isauthenticated";
         Logger::Instance()->add("Allowing to connec");
         answerBroadCast(command);
     }
     else if (Settings::Instance()->usePin)
     {
-        qDebug() << "requestpin";
         Logger::Instance()->add("Requesting Pin");
         requestPin(command);
     }
     else
     {
-        qDebug() << "else";
         Logger::Instance()->add("Connection blocked");
         refuseBroadCast(command);
         //Server.gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
@@ -111,5 +107,4 @@ void App::requestPin(Command &command)
 
 void App::detectOs()
 {
-
 }

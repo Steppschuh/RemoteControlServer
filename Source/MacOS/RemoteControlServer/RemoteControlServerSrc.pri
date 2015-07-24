@@ -1,4 +1,4 @@
-VERSION = 0.3
+VERSION = 0.4
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
@@ -17,12 +17,15 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/license.h \
     ../RemoteControlServer/logger.h \
     ../RemoteControlServer/media.h \
+    ../RemoteControlServer/mousev3.h \
     ../RemoteControlServer/network.h \
     ../RemoteControlServer/remote.h \
+    ../RemoteControlServer/screenshot.h \
     ../RemoteControlServer/serial.h \
     ../RemoteControlServer/server.h \
     ../RemoteControlServer/settings.h \
     ../RemoteControlServer/tcp.h \
+    ../RemoteControlServer/touchpoint.h \
     ../RemoteControlServer/udp.h
 
 SOURCES += ../RemoteControlServer/mainwindow.cpp \
@@ -38,12 +41,15 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/license.cpp \
     ../RemoteControlServer/logger.cpp \
     ../RemoteControlServer/media.cpp \
+    ../RemoteControlServer/mousev3.cpp \
     ../RemoteControlServer/network.cpp \
     ../RemoteControlServer/remote.cpp \
+    ../RemoteControlServer/screenshot.cpp \
     ../RemoteControlServer/serial.cpp \
     ../RemoteControlServer/server.cpp \
     ../RemoteControlServer/settings.cpp \
     ../RemoteControlServer/tcp.cpp \
+    ../RemoteControlServer/touchpoint.cpp \
     ../RemoteControlServer/udp.cpp
 
 FORMS    += ../RemoteControlServer/mainwindow.ui

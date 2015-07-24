@@ -3,6 +3,7 @@
 #include "authentication.h"
 #include "converter.h"
 #include "logger.h"
+#include "mousev3.h"
 #include "network.h"
 #include "server.h"
 
@@ -101,9 +102,9 @@ void ApiV3::parseCommand(Command &command)
         case cmd_set:
             setValue(command);
             break;
-//        case cmd_mouse:
-//            parseMouseCommand(command);
-//            break;
+        case cmd_mouse:
+            parseMouseCommand(command);
+            break;
 //        case cmd_keyboard:
 //            parseKeyboardCommand(command);
 //            break;
@@ -148,7 +149,6 @@ void ApiV3::parseOpenCommand(Command &command)
     if (command.data->length() >= 3 && command.data->at(2) == cmd_action_process)
     {
         QString processString = Converter::Instance()->byteToString(*command.data, 3);
-        qDebug() << processString;
         Logger::Instance()->add("Starting process: " + processString);
         // Still missing: starting the actual process
     }
@@ -200,7 +200,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
         }
     }
 
-    if (responseCommand->data != NULL)
+    if (responseCommand->data->length() > 0)
     {
         responseCommand->send();
     }
@@ -236,6 +236,90 @@ void ApiV3::setValue(Command &setCommand)
             break;
         default:
             Logger::Instance()->add("Unknown set command: " + Converter::Instance()->commandToString(setCommand));
+            break;
+        }
+    }
+}
+
+void ApiV3::parseMouseCommand(Command &command)
+{
+    if (command.data->length() >= 3)
+    {
+        switch (command.data->at(2))
+        {
+        case cmd_mouse_pointers:
+//            qDebug() << "pointer simple";
+            MouseV3::Instance()->parsePointerData(*command.data);
+            break;
+        case cmd_mouse_pointers_absolute:
+//            qDebug() << "pointer absolute false";
+
+            MouseV3::Instance()->parseAbsolutePointerData(*command.data, false);
+            break;
+        case cmd_mouse_pointers_absolute_presenter:
+//            qDebug() << "pointer absolute true";
+
+            MouseV3::Instance()->parseAbsolutePointerData(*command.data, true);
+            break;
+        case cmd_mouse_pad_action:
+            if (command.data->length() >= 4)
+            {
+                switch (command.data->at(3))
+                {
+                case cmd_action_down:
+//                    qDebug() << "pointer down";
+                    MouseV3::Instance()->pointersDown();
+                    break;
+                case cmd_action_up:
+//                    qDebug() << "pointer up";
+                    MouseV3::Instance()->pointersUp();
+                    break;
+                default:
+                    Logger::Instance()->add("Unknown mouse pad command");
+                    break;
+                }
+            }
+            break;
+        case cmd_mouse_left_action:
+            if (command.data->length() >= 4)
+            {
+                switch (command.data->at(3))
+                {
+                case cmd_action_down:
+                    Logger::Instance()->add("Mouse left down");
+                    MouseV3::Instance()->leftMouseDown();
+                    break;
+                case cmd_action_up:
+                    Logger::Instance()->add("Mouse left up");
+                    MouseV3::Instance()->leftMouseUp();
+                    break;
+                default:
+                    Logger::Instance()->add("Unknown mouse left command");
+                    break;
+                }
+            }
+            break;
+        case cmd_mouse_right_action:
+            if (command.data->length() >= 4)
+            {
+                switch (command.data->at(3))
+                {
+                case cmd_action_down:
+                    Logger::Instance()->add("Mouse right down");
+                    MouseV3::Instance()->rightMouseDown();
+                    break;
+                case cmd_action_up:
+                    Logger::Instance()->add("Mouse right up");
+                    MouseV3::Instance()->rightMouseUp();
+                    break;
+                default:
+                    Logger::Instance()->add("Unknown mouse right command");
+                    break;
+                }
+            }
+            break;
+        default:
+            Logger::Instance()->add("Unknown mouse command: " + Converter::Instance()->commandToString(command));
             break;
         }
     }

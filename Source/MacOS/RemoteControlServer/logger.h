@@ -29,7 +29,6 @@ private:
     const QString URL_TRACKER;
 
     const bool trackEvents;
-//    const bool showDebug;
     const int maxItems;
 
     QDateTime lastUpdate;
@@ -38,7 +37,6 @@ private:
 
     QString lastEntry;
 
-//    void add(QString message, bool isDebug);
 //    void invalidateLog();
 //    void startInvalidateTimer();
 //    void clearLog();

@@ -42,14 +42,6 @@ void Logger::add(const QString &message)
 //    }
 }
 
-//void Logger::add(QString message, bool isDebug)
-//{
-//    if (showDebug || !isDebug)
-//    {
-//        this->add(message);
-//    }
-//}
-
 //void Logger::invalidateLog()
 //{
 //    //tbd
