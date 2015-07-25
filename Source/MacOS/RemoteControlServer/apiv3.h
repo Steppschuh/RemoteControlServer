@@ -35,6 +35,7 @@ private:
 
         cmd_action_up = 0,
         cmd_action_down = 1,
+        cmd_action_click = 2,
         cmd_action_process = 3,
 
         cmd_set_pin = 0,
@@ -58,7 +59,10 @@ private:
         cmd_mouse_left_action = 3,
         cmd_mouse_right_action = 4,
 
-        cmd_keyboard = 21
+        cmd_keyboard = 21,
+
+        cmd_keyboard_string = 1,
+        cmd_keybaord_keycode = 2
     };
 
     void validatePin(App &app);
@@ -69,7 +73,7 @@ private:
 //    void answerScreenGetRequest(Command *requestCommand, Command *responseCommand);
     void setValue(Command &setCommand);
     void parseMouseCommand(Command &command);
-//    void parseKeyboardCommand(Command *command);
+    void parseKeyboardCommand(Command &command);
 };
 
 #endif // APIV3_H

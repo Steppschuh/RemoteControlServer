@@ -21,6 +21,8 @@ public:
     QString deviceName;
     QString osVersion;
 
+    QString lastControl;
+
     bool isConnected;
 
     void onConnect();
@@ -28,8 +30,6 @@ public:
     void onPause();
     void onResume();
     void onBroadCast(Command &command);
-
-    void detectOs();
 
 private:
 //    char detectedOs;

@@ -22,9 +22,14 @@ public:
     QString pin;
     QStringList *whitelistedIps;
 
-    //Mouse
+    // Mouse
     float mouseSensitivity;
     float mouseAcceleration;
+
+    // Misc
+    bool serialCommands;
+
+    QStringList *customActions;
 
     void loadSettings();
     void saveSettings();
@@ -52,7 +57,6 @@ private:
 //    bool useWhiteList;
 //    bool usePin;
 //    QString pin;
-    QStringList *customActions;
 
     void readSettingsFromFile();
     void saveSettingsToFile();

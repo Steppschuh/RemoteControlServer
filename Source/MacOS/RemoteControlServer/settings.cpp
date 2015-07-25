@@ -37,6 +37,9 @@ Settings::Settings() :
     mouseSensitivity = 1.0;
     mouseAcceleration = 1.0;
 
+    // Misc
+    serialCommands = false;
+
     customActions = new QStringList();
 }
 
@@ -104,6 +107,9 @@ void Settings::saveSettingsToFile()
             appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
             appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
 
+            // Misc
+            appendSetting("serialCommands", Converter::Instance()->boolToString(serialCommands), stream);
+
             stream << "  <customActions>" << endl;
             for (int i = 0; i < customActions->length(); ++i)
             {
@@ -166,14 +172,20 @@ void Settings::assignSetting(QString &name, QString &value)
     }
 
     // Mouse and Pointer
-//    else if (name == "mouseSensitivity")
-//    {
-//        mouseSensitivity = value.toFloat();
-//    }
-//    else if (name == "mouseAcceleration")
-//    {
-//        mouseAcceleration = value.toFloat();
-//    }
+    else if (name == "mouseSensitivity")
+    {
+        mouseSensitivity = value.toFloat();
+    }
+    else if (name == "mouseAcceleration")
+    {
+        mouseAcceleration = value.toFloat();
+    }
+
+    // Misc
+    else if (name == "serialCommands")
+    {
+        serialCommands = Converter::Instance()->stringToBool(value);
+    }
     else
     {
         Logger::Instance()->add("Unknown config entry: " + name);

@@ -11,6 +11,7 @@ public:
     static Serial *Instance();
 
     void closeSerialPort();
+    void sendCommand(Command &command);
 
 private:
     Serial();
@@ -31,7 +32,6 @@ private:
 //    void stopReading();
 //    void read();
 //    // SerialPort_DataReceived
-//    void sendCommand(Command *command);
 };
 
 #endif // SERIAL_H

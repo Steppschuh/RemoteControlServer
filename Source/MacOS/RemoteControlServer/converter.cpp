@@ -1,5 +1,7 @@
 #include "converter.h"
 
+#include "math.h"
+
 Converter* Converter::instance = NULL;
 
 Converter* Converter::Instance()
@@ -39,4 +41,12 @@ QString Converter::commandToString(Command &command)
     }
     commandString += "]";
     return commandString;
+}
+
+float Converter::getPointDistance(QPoint &P1, QPoint &P2, int digits)
+{
+    float d = 0;
+    d = sqrt(pow(P1.x() - P2.x(), 2) + pow(P1.y() - P2.y(), 2));
+    d = round(d * pow(10, digits)) / pow(10, digits);
+    return d;
 }

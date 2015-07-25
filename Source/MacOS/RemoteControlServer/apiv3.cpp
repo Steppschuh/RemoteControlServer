@@ -2,10 +2,13 @@
 #include "app.h"
 #include "authentication.h"
 #include "converter.h"
+#include "keyboard.h"
 #include "logger.h"
 #include "mousev3.h"
 #include "network.h"
+#include "serial.h"
 #include "server.h"
+#include "settings.h"
 
 #include <QByteArray>
 #include <QProcess>
@@ -105,9 +108,9 @@ void ApiV3::parseCommand(Command &command)
         case cmd_mouse:
             parseMouseCommand(command);
             break;
-//        case cmd_keyboard:
-//            parseKeyboardCommand(command);
-//            break;
+        case cmd_keyboard:
+            parseKeyboardCommand(command);
+            break;
         case cmd_open:
             parseOpenCommand(command);
             break;
@@ -248,17 +251,12 @@ void ApiV3::parseMouseCommand(Command &command)
         switch (command.data->at(2))
         {
         case cmd_mouse_pointers:
-//            qDebug() << "pointer simple";
             MouseV3::Instance()->parsePointerData(*command.data);
             break;
         case cmd_mouse_pointers_absolute:
-//            qDebug() << "pointer absolute false";
-
             MouseV3::Instance()->parseAbsolutePointerData(*command.data, false);
             break;
         case cmd_mouse_pointers_absolute_presenter:
-//            qDebug() << "pointer absolute true";
-
             MouseV3::Instance()->parseAbsolutePointerData(*command.data, true);
             break;
         case cmd_mouse_pad_action:
@@ -267,11 +265,9 @@ void ApiV3::parseMouseCommand(Command &command)
                 switch (command.data->at(3))
                 {
                 case cmd_action_down:
-//                    qDebug() << "pointer down";
                     MouseV3::Instance()->pointersDown();
                     break;
                 case cmd_action_up:
-//                    qDebug() << "pointer up";
                     MouseV3::Instance()->pointersUp();
                     break;
                 default:
@@ -321,6 +317,87 @@ void ApiV3::parseMouseCommand(Command &command)
         default:
             Logger::Instance()->add("Unknown mouse command: " + Converter::Instance()->commandToString(command));
             break;
+        }
+    }
+}
+
+void ApiV3::parseKeyboardCommand(Command &command)
+{
+    if (command.data->length() >= 3)
+    {
+        switch (command.data->at(2))
+        {
+        case cmd_keybaord_keycode:
+        {
+            if (command.data->length() >= 8)
+            {
+                char action = command.data->at(3);
+                unsigned char firstByte = command.data->at(6);
+                unsigned char secondByte = command.data->at(7);
+                int keyCode = firstByte << 8 | secondByte;
+
+                if (keyCode < Keyboard::KEYCODE_C1 || keyCode > Keyboard::KEYCODE_C12)
+                {
+                    switch (action)
+                    {
+                    case cmd_action_down:
+                        Keyboard::Instance()->sendKeyDown(Keyboard::Instance()->keycodeToKey(keyCode));
+                        break;
+                    case cmd_action_up:
+                        Keyboard::Instance()->sendKeyUp(Keyboard::Instance()->keycodeToKey(keyCode));
+                        break;
+                    case cmd_action_click:
+                        CGKeyCode keyboardKey = Keyboard::Instance()->keycodeToKey(keyCode);
+                        if (keyboardKey == Keyboard::KEYCODE_UNKOWN)
+                        {
+                            Keyboard::Instance()->keycodeToShortcut(keyboardKey);
+                        }
+                        else
+                        {
+                            Keyboard::Instance()->sendKeyPress(keyboardKey);
+                        }
+                        break;
+                    }
+                }
+                else
+                {
+                    int actionIndex = keyCode - Keyboard::KEYCODE_C1;
+                    Logger::Instance()->add("Received custom key code: " + (actionIndex + 1));
+
+                    if (Settings::Instance()->serialCommands)
+                    {
+                        Serial::Instance()->sendCommand(command);
+                    }
+                    else
+                    {
+                        if (actionIndex > Settings::Instance()->customActions->length() - 1)
+                        {
+                            Logger::Instance()->add("No custom action set");
+                            // Process.start...
+                            Logger::Instance()->trackEvent("Server", "Custom", "Not set");
+                        }
+                        else
+                        {
+                            QString path = Settings::Instance()->customActions->at(actionIndex);
+                            // Process.start
+                            Logger::Instance()->trackEvent("Server", "Custom", path);
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        case cmd_keyboard_string:
+        {
+            QString keyString = Converter::Instance()->byteToString(*command.data, 3);
+            Keyboard::Instance()->sendEachKey(keyString);
+            break;
+        }
+        default:
+        {
+            Logger::Instance()->add("Unknown keyboard command: " + Converter::Instance()->commandToString(command));
+            break;
+        }
         }
     }
 }

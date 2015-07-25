@@ -1,3 +1,4 @@
+#include "converter.h"
 #include "logger.h"
 #include "mousev3.h"
 #include "server.h"
@@ -25,41 +26,57 @@ MouseV3* MouseV3::Instance()
 MouseV3::MouseV3()
 {
     cursorPositionNew = new QPoint();
-    P_ORIGIN = new QPoint();
-    P1_New = new QPoint;
-    P1_Rel = new QPoint;
-    P1_Start = new QPoint;
-    P2_Start = new QPoint;
-    P3_Start = new QPoint;
-    P1_Last = new QPoint;
-    P2_Last = new QPoint;
-    P3_Last = new QPoint;
+    P_ORIGIN = new QPoint(0, 0);
+    P1_New = new QPoint();
+    P2_New = new QPoint();
+    P3_New = new QPoint();
+    P1_Rel = new QPoint();
+    P1_Start = new QPoint();
+    P2_Start = new QPoint();
+    P3_Start = new QPoint();
+    P1_Last = new QPoint();
+    P2_Last = new QPoint();
+    P3_Last = new QPoint();
     downEventIndex = -1;
     moveEventIndex = -1;
+
+    pointDown = new TouchPoint();
 }
 
-void MouseV3::leftMouseDown()
+void MouseV3::leftMouseDown(bool isDoubleClick)
 {
     mouseLeftDown = true;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
                 NULL, kCGEventLeftMouseDown,
                 getCursorPosition(),
                 kCGMouseButtonLeft);
-
+    if (isDoubleClick)
+    {
+        CGEventSetIntegerValueField(mouseEv, kCGMouseEventClickState, 2);
+    }
     CGEventPost(kCGHIDEventTap, mouseEv);
     CFRelease(mouseEv);
 }
 
-void MouseV3::leftMouseUp()
+void MouseV3::leftMouseUp(bool isDoubleClick)
 {
     mouseLeftDown = false;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
                 NULL, kCGEventLeftMouseUp,
                 getCursorPosition(),
                 kCGMouseButtonLeft);
-
+    if (isDoubleClick)
+    {
+        CGEventSetIntegerValueField(mouseEv, kCGMouseEventClickState, 2);
+    }
     CGEventPost(kCGHIDEventTap, mouseEv);
     CFRelease(mouseEv);
+}
+
+void MouseV3::leftSecondClick()
+{
+    leftMouseDown(true);
+    leftMouseUp(true);
 }
 
 void MouseV3::rightMouseDown()
@@ -69,7 +86,6 @@ void MouseV3::rightMouseDown()
                 NULL, kCGEventRightMouseDown,
                 getCursorPosition(),
                 kCGMouseButtonRight);
-
     CGEventPost(kCGHIDEventTap, mouseEv);
     CFRelease(mouseEv);
 }
@@ -81,7 +97,6 @@ void MouseV3::rightMouseUp()
                 NULL, kCGEventRightMouseUp,
                 getCursorPosition(),
                 kCGMouseButtonRight);
-
     CGEventPost(kCGHIDEventTap, mouseEv);
     CFRelease(mouseEv);
 }
@@ -94,8 +109,8 @@ void MouseV3::pointersDown()
     }
 
     mousePadDown = true;
-    P1_Start = P_ORIGIN;
-    P1_Last = P_ORIGIN;
+    P1_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P1_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
 
     pointers = new QList<TouchPoint*>();
     TouchPoint* currentPointer = new TouchPoint();
@@ -110,18 +125,17 @@ void MouseV3::pointersDown()
 void MouseV3::pointersUp()
 {
     checkForClick();
-
-    P1_Start = P_ORIGIN;
-    P1_Last = P_ORIGIN;
-    P2_Start = P_ORIGIN;
-    P2_Last = P_ORIGIN;
-    P3_Start = P_ORIGIN;
-    P3_Last = P_ORIGIN;
+    P1_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P1_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P2_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P2_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P3_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+    P3_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
     P3_Vector_Start = 0;
     P3_Vector_Last = 0;
 
     mousePadDown = false;
-    // currentGesture = GESTURE_NONE
+    currentGesture = GESTURE_NONE;
     pointers = new QList<TouchPoint*>();
 }
 
@@ -192,11 +206,13 @@ void MouseV3::parseAbsolutePointerData(QByteArray &data, bool isPresenter = fals
 
     TouchPoint *currentPointer = new TouchPoint();
 
-    int x = data.at(pointerDataOffset);
-    x = (x << 8) + data.at(pointerDataOffset + 1);
+    unsigned char firstByte = data.at(pointerDataOffset);
+    unsigned char secondByte = data.at(pointerDataOffset + 1);
+    int x = firstByte << 8 | secondByte;
 
-    int y = data.at(pointerDataOffset + 2);
-    y = (y << 8) + data.at(pointerDataOffset + 3);
+    firstByte = data.at(pointerDataOffset + 2);
+    secondByte = data.at(pointerDataOffset + 3);
+    int y = firstByte << 8 | secondByte;
 
     QList<QPoint*> *locations = Screenshot::Instance()->getScreenBounds(Screenshot::Instance()->screenIndex);
     QPoint* startLocation = locations->at(0);
@@ -256,10 +272,10 @@ void MouseV3::updateCursorPosition()
     }
     P1_New = new QPoint(pointers->at(0)->x, pointers->at(0)->y);
 
-    if (P1_Start == P_ORIGIN || P1_Last == P_ORIGIN)
+    if ((P1_Start->x() == P_ORIGIN->x() && P1_Start->y() == P_ORIGIN->y()) || (P1_Last->x() == P_ORIGIN->x() && P1_Last->y() == P_ORIGIN->y()))
     {
-        P1_Start = P1_New;
-        P1_Last = P1_New;
+        P1_Start = new QPoint(P1_New->x(), P1_New->y());
+        P1_Last = new QPoint(P1_New->x(), P1_New->y());
         return;
     }
 
@@ -273,7 +289,7 @@ void MouseV3::updateCursorPosition()
     else
     {
         P1_Rel->setX(P1_New->x() - P1_Last->x());
-        P1_Rel->setY(P1_New->y() - P1_Last->x());
+        P1_Rel->setY(P1_New->y() - P1_Last->y());
 
         if (P1_Rel->x() != 0 || P1_Rel->y() != 0)
         {
@@ -309,7 +325,7 @@ void MouseV3::updateCursorPosition()
         return;
     }
 
-    P1_Last = P1_New;
+    P1_Last = new QPoint(P1_New->x(), P1_New->y());
 
     CGDirectDisplayID displayID = CGMainDisplayID();
     int width = CGDisplayPixelsWide(displayID);
@@ -327,15 +343,156 @@ void MouseV3::parseMultitouch()
         pointersDown();
         return;
     }
+
+    P1_New = new QPoint(pointers->at(0)->x, pointers->at(0)->y);
+    P2_New = new QPoint(pointers->at(1)->x, pointers->at(1)->y);
+
+    if ((P1_Start->x() == P_ORIGIN->x() && P1_Start->y() == P_ORIGIN->y())
+            || (P1_Last->x() == P_ORIGIN->x() && P1_Last->y() == P_ORIGIN->y())
+            || (P2_Start->x() == P_ORIGIN->x() && P2_Start->y() == P_ORIGIN->y())
+            || (P2_Last->x() == P_ORIGIN->x() && P2_Last->y() == P_ORIGIN->y()))
+    {
+
+        P1_Start = new QPoint(P1_New->x(), P1_New->y());
+        P1_Last = new QPoint(P1_New->x(), P1_New->y());
+        P2_Start = new QPoint(P2_New->x(), P2_New->y());
+        P2_Last = new QPoint(P2_New->x(), P2_New->y());
+        return;
+    }
+
+    P1_Rel->setX((P1_New->x() - P1_Last->x()) * Settings::Instance()->mouseSensitivity);
+    P1_Rel->setY((P1_New->y() - P1_Last->y()) * Settings::Instance()->mouseSensitivity);
+
+    if (P1_Rel->x() < -700 || P1_Rel->x() > 700 || P1_Rel->y() < -700 || P1_Rel->y() > 700)
+    {
+        pointersUp();
+        return;
+    }
+
+    P1_Last = new QPoint(P1_New->x(), P1_New->y());
+    P2_Last = new QPoint(P1_New->x(), P1_New->y());
+
+    processMultitouch();
+}
+
+void MouseV3::processMultitouch()
+{
+    P3_New->setX(round((P1_New->x() + P2_New->x()) / 2.0));
+    P3_New->setY(round((P1_New->y() + P2_New->y()) / 2.0));
+    P3_Vector_New = Converter::Instance()->getPointDistance(*P1_New, *P2_New);
+
+    if (P3_Start->x() == P_ORIGIN->x() && P3_Start->y() == P_ORIGIN->y())
+    {
+        qDebug() << "reset P3_Start";
+        P3_Start = new QPoint(P3_New->x(), P3_New->y());
+    }
+
+    if (P3_Vector_Start == 0)
+    {
+        P3_Vector_Start = P3_Vector_New;
+    }
+
+    if (currentGesture == GESTURE_NONE)
+    {
+        if (valueMatchesTolerance(P3_Vector_New, P3_Vector_Start, SCROLL_OFFSET_TOLERANCE))
+        {
+            if (valueMatchesTolerance(P3_New->x(), P3_Start->x(), SCROLL_OFFSET_TOLERANCE))
+            {
+                if (!valueMatchesTolerance(P3_New->y(), P3_Start->y(), SCROLL_OFFSET_TOLERANCE / 2))
+                {
+                    currentGesture = GESTURE_SCROLL;
+                }
+            }
+        }
+        else
+        {
+            currentGesture = GESTURE_ZOOM;
+            P3_Vector_Event = P3_Vector_New + 20;
+        }
+    }
+
+    if (currentGesture == GESTURE_ZOOM)
+    {
+        if (!valueMatchesTolerance(P3_Vector_New, P3_Vector_Event, 25))
+        {
+            scrollAmount = pow((P3_Vector_New = P3_Vector_Last), 2);
+            if (P3_Vector_New > P3_Vector_Last)
+            {
+//                zoom(1, 1);
+            }
+            else
+            {
+//                zoom(-1, 1);
+            }
+            P3_Vector_Event = P3_Vector_New;
+        }
+    }
+    else if (currentGesture == GESTURE_SCROLL)
+    {
+        scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
+        if (P3_New->y() > P3_Last->y())
+        {
+            qDebug() << "scroll down";
+            mouseScrollVertical(-10, scrollAmount + 30);
+        }
+        else if (P3_New->y() < P3_Last->y())
+        {
+            qDebug() << "scroll up";
+            mouseScrollVertical(10, scrollAmount + 30);
+        }
+    }
+
+    P3_Last = new QPoint(P3_New->x(), P3_New->y());
+    P3_Vector_Last = P3_Vector_New;
+}
+
+void MouseV3::mouseScrollVertical(int scrollDirection, int scrollLength)
+{
+    if (scrollDirection != -1 && scrollDirection != 1)
+    {
+        scrollDirection = 1;
+    }
+    for (int i = 0; i < scrollLength + 30; ++i)
+    {
+        CGEventRef scrollEvent = CGEventCreateScrollWheelEvent (
+                            NULL, kCGScrollEventUnitLine,  // kCGScrollEventUnitLine  //kCGScrollEventUnitPixel
+                            1, //CGWheelCount 1 = y 2 = xy 3 = xyz
+                            0,
+                            scrollDirection); // length of scroll from -10 to 10 higher values lead to undef behaviour
+
+        CGEventPost(kCGHIDEventTap, scrollEvent);
+
+        CFRelease(scrollEvent);
+    }
 }
 
 void MouseV3::checkForClick()
 {
-    //todo
+    long timeDelta = QDateTime::currentDateTime().toMSecsSinceEpoch() - pointDown->timestamp;
+
+    if (timeDelta < CLICK_DELAY_TOLERANCE)
+    {
+        if (pointers->length() >= 1)
+        {
+            Logger::Instance()->add("CLick delay " + timeDelta);
+            int offsetX = abs(P1_Start->x() - pointers->at(0)->x);
+            int offsetY = abs(P1_Start->y() - pointers->at(0)->y);
+
+            if (offsetX < CLICK_OFFSET_TOLERANCE && offsetY < CLICK_OFFSET_TOLERANCE)
+            {
+                leftSecondClick();
+            }
+        }
+    }
 }
 
 CGPoint MouseV3::getCursorPosition()
 {
     CGEventRef event = CGEventCreate(NULL);
     return CGEventGetLocation(event);
+}
+
+bool MouseV3::valueMatchesTolerance(float val1, float val2, int tolerance)
+{
+    return (val1 < (val2 + tolerance) && val1 > (val2 - tolerance)) ? true : false;
 }

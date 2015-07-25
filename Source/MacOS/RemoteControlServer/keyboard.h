@@ -1,17 +1,13 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
+#include <ApplicationServices/ApplicationServices.h>
+#include <QString>
 
 class Keyboard
 {
 public:
     static Keyboard* Instance();
-
-//    void sendKeyPress();
-
-private:
-    static Keyboard* instance;
-    Keyboard();
 
     enum
     {
@@ -63,7 +59,7 @@ private:
         KEYCODE_C10 = 230,
         KEYCODE_C11 = 231,
         KEYCODE_C12 = 232,
-        
+
         KEYCODE_COPY = 201,
         KEYCODE_PASTE = 202,
         KEYCODE_SELECT_ALL = 203,
@@ -75,6 +71,20 @@ private:
         KEYCODE_SHUTDOWN = 209,
         KEYCODE_STANDBY = 210
     };
+
+    void sendKeyPress(CGKeyCode key);
+    void sendKeyDown(CGKeyCode key);
+    void sendKeyUp(CGKeyCode key);
+    void sendEachKey(QString message);
+    void keycodeToShortcut(int keyCode);
+    CGKeyCode keycodeToKey(int keyCode);
+
+private:
+    static Keyboard* instance;
+    Keyboard();
+
+    void sendUnicodeKeyPress(QChar character);
+    CFStringRef createStringForKey(CGKeyCode keyCode);
 };
 
 #endif // KEYBOARD_H

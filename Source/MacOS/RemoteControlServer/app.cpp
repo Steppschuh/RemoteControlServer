@@ -15,8 +15,11 @@ App::App()
     appName = "Unknown";
     deviceName = "Unknown";
     osVersion = "Unknown";
+    deviceName = "Unknown";
     status = "Unknown";
     pin = "";
+
+    lastControl = "Unknown";
 
     isConnected = false;
 }
@@ -103,8 +106,4 @@ void App::requestPin(Command &command)
     default:
         ApiV3::Instance()->requestPin(*this);
     }
-}
-
-void App::detectOs()
-{
 }

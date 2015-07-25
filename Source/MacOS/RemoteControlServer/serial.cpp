@@ -20,3 +20,8 @@ void Serial::closeSerialPort()
 {
 
 }
+
+void Serial::sendCommand(Command &command)
+{
+
+}
