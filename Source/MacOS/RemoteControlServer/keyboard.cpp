@@ -33,7 +33,6 @@ void Keyboard::sendKeyPress(CGKeyCode key)
 void Keyboard::sendUnicodeKeyPress(QChar character)
 {
     UniChar c = (unsigned char) character.toLatin1();
-    qDebug() << c;
     CGEventRef keyEvent = CGEventCreateKeyboardEvent(NULL, 0, true);
     CGEventKeyboardSetUnicodeString(keyEvent, 1, &c);
     CGEventPost(kCGSessionEventTap, keyEvent);

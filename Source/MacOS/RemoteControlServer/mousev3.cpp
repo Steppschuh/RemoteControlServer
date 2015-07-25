@@ -327,13 +327,21 @@ void MouseV3::updateCursorPosition()
 
     P1_Last = new QPoint(P1_New->x(), P1_New->y());
 
-    CGDirectDisplayID displayID = CGMainDisplayID();
-    int width = CGDisplayPixelsWide(displayID);
-    int height = CGDisplayPixelsHigh(displayID);
-
-    cursorPositionNew->setX(trim(cursorPositionCurrent.x + P1_Rel->x(), 0, width));
-    cursorPositionNew->setY(trim(cursorPositionCurrent.y + P1_Rel->y(), 0, height));
-    moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+    UInt32 maxDisplays = 4;
+    CGDirectDisplayID displayID[maxDisplays];
+    UInt32 *count;
+    CGGetDisplaysWithPoint(
+                CGPointMake(cursorPositionCurrent.x + P1_Rel->x(), cursorPositionCurrent.y + P1_Rel->y()),
+                maxDisplays,
+                displayID,
+                count);
+    qDebug() << *count;
+    if (*count > 0)
+    {
+        cursorPositionNew->setX(cursorPositionCurrent.x + P1_Rel->x());
+        cursorPositionNew->setY(cursorPositionCurrent.y + P1_Rel->y());
+        moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+    }
 }
 
 void MouseV3::parseMultitouch()
@@ -383,7 +391,6 @@ void MouseV3::processMultitouch()
 
     if (P3_Start->x() == P_ORIGIN->x() && P3_Start->y() == P_ORIGIN->y())
     {
-        qDebug() << "reset P3_Start";
         P3_Start = new QPoint(P3_New->x(), P3_New->y());
     }
 
