@@ -74,6 +74,7 @@ private:
     void checkForClick();
     CGPoint getCursorPosition();
     bool valueMatchesTolerance(float val1, float val2, int tolerance = CLICK_OFFSET_TOLERANCE);
+    void mouseZoom(int direction, int zoomFactor);
     void mouseScrollVertical(int scrollDirection, int scrollLength);
 };
 

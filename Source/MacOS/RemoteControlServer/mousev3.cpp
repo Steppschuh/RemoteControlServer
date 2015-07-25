@@ -327,6 +327,9 @@ void MouseV3::updateCursorPosition()
 
     P1_Last = new QPoint(P1_New->x(), P1_New->y());
 
+    // In order to change the mouse position only to a position on one of the active screens,
+    // we get the number of displays for the new position.
+    // If this number is zero, we don't need to change anything because the mouse pointer would be out of screen.
     UInt32 maxDisplays = 4;
     CGDirectDisplayID displayID[maxDisplays];
     UInt32 *count;
@@ -335,7 +338,6 @@ void MouseV3::updateCursorPosition()
                 maxDisplays,
                 displayID,
                 count);
-    qDebug() << *count;
     if (*count > 0)
     {
         cursorPositionNew->setX(cursorPositionCurrent.x + P1_Rel->x());
@@ -425,11 +427,11 @@ void MouseV3::processMultitouch()
             scrollAmount = pow((P3_Vector_New = P3_Vector_Last), 2);
             if (P3_Vector_New > P3_Vector_Last)
             {
-//                zoom(1, 1);
+                mouseZoom(1, 1);
             }
             else
             {
-//                zoom(-1, 1);
+                mouseZoom(-1, 1);
             }
             P3_Vector_Event = P3_Vector_New;
         }
@@ -439,13 +441,11 @@ void MouseV3::processMultitouch()
         scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
         if (P3_New->y() > P3_Last->y())
         {
-            qDebug() << "scroll down";
-            mouseScrollVertical(-10, scrollAmount + 30);
+            mouseScrollVertical(1, scrollAmount);
         }
         else if (P3_New->y() < P3_Last->y())
         {
-            qDebug() << "scroll up";
-            mouseScrollVertical(10, scrollAmount + 30);
+            mouseScrollVertical(-1, scrollAmount);
         }
     }
 
@@ -453,24 +453,27 @@ void MouseV3::processMultitouch()
     P3_Vector_Last = P3_Vector_New;
 }
 
+void MouseV3::mouseZoom(int direction, int zoomFactor)
+{
+
+}
+
 void MouseV3::mouseScrollVertical(int scrollDirection, int scrollLength)
 {
-    if (scrollDirection != -1 && scrollDirection != 1)
+    if (scrollDirection < -10 || scrollDirection == 0 || scrollDirection > 10)
     {
         scrollDirection = 1;
     }
-    for (int i = 0; i < scrollLength + 30; ++i)
-    {
-        CGEventRef scrollEvent = CGEventCreateScrollWheelEvent (
-                            NULL, kCGScrollEventUnitLine,  // kCGScrollEventUnitLine  //kCGScrollEventUnitPixel
-                            1, //CGWheelCount 1 = y 2 = xy 3 = xyz
-                            0,
-                            scrollDirection); // length of scroll from -10 to 10 higher values lead to undef behaviour
+    scrollDirection = scrollDirection * scrollLength / 100;
+    scrollDirection = (scrollDirection < -10) ? -10 : ((scrollDirection > 10) ? 10 : scrollDirection);
+    CGEventRef scrollEvent = CGEventCreateScrollWheelEvent (
+                        NULL, kCGScrollEventUnitLine,  // kCGScrollEventUnitLine  //kCGScrollEventUnitPixel
+                        1, //CGWheelCount 1 = y 2 = xy 3 = xyz
+                        scrollDirection); // length of scroll from -10 to 10 higher values lead to undef behaviour
 
-        CGEventPost(kCGHIDEventTap, scrollEvent);
+    CGEventPost(kCGHIDEventTap, scrollEvent);
 
-        CFRelease(scrollEvent);
-    }
+    CFRelease(scrollEvent);
 }
 
 void MouseV3::checkForClick()
