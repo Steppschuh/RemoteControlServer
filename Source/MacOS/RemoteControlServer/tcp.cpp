@@ -86,6 +86,7 @@ void TCP::startListener()
         }
         else
         {
+            isListening = false;
             Logger::Instance()->add("Error while starting TCP listener");
         }
     }

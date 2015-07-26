@@ -45,6 +45,7 @@ void UDP::startListener()
         }
         else
         {
+            isListening = false;
             Logger::Instance()->add("Error while starting UDP listener");
         }
     }
@@ -56,6 +57,7 @@ void UDP::startListener()
 
 void UDP::stopListener()
 {
+    isListening = false;
     udpSocket->close();
 }
 

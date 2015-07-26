@@ -38,27 +38,56 @@ void KeyboardMac::sendKeyPress(CGKeyCode key)
 void KeyboardMac::sendUnicodeKeyPress(QChar character)
 {
     UniChar c = (unsigned char) character.toLatin1();
-    CGEventRef keyEvent = CGEventCreateKeyboardEvent(NULL, 0, true);
-    CGEventKeyboardSetUnicodeString(keyEvent, 1, &c);
-    CGEventPost(kCGSessionEventTap, keyEvent);
-    CFRelease(keyEvent);
-
-    keyEvent = CGEventCreateKeyboardEvent(NULL, 0, false);
-    CGEventKeyboardSetUnicodeString(keyEvent, 1, &c);
-    CGEventPost(kCGSessionEventTap, keyEvent);
-    CFRelease(keyEvent);
+    sendKeyDown(-1, c);
+    sendKeyUp(-1, c);
 }
 
-void KeyboardMac::sendKeyDown(CGKeyCode key)
+void KeyboardMac::sendKeyDown(CGKeyCode key, UniChar c)
 {
-    CGEventRef command = CGEventCreateKeyboardEvent(NULL, key, true);
+    if (key == kVK_Shift)
+    {
+        shiftDown = true;
+    }
+    else if (key == kVK_Control)
+    {
+        ctrlDown = true;
+    }
+    else if (key == kVK_Option)
+    {
+        altDown = true;
+    }
+
+    CGEventSourceRef source = NULL;
+    if (shiftDown || ctrlDown || altDown)
+    {
+        source = CGEventSourceCreate(kCGEventSourceStateCombinedSessionState);
+    }
+
+    CGEventRef command = CGEventCreateKeyboardEvent(source, key, true);
+    if (c) CGEventKeyboardSetUnicodeString(command, 1, &c);
+    if (shiftDown) CGEventSetFlags(command, kCGEventFlagMaskShift);
+    if (ctrlDown) CGEventSetFlags(command, kCGEventFlagMaskControl);
+    if (altDown) CGEventSetFlags(command, kCGEventFlagMaskAlternate);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
     CFRelease(command);
 }
 
-void KeyboardMac::sendKeyUp(CGKeyCode key)
+void KeyboardMac::sendKeyUp(CGKeyCode key, UniChar c)
 {
+    if (key == kVK_Shift)
+    {
+        shiftDown = false;
+    }
+    else if (key == kVK_Control)
+    {
+        ctrlDown = false;
+    }
+    else if (key == kVK_Option)
+    {
+        altDown = false;
+    }
     CGEventRef command = CGEventCreateKeyboardEvent(NULL, key, false);
+    if (c) CGEventKeyboardSetUnicodeString(command, 1, &c);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
     CFRelease(command);
 }
@@ -117,7 +146,8 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     case KEYCODE_BACK:
         return kVK_Delete;
     case KEYCODE_CAPS_LOCK:
-        return kVK_CapsLock;
+        shiftDown = (shiftDown) ? false : true;
+        return -1;
     case KEYCODE_DEL:
         return kVK_Delete;
     case KEYCODE_ENTER:

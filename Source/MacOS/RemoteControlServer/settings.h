@@ -26,6 +26,10 @@ public:
     float mouseSensitivity;
     float mouseAcceleration;
 
+    // Screen
+    int screenQualityFull;
+    bool screenBlackWhite;
+
     // Misc
     bool serialCommands;
 

@@ -1,6 +1,7 @@
 #include "converter.h"
 #include "logger.h"
 #include "mousev3mac.h"
+#include "screenshot.h"
 #include "server.h"
 #include "settings.h"
 #include "touchpoint.h"

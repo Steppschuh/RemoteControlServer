@@ -73,8 +73,8 @@ public:
     };
 
     void sendKeyPress(CGKeyCode key);
-    void sendKeyDown(CGKeyCode key);
-    void sendKeyUp(CGKeyCode key);
+    void sendKeyDown(CGKeyCode key, UniChar c = NULL);
+    void sendKeyUp(CGKeyCode key, UniChar c = NULL);
     void sendEachKey(QString message);
     void keycodeToShortcut(int keyCode);
     CGKeyCode keycodeToKey(int keyCode);
@@ -82,6 +82,10 @@ public:
 private:
     static KeyboardMac* instance;
     KeyboardMac();
+
+    bool shiftDown;
+    bool ctrlDown;
+    bool altDown;
 
     void sendUnicodeKeyPress(QChar character);
     CFStringRef createStringForKey(CGKeyCode keyCode);

@@ -4,6 +4,7 @@
 #include "converter.h"
 #include "logger.h"
 #include "network.h"
+#include "screenshot.h"
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
@@ -192,14 +193,18 @@ void ApiV3::answerGetRequest(Command &requestCommand)
         case cmd_get_api_version:
             responseCommand->data = &commandIdentifier->append(3);
             break;
-//        case cmd_get_screenshot:
-//            parseScreenshotProperties(requestCommand);
-//            answerScreenGetRequest(requestCommand, responseCommand);
-//            break;
-//        case cmd_get_screenshots:
-//            parseScreenshotProperties(requestCommand);
-//            //todo: call screenshot object
-//            break;
+        case cmd_get_screenshot:
+            parseScreenshotProperties(requestCommand);
+            answerScreenGetRequest(*responseCommand);
+            break;
+        case cmd_get_screenshots:
+            parseScreenshotProperties(requestCommand);
+            Screenshot::Instance()->continueSendingScreenshots = true;
+            if (!Screenshot::Instance()->isSendingScreenshot)
+            {
+                Screenshot::Instance()->keepSendingScreenshots(requestCommand, *responseCommand);
+            }
+            break;
         default:
             Logger::Instance()->add("Unknown get command: " + Converter::Instance()->commandToString(requestCommand));
             break;
@@ -210,6 +215,39 @@ void ApiV3::answerGetRequest(Command &requestCommand)
     {
         responseCommand->send();
     }
+}
+
+void ApiV3::parseScreenshotProperties(Command &command)
+{
+    if (command.data->length() >= 4)
+    {
+        Screenshot::Instance()->lastRequestedWidth = (unsigned char)command.data->at(3) * 100;
+
+        if (command.data->length() >= 5)
+        {
+            Screenshot::Instance()->lastRequestedQuality = (unsigned char)command.data->at(4);
+        }
+        else
+        {
+            Screenshot::Instance()->lastRequestedQuality = Settings::Instance()->screenQualityFull;
+        }
+    }
+    else
+    {
+        Screenshot::Instance()->lastRequestedWidth = 9999;
+    }
+}
+
+void ApiV3::answerScreenGetRequest(Command &responseCommand)
+{
+    QPixmap* screenshotBitmap = Screenshot::Instance()->getResizedScreenshot(Screenshot::Instance()->lastRequestedWidth);
+    QByteArray *screenshotData = Converter::Instance()->bitmapToByte(*screenshotBitmap, Screenshot::Instance()->lastRequestedQuality);
+    QByteArray *commandIdentifier = new QByteArray();
+    commandIdentifier->append(COMMAND_IDENTIFIER).append(cmd_get).append(cmd_get_screenshot);
+    commandIdentifier->append(Screenshot::Instance()->lastRequestedWidth / 100);
+    responseCommand.data = commandIdentifier;
+    responseCommand.data->append(*screenshotData);
+    responseCommand.send();
 }
 
 void ApiV3::setValue(Command &setCommand)

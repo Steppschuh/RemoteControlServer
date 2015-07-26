@@ -22,7 +22,6 @@ private:
     static Network* instance;
 
     const QString localHost;
-//    //anyIpEndPoint;
 
     bool checkListenersRunning();
     void getHostIps();

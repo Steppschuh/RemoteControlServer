@@ -69,8 +69,8 @@ private:
     void parseConnectCommand(Command &command);
     void parseOpenCommand(Command &command);
     void answerGetRequest(Command &requestCommand);
-//    void parseScrenshotProperties(Command *command);
-//    void answerScreenGetRequest(Command *requestCommand, Command *responseCommand);
+    void parseScreenshotProperties(Command &command);
+    void answerScreenGetRequest(Command &responseCommand);
     void setValue(Command &setCommand);
     void parseMouseCommand(Command &command);
     void parseKeyboardCommand(Command &command);

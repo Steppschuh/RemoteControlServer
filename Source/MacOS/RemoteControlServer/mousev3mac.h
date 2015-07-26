@@ -1,7 +1,6 @@
 #ifndef MOUSEV3MAC_H
 #define MOUSEV3MAC_H
 
-#include "screenshot.h"
 #include "touchpoint.h"
 
 #ifdef Q_OS_MAC

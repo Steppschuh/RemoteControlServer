@@ -2,6 +2,10 @@
 
 #include "math.h"
 
+#include <QBuffer>
+
+#include <QDebug>
+
 Converter* Converter::instance = NULL;
 
 Converter* Converter::Instance()
@@ -15,6 +19,16 @@ Converter* Converter::Instance()
 
 Converter::Converter()
 {
+}
+
+QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)
+{
+    qDebug() << compression;
+    QByteArray *bytes = new QByteArray();
+    QBuffer buffer(bytes);
+    buffer.open(QIODevice::WriteOnly);
+    bitmap.save(&buffer, "JPG", compression);
+    return bytes;
 }
 
 QString Converter::byteToString(QByteArray &value, int index)

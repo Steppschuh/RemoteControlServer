@@ -37,6 +37,10 @@ Settings::Settings() :
     mouseSensitivity = 1.0;
     mouseAcceleration = 1.0;
 
+    // Screen
+    screenQualityFull = 60;
+    screenBlackWhite = false;
+
     // Misc
     serialCommands = false;
 
@@ -106,6 +110,10 @@ void Settings::saveSettingsToFile()
             // Mouse and Pointer
             appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
             appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
+
+            // Screen
+            appendSetting("screenQualityFull", QString(screenQualityFull), stream);
+            appendSetting("screenBlackWhite", Converter::Instance()->boolToString(screenBlackWhite), stream);
 
             // Misc
             appendSetting("serialCommands", Converter::Instance()->boolToString(serialCommands), stream);
@@ -179,6 +187,16 @@ void Settings::assignSetting(QString &name, QString &value)
     else if (name == "mouseAcceleration")
     {
         mouseAcceleration = value.toFloat();
+    }
+
+    // Screen
+    else if (name == "screenQualityFull")
+    {
+        screenQualityFull = value.toInt();
+    }
+    else if (name == "screenBlackWhite")
+    {
+        screenBlackWhite = Converter::Instance()->stringToBool(value);
     }
 
     // Misc
