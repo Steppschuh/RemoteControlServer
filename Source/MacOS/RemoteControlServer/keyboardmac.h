@@ -1,17 +1,17 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#ifndef KEYBOARDMAC_H
+#define KEYBOARDMAC_H
 
 #include <ApplicationServices/ApplicationServices.h>
 #include <QString>
 
-class Keyboard
+class KeyboardMac
 {
 public:
-    static Keyboard* Instance();
+    static KeyboardMac* Instance();
 
     enum
     {
-        KEYCODE_UNKOWN = 0,
+        KEYCODE_UNKOWN = -1,
         KEYCODE_BACK = 4,
         KEYCODE_UP = 19,
         KEYCODE_DOWN = 20,
@@ -80,11 +80,12 @@ public:
     CGKeyCode keycodeToKey(int keyCode);
 
 private:
-    static Keyboard* instance;
-    Keyboard();
+    static KeyboardMac* instance;
+    KeyboardMac();
 
     void sendUnicodeKeyPress(QChar character);
     CFStringRef createStringForKey(CGKeyCode keyCode);
+    void sendShortcut(CGKeyCode keyCode, CGEventFlags flags);
 };
 
-#endif // KEYBOARD_H
+#endif // KEYBOARDMAC_H

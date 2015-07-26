@@ -1,17 +1,20 @@
-#ifndef MOUSEV3_H
-#define MOUSEV3_H
+#ifndef MOUSEV3MAC_H
+#define MOUSEV3MAC_H
 
 #include "screenshot.h"
 #include "touchpoint.h"
 
-#include <ApplicationServices/ApplicationServices.h>
+#ifdef Q_OS_MAC
+    #include <ApplicationServices/ApplicationServices.h>
+#endif
+
 #include <QByteArray>
 #include <QPoint>
 
-class MouseV3
+class MouseV3Mac
 {
 public:
-    static MouseV3* Instance();
+    static MouseV3Mac* Instance();
 
     void leftMouseDown(bool isDoubleClick = false);
     void leftMouseUp(bool isDoubleClick = false);
@@ -23,8 +26,8 @@ public:
     void parseAbsolutePointerData(QByteArray &data, bool isPresenter);
 
 private:
-    static MouseV3* instance;
-    MouseV3();
+    static MouseV3Mac* instance;
+    MouseV3Mac();
 
     struct Size
     {
@@ -78,4 +81,4 @@ private:
     void mouseScrollVertical(int scrollDirection, int scrollLength);
 };
 
-#endif // MOUSEV3_H
+#endif // MOUSEV3MAC_H

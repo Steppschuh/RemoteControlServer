@@ -20,3 +20,11 @@ TEMPLATE = app
 include(RemoteControlServerSrc.pri)
 
 SOURCES += main.cpp
+
+LIBS += -framework IOKit
+
+OBJECTIVE_SOURCES += \
+    macx.mm
+
+HEADERS += \
+    macx.h

@@ -2,13 +2,16 @@
 #include "app.h"
 #include "authentication.h"
 #include "converter.h"
-#include "keyboard.h"
 #include "logger.h"
-#include "mousev3.h"
 #include "network.h"
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
+
+#ifdef Q_OS_MAC
+    #include "keyboardmac.h"
+    #include "mousev3mac.h"
+#endif
 
 #include <QByteArray>
 #include <QProcess>
@@ -251,13 +254,19 @@ void ApiV3::parseMouseCommand(Command &command)
         switch (command.data->at(2))
         {
         case cmd_mouse_pointers:
-            MouseV3::Instance()->parsePointerData(*command.data);
+#ifdef Q_OS_MAC
+            MouseV3Mac::Instance()->parsePointerData(*command.data);
+#endif
             break;
         case cmd_mouse_pointers_absolute:
-            MouseV3::Instance()->parseAbsolutePointerData(*command.data, false);
+#ifdef Q_OS_MAC
+            MouseV3Mac::Instance()->parseAbsolutePointerData(*command.data, false);
+#endif
             break;
         case cmd_mouse_pointers_absolute_presenter:
-            MouseV3::Instance()->parseAbsolutePointerData(*command.data, true);
+#ifdef Q_OS_MAC
+            MouseV3Mac::Instance()->parseAbsolutePointerData(*command.data, true);
+#endif
             break;
         case cmd_mouse_pad_action:
             if (command.data->length() >= 4)
@@ -265,10 +274,14 @@ void ApiV3::parseMouseCommand(Command &command)
                 switch (command.data->at(3))
                 {
                 case cmd_action_down:
-                    MouseV3::Instance()->pointersDown();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->pointersDown();
+#endif
                     break;
                 case cmd_action_up:
-                    MouseV3::Instance()->pointersUp();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->pointersUp();
+#endif
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse pad command");
@@ -283,11 +296,15 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse left down");
-                    MouseV3::Instance()->leftMouseDown();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->leftMouseDown();
+#endif
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse left up");
-                    MouseV3::Instance()->leftMouseUp();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->leftMouseUp();
+#endif
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse left command");
@@ -302,11 +319,15 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse right down");
-                    MouseV3::Instance()->rightMouseDown();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->rightMouseDown();
+#endif
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse right up");
-                    MouseV3::Instance()->rightMouseUp();
+#ifdef Q_OS_MAC
+                    MouseV3Mac::Instance()->rightMouseUp();
+#endif
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse right command");
@@ -336,32 +357,42 @@ void ApiV3::parseKeyboardCommand(Command &command)
                 unsigned char secondByte = command.data->at(7);
                 int keyCode = firstByte << 8 | secondByte;
 
-                if (keyCode < Keyboard::KEYCODE_C1 || keyCode > Keyboard::KEYCODE_C12)
+#ifdef Q_OS_MAC
+                if (keyCode < KeyboardMac::KEYCODE_C1 || keyCode > KeyboardMac::KEYCODE_C12)
+#endif
                 {
                     switch (action)
                     {
                     case cmd_action_down:
-                        Keyboard::Instance()->sendKeyDown(Keyboard::Instance()->keycodeToKey(keyCode));
+#ifdef Q_OS_MAC
+                        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(keyCode));
+#endif
                         break;
                     case cmd_action_up:
-                        Keyboard::Instance()->sendKeyUp(Keyboard::Instance()->keycodeToKey(keyCode));
+#ifdef Q_OS_MAC
+                        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(keyCode));
+#endif
                         break;
                     case cmd_action_click:
-                        CGKeyCode keyboardKey = Keyboard::Instance()->keycodeToKey(keyCode);
-                        if (keyboardKey == Keyboard::KEYCODE_UNKOWN)
+#ifdef Q_OS_MAC
+                        CGKeyCode keyboardKey = KeyboardMac::Instance()->keycodeToKey(keyCode);
+                        if (keyboardKey == KeyboardMac::KEYCODE_UNKOWN)
                         {
-                            Keyboard::Instance()->keycodeToShortcut(keyboardKey);
+                            KeyboardMac::Instance()->keycodeToShortcut(keyboardKey);
                         }
                         else
                         {
-                            Keyboard::Instance()->sendKeyPress(keyboardKey);
+                            KeyboardMac::Instance()->sendKeyPress(keyboardKey);
                         }
+#endif
                         break;
                     }
                 }
                 else
                 {
-                    int actionIndex = keyCode - Keyboard::KEYCODE_C1;
+#ifdef Q_OS_MAC
+                    int actionIndex = keyCode - KeyboardMac::KEYCODE_C1;
+#endif
                     Logger::Instance()->add("Received custom key code: " + (actionIndex + 1));
 
                     if (Settings::Instance()->serialCommands)
@@ -390,7 +421,9 @@ void ApiV3::parseKeyboardCommand(Command &command)
         case cmd_keyboard_string:
         {
             QString keyString = Converter::Instance()->byteToString(*command.data, 3);
-            Keyboard::Instance()->sendEachKey(keyString);
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendEachKey(keyString);
+#endif
             break;
         }
         default:

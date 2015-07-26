@@ -1,27 +1,32 @@
-#include "keyboard.h"
+#include "keyboardmac.h"
+#include "logger.h"
 
 #include <QObject>
 
 #include <Carbon/Carbon.h>
 
+//#include <ApplicationServices/ApplicationServices.h>
+//#include <IOKit/hidsystem/ev_keymap.h>
+//#include "macx.h"
+
 #include <QDebug>
 
-Keyboard *Keyboard::instance = NULL;
+KeyboardMac *KeyboardMac::instance = NULL;
 
-Keyboard *Keyboard::Instance()
+KeyboardMac *KeyboardMac::Instance()
 {
     if (!instance)
     {
-        instance = new Keyboard();
+        instance = new KeyboardMac();
     }
     return instance;
 }
 
-Keyboard::Keyboard()
+KeyboardMac::KeyboardMac()
 {
 }
 
-void Keyboard::sendKeyPress(CGKeyCode key)
+void KeyboardMac::sendKeyPress(CGKeyCode key)
 {
     if (key)
     {
@@ -30,7 +35,7 @@ void Keyboard::sendKeyPress(CGKeyCode key)
     }
 }
 
-void Keyboard::sendUnicodeKeyPress(QChar character)
+void KeyboardMac::sendUnicodeKeyPress(QChar character)
 {
     UniChar c = (unsigned char) character.toLatin1();
     CGEventRef keyEvent = CGEventCreateKeyboardEvent(NULL, 0, true);
@@ -44,21 +49,21 @@ void Keyboard::sendUnicodeKeyPress(QChar character)
     CFRelease(keyEvent);
 }
 
-void Keyboard::sendKeyDown(CGKeyCode key)
+void KeyboardMac::sendKeyDown(CGKeyCode key)
 {
     CGEventRef command = CGEventCreateKeyboardEvent(NULL, key, true);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
     CFRelease(command);
 }
 
-void Keyboard::sendKeyUp(CGKeyCode key)
+void KeyboardMac::sendKeyUp(CGKeyCode key)
 {
     CGEventRef command = CGEventCreateKeyboardEvent(NULL, key, false);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
     CFRelease(command);
 }
 
-void Keyboard::sendEachKey(QString message)
+void KeyboardMac::sendEachKey(QString message)
 {
     for (int i = 0; i < message.length(); ++i)
     {
@@ -67,12 +72,45 @@ void Keyboard::sendEachKey(QString message)
     }
 }
 
-void Keyboard::keycodeToShortcut(int keyCode)
+void KeyboardMac::sendShortcut(CGKeyCode keyCode, CGEventFlags flags)
 {
+    CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateCombinedSessionState);
+    CGEventRef commandDown = CGEventCreateKeyboardEvent(source, keyCode, true);
+    CGEventSetFlags(commandDown, flags);
+    CGEventRef commandUp = CGEventCreateKeyboardEvent(source, keyCode, false);
 
+    CGEventPost(kCGAnnotatedSessionEventTap, commandDown);
+    CGEventPost(kCGAnnotatedSessionEventTap, commandUp);
+
+    CFRelease(commandUp);
+    CFRelease(commandDown);
+    CFRelease(source);
 }
 
-CGKeyCode Keyboard::keycodeToKey(int keyCode)
+void KeyboardMac::keycodeToShortcut(int keyCode)
+{
+    // todo
+    switch (keyCode)
+    {
+    case KEYCODE_COPY:
+        sendShortcut(kVK_ANSI_C, kCGEventFlagMaskCommand);
+        break;
+    case KEYCODE_PASTE:
+        sendShortcut(kVK_ANSI_V, kCGEventFlagMaskCommand);
+        break;
+    case KEYCODE_SELECT_ALL:
+        sendShortcut(kVK_ANSI_A, kCGEventFlagMaskCommand);
+        break;
+    case KEYCODE_CUT:
+        sendShortcut(kVK_ANSI_X, kCGEventFlagMaskCommand);
+        break;
+    default:
+        Logger::Instance()->add("Unkown keyboard command");
+        break;
+    }
+}
+
+CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
 {
     switch (keyCode)
     {
@@ -86,16 +124,16 @@ CGKeyCode Keyboard::keycodeToKey(int keyCode)
         return kVK_Return;
     case KEYCODE_ESCAPE:
         return kVK_Escape;
-//    case KEYCODE_INSERT:
-//        return Keys.Insert
-//    case KEYCODE_MOVE_END
-//        return Keys.End
-//    case KEYCODE_MOVE_HOME
-//        return Keys.Home
-//    case KEYCODE_PAGE_DOWN
-//        return Keys.PageDown
-//    case KEYCODE_PAGE_UP
-//        return Keys.PageUp
+    case KEYCODE_INSERT:
+        return kVK_ForwardDelete;
+    case KEYCODE_MOVE_END:
+        return kVK_End;
+    case KEYCODE_MOVE_HOME:
+        return kVK_Home;
+    case KEYCODE_PAGE_DOWN:
+        return kVK_PageDown;
+    case KEYCODE_PAGE_UP:
+        return kVK_PageUp;
     case KEYCODE_SPACE:
         return kVK_Space;
     case KEYCODE_TAB:
@@ -116,8 +154,11 @@ CGKeyCode Keyboard::keycodeToKey(int keyCode)
         return kVK_Shift;
     case KEYCODE_DEL_FORWARD:
         return kVK_ForwardDelete;
-//    case KEYCODE_WINDOWS
-//        return Keys.LWin
+    case KEYCODE_WINDOWS:
+    {
+        // no windows key on a mac
+        return -1;
+    }
     case KEYCODE_F1:
         return kVK_F1;
     case KEYCODE_F2:
@@ -143,7 +184,7 @@ CGKeyCode Keyboard::keycodeToKey(int keyCode)
     case KEYCODE_F12:
         return kVK_F12;
     default:
-        return NULL;
+        return -1;
     }
 }
 

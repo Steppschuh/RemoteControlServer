@@ -92,6 +92,7 @@ void ApiV2::parseGeneralCommand(Command &command)
 
 void ApiV2::parseRemoteCommand(Command &command)
 {
+    qDebug() << "apiv2";
 //    switch (command.data.at(1)) {
 //    case cmd_mouse:
 

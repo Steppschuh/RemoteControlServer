@@ -13,11 +13,11 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/command.h \
     ../RemoteControlServer/converter.h \
     ../RemoteControlServer/helper.h \
-    ../RemoteControlServer/keyboard.h \
+    ../RemoteControlServer/keyboardmac.h \
     ../RemoteControlServer/license.h \
     ../RemoteControlServer/logger.h \
     ../RemoteControlServer/media.h \
-    ../RemoteControlServer/mousev3.h \
+    ../RemoteControlServer/mousev3mac.h \
     ../RemoteControlServer/network.h \
     ../RemoteControlServer/remote.h \
     ../RemoteControlServer/screenshot.h \
@@ -37,11 +37,11 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/command.cpp \
     ../RemoteControlServer/converter.cpp \
     ../RemoteControlServer/helper.cpp \
-    ../RemoteControlServer/keyboard.cpp \
+    ../RemoteControlServer/keyboardmac.cpp \
     ../RemoteControlServer/license.cpp \
     ../RemoteControlServer/logger.cpp \
     ../RemoteControlServer/media.cpp \
-    ../RemoteControlServer/mousev3.cpp \
+    ../RemoteControlServer/mousev3mac.cpp \
     ../RemoteControlServer/network.cpp \
     ../RemoteControlServer/remote.cpp \
     ../RemoteControlServer/screenshot.cpp \
