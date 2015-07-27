@@ -21,6 +21,8 @@ public:
     QString getServerName();
     App *getApp(QString &ip);
     QString getServerOs();
+    QString getServerVersionName();
+    App *getCurrentApp();
 
 private:
     Server();
@@ -33,12 +35,10 @@ private:
     QList<App*> *apps;
 
     bool isLatestServerRunning();
-    App *getCurrentApp();
 //    void showAdvancedWindow();
 //    // void showAdvancedWindow(tab);
 //    void showUpgradeWindow();
 //    void showUpgradeWindowInvalidated();
-    QString getServerVersionName();
 
 };
 

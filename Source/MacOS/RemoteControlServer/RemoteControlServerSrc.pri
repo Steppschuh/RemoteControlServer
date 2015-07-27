@@ -4,6 +4,8 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 INCLUDEPATH += ../RemoteControlServer
 
+RESOURCES     = ../RemoteControlServer/resources.qrc
+
 HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/apiv1.h \
     ../RemoteControlServer/apiv2.h \
@@ -26,6 +28,7 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/settings.h \
     ../RemoteControlServer/tcp.h \
     ../RemoteControlServer/touchpoint.h \
+    ../RemoteControlServer/trayicon.h \
     ../RemoteControlServer/udp.h
 
 SOURCES += ../RemoteControlServer/mainwindow.cpp \
@@ -50,6 +53,7 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/settings.cpp \
     ../RemoteControlServer/tcp.cpp \
     ../RemoteControlServer/touchpoint.cpp \
+    ../RemoteControlServer/trayicon.cpp \
     ../RemoteControlServer/udp.cpp
 
 FORMS    += ../RemoteControlServer/mainwindow.ui

@@ -11,12 +11,12 @@ public:
     static Authentication *Instance();
 
     bool isAuthenticated(const QString &ip, const QString &pin);
+    bool isProtected();
 
 private:
     Authentication();
     static Authentication *instance;
 
-    bool isProtected();
     bool isWhitelisted(const QString &ip);
     bool isWhitelisted(App *app);
     void addToWhiteList(QString ip);

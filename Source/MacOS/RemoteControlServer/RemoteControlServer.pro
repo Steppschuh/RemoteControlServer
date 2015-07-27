@@ -12,7 +12,7 @@ QT       += xml
 QT       += network
 QT       += concurrent
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+#greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RemoteControlServer
 TEMPLATE = app
@@ -28,3 +28,8 @@ OBJECTIVE_SOURCES += \
 
 HEADERS += \
     macx.h
+
+RESOURCES += \
+    resources.qrc
+
+QT += widgets

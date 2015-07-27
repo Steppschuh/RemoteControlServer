@@ -62,9 +62,13 @@ void Network::getHostIps()
 QString Network::getServerIp()
 {
     QString ip = "Unknown";
-    if (hostIps->length() > 0)
+    for (int i = 0; i < hostIps->length(); ++i)
     {
-        ip = hostIps->at(hostIps->length() - 1);
+        if (hostIps->at(i).startsWith("192"))
+        {
+            ip = hostIps->at(i);
+            break;
+        }
     }
     if (hostIps->contains(Remote::Instance()->lastCommand->destination))
     {

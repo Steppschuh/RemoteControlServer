@@ -1,14 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
+#include "mainwindow.h"
+#include "server.h"
+#include "trayicon.h"
+
 #include <QMainWindow>
 #include <QString>
-
-#include "server.h"
-
-namespace Ui {
-class MainWindow;
-}
+#include <QSystemTrayIcon>
 
 class MainWindow : public QMainWindow
 {
@@ -22,8 +22,17 @@ public:
 
     void closeEvent(QCloseEvent *event);
 
+public slots:
+    void customClose();
+    void customShow();
+
 private:
     Ui::MainWindow *ui;
+    bool closeEventCameFromSystemTrayIcon;
+
+    TrayIcon *trayIcon;
+
+    void initializeSystemTrayIcon();
 };
 
 #endif // MAINWINDOW_H
