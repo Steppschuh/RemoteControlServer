@@ -1,8 +1,10 @@
+#include "logger.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QScrollBar>
 
 #include <QDebug>
 
@@ -26,6 +28,8 @@ void MainWindow::initializeSystemTrayIcon()
     trayIcon = new TrayIcon();
     connect(trayIcon->openSettingsWindow, SIGNAL(triggered()), this, SLOT(customShow()));
     connect(trayIcon->quit, SIGNAL(triggered()), this, SLOT(customClose()));
+
+    connect(Logger::Instance(), SIGNAL(loggerUpdated()), this, SLOT(updateLogMessages()));
 
     this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint); // disables the minimize and maximize buttons
 }
@@ -58,4 +62,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
         this->hide();
     }
+}
+
+void MainWindow::paintEvent(QPaintEvent * event)
+{
+    ui->logTextView->setText(Logger::Instance()->getString());
+    QScrollBar *sb = ui->logTextView->verticalScrollBar();
+    sb->setValue(sb->maximum());
+}
+
+void MainWindow::updateLogMessages()
+{
+    ui->logTextView->setText(Logger::Instance()->getString());
+    QScrollBar *sb = ui->logTextView->verticalScrollBar();
+    sb->setValue(sb->maximum());
 }

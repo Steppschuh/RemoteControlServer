@@ -30,73 +30,42 @@ void Logger::add(const QString &message)
     lastEntry = message;
     logMessages->append(timestamp + ": " + message);
     Logger::trim();
-
-    // Update UI log
-//    if (QDateTime().currentMSecsSinceEpoch() > lastUpdate.toMSecsSinceEpoch() + 500) // if 500 Milliseconds have passed by sind last update
-//    {
-//        this->invalidateLog();
-//    }
-//    else
-//    {
-//        this->startInvalidateTimer();
-//    }
+    emit loggerUpdated();
 }
-
-//void Logger::invalidateLog()
-//{
-//    //tbd
-//}
-
-//void Logger::startInvalidateTimer()
-//{
-//    if (!dispatcherActive)
-//    {
-//        // Creates a Timer that invokes the invalidateTimerTick method every 1000 milliseconds
-//        int timerRunTimeInMillis = 1000;
-//        dispatcherTimer = new QTimer(this);
-//        connect(dispatcherTimer, SIGNAL(timeout()), this, SLOT(InvalidateTimerTick()));
-//        dispatcherTimer->start(timerRunTimeInMillis);
-//    }
-//}
-
-//void Logger::InvalidateTimerTick()
-//{
-//    this->invalidateLog();
-//}
 
 void Logger::trim()
 {
     if (logMessages->size() > maxItems) logMessages->removeAt(0);
 }
 
-//QString Logger::getString()
-//{
-//    QString result = "";
-//    foreach (QString message, *logMessages) {
-//        result += " " + message + "\n";
-//    }
-//    return result;
-//}
+QString Logger::getString()
+{
+    QString result = "";
+    foreach (QString message, *logMessages) {
+        result += " " + message + "\n";
+    }
+    return result;
+}
 
-//QString Logger::getLastEntry()
-//{
-//    const int maxLength = 30;
-//    QString entry = lastEntry;
+QString Logger::getLastEntry()
+{
+    const int maxLength = 30;
+    QString entry = lastEntry;
 
-//    while (entry.length() > maxLength)
-//    {
-//        if (entry.contains(" "))
-//        {
-//            entry.truncate(entry.lastIndexOf(" "));
-//        }
-//        else
-//        {
-//            entry.truncate(maxLength - 3);
-//        }
-//        entry.append("...");
-//    }
-//    return entry;
-//}
+    while (entry.length() > maxLength)
+    {
+        if (entry.contains(" "))
+        {
+            entry.truncate(entry.lastIndexOf(" "));
+        }
+        else
+        {
+            entry.truncate(maxLength - 3);
+        }
+        entry.append("...");
+    }
+    return entry;
+}
 
 void Logger::trackLaunchEvent()
 {

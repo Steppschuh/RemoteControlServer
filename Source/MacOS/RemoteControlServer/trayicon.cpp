@@ -11,6 +11,7 @@ TrayIcon::TrayIcon()
     serverIp = new QAction(this);
     serverVersion = new QAction(this);
     serverProtected = new QAction(this);
+    serverProtected->setText("Protected: Yes");
     serverStatus = new QAction(this);
 
     appIp = new QAction(this);
@@ -58,9 +59,9 @@ void TrayIcon::onClick()
 {
     serverIp->setText("IP Address: " + Network::Instance()->getServerIp());
     serverVersion->setText("Version: " + Server::Instance()->getServerVersionName());
-    QString protectedText = "Protected: ";
-    protectedText += (Authentication::Instance()->isProtected()) ? "Yes" : "No";
-    serverProtected->setText(protectedText);
+    bool showProtected = false;
+    showProtected = (Authentication::Instance()->isProtected()) ? true : false;
+    serverProtected->setVisible(false);
     serverStatus->setText("Status: " + Server::Instance()->status);
 
     App *currentApp = Server::Instance()->getCurrentApp();

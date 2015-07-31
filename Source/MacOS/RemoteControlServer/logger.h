@@ -18,9 +18,11 @@ public:
     void add(const QString &message);
     void trackLaunchEvent();
     void trackEvent(const QString &category, const QString &action, const QString &label);
+    QString getLastEntry();
+    QString getString();
 
-//public slots:
-//    void InvalidateTimerTick();
+signals:
+    void loggerUpdated();
 
 private:
     Logger();
@@ -32,17 +34,11 @@ private:
     const int maxItems;
 
     QDateTime lastUpdate;
-//    QTimer *dispatcherTimer;
-//    bool dispatcherActive;
 
     QString lastEntry;
 
-//    void invalidateLog();
-//    void startInvalidateTimer();
 //    void clearLog();
     void trim();
-//    QString getString();
-//    QString getLastEntry();
 //    bool eventTracked(QString result);
 };
 

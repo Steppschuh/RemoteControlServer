@@ -22,9 +22,13 @@ public:
 
     void closeEvent(QCloseEvent *event);
 
+protected:
+    void paintEvent(QPaintEvent *event);
+
 public slots:
     void customClose();
     void customShow();
+    void updateLogMessages();
 
 private:
     Ui::MainWindow *ui;
@@ -33,6 +37,7 @@ private:
     TrayIcon *trayIcon;
 
     void initializeSystemTrayIcon();
+    void setLog(QString message);
 };
 
 #endif // MAINWINDOW_H
