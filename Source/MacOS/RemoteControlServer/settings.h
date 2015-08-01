@@ -6,13 +6,16 @@
 #include <QStringList>
 #include <QTextStream>
 
-class Settings
+class Settings : public QObject
 {
+    Q_OBJECT
+
 public:
     static Settings *Instance();
 
     // General
     bool autoStart;
+    bool startMinimized;
 
     bool showGuide;
 
@@ -37,7 +40,16 @@ public:
 
     void loadSettings();
     void saveSettings();
-    bool setAutostart(bool value);
+
+signals:
+    void settingsLoaded();
+
+public slots:
+    void setAutostart(bool value);
+    void setMinimized(bool value);
+    void setPin(QString value);
+    void setUsePin(bool value);
+    void setUseWhitelist(bool value);
 
 private:
     Settings();
@@ -50,7 +62,6 @@ private:
 //    const float OS_IOS;
 //    const float OS_GENERAL;
 
-//    bool startMinimized;
 //    bool minimizeToTray;
 //    bool showTrayNotifications;
 

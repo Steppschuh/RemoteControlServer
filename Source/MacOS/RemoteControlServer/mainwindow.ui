@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="settingsTab">
        <attribute name="title">
@@ -87,14 +87,14 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="startServerOnLogin">
                  <property name="text">
                   <string>Start server when System starts</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_2">
+                <widget class="QCheckBox" name="startServerMinimized">
                  <property name="text">
                   <string>Start server minimized</string>
                  </property>
@@ -137,7 +137,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QCheckBox" name="checkBox_3">
+                <widget class="QCheckBox" name="enableWhitelist">
                  <property name="text">
                   <string>Enable whitelist</string>
                  </property>
@@ -193,7 +193,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QCheckBox" name="checkBox_4">
+                <widget class="QCheckBox" name="enablePin">
                  <property name="text">
                   <string>Enable pin</string>
                  </property>
@@ -226,14 +226,20 @@
                 </spacer>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QLineEdit" name="lineEdit">
+                <widget class="QLineEdit" name="pinDisplay">
                  <property name="text">
-                  <string/>
+                  <string>1234</string>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
                  </property>
                 </widget>
                </item>
                <item row="2" column="2">
-                <widget class="QCheckBox" name="checkBox_5">
+                <widget class="QCheckBox" name="showPin">
                  <property name="text">
                   <string>show pin</string>
                  </property>
@@ -1177,7 +1183,7 @@ p, li { white-space: pre-wrap; }
 color: rgb(48, 131, 251);</string>
              </property>
              <property name="text">
-              <string>Unkown</string>
+              <string>Unknown</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

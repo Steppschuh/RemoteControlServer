@@ -24,6 +24,7 @@ Settings::Settings() :
 {
     // General
     autoStart = false;
+    startMinimized = true;
 
     showGuide = true;
 
@@ -51,6 +52,7 @@ void Settings::loadSettings()
 {
     Logger::Instance()->add("Loading settings");
     readSettingsFromFile();
+    emit settingsLoaded();
 }
 
 void Settings::saveSettings()
@@ -98,6 +100,7 @@ void Settings::saveSettingsToFile()
 
             // General
             appendSetting("autoStart", Converter::Instance()->boolToString(autoStart), stream);
+            appendSetting("startMinimized", Converter::Instance()->boolToString(startMinimized), stream);
             appendSetting("showGuide", Converter::Instance()->boolToString(showGuide), stream);
             stream << endl;
 
@@ -158,7 +161,11 @@ void Settings::assignSetting(QString &name, QString &value)
     if (name == "autoStart")
     {
         autoStart = Converter::Instance()->stringToBool(value);
-        setAutostart(autoStart);
+//        setAutostart(autoStart);
+    }
+    else if (name == "startMinimized")
+    {
+        startMinimized = Converter::Instance()->stringToBool(value);
     }
     else if (name == "showGuide")
     {
@@ -290,7 +297,27 @@ QString Settings::getConfigPath()
     return getAppDataDirectory() + slash + SETTINGS_PATH;
 }
 
-bool Settings::setAutostart(bool value)
+void Settings::setAutostart(bool value)
 {
-    return false;
+    autoStart = value;
+}
+
+void Settings::setMinimized(bool value)
+{
+    startMinimized = value;
+}
+
+void Settings::setPin(QString value)
+{
+    pin = value;
+}
+
+void Settings::setUsePin(bool value)
+{
+    usePin = value;
+}
+
+void Settings::setUseWhitelist(bool value)
+{
+    useWhitelist = value;
 }

@@ -28,6 +28,8 @@ protected:
 public slots:
     void customClose();
     void customShow();
+    void initUiWithSettings();
+    void setVisibleStateOfPinBox(bool value);
     void updateLogMessages();
 
 private:
@@ -36,6 +38,7 @@ private:
 
     TrayIcon *trayIcon;
 
+    void connectUiToServer();
     void initializeSystemTrayIcon();
     void setLog(QString message);
 };
