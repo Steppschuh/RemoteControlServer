@@ -37,6 +37,8 @@ Settings::Settings() :
     // Mouse
     mouseSensitivity = 1.0;
     mouseAcceleration = 1.0;
+    motionFilter = 1;
+    motionAcceleration = 3;
 
     // Screen
     screenQualityFull = 60;
@@ -113,6 +115,8 @@ void Settings::saveSettingsToFile()
             // Mouse and Pointer
             appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
             appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
+            appendSetting("motionFilter", QString(motionFilter), stream);
+            appendSetting("motionAcceleration", QString(motionAcceleration), stream);
 
             // Screen
             appendSetting("screenQualityFull", QString(screenQualityFull), stream);
@@ -194,6 +198,14 @@ void Settings::assignSetting(QString &name, QString &value)
     else if (name == "mouseAcceleration")
     {
         mouseAcceleration = value.toFloat();
+    }
+    else if (name == "motionFilter")
+    {
+        motionFilter = value.toInt();
+    }
+    else if (name == "motionAcceleration")
+    {
+        motionAcceleration = value.toInt();
     }
 
     // Screen
@@ -305,6 +317,26 @@ void Settings::setAutostart(bool value)
 void Settings::setMinimized(bool value)
 {
     startMinimized = value;
+}
+
+void Settings::setMotionAcceleration(int value)
+{
+    motionAcceleration = value / 10;
+}
+
+void Settings::setMotionFilter(int value)
+{
+    motionFilter = value;
+}
+
+void Settings::setMouseAcceleration(int value)
+{
+    mouseAcceleration = float(value) / 10;
+}
+
+void Settings::setMouseSensitivity(int value)
+{
+    mouseSensitivity = float(value);
 }
 
 void Settings::setPin(QString value)

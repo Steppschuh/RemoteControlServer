@@ -23,7 +23,6 @@ Converter::Converter()
 
 QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)
 {
-    qDebug() << compression;
     QByteArray *bytes = new QByteArray();
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);

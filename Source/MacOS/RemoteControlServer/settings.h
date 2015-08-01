@@ -28,6 +28,8 @@ public:
     // Mouse
     float mouseSensitivity;
     float mouseAcceleration;
+    int motionFilter;
+    int motionAcceleration;
 
     // Screen
     int screenQualityFull;
@@ -47,6 +49,10 @@ signals:
 public slots:
     void setAutostart(bool value);
     void setMinimized(bool value);
+    void setMotionFilter(int value);
+    void setMotionAcceleration(int value);
+    void setMouseAcceleration(int value);
+    void setMouseSensitivity(int value);
     void setPin(QString value);
     void setUsePin(bool value);
     void setUseWhitelist(bool value);

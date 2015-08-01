@@ -34,6 +34,10 @@ void MainWindow::connectUiToServer()
     connect(ui->enablePin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUsePin(bool)));
     connect(ui->showPin, SIGNAL(clicked(bool)), this, SLOT(setVisibleStateOfPinBox(bool)));
     connect(ui->pinDisplay, SIGNAL(textChanged(QString)), Settings::Instance(), SLOT(setPin(QString)));
+    connect(ui->mouseSensitivity, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseSensitivity(int)));
+    connect(ui->mouseAcceleration, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseAcceleration(int)));
+    connect(ui->motionFilter, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMotionFilter(int)));
+    connect(ui->motionAcceleration, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMotionAcceleration(int)));
 }
 
 void MainWindow::initializeSystemTrayIcon()
@@ -90,6 +94,10 @@ void MainWindow::initUiWithSettings()
 {
     ui->enableWhitelist->setChecked(Settings::Instance()->useWhitelist);
     ui->enablePin->setChecked(Settings::Instance()->usePin);
+    ui->motionAcceleration->setValue(Settings::Instance()->motionAcceleration * 10);
+    ui->motionFilter->setValue(Settings::Instance()->motionFilter);
+    ui->mouseAcceleration->setValue(Settings::Instance()->mouseAcceleration * 10);
+    ui->mouseSensitivity->setValue(Settings::Instance()->mouseSensitivity);
     ui->pinDisplay->setText(Settings::Instance()->pin);
     ui->startServerOnLogin->setChecked(Settings::Instance()->autoStart);
     ui->startServerMinimized->setChecked(Settings::Instance()->startMinimized);
