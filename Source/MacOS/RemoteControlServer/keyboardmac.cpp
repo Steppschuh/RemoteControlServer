@@ -44,48 +44,65 @@ void KeyboardMac::sendUnicodeKeyPress(QChar character)
 
 void KeyboardMac::sendKeyDown(CGKeyCode key, UniChar c)
 {
-    if (key == kVK_Shift)
-    {
-        shiftDown = true;
-    }
-    else if (key == kVK_Control)
-    {
-        ctrlDown = true;
-    }
-    else if (key == kVK_Option)
-    {
-        altDown = true;
-    }
+    if (key == kVK_Shift) shiftDown = true;
+    else if (key == kVK_Function) fnDown = true;
+    else if (key == kVK_Control) ctrlDown = true;
+    else if (key == kVK_Option) altDown = true;
+    else if (key == kVK_Command) cmdDown = true;
 
     CGEventSourceRef source = NULL;
-    if (shiftDown || ctrlDown || altDown)
+    if (shiftDown || ctrlDown || altDown || cmdDown)
     {
         source = CGEventSourceCreate(kCGEventSourceStateCombinedSessionState);
     }
 
     CGEventRef command = CGEventCreateKeyboardEvent(source, key, true);
+    CGEventFlags flags;
+    bool flagsAreInitialized = false;
     if (c) CGEventKeyboardSetUnicodeString(command, 1, &c);
-    if (shiftDown) CGEventSetFlags(command, kCGEventFlagMaskShift);
-    if (ctrlDown) CGEventSetFlags(command, kCGEventFlagMaskControl);
-    if (altDown) CGEventSetFlags(command, kCGEventFlagMaskAlternate);
+    if (shiftDown)
+    {
+        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskShift;
+        else flags = kCGEventFlagMaskShift;
+        flagsAreInitialized = true;
+    }
+    if (fnDown)
+    {
+        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskSecondaryFn;
+        else flags = kCGEventFlagMaskSecondaryFn;
+        flagsAreInitialized = true;
+    }
+    if (ctrlDown)
+    {
+        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskControl;
+        else flags = kCGEventFlagMaskControl;
+        flagsAreInitialized = true;
+    }
+    if (altDown)
+    {
+        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskAlternate;
+        else flags = kCGEventFlagMaskAlternate;
+        flagsAreInitialized = true;
+    }
+    if (cmdDown)
+    {
+        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskCommand;
+        else flags = kCGEventFlagMaskCommand;
+        flagsAreInitialized = true;
+    }
+    if (flagsAreInitialized) CGEventSetFlags(command, flags);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
     CFRelease(command);
 }
 
 void KeyboardMac::sendKeyUp(CGKeyCode key, UniChar c)
 {
-    if (key == kVK_Shift)
-    {
-        shiftDown = false;
-    }
-    else if (key == kVK_Control)
-    {
-        ctrlDown = false;
-    }
-    else if (key == kVK_Option)
-    {
-        altDown = false;
-    }
+    if (key == kVK_Shift) shiftDown = false;
+    else if (key == kVK_Function) fnDown = false;
+    else if (key == kVK_Control) ctrlDown = false;
+    else if (key == kVK_Option) altDown = false;
+    else if (key == kVK_Command) cmdDown = false;
+
     CGEventRef command = CGEventCreateKeyboardEvent(NULL, key, false);
     if (c) CGEventKeyboardSetUnicodeString(command, 1, &c);
     CGEventPost(kCGAnnotatedSessionEventTap, command);
@@ -180,6 +197,10 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
         return kVK_Option;
     case KEYCODE_CONTROL:
         return kVK_Control;
+    case KEYCODE_COMMAND:
+        return kVK_Command;
+    case KEYCODE_FUNCTION:
+        return kVK_Function;
     case KEYCODE_SHIFT:
         return kVK_Shift;
     case KEYCODE_DEL_FORWARD:

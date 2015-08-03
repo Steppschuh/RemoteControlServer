@@ -1,7 +1,20 @@
 #include "apiv1.h"
 #include "app.h"
+#ifdef Q_OS_MAC
+    #include "keyboardmac.h"
+
+    #include <Carbon/Carbon.h>
+#endif
 #include "logger.h"
+#include "media.h"
+#include "mousev2.h"
+#include "serial.h"
 #include "server.h"
+#include "settings.h"
+
+#include <QDesktopServices>
+
+#include <QDebug>
 
 ApiV1* ApiV1::instance = NULL;
 
@@ -95,12 +108,12 @@ void ApiV1::parseCommand(Command &command)
     }
     else if (cmd.contains(cmd_process_string))
     {
-        //Process.start(value)
+        Server::Instance()->startProcess(value);
         Logger::Instance()->add("Process: " + value);
     }
     else if (cmd.contains(cmd_google_string))
     {
-        //Process.Start("http://google.com/search?q=" + value)
+        QDesktopServices::openUrl("http://google.com/search?q=" + value);
         Logger::Instance()->add("Google: " + value);
     }
     else if (cmd.contains(cmd_broadcast_string))
@@ -128,7 +141,7 @@ void ApiV1::parseCommand(Command &command)
     else if (cmd.contains(cmd_info_device_osversion))
     {
         app->osVersion = value;
-//        app->detectOs();
+        app->detectOs();
         Logger::Instance()->add("Device OS version set to " + value);
     }
     else if (cmd.contains(cmd_info_app_name))
@@ -136,7 +149,7 @@ void ApiV1::parseCommand(Command &command)
         app->appName = value;
         Logger::Instance()->add("App name set to " + value);
     }
-    else if (cmd.contains(cmd_info_app_version))
+    else if (cmd.contains(cmd_info_app_version) || cmd.contains(cmd_version))
     {
         app->appVersion = value;
         Logger::Instance()->add("App version set to " + value);
@@ -162,27 +175,434 @@ QString ApiV1::getCommandValue(QString cmd)
 
 void ApiV1::parseMouseCommand(QString cmd)
 {
-
+    MouseV2::Instance()->parseMouse(cmd);
 }
 
 void ApiV1::parseKeyboardCommand(QString cmd)
 {
-
+    if (cmd.contains("<") && cmd.contains(">"))
+    {
+        if (cmd.contains("<Enter>"))
+        {
+            readableCommand = "Enter";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_ENTER));
+#endif
+            return;
+        }
+        else if (cmd.contains("<Back>"))
+        {
+            readableCommand = "Back";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_BACK));
+#endif
+            return;
+        }
+        else if (cmd.contains("<tab>"))
+        {
+            readableCommand = "Tab";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_TAB));
+#endif
+            return;
+        }
+        else if (cmd.contains("<caps>"))
+        {
+            readableCommand = "Capslock";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_CAPS_LOCK));
+#endif
+            return;
+        }
+        else if (cmd.contains("<ctrl>"))
+        {
+            readableCommand = "Control";
+            if (cmd.contains("down"))
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_CONTROL));
+#endif
+            }
+            else
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_CONTROL));
+#endif
+            }
+            return;
+        }
+        else if (cmd.contains("<alt>"))
+        {
+            readableCommand = "Alt";
+            if (cmd.contains("down"))
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_ALT));
+#endif
+            }
+            else
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_ALT));
+#endif
+            }
+            return;
+        }
+        else if (cmd.contains("<shift>"))
+        {
+            readableCommand = "Shift";
+            if (cmd.contains("down"))
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+#endif
+            }
+            else
+            {
+#ifdef Q_OS_MAC
+                KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+#endif
+            }
+            return;
+        }
+        else if (cmd.contains("<del>"))
+        {
+            readableCommand = "Delete";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_DEL));
+#endif
+            return;
+        }
+        else if (cmd.contains("<win>"))
+        {
+            readableCommand = "Windows";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_WINDOWS));
+#endif
+            return;
+        }
+        else if (cmd.contains("<esc>"))
+        {
+            readableCommand = "Escape";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_ESCAPE));
+#endif
+            return;
+        }
+        else if (cmd.contains("<end>"))
+        {
+            readableCommand = "End";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_MOVE_END));
+#endif
+            return;
+        }
+        else if (cmd.contains("<ins>"))
+        {
+            readableCommand = "Insert";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_INSERT));
+#endif
+            return;
+        }
+        else if (cmd.contains("<up>"))
+        {
+            readableCommand = "Up";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_UP));
+#endif
+            return;
+        }
+        else if (cmd.contains("<down>"))
+        {
+            readableCommand = "Down";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_DOWN));
+#endif
+            return;
+        }
+        else if (cmd.contains("<left>"))
+        {
+            readableCommand = "Left";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_LEFT));
+#endif
+            return;
+        }
+        else if (cmd.contains("<right>"))
+        {
+            readableCommand = "Right";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_RIGHT));
+#endif
+            return;
+        }
+        else if (cmd.contains("<space>"))
+        {
+            readableCommand = "Space";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SPACE));
+#endif
+            return;
+        }
+        else
+        {
+            if (Settings::Instance()->serialCommands)
+            {
+                readableCommand = getCommandValue(cmd);
+                Command *command = new Command();
+                if (readableCommand.contains("<0>"))
+                {
+                    command->data->append(char(0));
+                }
+                else if (readableCommand.contains("<1>"))
+                {
+                    command->data->append(1);
+                }
+                else if (readableCommand.contains("<2>"))
+                {
+                    command->data->append(2);
+                }
+                else
+                {
+                    command->data->append(char(0));
+                }
+                Serial::Instance()->sendCommand(*command);
+            }
+            return;
+        }
+    }
+    else
+    {
+        readableCommand  = getCommandValue(cmd);
+        if (readableCommand.toLower().contains("execute") && Settings::Instance()->serialCommands)
+        {
+            Command *command  = new Command();
+            if (readableCommand.contains("10"))
+            {
+                command->data->append(char(0));
+            }
+            else if (readableCommand.contains("11"))
+            {
+                command->data->append(1);
+            }
+            else if (readableCommand.contains("12"))
+            {
+                command->data->append(2);
+            }
+            else
+            {
+                command->data->append(char(0));
+            }
+            Serial::Instance()->sendCommand(*command);
+        }
+        else if (readableCommand == " ")
+        {
+            readableCommand = "Space";
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SPACE));
+#endif
+        }
+        else
+        {
+#ifdef Q_OS_MAC
+            KeyboardMac::Instance()->sendEachKey(readableCommand);
+#endif
+        }
+    }
 }
 
 void ApiV1::parseMediaCommand(QString cmd)
 {
-
+    QString value = getCommandValue(cmd);
+    if (value == "play")
+    {
+        readableCommand = "Play";
+        Media::Instance()->playMedia();
+    }
+    else if (value == "stop")
+    {
+        readableCommand = "Stop";
+        Media::Instance()->stopMedia();
+    }
+    else if (value == "next")
+    {
+        readableCommand = "Next";
+        Media::Instance()->nextMedia();
+    }
+    else if (value == "prev")
+    {
+        readableCommand = "Previous";
+        Media::Instance()->previousMedia();
+    }
+    else if (value == "volup")
+    {
+        readableCommand = "Volume up";
+        Media::Instance()->volumeUp();
+    }
+    else if (value == "voldown")
+    {
+        readableCommand = "Volume down";
+        Media::Instance()->volumeDown();
+    }
+    else if (value == "mute")
+    {
+        readableCommand = "Mute";
+        Media::Instance()->volumeMute();
+    }
+    else if (value == "launch")
+    {
+        readableCommand = "Launch player";
+        Media::Instance()->launchPlayer();
+    }
 }
 
 void ApiV1::parseScrollCommand(QString cmd)
 {
+    QString value = getCommandValue(cmd);
+    if (value == "zoomin")
+    {
+        readableCommand = "Zoom in";
+        MouseV2::Instance()->zoom(1,1);
+    }
+    else if (value == "zoomout")
+    {
+        readableCommand = "Zoom out";
+        MouseV2::Instance()->zoom(-1,1);
+    }
+    else if (value == "back")
+    {
+        readableCommand = "Back";
+        MouseV2::Instance()->mouseScrollHorizontal(-1, 1);
+    }
+    else if (value == "forward")
+    {
+        readableCommand = "Forward";
+        MouseV2::Instance()->mouseScrollHorizontal(1, 1);
+    }
+    else if (value == "pageup")
+    {
+        readableCommand = "Page up";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_PAGE_UP));
+#endif
+    }
+    else if (value == "pagedown")
+    {
+        readableCommand = "Page down";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_PAGE_DOWN));
+#endif
+    }
+    else if (value == "cancel")
+    {
+        readableCommand = "Cancel";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Period);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "refresh")
+    {
+        qDebug() << "refresh";
+        readableCommand = "Refresh";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_R);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "fullexit")
+    {
+        readableCommand = "Exit fullscreen";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_F);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+#endif
+    }
+    else if (value == "fullscreen")
+    {
+        readableCommand = "Fullscreen";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_F);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+#endif
+    }
 
 }
 
 void ApiV1::parseShortcutCommand(QString cmd)
 {
-
+    QString value = getCommandValue(cmd);
+    if (value == "desktop")
+    {
+        readableCommand = "Show desktop";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_FUNCTION));
+        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_F11));
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_FUNCTION));
+#endif
+    }
+    else if (value == "close")
+    {
+        readableCommand = "Close";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Q);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "copy")
+    {
+        readableCommand = "Copy";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_C);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "paste")
+    {
+        readableCommand = "Paste";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_V);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "selectall")
+    {
+        readableCommand = "Select all";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_A);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "undo")
+    {
+        readableCommand = "Undo";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Z);
+        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+#endif
+    }
+    else if (value == "standby")
+    {
+        readableCommand = "Standby";
+    }
+    else if (value == "shutdown")
+    {
+        readableCommand = "Shutdown";
+    }
 }
 
 void ApiV1::parseSlideshowCommand(QString cmd)

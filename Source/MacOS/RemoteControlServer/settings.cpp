@@ -41,13 +41,27 @@ Settings::Settings() :
     motionAcceleration = 3;
 
     // Screen
+    screenQuality = 40;
     screenQualityFull = 60;
+    screenScale = 0.5;
+    screenScaleFull = 1.0;
     screenBlackWhite = false;
 
-    // Misc
-    serialCommands = false;
+    // Slideshow
+    clickOnLaserUp = false;
+    pointerDesign = 0;
+    cropBlackBorder = true;
 
+    // Media
+    defaultMediaPlayer = "";
+
+    // Custom
     customActions = new QStringList();
+
+    // Misc
+    serialPortName = "auto";
+    serialCommands = false;
+    updateAmbientColor = false;
 }
 
 void Settings::loadSettings()
@@ -119,11 +133,24 @@ void Settings::saveSettingsToFile()
             appendSetting("motionAcceleration", QString(motionAcceleration), stream);
 
             // Screen
+            appendSetting("screenQuality", QString(screenQuality), stream);
             appendSetting("screenQualityFull", QString(screenQualityFull), stream);
+            appendSetting("screenScale", QString::number(screenScale, 'f', 2), stream);
+            appendSetting("screenScaleFull", QString::number(screenScaleFull, 'f', 2), stream);
             appendSetting("screenBlackWhite", Converter::Instance()->boolToString(screenBlackWhite), stream);
 
+            // Slideshow
+            appendSetting("clickOnLaserUp", Converter::Instance()->boolToString(clickOnLaserUp), stream);
+            appendSetting("pointerDesign", QString(pointerDesign), stream);
+            appendSetting("cropBlackBoder", Converter::Instance()->boolToString(cropBlackBorder), stream);
+
+            // Media
+            appendSetting("defaultMediaPlayer", defaultMediaPlayer, stream);
+
             // Misc
+            appendSetting("serialPortName", serialPortName, stream);
             appendSetting("serialCommands", Converter::Instance()->boolToString(serialCommands), stream);
+            appendSetting("updateAmbientColor", Converter::Instance()->boolToString(updateAmbientColor), stream);
 
             stream << "  <customActions>" << endl;
             for (int i = 0; i < customActions->length(); ++i)
@@ -209,20 +236,61 @@ void Settings::assignSetting(QString &name, QString &value)
     }
 
     // Screen
+    else if (name == "screenQuality")
+    {
+        screenQuality = value.toInt();
+    }
     else if (name == "screenQualityFull")
     {
         screenQualityFull = value.toInt();
+    }
+    else if (name == "screenScale")
+    {
+        screenScale = value.toFloat();
+    }
+    else if (name == "screenScaleFull")
+    {
+        screenScaleFull = value.toFloat();
     }
     else if (name == "screenBlackWhite")
     {
         screenBlackWhite = Converter::Instance()->stringToBool(value);
     }
 
+    // Slideshow
+    else if (name == "clickOnLaserUp")
+    {
+        clickOnLaserUp = Converter::Instance()->stringToBool(value);
+    }
+    else if (name == "pointerDesign")
+    {
+        pointerDesign = value.toInt();
+    }
+    else if (name == "cropBlackBorder")
+    {
+        cropBlackBorder = Converter::Instance()->stringToBool(value);
+    }
+
+    // Media
+    else if (name == "defaultMediaPlayer")
+    {
+        defaultMediaPlayer = value;
+    }
+
     // Misc
+    else if (name == "serialPortName")
+    {
+        serialPortName = value;
+    }
     else if (name == "serialCommands")
     {
         serialCommands = Converter::Instance()->stringToBool(value);
     }
+    else if (name == "updateAmbientColor")
+    {
+        updateAmbientColor = Converter::Instance()->stringToBool(value);
+    }
+
     else
     {
         Logger::Instance()->add("Unknown config entry: " + name);
@@ -314,6 +382,21 @@ void Settings::setAutostart(bool value)
     autoStart = value;
 }
 
+void Settings::setClickOnLaserUp(bool value)
+{
+    clickOnLaserUp = value;
+}
+
+void Settings::setCropBlackBorder(bool value)
+{
+    cropBlackBorder = value;
+}
+
+void Settings::setDefaultMediaPlayer(QString value)
+{
+    defaultMediaPlayer = value;
+}
+
 void Settings::setMinimized(bool value)
 {
     startMinimized = value;
@@ -342,6 +425,51 @@ void Settings::setMouseSensitivity(int value)
 void Settings::setPin(QString value)
 {
     pin = value;
+}
+
+void Settings::setPointerDesign(int value)
+{
+    pointerDesign = value;
+}
+
+void Settings::setScreenBlackWhite(bool value)
+{
+    screenBlackWhite = value;
+}
+
+void Settings::setScreenFullQuality(int value)
+{
+    screenQualityFull = value;
+}
+
+void Settings::setScreenFullScale(int value)
+{
+    screenScaleFull = (float) value  / 100;
+}
+
+void Settings::setScreenQuality(int value)
+{
+    screenQuality = value;
+}
+
+void Settings::setScreenScale(int value)
+{
+    screenScale = (float) value / 100;
+}
+
+void Settings::setSerialPortName(QString value)
+{
+    serialPortName = value;
+}
+
+void Settings::setSerialCommands(bool value)
+{
+    serialCommands = value;
+}
+
+void Settings::setUpdateAmbientColor(bool value)
+{
+    updateAmbientColor = value;
 }
 
 void Settings::setUsePin(bool value)

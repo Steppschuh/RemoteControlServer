@@ -5,6 +5,7 @@
 #include "settings.h"
 #include "tcp.h"
 
+#include <QProcess>
 #include <QSysInfo>
 
 #include <QDebug>
@@ -87,5 +88,11 @@ QString Server::getServerName(){
     name = getenv("USER");
 #endif
     return name;
+}
+
+void Server::startProcess(QString path)
+{
+    QProcess *process = new QProcess();
+    process->startDetached(path);
 }
 

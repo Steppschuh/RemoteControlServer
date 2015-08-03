@@ -1,15 +1,12 @@
 #ifndef MEDIA_H
 #define MEDIA_H
 
+#include <QString>
 
 class Media
 {
 public:
-    Media *Instance();
-
-private:
-    Media();
-    Media *instance;
+    static Media *Instance();
 
     void playMedia();
     void stopMedia();
@@ -18,8 +15,15 @@ private:
     void volumeUp();
     void volumeDown();
     void volumeMute();
+    void launchPlayer();
+    QString getDefaultMediaPlayerPath();
+
+private:
+    Media();
+    static Media *instance;
+
+
 //    void launchPlayer();
-//    QString getDefaultMediaPlayerPath(); //Really necessary on mac???
 };
 
 #endif // MEDIA_H

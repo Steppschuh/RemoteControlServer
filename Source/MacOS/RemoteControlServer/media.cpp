@@ -5,6 +5,17 @@
     #include "macx.h"
 #endif
 
+Media* Media::instance = NULL;
+
+Media* Media::Instance()
+{
+    if (!instance)
+    {
+        instance = new Media();
+    }
+    return instance;
+}
+
 Media::Media()
 {
 
@@ -57,4 +68,15 @@ void Media::volumeMute()
 #ifdef Q_OS_MAC
     HIDPostAuxKey (NX_KEYTYPE_MUTE);
 #endif
+}
+
+void Media::launchPlayer()
+{
+
+}
+
+QString Media::getDefaultMediaPlayerPath()
+{
+    // todo
+    return "";
 }

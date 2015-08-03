@@ -26,6 +26,7 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 public slots:
+    void copyLogTextToClipboard();
     void customClose();
     void customShow();
     void initUiWithSettings();

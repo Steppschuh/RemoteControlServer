@@ -32,13 +32,27 @@ public:
     int motionAcceleration;
 
     // Screen
+    int screenQuality;
     int screenQualityFull;
+    float screenScale;
+    float screenScaleFull;
     bool screenBlackWhite;
 
-    // Misc
-    bool serialCommands;
+    // Slideshow
+    bool clickOnLaserUp;
+    int pointerDesign;
+    bool cropBlackBorder;
 
+    // Media
+    QString defaultMediaPlayer;
+
+    // Custom
     QStringList *customActions;
+
+    // Misc
+    QString serialPortName;
+    bool serialCommands;
+    bool updateAmbientColor;
 
     void loadSettings();
     void saveSettings();
@@ -48,12 +62,24 @@ signals:
 
 public slots:
     void setAutostart(bool value);
+    void setClickOnLaserUp(bool value);
+    void setCropBlackBorder(bool value);
+    void setDefaultMediaPlayer(QString value);
     void setMinimized(bool value);
     void setMotionFilter(int value);
     void setMotionAcceleration(int value);
     void setMouseAcceleration(int value);
     void setMouseSensitivity(int value);
     void setPin(QString value);
+    void setPointerDesign(int value);
+    void setScreenBlackWhite(bool value);
+    void setScreenFullQuality(int value);
+    void setScreenFullScale(int value);
+    void setScreenQuality(int value);
+    void setScreenScale(int value);
+    void setSerialPortName(QString value);
+    void setSerialCommands(bool value);
+    void setUpdateAmbientColor(bool value);
     void setUsePin(bool value);
     void setUseWhitelist(bool value);
 
@@ -74,10 +100,6 @@ private:
 //    bool showGuide;
 //    char backDesign;
 //    char lastBackDesign;
-
-//    bool useWhiteList;
-//    bool usePin;
-//    QString pin;
 
     void readSettingsFromFile();
     void saveSettingsToFile();

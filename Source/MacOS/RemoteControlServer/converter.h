@@ -23,6 +23,8 @@ public:
 private:
     Converter();
     static Converter *instance;
+
+    const int maxSizeForBitmaps;
 };
 
 #endif // CONVERTER_H

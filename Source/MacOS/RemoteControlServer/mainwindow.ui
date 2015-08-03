@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="settingsTab">
        <attribute name="title">
@@ -46,7 +46,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>7</number>
           </property>
           <widget class="QWidget" name="generalTab">
            <attribute name="title">
@@ -453,9 +453,15 @@
                 </widget>
                </item>
                <item row="1" column="1" colspan="2">
-                <widget class="QSlider" name="horizontalSlider_5">
+                <widget class="QSlider" name="screenNormalQuality">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
                  <property name="value">
-                  <number>0</number>
+                  <number>30</number>
                  </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -493,7 +499,16 @@
                 </widget>
                </item>
                <item row="3" column="1" colspan="2">
-                <widget class="QSlider" name="horizontalSlider_6">
+                <widget class="QSlider" name="screenNormalScale">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="value">
+                  <number>60</number>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -540,7 +555,16 @@
                 </widget>
                </item>
                <item row="1" column="1" colspan="2">
-                <widget class="QSlider" name="horizontalSlider_9">
+                <widget class="QSlider" name="screenFullQuality">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="value">
+                  <number>50</number>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -564,7 +588,16 @@
                 </widget>
                </item>
                <item row="3" column="1" colspan="2">
-                <widget class="QSlider" name="horizontalSlider_10">
+                <widget class="QSlider" name="screenFullScale">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>80</number>
+                 </property>
+                 <property name="value">
+                  <number>5</number>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -598,7 +631,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QCheckBox" name="checkBox_6">
+             <widget class="QCheckBox" name="screenGrayscale">
               <property name="text">
                <string>Convert to grayscale</string>
               </property>
@@ -653,22 +686,11 @@
                <string>Laser pointer</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
-               <item row="0" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkBox_7">
-                 <property name="text">
-                  <string>Click when released</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="checkBox_9">
-                 <property name="text">
-                  <string>Set pointer to</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
-                <widget class="QComboBox" name="comboBox">
+                <widget class="QComboBox" name="slideShowSelectPointer">
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
                  <item>
                   <property name="text">
                    <string>White circle</string>
@@ -676,19 +698,29 @@
                  </item>
                 </widget>
                </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="label_30">
+               <item row="0" column="0" colspan="2">
+                <widget class="QCheckBox" name="slideShowClickWhenReleased">
                  <property name="text">
-                  <string>[Image]</string>
+                  <string>Click when released</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="slideShowSetPointerTo">
+                 <property name="text">
+                  <string>Set pointer to</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkBox_8">
+                <widget class="QCheckBox" name="slideShowCropBlackBorder">
                  <property name="text">
                   <string>Crop black border</string>
                  </property>
                 </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QGraphicsView" name="graphicsView"/>
                </item>
               </layout>
              </widget>
@@ -720,7 +752,11 @@
               </property>
               <layout class="QGridLayout" name="gridLayout">
                <item row="1" column="0">
-                <widget class="QLineEdit" name="lineEdit_2"/>
+                <widget class="QLineEdit" name="defaultMediaPlayer">
+                 <property name="readOnly">
+                  <bool>false</bool>
+                 </property>
+                </widget>
                </item>
                <item row="0" column="0" colspan="2">
                 <widget class="QLabel" name="label_16">
@@ -730,7 +766,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="browseMediaPlayer">
                  <property name="text">
                   <string>Browse</string>
                  </property>
@@ -765,12 +801,38 @@
                <string>Custom actions</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
+               <item row="1" column="1">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>393</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
                <item row="1" column="0">
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="manageCustomActions">
                  <property name="text">
                   <string>Manage custom actions</string>
                  </property>
                 </widget>
+               </item>
+               <item row="2" column="0">
+                <spacer name="verticalSpacer_11">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item row="0" column="0" colspan="2">
                 <widget class="QTextBrowser" name="textBrowser">
@@ -791,19 +853,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can set the actions for custom key events here. Supported values are paths to files or webpages.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
-               </item>
-               <item row="1" column="1">
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>393</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </widget>
@@ -835,28 +884,21 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QGridLayout" name="gridLayout_18">
                <item row="0" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkBox_10">
+                <widget class="QCheckBox" name="enableSerialCommands">
                  <property name="text">
                   <string>Enable serial port commands</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="2">
-                <widget class="QPushButton" name="pushButton_10">
+                <widget class="QPushButton" name="ReopenPortButton">
                  <property name="text">
                   <string>Re-open port</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="checkBox_11">
-                 <property name="text">
-                  <string>Select port name</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEdit_3">
+                <widget class="QLineEdit" name="serialPortNameText">
                  <property name="text">
                   <string>COM3</string>
                  </property>
@@ -875,6 +917,13 @@ p, li { white-space: pre-wrap; }
                  </property>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_30">
+                 <property name="text">
+                  <string>Select port name</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -885,21 +934,21 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
                <item row="0" column="0">
-                <widget class="QCheckBox" name="checkBox_12">
+                <widget class="QCheckBox" name="updateAmbientColor">
                  <property name="text">
                   <string>Update ambient color</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QPushButton" name="pushButton_11">
+                <widget class="QPushButton" name="LEDonButton">
                  <property name="text">
                   <string>Turn LED on</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_12">
+                <widget class="QPushButton" name="LEDoffButton">
                  <property name="text">
                   <string>Turn LED off</string>
                  </property>
@@ -916,7 +965,7 @@ p, li { white-space: pre-wrap; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>190</height>
+                <height>40</height>
                </size>
               </property>
              </spacer>
@@ -1234,7 +1283,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_15">
+            <widget class="QLabel" name="serverIpLabel">
              <property name="styleSheet">
               <string notr="true">font: 40pt &quot;.Helvetica Neue DeskInterface&quot;;
 color: rgb(48, 131, 251);</string>
@@ -1327,7 +1376,7 @@ p, li { white-space: pre-wrap; }
        <attribute name="title">
         <string>Log</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <widget class="QTextBrowser" name="logTextView">
           <property name="html">
@@ -1336,6 +1385,13 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="logCopyToClipboard">
+          <property name="text">
+           <string>Copy to Clipboard</string>
           </property>
          </widget>
         </item>

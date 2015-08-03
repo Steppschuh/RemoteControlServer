@@ -25,6 +25,8 @@ public:
         KEYCODE_ESCAPE = 111,
         KEYCODE_DEL_FORWARD = 112,
         KEYCODE_CONTROL = 113,
+        KEYCODE_COMMAND = 114,
+        KEYCODE_FUNCTION = 110,
         KEYCODE_INSERT = 124,
         KEYCODE_MOVE_END = 123,
         KEYCODE_MOVE_HOME = 122,
@@ -84,11 +86,13 @@ private:
     KeyboardMac();
 
     bool shiftDown;
+    bool fnDown;
     bool ctrlDown;
     bool altDown;
+    bool cmdDown;
 
-    void sendUnicodeKeyPress(QChar character);
     CFStringRef createStringForKey(CGKeyCode keyCode);
+    void sendUnicodeKeyPress(QChar character);
     void sendShortcut(CGKeyCode keyCode, CGEventFlags flags);
 };
 

@@ -31,6 +31,8 @@ public:
     void onResume();
     void onBroadCast(Command &command);
 
+    void detectOs();
+
 private:
 //    char detectedOs;
 

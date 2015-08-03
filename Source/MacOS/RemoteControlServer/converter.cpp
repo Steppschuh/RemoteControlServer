@@ -17,7 +17,8 @@ Converter* Converter::Instance()
     return instance;
 }
 
-Converter::Converter()
+Converter::Converter() :
+    maxSizeForBitmaps(100000)
 {
 }
 
@@ -27,6 +28,7 @@ QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
     bitmap.save(&buffer, "JPG", compression);
+    qDebug() << bytes->length();
     return bytes;
 }
 

@@ -107,3 +107,8 @@ void App::requestPin(Command &command)
         ApiV3::Instance()->requestPin(*this);
     }
 }
+
+void App::detectOs()
+{
+
+}

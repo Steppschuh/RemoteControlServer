@@ -22,10 +22,12 @@ private:
     const QString cmd_info_app_name;
     const QString cmd_info_app_version;
     const QString cmd_info_app_mode;
+
     const QString cmd_connect;
     const QString cmd_disconnect;
     const QString cmd_lizens;
     const QString cmd_version;
+
     const QString cmd_mouse_string;
     const QString cmd_keyboard_string;
     const QString cmd_media_string;

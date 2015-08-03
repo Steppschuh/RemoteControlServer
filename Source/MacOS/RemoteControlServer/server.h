@@ -23,6 +23,7 @@ public:
     QString getServerOs();
     QString getServerVersionName();
     App *getCurrentApp();
+    void startProcess(QString path);
 
 private:
     Server();
