@@ -71,15 +71,21 @@ public:
         KEYCODE_ZOOM_OUT = 207,
         KEYCODE_CLOSE = 208,
         KEYCODE_SHUTDOWN = 209,
-        KEYCODE_STANDBY = 210
+        KEYCODE_STANDBY = 210,
+        KEYCODE_CANCEL = 211,
+        KEYCODE_REFRESH = 212,
+        KEYCODE_FULLSCREEN = 213,
+        KEYCODE_UNDO = 214
     };
 
     void sendKeyPress(CGKeyCode key);
     void sendKeyDown(CGKeyCode key, UniChar c = NULL);
     void sendKeyUp(CGKeyCode key, UniChar c = NULL);
     void sendEachKey(QString message);
-    void keycodeToShortcut(int keyCode);
+    void sendShortcut(int keyCode);
     CGKeyCode keycodeToKey(int keyCode);
+    void standby();
+    void shutdown();
 
 private:
     static KeyboardMac* instance;
@@ -93,7 +99,6 @@ private:
 
     CFStringRef createStringForKey(CGKeyCode keyCode);
     void sendUnicodeKeyPress(QChar character);
-    void sendShortcut(CGKeyCode keyCode, CGEventFlags flags);
 };
 
 #endif // KEYBOARDMAC_H

@@ -498,41 +498,28 @@ void ApiV1::parseScrollCommand(QString cmd)
     {
         readableCommand = "Cancel";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Period);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_CANCEL);
 #endif
     }
     else if (value == "refresh")
     {
-        qDebug() << "refresh";
         readableCommand = "Refresh";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_R);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_REFRESH);
 #endif
     }
     else if (value == "fullexit")
     {
         readableCommand = "Exit fullscreen";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_F);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_FULLSCREEN);
 #endif
     }
     else if (value == "fullscreen")
     {
         readableCommand = "Fullscreen";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_F);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_SHIFT));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_FULLSCREEN);
 #endif
     }
 
@@ -545,67 +532,82 @@ void ApiV1::parseShortcutCommand(QString cmd)
     {
         readableCommand = "Show desktop";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_FUNCTION));
-        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_F11));
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_FUNCTION));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_SHOW_DESKTOP);
 #endif
     }
     else if (value == "close")
     {
         readableCommand = "Close";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Q);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_CLOSE);
 #endif
     }
     else if (value == "copy")
     {
         readableCommand = "Copy";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_C);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_COPY);
 #endif
     }
     else if (value == "paste")
     {
         readableCommand = "Paste";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_V);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_PASTE);
 #endif
     }
     else if (value == "selectall")
     {
         readableCommand = "Select all";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_A);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_SELECT_ALL);
 #endif
     }
     else if (value == "undo")
     {
         readableCommand = "Undo";
 #ifdef Q_OS_MAC
-        KeyboardMac::Instance()->sendKeyDown(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
-        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_Z);
-        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_COMMAND));
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_UNDO);
 #endif
     }
     else if (value == "standby")
     {
         readableCommand = "Standby";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->standby();
+#endif
     }
     else if (value == "shutdown")
     {
         readableCommand = "Shutdown";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->shutdown();
+#endif
     }
 }
 
 void ApiV1::parseSlideshowCommand(QString cmd)
 {
-
+    QString value = getCommandValue(cmd);
+    if (value == "pause")
+    {
+        readableCommand = "Pause slideshow";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyPress(kVK_ANSI_B);
+#endif
+    }
+    else if (value == "next")
+    {
+        readableCommand = "Next slide";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_RIGHT));
+#endif
+    }
+    else if (value == "prev")
+    {
+        readableCommand = "Previous slide";
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendKeyPress(KeyboardMac::Instance()->keycodeToKey(KeyboardMac::KEYCODE_LEFT));
+#endif
+    }
 }

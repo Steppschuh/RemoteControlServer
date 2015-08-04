@@ -118,37 +118,62 @@ void KeyboardMac::sendEachKey(QString message)
     }
 }
 
-void KeyboardMac::sendShortcut(CGKeyCode keyCode, CGEventFlags flags)
-{
-    CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateCombinedSessionState);
-    CGEventRef commandDown = CGEventCreateKeyboardEvent(source, keyCode, true);
-    CGEventSetFlags(commandDown, flags);
-    CGEventRef commandUp = CGEventCreateKeyboardEvent(source, keyCode, false);
-
-    CGEventPost(kCGAnnotatedSessionEventTap, commandDown);
-    CGEventPost(kCGAnnotatedSessionEventTap, commandUp);
-
-    CFRelease(commandUp);
-    CFRelease(commandDown);
-    CFRelease(source);
-}
-
-void KeyboardMac::keycodeToShortcut(int keyCode)
+void KeyboardMac::sendShortcut(int keyCode)
 {
     // todo
     switch (keyCode)
     {
     case KEYCODE_COPY:
-        sendShortcut(kVK_ANSI_C, kCGEventFlagMaskCommand);
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_C);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_PASTE:
-        sendShortcut(kVK_ANSI_V, kCGEventFlagMaskCommand);
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_V);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_SELECT_ALL:
-        sendShortcut(kVK_ANSI_A, kCGEventFlagMaskCommand);
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_A);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_CUT:
-        sendShortcut(kVK_ANSI_X, kCGEventFlagMaskCommand);
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_X);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
+    case KEYCODE_SHOW_DESKTOP:
+        sendKeyDown(keycodeToKey(KEYCODE_FUNCTION));
+        sendKeyPress(keycodeToKey(KEYCODE_F11));
+        sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
+        break;
+    case KEYCODE_CLOSE:
+        sendKeyDown(keycodeToKey(KEYCODE_FUNCTION));
+        sendKeyPress(kVK_ANSI_Q);
+        sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
+        break;
+    case KEYCODE_CANCEL:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_Period);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
+    case KEYCODE_REFRESH:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_R);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
+    case KEYCODE_FULLSCREEN:
+        sendKeyDown(keycodeToKey(KEYCODE_SHIFT));
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_F);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyUp(keycodeToKey(KEYCODE_SHIFT));
+        break;
+    case KEYCODE_UNDO:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_Z);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     default:
         Logger::Instance()->add("Unkown keyboard command");
@@ -237,6 +262,16 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     default:
         return -1;
     }
+}
+
+void KeyboardMac::standby()
+{
+    // todo
+}
+
+void KeyboardMac::shutdown()
+{
+    // todo
 }
 
 
