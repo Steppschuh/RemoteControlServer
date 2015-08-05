@@ -19,7 +19,7 @@ MouseV3* MouseV3::Instance()
 {
     if (!instance)
     {
-        instance = new MouseV3Mac();
+        instance = new MouseV3();
     }
     return instance;
 }

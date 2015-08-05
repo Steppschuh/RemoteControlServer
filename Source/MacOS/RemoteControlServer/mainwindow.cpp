@@ -175,6 +175,11 @@ void MainWindow::setVisibleStateOfPinBox(bool value)
     else        ui->pinDisplay->setEchoMode(QLineEdit::Password);
 }
 
+void MainWindow::showNotification(QString title, QString text)
+{
+    // todo
+}
+
 void MainWindow::updateLogMessages()
 {
     ui->logTextView->setText(Logger::Instance()->getString());

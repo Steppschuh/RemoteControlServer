@@ -96,3 +96,8 @@ void Server::startProcess(QString path)
     process->startDetached(path);
 }
 
+void Server::showNotification(QString title, QString text)
+{
+
+}
+

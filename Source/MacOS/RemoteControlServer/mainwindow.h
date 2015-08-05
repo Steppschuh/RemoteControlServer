@@ -31,6 +31,7 @@ public slots:
     void customShow();
     void initUiWithSettings();
     void setVisibleStateOfPinBox(bool value);
+    void showNotification(QString title, QString text);
     void updateLogMessages();
 
 private:

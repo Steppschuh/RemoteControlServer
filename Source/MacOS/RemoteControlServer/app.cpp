@@ -3,6 +3,7 @@
 #include "app.h"
 #include "authentication.h"
 #include "logger.h"
+#include "server.h"
 #include "settings.h"
 
 #include <QDebug>
@@ -28,7 +29,7 @@ void App::onConnect()
 {
     isConnected = true;
     Logger::Instance()->add(deviceName + " connected");
-    // Server.gui.showNotification
+    Server::Instance()->showNotification("App connected", deviceName + " has connected to the Remote Control Server");
     QString label = (appName == "Unknown" || appVersion == "Unknown")
             ? deviceName : appName + " " + appVersion + " on a " + deviceName;
     Logger::Instance()->trackEvent("App", "Connect", label);
@@ -68,7 +69,7 @@ void App::onBroadCast(Command &command)
     {
         Logger::Instance()->add("Connection blocked");
         refuseBroadCast(command);
-        //Server.gui.showNotification("Connection blocked", "A connection attempt from " & ip & " has been blocked.")
+        Server::Instance()->showNotification("Connection blocked", "A connection attempt from " + ip + " has been blocked.");
     }
 }
 
@@ -106,9 +107,4 @@ void App::requestPin(Command &command)
     default:
         ApiV3::Instance()->requestPin(*this);
     }
-}
-
-void App::detectOs()
-{
-
 }

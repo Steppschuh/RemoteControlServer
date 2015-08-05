@@ -24,6 +24,7 @@ public:
     QString getServerVersionName();
     App *getCurrentApp();
     void startProcess(QString path);
+    void showNotification(QString title, QString text);
 
 private:
     Server();

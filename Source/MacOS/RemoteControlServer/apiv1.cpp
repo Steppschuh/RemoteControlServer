@@ -141,7 +141,6 @@ void ApiV1::parseCommand(Command &command)
     else if (cmd.contains(cmd_info_device_osversion))
     {
         app->osVersion = value;
-        app->detectOs();
         Logger::Instance()->add("Device OS version set to " + value);
     }
     else if (cmd.contains(cmd_info_app_name))
