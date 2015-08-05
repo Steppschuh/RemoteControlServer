@@ -21,9 +21,6 @@ public:
 private:
     Media();
     static Media *instance;
-
-
-//    void launchPlayer();
 };
 
 #endif // MEDIA_H

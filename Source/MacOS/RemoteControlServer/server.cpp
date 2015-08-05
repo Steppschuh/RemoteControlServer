@@ -5,6 +5,7 @@
 #include "settings.h"
 #include "tcp.h"
 
+#include <QDesktopServices>
 #include <QProcess>
 #include <QSysInfo>
 
@@ -92,8 +93,8 @@ QString Server::getServerName(){
 
 void Server::startProcess(QString path)
 {
-    QProcess *process = new QProcess();
-    process->startDetached(path);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+    // todo: weblinks
 }
 
 void Server::showNotification(QString title, QString text)

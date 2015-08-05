@@ -1,9 +1,16 @@
 #include "media.h"
+#include "server.h"
+#include "settings.h"
+
+#include <QFileInfo>
+
 #ifdef Q_OS_MAC
     #include <ApplicationServices/ApplicationServices.h>
     #include <IOKit/hidsystem/ev_keymap.h>
     #include "macx.h"
 #endif
+
+#include <QDebug>
 
 Media* Media::instance = NULL;
 
@@ -72,11 +79,31 @@ void Media::volumeMute()
 
 void Media::launchPlayer()
 {
-
+    QString path = Settings::Instance()->defaultMediaPlayer;
+    QFileInfo checkFile(path);
+    if (!checkFile.exists() || !checkFile.isDir())
+    {
+        path = getDefaultMediaPlayerPath();
+    }
+    Server::Instance()->startProcess(path);
 }
 
 QString Media::getDefaultMediaPlayerPath()
 {
-    // todo
-    return "";
+    QString pathFound = "";
+    QString path;
+    path = "/Applications/iTunes.app";
+    QFileInfo *checkFile = new QFileInfo(path);
+    if (checkFile->exists() && checkFile->isDir())
+    {
+        pathFound = path;
+    }
+
+    path = "/Applications/Spotify.app";
+    checkFile = new QFileInfo(path);
+    if (checkFile->exists() && checkFile->isDir())
+    {
+        pathFound = path;
+    }
+    return pathFound;
 }
