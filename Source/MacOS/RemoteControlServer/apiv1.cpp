@@ -1,16 +1,17 @@
 #include "apiv1.h"
 #include "app.h"
-#ifdef Q_OS_MAC
-    #include "keyboardmac.h"
-
-    #include <Carbon/Carbon.h>
-#endif
 #include "logger.h"
 #include "media.h"
 #include "mousev2.h"
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
+
+#ifdef Q_OS_MAC
+    #include "keyboardmac.h"
+
+    #include <Carbon/Carbon.h>
+#endif
 
 #include <QDesktopServices>
 
@@ -74,26 +75,12 @@ void ApiV1::parseCommand(Command &command)
     }
     else if (cmd.contains(cmd_media_string))
     {
-        if (app->license->isProversion)
-        {
-            parseMediaCommand(cmd);
-        }
-        else
-        {
-            app->license->requestUpgrade();
-        }
+        parseMediaCommand(cmd);
         Logger::Instance()->add("Media: " + readableCommand);
     }
     else if (cmd.contains(cmd_slideshow_string))
     {
-        if (app->license->isProversion)
-        {
-            parseSlideshowCommand(cmd);
-        }
-        else
-        {
-            app->license->requestUpgrade();
-        }
+        parseSlideshowCommand(cmd);
         Logger::Instance()->add("Slideshow: " + readableCommand);
     }
     else if (cmd.contains(cmd_scroll_string))
@@ -152,14 +139,6 @@ void ApiV1::parseCommand(Command &command)
     {
         app->appVersion = value;
         Logger::Instance()->add("App version set to " + value);
-    }
-    else if (cmd.contains(cmd_info_app_mode) || cmd.contains(cmd_lizens))
-    {
-        License* license= new License();
-        license->isProversion = (value.toLower() == "pro" || value.toLower() == "trial")
-                ? true : false;
-        app->license = license;
-        Logger::Instance()->add("App license set to " + value);
     }
     else
     {

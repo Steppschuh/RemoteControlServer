@@ -4,7 +4,6 @@
 #include <QString>
 
 #include "command.h"
-#include "license.h"
 
 class App
 {
@@ -12,7 +11,6 @@ public:
     App();
 
     QString ip;
-    License *license;
     QString status;
     QString pin;
     QString appName;

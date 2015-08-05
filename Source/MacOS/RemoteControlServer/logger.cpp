@@ -14,13 +14,9 @@ Logger* Logger::Instance()
 Logger::Logger() :
   URL_TRACKER("http://remote-control-collection.com/api/tracker/"),
   trackEvents(true),
-//  showDebug(true),
   maxItems(100)
 {
-//    dispatcherActive = false;
     lastEntry = "";
-
-    lastUpdate = QDateTime().currentDateTime();
     logMessages = new QStringList();
 }
 

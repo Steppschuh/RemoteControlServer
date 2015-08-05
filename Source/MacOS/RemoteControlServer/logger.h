@@ -33,13 +33,9 @@ private:
     const bool trackEvents;
     const int maxItems;
 
-    QDateTime lastUpdate;
-
     QString lastEntry;
 
-//    void clearLog();
     void trim();
-//    bool eventTracked(QString result);
 };
 
 #endif // LOGGER_H

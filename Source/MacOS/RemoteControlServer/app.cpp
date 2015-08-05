@@ -11,7 +11,6 @@
 App::App()
 {
     ip = "Unknown";
-    license = new License();
     appVersion = "Unknown";
     appName = "Unknown";
     deviceName = "Unknown";
