@@ -89,3 +89,12 @@ void Screenshot::keepSendingScreenshots(Command &requestCommand, Command &respon
 
 }
 
+void Screenshot::sendScreenshot(bool full)
+{
+
+}
+
+void Screenshot::toggleScreen()
+{
+
+}

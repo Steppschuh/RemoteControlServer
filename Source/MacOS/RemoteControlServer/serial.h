@@ -11,6 +11,7 @@ public:
     static Serial *Instance();
 
     void closeSerialPort();
+    void sendMessage(QString message);
     void sendCommand(Command &command);
 
 private:
@@ -26,7 +27,6 @@ private:
 //    bool shouldListen;
 
 //    bool openSerialPort(QString name);
-//    void sendMessage(QString message);
 //    void sendMessageAsync(QString message);
 //    void startReading();
 //    void stopReading();

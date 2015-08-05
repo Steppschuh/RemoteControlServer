@@ -14,9 +14,10 @@ public:
     const char COMMAND_IDENTIFIER;
 
     bool isBroadcast(Command &command);
+    void requestPin(App &app);
     void answerBroadCast(App &app);
     void parseCommand(Command &command);
-    void requestPin(App &app);
+
 
 private:
     ApiV2();
@@ -42,51 +43,51 @@ private:
         cmd_laser = 28,
         cmd_custom = 29,
 
-//    const char cmd_media_play;
-//    const char cmd_media_stop;
-//    const char cmd_media_prev;
-//    const char cmd_media_next;
-//    const char cmd_media_volup;
-//    const char cmd_media_voldown;
-//    const char cmd_media_volmute;
-//    const char cmd_media_launch;
+        cmd_media_play = 0,
+        cmd_media_stop = 1,
+        cmd_media_prev = 2,
+        cmd_media_next = 3,
+        cmd_media_volup = 4,
+        cmd_media_voldown = 5,
+        cmd_media_volmute = 6,
+        cmd_media_launch = 7,
 
-//    const char cmd_mouse_down;
-//    const char cmd_mouse_up;
-//    const char cmd_mouse_down_2;
-//    const char cmd_mouse_up_2;
-//    const char cmd_mouse_move;
-//    const char cmd_mouse_left_down;
-//    const char cmd_mouse_left_up;
-//    const char cmd_mouse_right_down;
-//    const char cmd_mouse_right_up;
-//    const char cmd_mouse_scroll;
-//    const char cmd_mouse_set;
-//    const char cmd_mouse_left_click;
-//    const char cmd_mouse_right_click;
+        cmd_mouse_down = 0,
+        cmd_mouse_up = 1,
+        cmd_mouse_down_2 = 2,
+        cmd_mouse_up_2 = 3,
+        cmd_mouse_move = 4,
+        cmd_mouse_left_down = 5,
+        cmd_mouse_left_up = 6,
+        cmd_mouse_right_down = 7,
+        cmd_mouse_right_up = 8,
+        cmd_mouse_scroll = 9,
+        cmd_mouse_set = 10,
+        cmd_mouse_left_click = 11,
+        cmd_mouse_right_click = 12,
 
-//    const char cmd_pointer_start;
-//    const char cmd_pointer_end;
-//    const char cmd_pointer_move;
-//    const char cmd_pointer_calibrate;
+        cmd_pointer_start = 0,
+        cmd_pointer_end = 1,
+        cmd_pointer_move = 2,
+        cmd_pointer_calibrate = 3,
 
-//    const char cmd_request_screen;
-//    const char cmd_request_screen_full;
-//    const char cmd_request_screen_next;
-//    const char cmd_request_connect;
+        cmd_request_screen = 0,
+        cmd_request_screen_full = 1,
+        cmd_request_screen_next = 2,
+        cmd_request_connect = 3,
         cmd_request_pin = 4
     };
 
-//    QString readableCommand;
+    QString readableCommand;
 
     void parseGeneralCommand(Command &command);
     void parseRemoteCommand(Command &command);
-//    void parseMouseCommand(Command &command);
-//    void parsePointerCommand(Command &command);
-//    void parseLaserCommand(Command &command);
-//    void parseMediaCommand(Command &command);
-//    void parseRequest(Command &command);
-//    void parseCustomCommand(Command &command);
+    void parseMouseCommand(Command &command);
+    void parsePointerCommand(Command &command);
+    void parseLaserCommand(Command &command);
+    void parseMediaCommand(Command &command);
+    void parseRequest(Command &command);
+    void parseCustomCommand(Command &command);
 };
 
 #endif // APIV2_H

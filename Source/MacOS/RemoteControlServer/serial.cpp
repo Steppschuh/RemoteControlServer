@@ -21,6 +21,11 @@ void Serial::closeSerialPort()
 
 }
 
+void Serial::sendMessage(QString message)
+{
+
+}
+
 void Serial::sendCommand(Command &command)
 {
 

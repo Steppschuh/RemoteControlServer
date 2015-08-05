@@ -23,6 +23,8 @@ public:
 
     QList<QPoint*> *getScreenBounds(int index);
     void keepSendingScreenshots(Command &requestCommand, Command &responseCommand);
+    void sendScreenshot(bool full);
+    void toggleScreen();
 
 private:
     static Screenshot *instance;
