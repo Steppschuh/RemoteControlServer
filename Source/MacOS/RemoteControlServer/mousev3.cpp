@@ -1,6 +1,6 @@
 #include "converter.h"
 #include "logger.h"
-#include "mousev3mac.h"
+#include "mousev3.h"
 #include "screenshot.h"
 #include "server.h"
 #include "settings.h"
@@ -13,9 +13,9 @@
 
 #include <QDebug>
 
-MouseV3Mac* MouseV3Mac::instance = NULL;
+MouseV3* MouseV3::instance = NULL;
 
-MouseV3Mac* MouseV3Mac::Instance()
+MouseV3* MouseV3::Instance()
 {
     if (!instance)
     {
@@ -24,7 +24,7 @@ MouseV3Mac* MouseV3Mac::Instance()
     return instance;
 }
 
-MouseV3Mac::MouseV3Mac()
+MouseV3::MouseV3()
 {
     cursorPositionNew = new QPoint();
     P_ORIGIN = new QPoint(0, 0);
@@ -44,7 +44,7 @@ MouseV3Mac::MouseV3Mac()
     pointDown = new TouchPoint();
 }
 
-void MouseV3Mac::leftMouseDown(bool isDoubleClick)
+void MouseV3::leftMouseDown(bool isDoubleClick)
 {
     mouseLeftDown = true;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
@@ -59,7 +59,7 @@ void MouseV3Mac::leftMouseDown(bool isDoubleClick)
     CFRelease(mouseEv);
 }
 
-void MouseV3Mac::leftMouseUp(bool isDoubleClick)
+void MouseV3::leftMouseUp(bool isDoubleClick)
 {
     mouseLeftDown = false;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
@@ -74,13 +74,13 @@ void MouseV3Mac::leftMouseUp(bool isDoubleClick)
     CFRelease(mouseEv);
 }
 
-void MouseV3Mac::leftSecondClick()
+void MouseV3::leftSecondClick()
 {
     leftMouseDown(true);
     leftMouseUp(true);
 }
 
-void MouseV3Mac::rightMouseDown()
+void MouseV3::rightMouseDown()
 {
     mouseRightDown = true;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
@@ -91,7 +91,7 @@ void MouseV3Mac::rightMouseDown()
     CFRelease(mouseEv);
 }
 
-void MouseV3Mac::rightMouseUp()
+void MouseV3::rightMouseUp()
 {
     mouseRightDown = false;
     CGEventRef mouseEv = CGEventCreateMouseEvent(
@@ -102,7 +102,7 @@ void MouseV3Mac::rightMouseUp()
     CFRelease(mouseEv);
 }
 
-void MouseV3Mac::pointersDown()
+void MouseV3::pointersDown()
 {
     if (mousePadDown)
     {
@@ -123,7 +123,7 @@ void MouseV3Mac::pointersDown()
     pointDown->timestamp = QDateTime::currentDateTime().toMSecsSinceEpoch();
 }
 
-void MouseV3Mac::pointersUp()
+void MouseV3::pointersUp()
 {
     checkForClick();
     P1_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
@@ -140,7 +140,7 @@ void MouseV3Mac::pointersUp()
     pointers = new QList<TouchPoint*>();
 }
 
-void MouseV3Mac::parsePointerData(QByteArray &data)
+void MouseV3::parsePointerData(QByteArray &data)
 {
     if (data.length() >= 7)
     {
@@ -198,7 +198,7 @@ void MouseV3Mac::parsePointerData(QByteArray &data)
     }
 }
 
-void MouseV3Mac::parseAbsolutePointerData(QByteArray &data, bool isPresenter = false)
+void MouseV3::parseAbsolutePointerData(QByteArray &data, bool isPresenter = false)
 {
     int absoluteMaximum = 32767;
     int pointerDataOffset = 3;
@@ -239,12 +239,12 @@ void MouseV3Mac::parseAbsolutePointerData(QByteArray &data, bool isPresenter = f
     }
 }
 
-int MouseV3Mac::trim(int value, int min, int max)
+int MouseV3::trim(int value, int min, int max)
 {
     return (value < min) ? min : ((value > max) ? max : value);
 }
 
-void MouseV3Mac::moveMouseTo(int x, int y)
+void MouseV3::moveMouseTo(int x, int y)
 {
     CGEventRef mouseEv = CGEventCreateMouseEvent(
                     NULL, kCGEventMouseMoved,
@@ -254,7 +254,7 @@ void MouseV3Mac::moveMouseTo(int x, int y)
     CFRelease(mouseEv);
 }
 
-void MouseV3Mac::updatePointerPosition()
+void MouseV3::updatePointerPosition()
 {
     if (pointers->length() > 0)
     {
@@ -264,7 +264,7 @@ void MouseV3Mac::updatePointerPosition()
     }
 }
 
-void MouseV3Mac::updateCursorPosition()
+void MouseV3::updateCursorPosition()
 {
     if (!mousePadDown)
     {
@@ -347,7 +347,7 @@ void MouseV3Mac::updateCursorPosition()
     }
 }
 
-void MouseV3Mac::parseMultitouch()
+void MouseV3::parseMultitouch()
 {
     if (!mousePadDown)
     {
@@ -386,7 +386,7 @@ void MouseV3Mac::parseMultitouch()
     processMultitouch();
 }
 
-void MouseV3Mac::processMultitouch()
+void MouseV3::processMultitouch()
 {
     P3_New->setX(round((P1_New->x() + P2_New->x()) / 2.0));
     P3_New->setY(round((P1_New->y() + P2_New->y()) / 2.0));
@@ -454,12 +454,12 @@ void MouseV3Mac::processMultitouch()
     P3_Vector_Last = P3_Vector_New;
 }
 
-void MouseV3Mac::mouseZoom(int direction, int zoomFactor)
+void MouseV3::mouseZoom(int direction, int zoomFactor)
 {
     // todo
 }
 
-void MouseV3Mac::mouseScrollVertical(int scrollDirection, int scrollLength)
+void MouseV3::mouseScrollVertical(int scrollDirection, int scrollLength)
 {
     if (scrollDirection < -10 || scrollDirection == 0 || scrollDirection > 10)
     {
@@ -477,7 +477,7 @@ void MouseV3Mac::mouseScrollVertical(int scrollDirection, int scrollLength)
     CFRelease(scrollEvent);
 }
 
-void MouseV3Mac::checkForClick()
+void MouseV3::checkForClick()
 {
     long timeDelta = QDateTime::currentDateTime().toMSecsSinceEpoch() - pointDown->timestamp;
 
@@ -497,13 +497,13 @@ void MouseV3Mac::checkForClick()
     }
 }
 
-CGPoint MouseV3Mac::getCursorPosition()
+CGPoint MouseV3::getCursorPosition()
 {
     CGEventRef event = CGEventCreate(NULL);
     return CGEventGetLocation(event);
 }
 
-bool MouseV3Mac::valueMatchesTolerance(float val1, float val2, int tolerance)
+bool MouseV3::valueMatchesTolerance(float val1, float val2, int tolerance)
 {
     return (val1 < (val2 + tolerance) && val1 > (val2 - tolerance)) ? true : false;
 }

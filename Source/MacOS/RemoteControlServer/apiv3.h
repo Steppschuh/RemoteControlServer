@@ -23,6 +23,11 @@ private:
 
     enum{
         cmd_connection = 10,
+        cmd_disconnect = 11,
+        cmd_pause = 12,
+        cmd_resume = 13,
+        cmd_control = 14,
+        cmd_pin = 15,
         cmd_broadcast = 16,
         cmd_set = 17,
         cmd_open = 18,
@@ -60,7 +65,7 @@ private:
         cmd_mouse_right_action = 4,
 
         cmd_keyboard = 21,
-
+        cmd_keyboard_unicode = 0,
         cmd_keyboard_string = 1,
         cmd_keybaord_keycode = 2
     };

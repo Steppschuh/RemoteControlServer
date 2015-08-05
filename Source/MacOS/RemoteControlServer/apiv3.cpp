@@ -3,6 +3,7 @@
 #include "authentication.h"
 #include "converter.h"
 #include "logger.h"
+#include "mousev3.h"
 #include "network.h"
 #include "screenshot.h"
 #include "serial.h"
@@ -11,11 +12,11 @@
 
 #ifdef Q_OS_MAC
     #include "keyboardmac.h"
-    #include "mousev3mac.h"
 #endif
 
 #include <QByteArray>
 #include <QProcess>
+#include <QtConcurrent>
 
 #include <QDebug>
 
@@ -157,7 +158,7 @@ void ApiV3::parseOpenCommand(Command &command)
     {
         QString processString = Converter::Instance()->byteToString(*command.data, 3);
         Logger::Instance()->add("Starting process: " + processString);
-        // Still missing: starting the actual process
+        Server::Instance()->startProcess(processString);
     }
     else
     {
@@ -292,19 +293,13 @@ void ApiV3::parseMouseCommand(Command &command)
         switch (command.data->at(2))
         {
         case cmd_mouse_pointers:
-#ifdef Q_OS_MAC
-            MouseV3Mac::Instance()->parsePointerData(*command.data);
-#endif
+            MouseV3::Instance()->parsePointerData(*command.data);
             break;
         case cmd_mouse_pointers_absolute:
-#ifdef Q_OS_MAC
-            MouseV3Mac::Instance()->parseAbsolutePointerData(*command.data, false);
-#endif
+            MouseV3::Instance()->parseAbsolutePointerData(*command.data, false);
             break;
         case cmd_mouse_pointers_absolute_presenter:
-#ifdef Q_OS_MAC
-            MouseV3Mac::Instance()->parseAbsolutePointerData(*command.data, true);
-#endif
+            MouseV3::Instance()->parseAbsolutePointerData(*command.data, true);
             break;
         case cmd_mouse_pad_action:
             if (command.data->length() >= 4)
@@ -312,14 +307,10 @@ void ApiV3::parseMouseCommand(Command &command)
                 switch (command.data->at(3))
                 {
                 case cmd_action_down:
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->pointersDown();
-#endif
+                    MouseV3::Instance()->pointersDown();
                     break;
                 case cmd_action_up:
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->pointersUp();
-#endif
+                    MouseV3::Instance()->pointersUp();
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse pad command");
@@ -334,15 +325,11 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse left down");
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->leftMouseDown();
-#endif
+                    MouseV3::Instance()->leftMouseDown();
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse left up");
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->leftMouseUp();
-#endif
+                    MouseV3::Instance()->leftMouseUp();
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse left command");
@@ -357,15 +344,11 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse right down");
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->rightMouseDown();
-#endif
+                    MouseV3::Instance()->rightMouseDown();
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse right up");
-#ifdef Q_OS_MAC
-                    MouseV3Mac::Instance()->rightMouseUp();
-#endif
+                    MouseV3::Instance()->rightMouseUp();
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse right command");
@@ -442,13 +425,13 @@ void ApiV3::parseKeyboardCommand(Command &command)
                         if (actionIndex > Settings::Instance()->customActions->length() - 1)
                         {
                             Logger::Instance()->add("No custom action set");
-                            // Process.start...
+                            Server::Instance()->startProcess("http://remote-control-collection.com/help/custom/");
                             Logger::Instance()->trackEvent("Server", "Custom", "Not set");
                         }
                         else
                         {
                             QString path = Settings::Instance()->customActions->at(actionIndex);
-                            // Process.start
+                            Server::Instance()->startProcess(path);
                             Logger::Instance()->trackEvent("Server", "Custom", path);
                         }
                     }

@@ -26,6 +26,7 @@ public:
     void send();
     void process();
     QString dataAsString();
+    static Command *clone(Command &command);
 
 private:
     void parse();
