@@ -1,13 +1,11 @@
 #include "keyboardmac.h"
 #include "logger.h"
+#include "macx.h"
 
 #include <QObject>
 
 #include <Carbon/Carbon.h>
-
-//#include <ApplicationServices/ApplicationServices.h>
-//#include <IOKit/hidsystem/ev_keymap.h>
-//#include "macx.h"
+#include <CoreServices/CoreServices.h>
 
 #include <QDebug>
 
@@ -120,7 +118,6 @@ void KeyboardMac::sendEachKey(QString message)
 
 void KeyboardMac::sendShortcut(int keyCode)
 {
-    // todo
     switch (keyCode)
     {
     case KEYCODE_COPY:
@@ -148,10 +145,26 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyPress(keycodeToKey(KEYCODE_F11));
         sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
         break;
+    case KEYCODE_ZOOM_IN:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_KeypadPlus);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
+    case KEYCODE_ZOOM_OUT:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_ANSI_KeypadMinus);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
     case KEYCODE_CLOSE:
         sendKeyDown(keycodeToKey(KEYCODE_FUNCTION));
         sendKeyPress(kVK_ANSI_Q);
         sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
+        break;
+    case KEYCODE_SHUTDOWN:
+        shutdown();
+        break;
+    case KEYCODE_STANDBY:
+        standby();
         break;
     case KEYCODE_CANCEL:
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
@@ -231,10 +244,7 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     case KEYCODE_DEL_FORWARD:
         return kVK_ForwardDelete;
     case KEYCODE_WINDOWS:
-    {
-        // no windows key on a mac
-        return -1;
-    }
+        return -1; // no windows key on a mac
     case KEYCODE_F1:
         return kVK_F1;
     case KEYCODE_F2:
@@ -266,12 +276,12 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
 
 void KeyboardMac::standby()
 {
-    // todo
+    MDSendAppleEventToSystemProcess(kAESleep);
 }
 
 void KeyboardMac::shutdown()
 {
-    // todo
+    MDSendAppleEventToSystemProcess(kAEShutDown);
 }
 
 

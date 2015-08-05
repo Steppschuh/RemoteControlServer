@@ -32,23 +32,50 @@ static io_connect_t get_event_driver (void)
 
 void HIDPostAuxKey (const UInt8 auxKeyCode)
 {
-  NXEventData event;
-  kern_return_t kr;
-  IOGPoint loc = {0, 0};
+    NXEventData event;
+    kern_return_t kr;
+    IOGPoint loc = {0, 0};
 
-  //the Message on key press
-  UInt32 evtInfo = auxKeyCode << 16 | NX_KEYDOWN << 8;
-  bzero (&event, sizeof (NXEventData));
-  event.compound.subType = NX_SUBTYPE_AUX_CONTROL_BUTTONS;
-  event.compound.misc. L [0] = evtInfo;
-  kr = IOHIDPostEvent (get_event_driver (), NX_SYSDEFINED, loc, &event, kNXEventDataVersion, 0, FALSE);
-  check (KERN_SUCCESS == kr);
+    //the Message on key press
+    UInt32 evtInfo = auxKeyCode << 16 | NX_KEYDOWN << 8;
+    bzero (&event, sizeof (NXEventData));
+    event.compound.subType = NX_SUBTYPE_AUX_CONTROL_BUTTONS;
+    event.compound.misc. L [0] = evtInfo;
+    kr = IOHIDPostEvent (get_event_driver (), NX_SYSDEFINED, loc, &event, kNXEventDataVersion, 0, FALSE);
+    check (KERN_SUCCESS == kr);
 
-  //the Message on key release
-  evtInfo = auxKeyCode << 16 | NX_KEYUP << 8;
-  bzero (&event, sizeof (NXEventData));
-  event.compound.subType = NX_SUBTYPE_AUX_CONTROL_BUTTONS;
-  event.compound.misc. L [0] = evtInfo;
-  kr = IOHIDPostEvent (get_event_driver (), NX_SYSDEFINED, loc, &event, kNXEventDataVersion, 0, FALSE);
-  check (KERN_SUCCESS == kr);
+    //the Message on key release
+    evtInfo = auxKeyCode << 16 | NX_KEYUP << 8;
+    bzero (&event, sizeof (NXEventData));
+    event.compound.subType = NX_SUBTYPE_AUX_CONTROL_BUTTONS;
+    event.compound.misc. L [0] = evtInfo;
+    kr = IOHIDPostEvent (get_event_driver (), NX_SYSDEFINED, loc, &event, kNXEventDataVersion, 0, FALSE);
+    check (KERN_SUCCESS == kr);
+}
+
+OSStatus MDSendAppleEventToSystemProcess(AEEventID eventToSendID) {
+    AEAddressDesc targetDesc;
+    static const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess };
+    AppleEvent eventReply = {typeNull, NULL};
+    AppleEvent eventToSend = {typeNull, NULL};
+
+    OSStatus status = AECreateDesc(typeProcessSerialNumber,
+         &kPSNOfSystemProcess, sizeof(kPSNOfSystemProcess), &targetDesc);
+
+    if (status != noErr) return status;
+
+    status = AECreateAppleEvent(kCoreEventClass, eventToSendID,
+          &targetDesc, kAutoGenerateReturnID, kAnyTransactionID, &eventToSend);
+
+    AEDisposeDesc(&targetDesc);
+
+    if (status != noErr) return status;
+
+    status = AESendMessage(&eventToSend, &eventReply,
+                          kAENormalPriority, kAEDefaultTimeout);
+
+    AEDisposeDesc(&eventToSend);
+    if (status != noErr) return status;
+    AEDisposeDesc(&eventReply);
+    return status;
 }
