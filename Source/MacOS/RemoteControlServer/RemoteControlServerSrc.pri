@@ -18,6 +18,7 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/keyboardmac.h \
     ../RemoteControlServer/logger.h \
     ../RemoteControlServer/media.h \
+    ../RemoteControlServer/mousemac.h \
     ../RemoteControlServer/mousev2.h \
     ../RemoteControlServer/mousev3.h \
     ../RemoteControlServer/network.h \
@@ -43,6 +44,7 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/keyboardmac.cpp \
     ../RemoteControlServer/logger.cpp \
     ../RemoteControlServer/media.cpp \
+    ../RemoteControlServer/mousemac.cpp \
     ../RemoteControlServer/mousev2.cpp \
     ../RemoteControlServer/mousev3.cpp \
     ../RemoteControlServer/network.cpp \

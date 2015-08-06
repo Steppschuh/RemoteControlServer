@@ -75,7 +75,9 @@ public:
         KEYCODE_CANCEL = 211,
         KEYCODE_REFRESH = 212,
         KEYCODE_FULLSCREEN = 213,
-        KEYCODE_UNDO = 214
+        KEYCODE_UNDO = 214,
+        KEYCODE_BROWSER_BACK = 215,
+        KEYCODE_BROWSER_FORWARD = 216
     };
 
     void sendKeyPress(CGKeyCode key);

@@ -451,12 +451,16 @@ void ApiV1::parseScrollCommand(QString cmd)
     else if (value == "back")
     {
         readableCommand = "Back";
-        MouseV2::Instance()->mouseScrollHorizontal(-1, 1);
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_BROWSER_BACK);
+#endif
     }
     else if (value == "forward")
     {
         readableCommand = "Forward";
-        MouseV2::Instance()->mouseScrollHorizontal(1, 1);
+#ifdef Q_OS_MAC
+        KeyboardMac::Instance()->sendShortcut(KeyboardMac::KEYCODE_BROWSER_FORWARD);
+#endif
     }
     else if (value == "pageup")
     {

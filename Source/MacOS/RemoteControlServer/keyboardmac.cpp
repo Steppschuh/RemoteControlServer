@@ -188,6 +188,16 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyPress(kVK_ANSI_Z);
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
+    case KEYCODE_BROWSER_BACK:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_LeftArrow);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
+    case KEYCODE_BROWSER_FORWARD:
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(kVK_RightArrow);
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
+        break;
     default:
         Logger::Instance()->add("Unkown keyboard command");
         break;
