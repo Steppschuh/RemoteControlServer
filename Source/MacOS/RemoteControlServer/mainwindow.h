@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "server.h"
 #include "trayicon.h"
+#include "whitelistwindow.h"
 
 #include <QMainWindow>
 #include <QString>
@@ -32,6 +33,7 @@ public slots:
     void initUiWithSettings();
     void setVisibleStateOfPinBox(bool value);
     void showNewErrorDialog(QString title, QString message);
+    void showWhitelistWindow();
     void updateLogMessages();
 
 private:
@@ -39,6 +41,7 @@ private:
     bool closeEventCameFromSystemTrayIcon;
 
     TrayIcon *trayIcon;
+    WhitelistWindow *whitelistWindow;
 
     void connectUiToServer();
     void initializeSystemTrayIcon();

@@ -164,7 +164,7 @@
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="manageWhitelistButton">
                  <property name="text">
                   <string>Manage devices</string>
                  </property>

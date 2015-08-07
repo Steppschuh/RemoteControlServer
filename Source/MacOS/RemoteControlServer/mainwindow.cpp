@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     closeEventCameFromSystemTrayIcon = false;
 
     Server::Instance()->userName = Server::Instance()->getServerName();
+
+    whitelistWindow = new WhitelistWindow();
 }
 
 void MainWindow::connectUiToServer()
@@ -44,6 +46,7 @@ void MainWindow::connectUiToServer()
     connect(ui->enablePin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUsePin(bool)));
     connect(ui->showPin, SIGNAL(clicked(bool)), this, SLOT(setVisibleStateOfPinBox(bool)));
     connect(ui->pinDisplay, SIGNAL(textChanged(QString)), Settings::Instance(), SLOT(setPin(QString)));
+    connect(ui->manageWhitelistButton, SIGNAL(pressed()), this, SLOT(showWhitelistWindow()));
 
     connect(ui->mouseSensitivity, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseSensitivity(int)));
     connect(ui->mouseAcceleration, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseAcceleration(int)));
@@ -183,6 +186,11 @@ void MainWindow::showNewErrorDialog(QString title, QString message)
 {
     QMessageBox msgBox(QMessageBox::Critical, title, message);
     msgBox.exec();
+}
+
+void MainWindow::showWhitelistWindow()
+{
+    whitelistWindow->show();
 }
 
 void MainWindow::updateLogMessages()

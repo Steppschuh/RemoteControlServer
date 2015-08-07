@@ -23,7 +23,6 @@ TARGET = RemoteControlServer
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    whitelistedipswindow.cpp \
     mainwindow.cpp \
     apiv1.cpp \
     apiv2.cpp \
@@ -49,14 +48,14 @@ SOURCES += main.cpp \
     touchpoint.cpp \
     trayicon.cpp \
     udp.cpp \
-    updater.cpp
+    updater.cpp \
+    whitelistwindow.cpp
 
 LIBS += -framework IOKit
 
 OBJECTIVE_SOURCES += macx.mm
 
 HEADERS += macx.h \
-    whitelistedipswindow.h \
     mainwindow.h \
     apiv1.h \
     apiv2.h \
@@ -82,11 +81,12 @@ HEADERS += macx.h \
     touchpoint.h \
     trayicon.h \
     udp.h \
-    updater.h
+    updater.h \
+    whitelistwindow.h
 
 RESOURCES += \
     resources.qrc
 
 FORMS += \
     mainwindow.ui \
-    whitelistedipswindow.ui
+    whitelistwindow.ui
