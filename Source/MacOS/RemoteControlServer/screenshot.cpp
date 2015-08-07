@@ -36,6 +36,7 @@ Screenshot::Screenshot()
 
 QPixmap *Screenshot::getResizedScreenshot(int width)
 {
+    width = (width > 1000) ? 1000 : width;
     QPixmap *screenshot = getScreenshot(screenIndex);
     if (screenshot->width() > width)
     {
@@ -57,9 +58,8 @@ QPixmap *Screenshot::getScreenshot(int index)
     {
         index = 0;
     }
-    QPixmap screenshot = screens.at(index)->grabWindow(index);
+    QPixmap screenshot = screens.at(index)->grabWindow(0);
     return new QPixmap(screenshot);
-
 }
 
 QPixmap *Screenshot::convertToGrayscale(QPixmap &source)
@@ -96,5 +96,8 @@ void Screenshot::sendScreenshot(bool full)
 
 void Screenshot::toggleScreen()
 {
+    int new_index = screenIndex + 1;
+    if (new_index > QGuiApplication::screens().length() - 1) new_index = 0;
+    screenIndex = new_index;
 
 }

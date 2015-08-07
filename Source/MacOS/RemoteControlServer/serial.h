@@ -1,6 +1,7 @@
 #ifndef SERIAL_H
 #define SERIAL_H
 
+#include <QSerialPort>
 #include <QString>
 
 #include "command.h"
@@ -18,18 +19,18 @@ private:
     Serial();
     static Serial *instance;
 
-//    QString currentSerialPortName;
+    QString currentSerialPortName;
 //    const char commandStart;
 //    const char commandEnd;
 //    const int writeTimeout;
-//    //serialPort
-//    bool isSending;
-//    bool shouldListen;
+    QSerialPort *serialPort;
+    bool isSending;
+    bool shouldListen;
 
-//    bool openSerialPort(QString name);
+    bool openSerialPort(QString name);
 //    void sendMessageAsync(QString message);
 //    void startReading();
-//    void stopReading();
+    void stopReading();
 //    void read();
 //    // SerialPort_DataReceived
 };

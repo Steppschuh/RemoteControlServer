@@ -28,7 +28,6 @@ QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
     bitmap.save(&buffer, "JPG", compression);
-    qDebug() << bytes->length();
     return bytes;
 }
 

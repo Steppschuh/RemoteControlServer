@@ -45,8 +45,8 @@ bool Network::checkListenersRunning()
     else
     {
         Logger::Instance()->add("Network initialization failed, not all listeners could be started.");
-        Server::Instance()->showErrorDialog("Error", "Network initialization failed, not all listeners could be started.\n"
-                                            + "Make sure that only one instance of the Remote Control Server is running.");
+        Server::Instance()->showErrorDialog("Error", QString("Network initialization failed, not all listeners could be started.\n")
+                                            + QString("Make sure that only one instance of the Remote Control Server is running."));
         return false;
     }
 }

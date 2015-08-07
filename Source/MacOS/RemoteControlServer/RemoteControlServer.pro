@@ -11,6 +11,7 @@ QT       += core gui
 QT       += xml
 QT       += network
 QT       += concurrent
+QT       += serialport
 
 #greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
