@@ -6,6 +6,11 @@
 #include "settings.h"
 #include "touchpoint.h"
 
+#ifdef Q_OS_MAC
+    #include "keyboardmac.h"
+    #include "mousemac.h"
+#endif
+
 #include <QDateTime>
 #include <QList>
 
@@ -44,62 +49,10 @@ MouseV3::MouseV3()
     pointDown = new TouchPoint();
 }
 
-void MouseV3::leftMouseDown(bool isDoubleClick)
-{
-    mouseLeftDown = true;
-    CGEventRef mouseEv = CGEventCreateMouseEvent(
-                NULL, kCGEventLeftMouseDown,
-                getCursorPosition(),
-                kCGMouseButtonLeft);
-    if (isDoubleClick)
-    {
-        CGEventSetIntegerValueField(mouseEv, kCGMouseEventClickState, 2);
-    }
-    CGEventPost(kCGHIDEventTap, mouseEv);
-    CFRelease(mouseEv);
-}
-
-void MouseV3::leftMouseUp(bool isDoubleClick)
-{
-    mouseLeftDown = false;
-    CGEventRef mouseEv = CGEventCreateMouseEvent(
-                NULL, kCGEventLeftMouseUp,
-                getCursorPosition(),
-                kCGMouseButtonLeft);
-    if (isDoubleClick)
-    {
-        CGEventSetIntegerValueField(mouseEv, kCGMouseEventClickState, 2);
-    }
-    CGEventPost(kCGHIDEventTap, mouseEv);
-    CFRelease(mouseEv);
-}
-
 void MouseV3::leftSecondClick()
 {
-    leftMouseDown(true);
-    leftMouseUp(true);
-}
-
-void MouseV3::rightMouseDown()
-{
-    mouseRightDown = true;
-    CGEventRef mouseEv = CGEventCreateMouseEvent(
-                NULL, kCGEventRightMouseDown,
-                getCursorPosition(),
-                kCGMouseButtonRight);
-    CGEventPost(kCGHIDEventTap, mouseEv);
-    CFRelease(mouseEv);
-}
-
-void MouseV3::rightMouseUp()
-{
-    mouseRightDown = false;
-    CGEventRef mouseEv = CGEventCreateMouseEvent(
-                NULL, kCGEventRightMouseUp,
-                getCursorPosition(),
-                kCGMouseButtonRight);
-    CGEventPost(kCGHIDEventTap, mouseEv);
-    CFRelease(mouseEv);
+    MouseMac::Instance()->leftMouseDown(true);
+    MouseMac::Instance()->leftMouseUp(true);
 }
 
 void MouseV3::pointersDown()
@@ -231,7 +184,7 @@ void MouseV3::parseAbsolutePointerData(QByteArray &data, bool isPresenter = fals
     P1_Start->setX(currentPointer->x);
     P1_Start->setY(currentPointer->y);
 
-    moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+    MouseMac::Instance()->moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
 
     if (isPresenter)
     {
@@ -242,16 +195,6 @@ void MouseV3::parseAbsolutePointerData(QByteArray &data, bool isPresenter = fals
 int MouseV3::trim(int value, int min, int max)
 {
     return (value < min) ? min : ((value > max) ? max : value);
-}
-
-void MouseV3::moveMouseTo(int x, int y)
-{
-    CGEventRef mouseEv = CGEventCreateMouseEvent(
-                    NULL, kCGEventMouseMoved,
-                    CGPointMake(x, y),
-                    kCGMouseButtonLeft);
-    CGEventPost(kCGHIDEventTap, mouseEv);
-    CFRelease(mouseEv);
 }
 
 void MouseV3::updatePointerPosition()
@@ -280,7 +223,7 @@ void MouseV3::updateCursorPosition()
         return;
     }
 
-    cursorPositionCurrent = getCursorPosition();
+    cursorPositionCurrent = MouseMac::Instance()->getCursorPosition();
 
     if (Settings::Instance()->mouseAcceleration == 1.0)
     {
@@ -328,22 +271,12 @@ void MouseV3::updateCursorPosition()
 
     P1_Last = new QPoint(P1_New->x(), P1_New->y());
 
-    // In order to change the mouse position only to a position on one of the active screens,
-    // we get the number of displays for the new position.
-    // If this number is zero, we don't need to change anything because the mouse pointer would be out of screen.
-    UInt32 maxDisplays = 4;
-    CGDirectDisplayID displayID[maxDisplays];
-    UInt32 *count;
-    CGGetDisplaysWithPoint(
-                CGPointMake(cursorPositionCurrent.x + P1_Rel->x(), cursorPositionCurrent.y + P1_Rel->y()),
-                maxDisplays,
-                displayID,
-                count);
-    if (*count > 0)
+    int newX = cursorPositionCurrent->x() + P1_Rel->x();
+    int newY = cursorPositionCurrent->y() + P1_Rel->y();
+    if (MouseMac::Instance()->moveMouseTo(newX, newY))
     {
-        cursorPositionNew->setX(cursorPositionCurrent.x + P1_Rel->x());
-        cursorPositionNew->setY(cursorPositionCurrent.y + P1_Rel->y());
-        moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+        cursorPositionNew->setX(newX);
+        cursorPositionNew->setY(newY);
     }
 }
 
@@ -428,11 +361,11 @@ void MouseV3::processMultitouch()
             scrollAmount = pow((P3_Vector_New = P3_Vector_Last), 2);
             if (P3_Vector_New > P3_Vector_Last)
             {
-                mouseZoom(1, 1);
+                MouseMac::Instance()->zoom(1, 1);
             }
             else
             {
-                mouseZoom(-1, 1);
+                MouseMac::Instance()->zoom(-1, 1);
             }
             P3_Vector_Event = P3_Vector_New;
         }
@@ -442,39 +375,16 @@ void MouseV3::processMultitouch()
         scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
         if (P3_New->y() > P3_Last->y())
         {
-            mouseScrollVertical(1, scrollAmount);
+            MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
         }
         else if (P3_New->y() < P3_Last->y())
         {
-            mouseScrollVertical(-1, scrollAmount);
+            MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
         }
     }
 
     P3_Last = new QPoint(P3_New->x(), P3_New->y());
     P3_Vector_Last = P3_Vector_New;
-}
-
-void MouseV3::mouseZoom(int direction, int zoomFactor)
-{
-    // todo
-}
-
-void MouseV3::mouseScrollVertical(int scrollDirection, int scrollLength)
-{
-    if (scrollDirection < -10 || scrollDirection == 0 || scrollDirection > 10)
-    {
-        scrollDirection = 1;
-    }
-    scrollDirection = scrollDirection * scrollLength / 100;
-    scrollDirection = (scrollDirection < -10) ? -10 : ((scrollDirection > 10) ? 10 : scrollDirection);
-    CGEventRef scrollEvent = CGEventCreateScrollWheelEvent (
-                        NULL, kCGScrollEventUnitLine,  // kCGScrollEventUnitLine  //kCGScrollEventUnitPixel
-                        1, //CGWheelCount 1 = y 2 = xy 3 = xyz
-                        scrollDirection); // length of scroll from -10 to 10 higher values lead to undef behaviour
-
-    CGEventPost(kCGHIDEventTap, scrollEvent);
-
-    CFRelease(scrollEvent);
 }
 
 void MouseV3::checkForClick()
@@ -495,12 +405,6 @@ void MouseV3::checkForClick()
             }
         }
     }
-}
-
-CGPoint MouseV3::getCursorPosition()
-{
-    CGEventRef event = CGEventCreate(NULL);
-    return CGEventGetLocation(event);
 }
 
 bool MouseV3::valueMatchesTolerance(float val1, float val2, int tolerance)

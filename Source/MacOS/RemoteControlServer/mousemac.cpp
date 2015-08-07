@@ -4,6 +4,8 @@
 #include <stdlib.h>
 
 #ifdef Q_OS_MAC
+    #include "keyboardmac.h"
+
     #include <ApplicationServices/ApplicationServices.h>
 #endif
 
@@ -128,5 +130,16 @@ void MouseMac::rightMouseUp()
                 kCGMouseButtonRight);
     CGEventPost(kCGHIDEventTap, mouseEv);
     CFRelease(mouseEv);
+}
+
+void MouseMac::zoom(int value, int count)
+{
+    for (int i = 0; i < count; ++i)
+    {
+#ifdef Q_OS_MAC
+        int keycode = (value == 1) ? KeyboardMac::KEYCODE_ZOOM_IN : KeyboardMac::KEYCODE_ZOOM_OUT;
+        KeyboardMac::Instance()->sendShortcut(keycode);
+#endif
+    }
 }
 

@@ -12,6 +12,7 @@
 
 #ifdef Q_OS_MAC
     #include "keyboardmac.h"
+    #include "mousemac.h"
 #endif
 
 #include <QByteArray>
@@ -325,11 +326,11 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse left down");
-                    MouseV3::Instance()->leftMouseDown();
+                    MouseMac::Instance()->leftMouseDown(false);
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse left up");
-                    MouseV3::Instance()->leftMouseUp();
+                    MouseMac::Instance()->leftMouseUp(false);
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse left command");
@@ -344,11 +345,11 @@ void ApiV3::parseMouseCommand(Command &command)
                 {
                 case cmd_action_down:
                     Logger::Instance()->add("Mouse right down");
-                    MouseV3::Instance()->rightMouseDown();
+                    MouseMac::Instance()->rightMouseDown();
                     break;
                 case cmd_action_up:
                     Logger::Instance()->add("Mouse right up");
-                    MouseV3::Instance()->rightMouseUp();
+                    MouseMac::Instance()->rightMouseUp();
                     break;
                 default:
                     Logger::Instance()->add("Unknown mouse right command");

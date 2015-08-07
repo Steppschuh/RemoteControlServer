@@ -9,6 +9,7 @@
 
 #ifdef Q_OS_MAC
     #include "keyboardmac.h"
+    #include "mousemac.h"
 
     #include <Carbon/Carbon.h>
 #endif
@@ -436,12 +437,12 @@ void ApiV1::parseScrollCommand(QString cmd)
     if (value == "zoomin")
     {
         readableCommand = "Zoom in";
-        MouseV2::Instance()->zoom(1,1);
+        MouseMac::Instance()->zoom(1,1);
     }
     else if (value == "zoomout")
     {
         readableCommand = "Zoom out";
-        MouseV2::Instance()->zoom(-1,1);
+        MouseMac::Instance()->zoom(-1,1);
     }
     else if (value == "back")
     {

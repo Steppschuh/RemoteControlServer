@@ -13,12 +13,13 @@ public:
     static MouseMac *Instance();
 
     QPoint *getCursorPosition();
-    void leftMouseDown(bool isDoubleClick);
-    void leftMouseUp(bool isDoubleClick);
+    void leftMouseDown(bool isDoubleClick = false);
+    void leftMouseUp(bool isDoubleClick = false);
     bool moveMouseTo(int x, int y);
     void mouseScrollVertical(int scrollDirection, int scrollLength);
     void rightMouseDown();
     void rightMouseUp();
+    void zoom(int value, int count);
 
 private:
     static MouseMac *instance;

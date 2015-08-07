@@ -3,10 +3,6 @@
 
 #include "touchpoint.h"
 
-#ifdef Q_OS_MAC
-    #include <ApplicationServices/ApplicationServices.h>
-#endif
-
 #include <QByteArray>
 #include <QPoint>
 
@@ -15,10 +11,10 @@ class MouseV3
 public:
     static MouseV3* Instance();
 
-    void leftMouseDown(bool isDoubleClick = false);
-    void leftMouseUp(bool isDoubleClick = false);
-    void rightMouseDown();
-    void rightMouseUp();
+//    void leftMouseDown(bool isDoubleClick = false);
+//    void leftMouseUp(bool isDoubleClick = false);
+//    void rightMouseDown();
+//    void rightMouseUp();
     void pointersDown();
     void pointersUp();
     void parsePointerData(QByteArray &data);
@@ -48,7 +44,7 @@ private:
     };
 
     QPoint *cursorPositionNew;
-    CGPoint cursorPositionCurrent;
+    QPoint *cursorPositionCurrent;
 
     QPoint *P_ORIGIN;
     QPoint *P1_New, *P2_New, *P3_New;
@@ -74,10 +70,10 @@ private:
     void parseMultitouch();
     void processMultitouch();
     void checkForClick();
-    CGPoint getCursorPosition();
+//    CGPoint getCursorPosition();
     bool valueMatchesTolerance(float val1, float val2, int tolerance = CLICK_OFFSET_TOLERANCE);
     void mouseZoom(int direction, int zoomFactor);
-    void mouseScrollVertical(int scrollDirection, int scrollLength);
+//    void mouseScrollVertical(int scrollDirection, int scrollLength);
 };
 
 #endif // MOUSEV3_H

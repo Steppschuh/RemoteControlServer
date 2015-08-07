@@ -83,7 +83,9 @@ bool MouseV2::isPointerDown(QPoint &point)
 
 void MouseV2::moveCursor()
 {
+#ifdef Q_OS_MAC
     cursorPositionCurrent = MouseMac::Instance()->getCursorPosition();
+#endif
     if (isPointerDown(*P2_New))
     {
         // 2 Pointer down
@@ -94,7 +96,9 @@ void MouseV2::moveCursor()
             P2_Rel->setY((P2_New->y() - P2_Last->y()) * Settings::Instance()->mouseSensitivity);
             cursorPositionNew = new QPoint(cursorPositionCurrent->x() + P2_Rel->x(), cursorPositionCurrent->y() + P2_Rel->y());
             P2_Last = new QPoint(P2_New->x(), P2_New->y());
+#ifdef Q_OS_MAC
             MouseMac::Instance()->moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+#endif
         }
     }
     else
@@ -143,7 +147,9 @@ void MouseV2::moveCursor()
 
                 cursorPositionNew = new QPoint(cursorPositionCurrent->x() + P1_Rel->x(), cursorPositionCurrent->y() + P1_Rel->y());
                 P1_Last = new QPoint(P1_New->x(), P1_New->y());
+#ifdef Q_OS_MAC
                 MouseMac::Instance()->moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+#endif
             }
         }
     }
@@ -153,18 +159,9 @@ void MouseV2::leftClickRepeat(int count)
 {
     for (int i = 0; i < count; ++i)
     {
+#ifdef Q_OS_MAC
         MouseMac::Instance()->leftMouseDown(false);
         MouseMac::Instance()->leftMouseUp(false);
-    }
-}
-
-void MouseV2::zoom(int value, int count)
-{
-    for (int i = 0; i < count; ++i)
-    {
-#ifdef Q_OS_MAC
-        int keycode = (value == 1) ? KeyboardMac::KEYCODE_ZOOM_IN : KeyboardMac::KEYCODE_ZOOM_OUT;
-        KeyboardMac::Instance()->sendShortcut(keycode);
 #endif
     }
 }
@@ -196,16 +193,20 @@ void MouseV2::processMultitouch()
         if (!valueMatchesTolerance(P3_Vector_New, P3_Vector_Event, 25))
         {
             scrollAmount = pow(P3_Vector_New - P3_Vector_Last, 2);
-            if (P3_Vector_New > P3_Vector_Last) zoom(1, 1);
-            else zoom(-1, 1);
+#ifdef Q_OS_MAC
+            if (P3_Vector_New > P3_Vector_Last) MouseMac::Instance()->zoom(1, 1);
+            else MouseMac::Instance()->zoom(-1, 1);
+#endif
             P3_Vector_Event = P3_Vector_New;
         }
     }
     else if (currentGesture == GESTURE_SCROLL)
     {
         scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
+#ifdef Q_OS_MAC
         if (P3_New->y() > P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
         else if (P3_New->y() < P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
+#endif
     }
 
     P3_Last = new QPoint(P3_New->x(), P3_New->y());
@@ -282,7 +283,8 @@ void MouseV2::parseClick(QByteArray &messageBytes)
             P1_Up = QDateTime::currentDateTime().toMSecsSinceEpoch();
 
             if (P1_Up - P1_Down > 150
-                    && -10 < P1_Start->x() - P1_Last->x() < 10 && -10 < P1_Start->y() - P1_Last->y() < 10)
+                    && -10 < P1_Start->x() - P1_Last->x() && P1_Start->x() - P1_Last->x() < 10
+                    && -10 < P1_Start->y() - P1_Last->y() && P1_Start->y() - P1_Last->y() < 10)
             {
                 leftClickRepeat(1);
             }
