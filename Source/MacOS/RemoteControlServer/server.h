@@ -45,11 +45,6 @@ private:
     QList<App*> *apps;
 
     bool isLatestServerRunning();
-//    void showAdvancedWindow();
-//    // void showAdvancedWindow(tab);
-//    void showUpgradeWindow();
-//    void showUpgradeWindowInvalidated();
-
 };
 
 #endif // SERVER_H

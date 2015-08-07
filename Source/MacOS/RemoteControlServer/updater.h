@@ -7,6 +7,8 @@ class Updater
 public:
     static Updater *Instance();
 
+    char currentVersionCode = 0;
+
     void checkForUpdates(int delayInSeconds);
 
 private:

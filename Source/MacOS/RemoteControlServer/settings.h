@@ -90,18 +90,6 @@ private:
     static Settings *instance;
 
     const QString SETTINGS_PATH;
-//    const float OS_AUTO;
-//    const float OS_ANDROID;
-//    const float OS_BLACKBERRY;
-//    const float OS_IOS;
-//    const float OS_GENERAL;
-
-//    bool minimizeToTray;
-//    bool showTrayNotifications;
-
-//    bool showGuide;
-//    char backDesign;
-//    char lastBackDesign;
 
     void readSettingsFromFile();
     void saveSettingsToFile();

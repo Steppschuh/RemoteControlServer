@@ -20,19 +20,13 @@ private:
     static Serial *instance;
 
     QString currentSerialPortName;
-//    const char commandStart;
-//    const char commandEnd;
 //    const int writeTimeout;
     QSerialPort *serialPort;
     bool isSending;
     bool shouldListen;
 
     bool openSerialPort(QString name);
-//    void sendMessageAsync(QString message);
-//    void startReading();
     void stopReading();
-//    void read();
-//    // SerialPort_DataReceived
 };
 
 #endif // SERIAL_H

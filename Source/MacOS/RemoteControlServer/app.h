@@ -32,11 +32,6 @@ public:
     void detectOs();
 
 private:
-//    char detectedOs;
-
-//    QString lastControl;
-//    QString lastCommand;
-
     void answerBroadCast(Command &command);
     void refuseBroadCast(Command &command);
     void requestPin(Command &command);

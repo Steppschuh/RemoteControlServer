@@ -147,11 +147,6 @@ QString ApiV1::getCommandValue(QString cmd)
     return cmd.right(cmd.length() - cmd.indexOf("]") - 1);
 }
 
-//void ApiV1::parseMouseCommand(QString cmd)
-//{
-//    MouseV2::Instance()->parseMouse(cmd);
-//}
-
 void ApiV1::parseKeyboardCommand(QString cmd)
 {
     if (cmd.contains("<") && cmd.contains(">"))

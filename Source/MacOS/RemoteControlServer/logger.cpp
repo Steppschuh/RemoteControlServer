@@ -1,4 +1,5 @@
 #include "logger.h"
+#include "network.h"
 
 Logger* Logger::instance = NULL;
 
@@ -76,7 +77,7 @@ void Logger::trackEvent(const QString &category, const QString &action, const QS
                     + "?category=" + category
                     + "&action=" + action
                     + "&label=" + label;
-       //Network::Instance()->loadInBrowser(url);
+       Network::Instance()->loadInBrowser(url);
     }
 }
 

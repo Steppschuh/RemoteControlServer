@@ -1,8 +1,6 @@
 #ifndef TRAYICON_H
 #define TRAYICON_H
 
-//#include "mainwindow.h"
-
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QObject>

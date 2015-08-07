@@ -9,6 +9,7 @@
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
+#include "updater.h"
 
 #ifdef Q_OS_MAC
     #include "keyboardmac.h"
@@ -184,7 +185,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
         {
         case cmd_get_server_version:
             Logger::Instance()->add("Server version requested");
-            responseCommand->data = &commandIdentifier->append(APP_VERSION); // currentVersionCode from update requested
+            responseCommand->data = &commandIdentifier->append(Updater::Instance()->currentVersionCode);
             break;
         case cmd_get_server_name:
             responseCommand->data = &commandIdentifier->append(Server::Instance()->userName.toUtf8());

@@ -111,64 +111,64 @@ void Settings::saveSettingsToFile()
     }
     else
     {
-            QTextStream stream(&file);
-            stream << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
-            stream << "<settings>" << endl;
+        QTextStream stream(&file);
+        stream << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
+        stream << "<settings>" << endl;
 
-            // General
-            appendSetting("autoStart", Converter::Instance()->boolToString(autoStart), stream);
-            appendSetting("startMinimized", Converter::Instance()->boolToString(startMinimized), stream);
-            appendSetting("showTrayNotifications", Converter::Instance()->boolToString(showTrayNotifications), stream);
-            appendSetting("showGuide", Converter::Instance()->boolToString(showGuide), stream);
-            stream << endl;
+        // General
+        appendSetting("autoStart", Converter::Instance()->boolToString(autoStart), stream);
+        appendSetting("startMinimized", Converter::Instance()->boolToString(startMinimized), stream);
+        appendSetting("showTrayNotifications", Converter::Instance()->boolToString(showTrayNotifications), stream);
+        appendSetting("showGuide", Converter::Instance()->boolToString(showGuide), stream);
+        stream << endl;
 
-            // Authentication
-            appendSetting("useWhitelist", Converter::Instance()->boolToString(useWhitelist), stream);
-            appendSetting("usePin", Converter::Instance()->boolToString(usePin), stream);
-            appendSetting("pin", pin, stream);
-            stream << endl;
+        // Authentication
+        appendSetting("useWhitelist", Converter::Instance()->boolToString(useWhitelist), stream);
+        appendSetting("usePin", Converter::Instance()->boolToString(usePin), stream);
+        appendSetting("pin", pin, stream);
+        stream << endl;
 
-            // Mouse and Pointer
-            appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
-            appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
-            appendSetting("motionFilter", QString(motionFilter), stream);
-            appendSetting("motionAcceleration", QString(motionAcceleration), stream);
+        // Mouse and Pointer
+        appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
+        appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
+        appendSetting("motionFilter", QString(motionFilter), stream);
+        appendSetting("motionAcceleration", QString(motionAcceleration), stream);
 
-            // Screen
-            appendSetting("screenQuality", QString(screenQuality), stream);
-            appendSetting("screenQualityFull", QString(screenQualityFull), stream);
-            appendSetting("screenScale", QString::number(screenScale, 'f', 2), stream);
-            appendSetting("screenScaleFull", QString::number(screenScaleFull, 'f', 2), stream);
-            appendSetting("screenBlackWhite", Converter::Instance()->boolToString(screenBlackWhite), stream);
+        // Screen
+        appendSetting("screenQuality", QString(screenQuality), stream);
+        appendSetting("screenQualityFull", QString(screenQualityFull), stream);
+        appendSetting("screenScale", QString::number(screenScale, 'f', 2), stream);
+        appendSetting("screenScaleFull", QString::number(screenScaleFull, 'f', 2), stream);
+        appendSetting("screenBlackWhite", Converter::Instance()->boolToString(screenBlackWhite), stream);
 
-            // Slideshow
-            appendSetting("clickOnLaserUp", Converter::Instance()->boolToString(clickOnLaserUp), stream);
-            appendSetting("pointerDesign", QString(pointerDesign), stream);
-            appendSetting("cropBlackBorder", Converter::Instance()->boolToString(cropBlackBorder), stream);
+        // Slideshow
+        appendSetting("clickOnLaserUp", Converter::Instance()->boolToString(clickOnLaserUp), stream);
+        appendSetting("pointerDesign", QString(pointerDesign), stream);
+        appendSetting("cropBlackBorder", Converter::Instance()->boolToString(cropBlackBorder), stream);
 
-            // Media
-            appendSetting("defaultMediaPlayer", defaultMediaPlayer, stream);
+        // Media
+        appendSetting("defaultMediaPlayer", defaultMediaPlayer, stream);
 
-            // Misc
-            appendSetting("serialPortName", serialPortName, stream);
-            appendSetting("serialCommands", Converter::Instance()->boolToString(serialCommands), stream);
-            appendSetting("updateAmbientColor", Converter::Instance()->boolToString(updateAmbientColor), stream);
+        // Misc
+        appendSetting("serialPortName", serialPortName, stream);
+        appendSetting("serialCommands", Converter::Instance()->boolToString(serialCommands), stream);
+        appendSetting("updateAmbientColor", Converter::Instance()->boolToString(updateAmbientColor), stream);
 
-            stream << "  <customActions>" << endl;
-            for (int i = 0; i < customActions->length(); ++i)
-            {
-                appendCustomAction(i, stream);
-            }
-            stream << "  </customActions>" << endl;
+        stream << "  <customActions>" << endl;
+        for (int i = 0; i < customActions->length(); ++i)
+        {
+            appendCustomAction(i, stream);
+        }
+        stream << "  </customActions>" << endl;
 
-            stream << "  <whitelist>" << endl;
-            foreach (QString appIp, *whitelistedIps)
-            {
-                appendWhitelistIp(appIp, stream);
-            }
-            stream << "  </whitelist>" << endl;
-            stream << "</settings>";
-            stream.flush();
+        stream << "  <whitelist>" << endl;
+        foreach (QString appIp, *whitelistedIps)
+        {
+            appendWhitelistIp(appIp, stream);
+        }
+        stream << "  </whitelist>" << endl;
+        stream << "</settings>";
+        stream.flush();
     }
 }
 

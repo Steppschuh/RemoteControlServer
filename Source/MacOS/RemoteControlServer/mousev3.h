@@ -11,10 +11,6 @@ class MouseV3
 public:
     static MouseV3* Instance();
 
-//    void leftMouseDown(bool isDoubleClick = false);
-//    void leftMouseUp(bool isDoubleClick = false);
-//    void rightMouseDown();
-//    void rightMouseUp();
     void pointersDown();
     void pointersUp();
     void parsePointerData(QByteArray &data);
@@ -70,10 +66,7 @@ private:
     void parseMultitouch();
     void processMultitouch();
     void checkForClick();
-//    CGPoint getCursorPosition();
     bool valueMatchesTolerance(float val1, float val2, int tolerance = CLICK_OFFSET_TOLERANCE);
-    void mouseZoom(int direction, int zoomFactor);
-//    void mouseScrollVertical(int scrollDirection, int scrollLength);
 };
 
 #endif // MOUSEV3_H
