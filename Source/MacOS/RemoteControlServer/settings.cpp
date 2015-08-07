@@ -25,6 +25,7 @@ Settings::Settings() :
     // General
     autoStart = false;
     startMinimized = true;
+    showTrayNotifications = true;
 
     showGuide = true;
 
@@ -117,6 +118,7 @@ void Settings::saveSettingsToFile()
             // General
             appendSetting("autoStart", Converter::Instance()->boolToString(autoStart), stream);
             appendSetting("startMinimized", Converter::Instance()->boolToString(startMinimized), stream);
+            appendSetting("showTrayNotifications", Converter::Instance()->boolToString(showTrayNotifications), stream);
             appendSetting("showGuide", Converter::Instance()->boolToString(showGuide), stream);
             stream << endl;
 
@@ -197,6 +199,10 @@ void Settings::assignSetting(QString &name, QString &value)
     else if (name == "startMinimized")
     {
         startMinimized = Converter::Instance()->stringToBool(value);
+    }
+    else if (name == "showTrayNotifications")
+    {
+        showTrayNotifications = Converter::Instance()->stringToBool(value);
     }
     else if (name == "showGuide")
     {
@@ -465,6 +471,11 @@ void Settings::setSerialPortName(QString value)
 void Settings::setSerialCommands(bool value)
 {
     serialCommands = value;
+}
+
+void Settings::setShowTrayNotifications(bool value)
+{
+    showTrayNotifications = value;
 }
 
 void Settings::setUpdateAmbientColor(bool value)

@@ -32,10 +32,13 @@ void MainWindow::connectUiToServer()
 {
     // Signals from the server to the ui
     connect(Logger::Instance(), SIGNAL(loggerUpdated()), this, SLOT(updateLogMessages()));
+    connect(Server::Instance(), SIGNAL(newNotification(QString,QString)), trayIcon, SLOT(showNotification(QString,QString)));
+    connect(Server::Instance(), SIGNAL(newErrorMessage(QString,QString)), this, SLOT(showNewErrorDialog(QString,QString)));
 
     // Signals from the ui to the server
     connect(ui->startServerOnLogin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setAutostart(bool)));
     connect(ui->startServerMinimized, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setMinimized(bool)));
+    connect(ui->showNotifications, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setShowTrayNotifications(bool)));
 
     connect(ui->enableWhitelist, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUseWhitelist(bool)));
     connect(ui->enablePin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUsePin(bool)));
@@ -127,6 +130,7 @@ void MainWindow::initUiWithSettings()
 {
     ui->startServerOnLogin->setChecked(Settings::Instance()->autoStart);
     ui->startServerMinimized->setChecked(Settings::Instance()->startMinimized);
+    ui->showNotifications->setChecked(Settings::Instance()->showTrayNotifications);
 
     ui->enableWhitelist->setChecked(Settings::Instance()->useWhitelist);
     ui->enablePin->setChecked(Settings::Instance()->usePin);
@@ -175,9 +179,10 @@ void MainWindow::setVisibleStateOfPinBox(bool value)
     else        ui->pinDisplay->setEchoMode(QLineEdit::Password);
 }
 
-void MainWindow::showNotification(QString title, QString text)
+void MainWindow::showNewErrorDialog(QString title, QString message)
 {
-    // todo
+    QMessageBox msgBox(QMessageBox::Critical, title, message);
+    msgBox.exec();
 }
 
 void MainWindow::updateLogMessages()

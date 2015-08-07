@@ -19,6 +19,7 @@ public:
 
 public slots:
     void onClick();
+    void showNotification(QString title, QString text);
 
 private:
 

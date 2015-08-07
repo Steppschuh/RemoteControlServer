@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="settingsTab">
        <attribute name="title">
@@ -46,7 +46,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>7</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="generalTab">
            <attribute name="title">
@@ -64,7 +64,7 @@
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>81</height>
+                <height>16777215</height>
                </size>
               </property>
               <property name="layoutDirection">
@@ -97,6 +97,13 @@
                 <widget class="QCheckBox" name="startServerMinimized">
                  <property name="text">
                   <string>Start server minimized</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="showNotifications">
+                 <property name="text">
+                  <string>Show tray icon notifications</string>
                  </property>
                 </widget>
                </item>

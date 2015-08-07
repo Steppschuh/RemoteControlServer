@@ -9,14 +9,17 @@
 #include "logger.h"
 #include "mainwindow.h"
 
-class Server
+class Server : public QObject
 {
+    Q_OBJECT
+
 public:
     static Server *Instance();
 
     QString userName;
     QString status;
 
+    void initializeAsync();
     void finish();
     QString getServerName();
     App *getApp(QString &ip);
@@ -26,6 +29,10 @@ public:
     void startProcess(QString path);
     void showNotification(QString title, QString text);
     void showErrorDialog(QString title, QString text);
+
+signals:
+    void newErrorMessage(QString title, QString text);
+    void newNotification(QString title, QString text);
 
 private:
     Server();

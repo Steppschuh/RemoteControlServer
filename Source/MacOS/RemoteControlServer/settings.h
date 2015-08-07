@@ -16,6 +16,7 @@ public:
     // General
     bool autoStart;
     bool startMinimized;
+    bool showTrayNotifications;
 
     bool showGuide;
 
@@ -79,6 +80,7 @@ public slots:
     void setScreenScale(int value);
     void setSerialPortName(QString value);
     void setSerialCommands(bool value);
+    void setShowTrayNotifications(bool value);
     void setUpdateAmbientColor(bool value);
     void setUsePin(bool value);
     void setUseWhitelist(bool value);

@@ -30,7 +30,8 @@ HEADERS  += ../RemoteControlServer/mainwindow.h \
     ../RemoteControlServer/tcp.h \
     ../RemoteControlServer/touchpoint.h \
     ../RemoteControlServer/trayicon.h \
-    ../RemoteControlServer/udp.h
+    ../RemoteControlServer/udp.h \
+    ../RemoteControlServer/updater.h
 
 SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/apiv1.cpp \
@@ -56,6 +57,7 @@ SOURCES += ../RemoteControlServer/mainwindow.cpp \
     ../RemoteControlServer/tcp.cpp \
     ../RemoteControlServer/touchpoint.cpp \
     ../RemoteControlServer/trayicon.cpp \
-    ../RemoteControlServer/udp.cpp
+    ../RemoteControlServer/udp.cpp \
+    ../RemoteControlServer/updater.cpp
 
 FORMS    += ../RemoteControlServer/mainwindow.ui

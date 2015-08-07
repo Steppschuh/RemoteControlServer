@@ -71,3 +71,8 @@ void TrayIcon::onClick()
     appStatus->setText("Status: " + currentApp->status);
 }
 
+void TrayIcon::showNotification(QString title, QString text)
+{
+    showMessage(title, text);
+}
+

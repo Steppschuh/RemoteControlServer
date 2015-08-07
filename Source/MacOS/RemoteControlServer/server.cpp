@@ -4,7 +4,9 @@
 #include "server.h"
 #include "settings.h"
 #include "tcp.h"
+#include "updater.h"
 
+#include <QtConcurrent>
 #include <QDesktopServices>
 #include <QProcess>
 #include <QSysInfo>
@@ -32,12 +34,19 @@ Server::Server()
     {
         Settings::Instance()->loadSettings();
         Network::Instance();                            // In order to initialize the network
+        Updater::Instance()->checkForUpdates(30);
         Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
-        apps = new QList<App*>();
-        Logger::Instance()->trackLaunchEvent();
-        Logger::Instance()->add("Server ready");
-        status = "Ready";
+        QtConcurrent::run(this, &Server::initializeAsync);
     }
+}
+
+void Server::initializeAsync()
+{
+    apps = new QList<App*>();
+    Logger::Instance()->trackLaunchEvent();
+    Logger::Instance()->add("Server ready");
+    status = "Ready";
+    showNotification("Server ready", "The Remote Control Server has been started and is waiting for a connection");
 }
 
 void Server::finish()
@@ -97,12 +106,12 @@ void Server::startProcess(QString path)
     else QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
-void Server::showNotification(QString title, QString text)
-{
-
+void Server::showErrorDialog(QString title, QString text){
+    emit newErrorMessage(title, text);
 }
 
-void Server::showErrorDialog(QString title, QString text){
-
+void Server::showNotification(QString title, QString text)
+{
+    emit newNotification(title, text);
 }
 
