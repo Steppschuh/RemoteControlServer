@@ -6,7 +6,9 @@
 #include "udp.h"
 
 #include <QDesktopServices>
+#include <QNetworkAccessManager>
 #include <QNetworkInterface>
+#include <QNetworkRequest>
 #include <QtConcurrent>
 
 #include <QDebug>
@@ -103,7 +105,8 @@ void Network::sendCommand(Command &command)
 
 void Network::loadInBrowser(QString &url)
 {
-    QDesktopServices::openUrl(url);
+    QNetworkAccessManager *manager = new QNetworkAccessManager();
+    manager->get(QNetworkRequest(QUrl(url)));
 }
 
 bool Network::isValidIp(QString &ip)

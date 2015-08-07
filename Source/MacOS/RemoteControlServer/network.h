@@ -16,6 +16,7 @@ public:
 
     QString getServerIp();
     void sendCommand(Command &command);
+    void loadInBrowser(QString &url);
 
 private:
     Network();
@@ -25,7 +26,6 @@ private:
 
     bool checkListenersRunning();
     void getHostIps();
-    void loadInBrowser(QString &url);
     bool isValidIp(QString &ip);
 };
 
