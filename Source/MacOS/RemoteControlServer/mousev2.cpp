@@ -51,10 +51,9 @@ MouseV2::MouseV2()
     P2_Up = QDateTime::currentDateTime().toMSecsSinceEpoch();
 }
 
-QPoint *MouseV2::getPointAt(QByteArray &messageBytes, int ID)
+bool MouseV2::valueMatchesTolerance(float val1, float val2, int tolerance)
 {
-    return new QPoint();
-    // todo
+    return (val1 < (val2 + tolerance) && val1 > (val2 - tolerance)) ? true : false;
 }
 
 QPoint *MouseV2::commandGetPoint(QByteArray &messageBytes, int ID)
@@ -152,7 +151,11 @@ void MouseV2::moveCursor()
 
 void MouseV2::leftClickRepeat(int count)
 {
-
+    for (int i = 0; i < count; ++i)
+    {
+        MouseMac::Instance()->leftMouseDown(false);
+        MouseMac::Instance()->leftMouseUp(false);
+    }
 }
 
 void MouseV2::zoom(int value, int count)
@@ -170,7 +173,43 @@ void MouseV2::processMultitouch()
 {
     P3_New->setX(round((P1_New->x() + P2_New->x()) / 2.0));
     P3_New->setY(round((P1_New->y() + P2_New->y()) / 2.0));
-    // todo
+    P3_Vector_New = Converter::Instance()->getPointDistance(*P1_New, *P2_New);
+
+    if (currentGesture == GESTURE_NONE)
+    {
+        if (valueMatchesTolerance(P3_Vector_New, P3_Vector_Start, 40))
+        {
+            if (valueMatchesTolerance(P3_New->x(), P3_Start->x(), 40) && !valueMatchesTolerance(P3_New->y(), P3_Start->y(), 40))
+            {
+                currentGesture = GESTURE_SCROLL;
+            }
+        }
+        else
+        {
+            currentGesture = GESTURE_ZOOM;
+            P3_Vector_Event = P3_Vector_New + 20;
+        }
+    }
+
+    if (currentGesture == GESTURE_ZOOM)
+    {
+        if (!valueMatchesTolerance(P3_Vector_New, P3_Vector_Event, 25))
+        {
+            scrollAmount = pow(P3_Vector_New - P3_Vector_Last, 2);
+            if (P3_Vector_New > P3_Vector_Last) zoom(1, 1);
+            else zoom(-1, 1);
+            P3_Vector_Event = P3_Vector_New;
+        }
+    }
+    else if (currentGesture == GESTURE_SCROLL)
+    {
+        scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
+        if (P3_New->y() > P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
+        else if (P3_New->y() < P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
+    }
+
+    P3_Last = new QPoint(P3_New->x(), P3_New->y());
+    P3_Vector_Last = P3_Vector_New;
 }
 
 void MouseV2::parseCursorMove(QByteArray &messageBytes)
@@ -209,10 +248,10 @@ void MouseV2::parseCursorSet(QByteArray &messageBytes)
 void MouseV2::parseScroll(QByteArray &messageBytes)
 {
     P1_New = commandGetPoint(messageBytes, 0);
-    scrollAmount = (P1_New->y() - P1_Last->y()) * 20;
+    scrollAmount = abs((P1_New->y() - P1_Last->y()) * 20);
 #ifdef Q_OS_MAC
-    if (P1_New->y() > P1_Last->y()) MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
-    else if (P1_New->y() < P1_Last->y()) MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
+    if (P1_New->y() > P1_Last->y()) MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
+    else if (P1_New->y() < P1_Last->y()) MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
 #endif
     P1_Last = new QPoint(P1_New->x(), P1_New->y());
 }
@@ -396,7 +435,7 @@ void MouseV2::calibratePointer(QByteArray &messageBytes)
 void MouseV2::parseLaser(QByteArray &messageBytes)
 {
     QPoint *point_org, *point;
-    point_org = getPointAt(messageBytes, 0);
+    point_org = commandGetPoint(messageBytes, 0);
 
     // Server.pointer.showPointer()
 
@@ -412,9 +451,4 @@ void MouseV2::parseLaser(QByteArray &messageBytes)
     // todo
     // Server.pointer.setPointerPosition(...)
     // Server.pointer.fadeOutPointer()
-}
-
-void MouseV2::parseMouse(QString cmd)
-{
-    qDebug() << "parseMouse";
 }

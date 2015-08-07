@@ -63,12 +63,7 @@ void ApiV1::parseCommand(Command &command)
     App *app = Server::Instance()->getApp(command.source);
 
     readableCommand = "Unknown";
-    if (cmd.contains(cmd_mouse_string))
-    {
-        parseMouseCommand(cmd);
-        Logger::Instance()->add("Mouse: " + value);
-    }
-    else if (cmd.contains(cmd_keyboard_string))
+    if (cmd.contains(cmd_keyboard_string))
     {
         parseKeyboardCommand(cmd);
         Logger::Instance()->add("Keyboard: " + readableCommand);
@@ -151,10 +146,10 @@ QString ApiV1::getCommandValue(QString cmd)
     return cmd.right(cmd.length() - cmd.indexOf("]") - 1);
 }
 
-void ApiV1::parseMouseCommand(QString cmd)
-{
-    MouseV2::Instance()->parseMouse(cmd);
-}
+//void ApiV1::parseMouseCommand(QString cmd)
+//{
+//    MouseV2::Instance()->parseMouse(cmd);
+//}
 
 void ApiV1::parseKeyboardCommand(QString cmd)
 {

@@ -41,7 +41,6 @@ private:
     QString readableCommand;
 
     QString getCommandValue(QString cmd);
-    void parseMouseCommand(QString cmd);
     void parseKeyboardCommand(QString cmd);
     void parseMediaCommand(QString cmd);
     void parseScrollCommand(QString cmd);

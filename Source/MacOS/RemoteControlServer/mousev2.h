@@ -26,7 +26,6 @@ public:
     void parsePointer(QByteArray &messageBytes);
     void calibratePointer(QByteArray &messageBytes);
     void parseLaser(QByteArray &messageBytes);
-    void parseMouse(QString cmd);
 
 private:
     static MouseV2 *instance;
@@ -52,7 +51,9 @@ private:
 
     enum
     {
-        GESTURE_NONE = 0
+        GESTURE_NONE = 0,
+        GESTURE_ZOOM = 1,
+        GESTURE_SCROLL = 2
     };
 
     QPoint *cursorPositionNew, *cursorPositionCurrent, *cursorPositionDown;
@@ -62,14 +63,14 @@ private:
     QPoint *P1_Rel, *P2_Rel;
     QPoint *P1_Start, *P2_Start, *P3_Start;
     QPoint *P1_Last, *P2_Last, *P3_Last;
-    float P3_Vector_Start;
+    float P3_Vector_New, P3_Vector_Start, P3_Vector_Last, P3_Vector_Event;
 
     long int dateLeftDown, dateLeftUp;
     long int P1_Down, P1_Up, P2_Down, P2_Up;
 
     bool mousePadDown, mouseLeftDown, mouseRightDown, isMultitouch;
 
-    QPoint *getPointAt(QByteArray &messageBytes, int ID);
+    bool valueMatchesTolerance(float val1, float val2, int tolerance = 20);
     QPoint *commandGetPoint(QByteArray &messageBytes, int ID);
     bool isPointerDown(QPoint &point);
     void moveCursor();
