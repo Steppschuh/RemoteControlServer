@@ -93,12 +93,16 @@ QString Server::getServerName(){
 
 void Server::startProcess(QString path)
 {
-    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
-    // todo: weblinks
+    if (path.startsWith("http:")) QDesktopServices::openUrl(url);
+    else QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 void Server::showNotification(QString title, QString text)
 {
+
+}
+
+void Server::showErrorDialog(QString title, QString text){
 
 }
 

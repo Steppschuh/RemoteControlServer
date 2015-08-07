@@ -121,7 +121,7 @@ void Settings::saveSettingsToFile()
             stream << endl;
 
             // Authentication
-            appendSetting("useWhiteList", Converter::Instance()->boolToString(useWhitelist), stream);
+            appendSetting("useWhitelist", Converter::Instance()->boolToString(useWhitelist), stream);
             appendSetting("usePin", Converter::Instance()->boolToString(usePin), stream);
             appendSetting("pin", pin, stream);
             stream << endl;
@@ -142,7 +142,7 @@ void Settings::saveSettingsToFile()
             // Slideshow
             appendSetting("clickOnLaserUp", Converter::Instance()->boolToString(clickOnLaserUp), stream);
             appendSetting("pointerDesign", QString(pointerDesign), stream);
-            appendSetting("cropBlackBoder", Converter::Instance()->boolToString(cropBlackBorder), stream);
+            appendSetting("cropBlackBorder", Converter::Instance()->boolToString(cropBlackBorder), stream);
 
             // Media
             appendSetting("defaultMediaPlayer", defaultMediaPlayer, stream);

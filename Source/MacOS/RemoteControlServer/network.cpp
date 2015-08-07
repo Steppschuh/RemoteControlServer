@@ -1,9 +1,11 @@
 #include "logger.h"
 #include "network.h"
 #include "remote.h"
+#include "server.h"
 #include "tcp.h"
 #include "udp.h"
 
+#include <QDesktopServices>
 #include <QNetworkInterface>
 #include <QtConcurrent>
 
@@ -43,7 +45,8 @@ bool Network::checkListenersRunning()
     else
     {
         Logger::Instance()->add("Network initialization failed, not all listeners could be started.");
-        // Server.gui.showDialog...
+        Server::Instance()->showErrorDialog("Error", "Network initialization failed, not all listeners could be started.\n"
+                                            + "Make sure that only one instance of the Remote Control Server is running.");
         return false;
     }
 }
@@ -100,7 +103,7 @@ void Network::sendCommand(Command &command)
 
 void Network::loadInBrowser(QString &url)
 {
-    //Server.gui.loadInBrowser
+    QDesktopServices::openUrl(url);
 }
 
 bool Network::isValidIp(QString &ip)

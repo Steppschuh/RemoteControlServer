@@ -25,6 +25,7 @@ public:
     App *getCurrentApp();
     void startProcess(QString path);
     void showNotification(QString title, QString text);
+    void showErrorDialog(QString title, QString text);
 
 private:
     Server();
