@@ -6,14 +6,14 @@
 class Helper
 {
 public:
-    Helper *Instance();
+    static Helper *Instance();
+
+    QString generateHelpMail();
+    bool sendMail(QString address, QString subject, QString body);
 
 private:
     Helper();
-    Helper *instance;
-
-//    QString generateHelpMail();
-//    bool sendMail(QString address, QString subject, QString body);
+    static Helper *instance;
 };
 
 #endif // HELPER_H

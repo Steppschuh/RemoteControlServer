@@ -102,7 +102,7 @@ QString Server::getServerName(){
 
 void Server::startProcess(QString path)
 {
-    if (path.startsWith("http:")) QDesktopServices::openUrl(path);
+    if (path.startsWith("http")) QDesktopServices::openUrl(path);   // includes paths with https
     else QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 

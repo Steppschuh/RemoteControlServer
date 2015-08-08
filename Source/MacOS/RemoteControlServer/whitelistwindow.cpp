@@ -11,16 +11,6 @@ WhitelistWindow::WhitelistWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString text = "";
-    for (int i = 0; i < Settings::Instance()->whitelistedIps->length(); ++i)
-    {
-        text += Settings::Instance()->whitelistedIps->at(i) + "\n";
-    }
-    text = text.left(text.length() - 1);
-    ui->ipTextEdit->setText(text);
-
-    validateInput();
-
     connect(ui->ipTextEdit, SIGNAL(textChanged()), this, SLOT(validateInput()));
     connect(ui->applyButton, SIGNAL(pressed()), this, SLOT(customHide()));
 }
@@ -46,6 +36,21 @@ void WhitelistWindow::customHide()
         }
     }
     hide();
+}
+
+void WhitelistWindow::customShow()
+{
+    QString text = "";
+    for (int i = 0; i < Settings::Instance()->whitelistedIps->length(); ++i)
+    {
+        text += Settings::Instance()->whitelistedIps->at(i) + "\n";
+    }
+    text = text.left(text.length() - 1);
+    ui->ipTextEdit->setText(text);
+
+    validateInput();
+
+    show();
 }
 
 void WhitelistWindow::validateInput()

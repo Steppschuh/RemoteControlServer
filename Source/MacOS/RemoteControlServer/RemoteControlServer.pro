@@ -49,7 +49,8 @@ SOURCES += main.cpp \
     trayicon.cpp \
     udp.cpp \
     updater.cpp \
-    whitelistwindow.cpp
+    whitelistwindow.cpp \
+    customwindow.cpp
 
 LIBS += -framework IOKit
 
@@ -82,11 +83,13 @@ HEADERS += macx.h \
     trayicon.h \
     udp.h \
     updater.h \
-    whitelistwindow.h
+    whitelistwindow.h \
+    customwindow.h
 
 RESOURCES += \
     resources.qrc
 
 FORMS += \
     mainwindow.ui \
-    whitelistwindow.ui
+    whitelistwindow.ui \
+    customwindow.ui

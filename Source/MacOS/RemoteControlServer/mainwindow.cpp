@@ -1,12 +1,16 @@
+#include "helper.h"
 #include "logger.h"
 #include "mainwindow.h"
 #include "media.h"
 #include "network.h"
+#include "serial.h"
 #include "settings.h"
 #include "ui_mainwindow.h"
+#include "updater.h"
 
 #include <QClipboard>
 #include <QCloseEvent>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QScrollBar>
@@ -18,16 +22,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->slideShowSelectPointer->addItem("Red point");
 
     initializeSystemTrayIcon();
-    connectUiToServer();
+    customWindow = new CustomWindow();
+    whitelistWindow = new WhitelistWindow();
 
     closeEventCameFromSystemTrayIcon = false;
 
     Server::Instance()->userName = Server::Instance()->getServerName();
+    ui->updateInstalledVersion->setText(Server::Instance()->getServerVersionName());
 
-    whitelistWindow = new WhitelistWindow();
+    connectUiToServer();
 }
 
 void MainWindow::connectUiToServer()
@@ -36,38 +41,70 @@ void MainWindow::connectUiToServer()
     connect(Logger::Instance(), SIGNAL(loggerUpdated()), this, SLOT(updateLogMessages()));
     connect(Server::Instance(), SIGNAL(newNotification(QString,QString)), trayIcon, SLOT(showNotification(QString,QString)));
     connect(Server::Instance(), SIGNAL(newErrorMessage(QString,QString)), this, SLOT(showNewErrorDialog(QString,QString)));
+    connect(Updater::Instance(), SIGNAL(hasUpdatesParsed()), this, SLOT(initUpdateNewestVersion()));
 
     // Signals from the ui to the server
+    // Settings
+    // General
     connect(ui->startServerOnLogin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setAutostart(bool)));
     connect(ui->startServerMinimized, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setMinimized(bool)));
     connect(ui->showNotifications, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setShowTrayNotifications(bool)));
 
+    // Protection
     connect(ui->enableWhitelist, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUseWhitelist(bool)));
     connect(ui->enablePin, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUsePin(bool)));
     connect(ui->showPin, SIGNAL(clicked(bool)), this, SLOT(setVisibleStateOfPinBox(bool)));
     connect(ui->pinDisplay, SIGNAL(textChanged(QString)), Settings::Instance(), SLOT(setPin(QString)));
-    connect(ui->manageWhitelistButton, SIGNAL(pressed()), this, SLOT(showWhitelistWindow()));
+    connect(ui->manageWhitelistButton, SIGNAL(clicked(bool)), whitelistWindow, SLOT(customShow()));
 
+    // Mouse
     connect(ui->mouseSensitivity, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseSensitivity(int)));
     connect(ui->mouseAcceleration, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMouseAcceleration(int)));
     connect(ui->motionFilter, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMotionFilter(int)));
     connect(ui->motionAcceleration, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setMotionAcceleration(int)));
 
+    // Screenshot
     connect(ui->screenNormalQuality, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setScreenQuality(int)));
     connect(ui->screenNormalScale, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setScreenScale(int)));
     connect(ui->screenFullQuality, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setScreenFullQuality(int)));
     connect(ui->screenFullScale, SIGNAL(sliderMoved(int)), Settings::Instance(), SLOT(setScreenFullScale(int)));
     connect(ui->screenGrayscale, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setScreenBlackWhite(bool)));
 
+    // Slideshow
     connect(ui->slideShowClickWhenReleased, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setClickOnLaserUp(bool)));
     connect(ui->slideShowSelectPointer, SIGNAL(currentIndexChanged(int)), Settings::Instance(), SLOT(setPointerDesign(int)));
+    connect(ui->slideShowSelectPointer, SIGNAL(currentIndexChanged(int)), this, SLOT(changePointer(int)));
     connect(ui->slideShowCropBlackBorder, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setCropBlackBorder(bool)));
 
+    // Media
     connect(ui->defaultMediaPlayer, SIGNAL(textChanged(QString)), Settings::Instance(), SLOT(setDefaultMediaPlayer(QString)));
+    connect(ui->browseMediaPlayer, SIGNAL(clicked(bool)), this, SLOT(openMediaFileDialog()));
 
+    // Custom
+    connect(ui->manageCustomActions, SIGNAL(clicked(bool)), customWindow, SLOT(customShow()));
+
+    // Misc
     connect(ui->enableSerialCommands, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setSerialCommands(bool)));
     connect(ui->serialPortNameText, SIGNAL(textChanged(QString)), Settings::Instance(), SLOT(setSerialPortName(QString)));
     connect(ui->updateAmbientColor, SIGNAL(clicked(bool)), Settings::Instance(), SLOT(setUpdateAmbientColor(bool)));
+    connect(ui->ReopenPortButton, SIGNAL(clicked(bool)), this, SLOT(reopenSerialPort()));
+    connect(ui->LEDonButton, SIGNAL(clicked(bool)), this, SLOT(ledOn()));
+    connect(ui->LEDoffButton, SIGNAL(clicked(bool)), this, SLOT(ledOff()));
+
+    // Update
+    connect(ui->updateInstall, SIGNAL(clicked(bool)), Updater::Instance(), SLOT(startUpdater()));
+    connect(ui->updateShowChangelog, SIGNAL(clicked(bool)), this, SLOT(startUpdateChangelogAction()));
+    connect(ui->updateHelp, SIGNAL(clicked(bool)), this, SLOT(startUpdateHelpAction()));
+
+    // Help
+    connect(ui->helpHelp, SIGNAL(clicked(bool)), this, SLOT(helpHelpAction()));
+    connect(ui->helpFAQ, SIGNAL(clicked(bool)), this, SLOT(helpFAQAction()));
+    connect(ui->helpContact, SIGNAL(clicked(bool)), this, SLOT(helpContactAction()));
+    connect(ui->helptGithubIssue, SIGNAL(clicked(bool)), this, SLOT(helpGithubAction()));
+
+    // Connect
+    connect(ui->connectSetupGuide, SIGNAL(clicked(bool)), this, SLOT(connectSetupguideAction()));
+    connect(ui->connectTroubleshooting, SIGNAL(clicked(bool)), this, SLOT(connectTroubleshootingAction()));
 
     // Signals from the UI to the UI
     connect(ui->logCopyToClipboard, SIGNAL(released()), this, SLOT(copyLogTextToClipboard()));
@@ -90,6 +127,37 @@ void MainWindow::initializeSystemTrayIcon()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::changePointer(int index)
+{
+    QString path = "";
+    if (index == 0)
+    {
+        path = ":icons/pointer_white.png";
+    }
+    else if (index == 1)
+    {
+        path = ":icons/pointer.png";
+    }
+
+    if (path.length() <= 0) return;
+
+    QPixmap *pixmap = new QPixmap(path);
+    ui->pointerLabel->setPixmap(*pixmap);
+    delete pixmap;
+}
+
+void MainWindow::connectSetupguideAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "Connection help page");
+    Server::Instance()->startProcess("http://remote-control-collection.com/help/connect/");
+}
+
+void MainWindow::connectTroubleshootingAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "Troubleshooting page");
+    Server::Instance()->startProcess("http://remote-control-collection.com/help/troubleshooting/");
 }
 
 void MainWindow::copyLogTextToClipboard()
@@ -129,6 +197,31 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
+void MainWindow::helpHelpAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "Help page");
+    Server::Instance()->startProcess("http://remote-control-collection.com/help/");
+}
+
+void MainWindow::helpFAQAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "FAQ page");
+    Server::Instance()->startProcess("http://remote-control-collection.com/help/faq/");
+}
+
+void MainWindow::helpContactAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "Send support mail");
+    QString body = Helper::Instance()->generateHelpMail() + "My problem is ";
+    Helper::Instance()->sendMail("support@android-remote.com", "Remote Control Support", body);
+}
+
+void MainWindow::helpGithubAction()
+{
+    Logger::Instance()->trackEvent("Server", "Click", "Github");
+    Server::Instance()->startProcess("https://github.com/Steppschuh/RemoteControlServer/issues");
+}
+
 void MainWindow::initUiWithSettings()
 {
     ui->startServerOnLogin->setChecked(Settings::Instance()->autoStart);
@@ -152,6 +245,7 @@ void MainWindow::initUiWithSettings()
 
     ui->slideShowClickWhenReleased->setChecked(Settings::Instance()->clickOnLaserUp);
     ui->slideShowSelectPointer->setCurrentIndex(Settings::Instance()->pointerDesign);
+    changePointer(Settings::Instance()->pointerDesign);
     ui->slideShowCropBlackBorder->setChecked(Settings::Instance()->cropBlackBorder);
 
     QFileInfo checkFile(Settings::Instance()->defaultMediaPlayer);
@@ -171,9 +265,37 @@ void MainWindow::initUiWithSettings()
     if (!Settings::Instance()->startMinimized) customShow();
 }
 
+void MainWindow::initUpdateNewestVersion()
+{
+    ui->updateLatestVersion->setText(Updater::Instance()->updateVersionName);
+}
+
+void MainWindow::ledOn()
+{
+    Serial::Instance()->sendMessage("<01>");
+}
+
+void MainWindow::ledOff()
+{
+    Serial::Instance()->sendMessage("<02>");
+}
+
+void MainWindow::openMediaFileDialog()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Select Media Application"), "/Applications", tr("Applicaionts (*.app)"));
+
+    if (file.length() > 0) ui->defaultMediaPlayer->setText(file);
+}
+
 void MainWindow::paintEvent(QPaintEvent * event)
 {
     ui->serverIpLabel->setText(Network::Instance()->getServerIp());
+}
+
+void MainWindow::reopenSerialPort()
+{
+    Serial::Instance()->closeSerialPort();
+    Serial::Instance()->openSerialPort(Settings::Instance()->serialPortName);
 }
 
 void MainWindow::setVisibleStateOfPinBox(bool value)
@@ -182,15 +304,28 @@ void MainWindow::setVisibleStateOfPinBox(bool value)
     else        ui->pinDisplay->setEchoMode(QLineEdit::Password);
 }
 
-void MainWindow::showNewErrorDialog(QString title, QString message)
+void MainWindow::showNewDialog(QString title, QString message)
 {
-    QMessageBox msgBox(QMessageBox::Critical, title, message);
+    QMessageBox msgBox(QMessageBox::Information, title, message);
+
     msgBox.exec();
 }
 
-void MainWindow::showWhitelistWindow()
+void MainWindow::showNewErrorDialog(QString title, QString message)
 {
-    whitelistWindow->show();
+    QMessageBox msgBox(QMessageBox::Critical, title, message);
+
+    msgBox.exec();
+}
+
+void MainWindow::startUpdateChangelogAction()
+{
+    showNewDialog("Changelog", Updater::Instance()->updateChangeLog);
+}
+
+void MainWindow::startUpdateHelpAction()
+{
+    Server::Instance()->startProcess(Updater::Instance()->URL_UPDATE_HELP);
 }
 
 void MainWindow::updateLogMessages()

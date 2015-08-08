@@ -13,12 +13,17 @@ Updater *Updater::Instance()
     return instance;
 }
 
-Updater::Updater()
+Updater::Updater() :
+URL_UPDATE_HELP("http://remote-control-collection.com/help/update/")
+{
+}
+
+void Updater::checkForUpdates(int delayInSeconds)
 {
 
 }
 
-void Updater::checkForUpdates(int delayInSeconds)
+void Updater::startUpdater()
 {
 
 }

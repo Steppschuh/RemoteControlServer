@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="settingsTab">
        <attribute name="title">
@@ -46,7 +46,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="generalTab">
            <attribute name="title">
@@ -693,6 +693,20 @@
                <string>Laser pointer</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
+               <item row="0" column="0">
+                <widget class="QCheckBox" name="slideShowClickWhenReleased">
+                 <property name="text">
+                  <string>Click when released</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
+                  <string>Set pointer to:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="slideShowSelectPointer">
                  <property name="editable">
@@ -703,31 +717,32 @@
                    <string>White circle</string>
                   </property>
                  </item>
+                 <item>
+                  <property name="text">
+                   <string>Red point</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
-               <item row="0" column="0" colspan="2">
-                <widget class="QCheckBox" name="slideShowClickWhenReleased">
+               <item row="1" column="2">
+                <widget class="QLabel" name="pointerLabel">
                  <property name="text">
-                  <string>Click when released</string>
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resources.qrc">:/icons/pointer_white.png</pixmap>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="slideShowSetPointerTo">
-                 <property name="text">
-                  <string>Set pointer to</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0" colspan="2">
+               <item row="2" column="0">
                 <widget class="QCheckBox" name="slideShowCropBlackBorder">
                  <property name="text">
                   <string>Crop black border</string>
                  </property>
                 </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QGraphicsView" name="graphicsView"/>
                </item>
               </layout>
              </widget>
@@ -1002,7 +1017,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="label_33">
+            <widget class="QLabel" name="updateLatestVersion">
              <property name="styleSheet">
               <string notr="true">color: rgb(142, 142, 142);</string>
              </property>
@@ -1010,7 +1025,7 @@ p, li { white-space: pre-wrap; }
               <enum>QFrame::Plain</enum>
              </property>
              <property name="text">
-              <string>0.0</string>
+              <string>Unknown</string>
              </property>
             </widget>
            </item>
@@ -1022,7 +1037,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="label_34">
+            <widget class="QLabel" name="updateInstalledVersion">
              <property name="styleSheet">
               <string notr="true">color: rgb(142, 142, 142);</string>
              </property>
@@ -1030,19 +1045,19 @@ p, li { white-space: pre-wrap; }
               <enum>QFrame::Plain</enum>
              </property>
              <property name="text">
-              <string>0.0</string>
+              <string>Unknown</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_13">
+            <widget class="QPushButton" name="updateShowChangelog">
              <property name="text">
               <string>Show changelog</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_14">
+            <widget class="QPushButton" name="updateInstall">
              <property name="text">
               <string>Install the latest Version</string>
              </property>
@@ -1080,7 +1095,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_15">
+            <widget class="QPushButton" name="updateHelp">
              <property name="text">
               <string>How to update the Remote Control Server</string>
              </property>
@@ -1138,7 +1153,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="helpContact">
              <property name="text">
               <string>Contact us</string>
              </property>
@@ -1176,7 +1191,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_9">
+            <widget class="QPushButton" name="helptGithubIssue">
              <property name="text">
               <string>GitHub Issue tracker</string>
              </property>
@@ -1214,14 +1229,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="helpHelp">
              <property name="text">
               <string>Help Page</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QPushButton" name="helpFAQ">
              <property name="text">
               <string>FAQ Page</string>
              </property>
@@ -1348,14 +1363,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="connectSetupGuide">
              <property name="text">
               <string>Setup Guide</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="connectTroubleshooting">
              <property name="text">
               <string>Troubleshooting</string>
              </property>
@@ -1409,6 +1424,8 @@ p, li { white-space: pre-wrap; }
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

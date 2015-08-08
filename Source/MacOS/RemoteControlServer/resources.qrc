@@ -1,5 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
+	<file>icons/pointer.png</file>
+	<file>icons/pointer_white.png</file>
     <file>icons/SystemTrayIcon.png</file>
 </qresource>
 </RCC>

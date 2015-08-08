@@ -17,6 +17,7 @@ public:
 
 public slots:
     void customHide();
+    void customShow();
     void validateInput();
 
 private:

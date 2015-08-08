@@ -131,19 +131,19 @@ void Settings::saveSettingsToFile()
         // Mouse and Pointer
         appendSetting("mouseSensitivity", QString::number(mouseSensitivity, 'f', 2), stream);
         appendSetting("mouseAcceleration", QString::number(mouseAcceleration, 'f', 2), stream);
-        appendSetting("motionFilter", QString(motionFilter), stream);
-        appendSetting("motionAcceleration", QString(motionAcceleration), stream);
+        appendSetting("motionFilter", QString::number(motionFilter), stream);
+        appendSetting("motionAcceleration", QString::number(motionAcceleration), stream);
 
         // Screen
-        appendSetting("screenQuality", QString(screenQuality), stream);
-        appendSetting("screenQualityFull", QString(screenQualityFull), stream);
+        appendSetting("screenQuality", QString::number(screenQuality), stream);
+        appendSetting("screenQualityFull", QString::number(screenQualityFull), stream);
         appendSetting("screenScale", QString::number(screenScale, 'f', 2), stream);
         appendSetting("screenScaleFull", QString::number(screenScaleFull, 'f', 2), stream);
         appendSetting("screenBlackWhite", Converter::Instance()->boolToString(screenBlackWhite), stream);
 
         // Slideshow
         appendSetting("clickOnLaserUp", Converter::Instance()->boolToString(clickOnLaserUp), stream);
-        appendSetting("pointerDesign", QString(pointerDesign), stream);
+        appendSetting("pointerDesign", QString::number(pointerDesign), stream);
         appendSetting("cropBlackBorder", Converter::Instance()->boolToString(cropBlackBorder), stream);
 
         // Media
@@ -336,8 +336,8 @@ void Settings::parseCustomActions(QString &xmlString)
     {
         customActions->append("http://remote-control-collection.com/help/custom/");
         customActions->append("https://www.google.com/?q=This+is+a+sample+custom+action");
-        customActions->append("explorer");
-        customActions->append("calc");
+        customActions->append("/System/Library/CoreServices/Finder.app");
+        customActions->append("/Applications/Calculator.app");
     }
 }
 
