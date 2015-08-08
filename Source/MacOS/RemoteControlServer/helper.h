@@ -9,7 +9,7 @@ public:
     static Helper *Instance();
 
     QString generateHelpMail();
-    bool sendMail(QString address, QString subject, QString body);
+    bool sendMail(QString address, QString subject = "", QString body = "");
 
 private:
     Helper();

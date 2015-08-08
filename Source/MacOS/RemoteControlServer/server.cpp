@@ -89,7 +89,7 @@ QString Server::getServerVersionName()
 
 QString Server::getServerOs()
 {
-    return QSysInfo::productVersion();
+    return QSysInfo::prettyProductName();
 }
 
 QString Server::getServerName(){
