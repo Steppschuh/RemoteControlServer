@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Remote Control Server");
+    setWindowIcon(QIcon(":/icons/icon_server_256.png"));
 
     initializeSystemTrayIcon();
     customWindow = new CustomWindow();
