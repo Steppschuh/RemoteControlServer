@@ -205,7 +205,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
             Screenshot::Instance()->continueSendingScreenshots = true;
             if (!Screenshot::Instance()->isSendingScreenshot)
             {
-                Screenshot::Instance()->keepSendingScreenshots(requestCommand, *responseCommand);
+                Screenshot::Instance()->keepSendingScreenshots(*responseCommand);
             }
             break;
         default:
@@ -244,7 +244,7 @@ void ApiV3::parseScreenshotProperties(Command &command)
 void ApiV3::answerScreenGetRequest(Command &responseCommand)
 {
     QPixmap* screenshotBitmap = Screenshot::Instance()->getResizedScreenshot(Screenshot::Instance()->lastRequestedWidth);
-    QByteArray *screenshotData = Converter::Instance()->bitmapToByte(*screenshotBitmap, Screenshot::Instance()->lastRequestedQuality);
+    QByteArray *screenshotData = Converter::Instance()->pixmapToByte(*screenshotBitmap, Screenshot::Instance()->lastRequestedQuality);
     QByteArray *commandIdentifier = new QByteArray();
     commandIdentifier->append(COMMAND_IDENTIFIER).append(cmd_get).append(cmd_get_screenshot);
     commandIdentifier->append(Screenshot::Instance()->lastRequestedWidth / 100);

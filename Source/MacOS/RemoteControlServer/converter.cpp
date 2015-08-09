@@ -30,12 +30,12 @@ void Converter::scalePixmap(QPixmap *sourcePixmap, float scale)
     }
 }
 
-QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)
+QByteArray *Converter::pixmapToByte(QPixmap &pixmap, int compression)
 {
     QByteArray *bytes = new QByteArray();
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
-    bitmap.save(&buffer, "JPG", compression);
+    pixmap.save(&buffer, "JPG", compression);
     return bytes;
 }
 
@@ -71,4 +71,11 @@ float Converter::getPointDistance(QPoint &P1, QPoint &P2, int digits)
     d = sqrt(pow(P1.x() - P2.x(), 2) + pow(P1.y() - P2.y(), 2));
     d = round(d * pow(10, digits)) / pow(10, digits);
     return d;
+}
+
+char Converter::byteToAsciiNumber(char b)
+{
+    int value = 0;
+    value = (b * 9) / 255;
+    return (char) value;
 }

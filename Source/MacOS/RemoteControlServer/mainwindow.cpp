@@ -16,7 +16,6 @@
 #include <QScrollBar>
 
 #include <QDebug>
-#include <screenshot.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

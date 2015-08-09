@@ -16,6 +16,7 @@ public:
     void requestPin(App &app);
     void answerBroadCast(App &app);
     void parseCommand(Command &command);
+    void answerScreenGetRequest(Command &responseCommand);
 
 private:
     ApiV3();
@@ -75,7 +76,6 @@ private:
     void parseOpenCommand(Command &command);
     void answerGetRequest(Command &requestCommand);
     void parseScreenshotProperties(Command &command);
-    void answerScreenGetRequest(Command &responseCommand);
     void setValue(Command &setCommand);
     void parseMouseCommand(Command &command);
     void parseKeyboardCommand(Command &command);

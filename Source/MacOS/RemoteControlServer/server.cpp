@@ -1,5 +1,6 @@
 #include "network.h"
 #include "remote.h"
+#include "screenshot.h"
 #include "serial.h"
 #include "server.h"
 #include "settings.h"
@@ -36,6 +37,7 @@ Server::Server()
         Network::Instance();                            // In order to initialize the network
         Updater::Instance()->checkForUpdates(30);
         Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
+        Screenshot::Instance()->startUpdateColorTimer();
         QtConcurrent::run(this, &Server::initializeAsync);
     }
 }

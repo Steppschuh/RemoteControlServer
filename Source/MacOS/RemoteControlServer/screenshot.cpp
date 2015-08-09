@@ -1,16 +1,24 @@
+#include "apiv3.h"
 #include "converter.h"
+#include "network.h"
+#include "remote.h"
 #include "screenshot.h"
+#include "serial.h"
 #include "settings.h"
+
+#include <iostream>
+#include <thread>
+#include <chrono>
 
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QScreen>
 #include <QGuiApplication>
+#include <QScreen>
+#include <QtConcurrent>
 #include <QPainter>
 
 #include <QObject>
 
-#include <QFile>
 #include <QDebug>
 
 Screenshot* Screenshot::instance = NULL;
@@ -26,11 +34,9 @@ Screenshot* Screenshot::Instance()
 
 Screenshot::Screenshot()
 {
-    screenIndex = 0;
-    isSendingScreenshot = false;
-    continueSendingScreenshots = false;
+    averageColor = new QColor(Qt::white);
+    lastAverageColor = new QColor(Qt::white);
 
-    lastRequestedWidth = 9999;
     lastRequestedQuality = Settings::Instance()->screenQualityFull;
 }
 
@@ -135,19 +141,44 @@ QList<QPoint *> *Screenshot::getScreenBounds(int index)
     return locations;
 }
 
-void Screenshot::keepSendingScreenshots(Command &requestCommand, Command &responseCommand)
+void Screenshot::keepSendingScreenshots(Command &responseCommand)
 {
+    QtConcurrent::run(this, &Screenshot::keepSendingScreenshotsThread, responseCommand);
+}
 
+void Screenshot::keepSendingScreenshotsThread(Command &responseCommand)
+{
+    isSendingScreenshot = true;
+    while (continueSendingScreenshots)
+    {
+        continueSendingScreenshots = false;
+        ApiV3::Instance()->answerScreenGetRequest(responseCommand);
+        std::this_thread::sleep_for (std::chrono::milliseconds(screenUpdateInterval));
+        ApiV3::Instance()->answerScreenGetRequest(responseCommand);
+        std::this_thread::sleep_for (std::chrono::milliseconds(screenUpdateInterval));
+        ApiV3::Instance()->answerScreenGetRequest(responseCommand);
+    }
+    isSendingScreenshot = false;
 }
 
 void Screenshot::sendPixmap(QPixmap *pixmap, int quality)
 {
-
+    isSendingScreenshot = true;
+    Command *command = new Command();
+    command->source = Network::Instance()->getServerIp();
+    command->destination = Remote::Instance()->lastCommand->source;
+    command->priority = Command::PRIORITY_MEDIUM;
+    command->data = Converter::Instance()->pixmapToByte(*pixmap, quality);
+    command->send();
 }
 
 void Screenshot::sendScreenshot(bool full)
 {
-
+    if (!isSendingScreenshot)
+    {
+        if (full) sendPixmap(getScreenshot(true, screenIndex), Settings::Instance()->screenQualityFull);
+        else sendPixmap(getScreenshot(false, screenIndex), Settings::Instance()->screenQuality);
+    }
 }
 
 void Screenshot::toggleScreen()
@@ -155,4 +186,70 @@ void Screenshot::toggleScreen()
     int new_index = screenIndex + 1;
     if (new_index > QGuiApplication::screens().length() - 1) new_index = -1;
     screenIndex = new_index;
+}
+
+void Screenshot::startUpdateColorTimer()
+{
+    QTimer *timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateAverageColorTimerTick()));
+    timer->start(colorUpdateInterval);
+}
+
+void Screenshot::updateAverageColorTimerTick()
+{
+    QtConcurrent::run(this, &Screenshot::updateAverageColor);
+}
+
+void Screenshot::updateAverageColor()
+{
+    if (Settings::Instance()->updateAmbientColor)
+    {
+        averageColor = getApproximateAverageColor(getScreenshot(false, screenIndex));
+        if (Settings::Instance()->serialCommands && lastAverageColor->name() == averageColor->name())
+        {
+            QString message = "<22"
+                    + QString::number(Converter::Instance()->byteToAsciiNumber(averageColor->red()))
+                    + QString::number(Converter::Instance()->byteToAsciiNumber(averageColor->green()))
+                    + QString::number(Converter::Instance()->byteToAsciiNumber(averageColor->blue()))
+                    + "9>";
+            Serial::Instance()->sendMessage(message);
+            lastAverageColor = new QColor(averageColor->name());
+        }
+    }
+}
+
+QColor* Screenshot::getApproximateAverageColor(QPixmap *pixmap)
+{
+    int totalR = 0;
+    int totalG = 0;
+    int totalB = 0;
+    int count = 1;
+    QImage img = pixmap->toImage();
+    for (int x = 0; x < pixmap->width(); ++x)
+    {
+        for (int y = 0; y < pixmap->height(); ++y)
+        {
+            QColor *pixel = new QColor(img.pixel(x, y));
+            if (pixel->saturation() > 0.0 && pixel->value() > 0.0)
+            {
+                totalR += pixel->red();
+                totalG += pixel->green();
+                totalB += pixel->blue();
+                count += 1;
+            }
+        }
+    }
+
+    int averageR = totalR / count;
+    int averageG = totalG / count;
+    int averageB = totalB / count;
+
+    int roundUp = 200;
+    int roundDown = 100;
+
+    averageR = (averageR > roundUp) ? 255 : ((averageR < roundDown) ? 0 : averageR);
+    averageG = (averageG > roundUp) ? 255 : ((averageG < roundDown) ? 0 : averageG);
+    averageB = (averageB > roundUp) ? 255 : ((averageB < roundDown) ? 0 : averageB);
+
+    return new QColor(averageR, averageG, averageB);
 }
