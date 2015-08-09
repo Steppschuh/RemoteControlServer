@@ -16,6 +16,7 @@
 #include <QScrollBar>
 
 #include <QDebug>
+#include <screenshot.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("Remote Control Server");
     setWindowIcon(QIcon(":/icons/icon_server_256.png"));
+    ui->settingsTabs->setCurrentIndex(0);
 
     initializeSystemTrayIcon();
     customWindow = new CustomWindow();

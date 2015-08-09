@@ -30,8 +30,16 @@ private:
     static Screenshot *instance;
     Screenshot();
 
+    QPixmap* getScreenshot(bool fullscreen, int index);
     QPixmap* getScreenshot(int index);
     QPixmap* convertToGrayscale(QPixmap &source);
+    void sendPixmap(QPixmap *pixmap, int quality);
+    void startUpdateColorTimer();
+    void updateAverageColorTimerTick();
+    void updateAverageColor();
+    void getAverageColor(QPixmap *pixmap); // todo return type
+    void getApproximateAverageColor(QPixmap *pixmap); // todo return type
+
 };
 
 #endif // SCREENSHOT_H

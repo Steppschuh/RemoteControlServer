@@ -17,9 +17,17 @@ Converter* Converter::Instance()
     return instance;
 }
 
-Converter::Converter() :
-    maxSizeForBitmaps(100000)
+Converter::Converter()
 {
+}
+
+void Converter::scalePixmap(QPixmap *sourcePixmap, float scale)
+{
+    if (scale != 1 && scale > 0)
+    {
+        QPixmap *destinationPixmap = new QPixmap(sourcePixmap->scaled(sourcePixmap->width() * scale, sourcePixmap->height() * scale));
+        sourcePixmap = destinationPixmap;
+    }
 }
 
 QByteArray *Converter::bitmapToByte(QPixmap &bitmap, int compression)

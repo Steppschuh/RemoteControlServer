@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="mainTabs">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -32,7 +32,7 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QTabWidget" name="settingsWindget">
+         <widget class="QTabWidget" name="settingsTabs">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>

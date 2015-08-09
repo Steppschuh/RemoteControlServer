@@ -13,6 +13,7 @@ class Converter
 public:
     static Converter *Instance();
 
+    void scalePixmap(QPixmap *sourcePixmap, float scale);
     QByteArray* bitmapToByte(QPixmap &bitmap, int compression);
     QString byteToString(QByteArray &value, int index);
     QString boolToString(bool value);
@@ -23,8 +24,6 @@ public:
 private:
     Converter();
     static Converter *instance;
-
-    const int maxSizeForBitmaps;
 };
 
 #endif // CONVERTER_H
