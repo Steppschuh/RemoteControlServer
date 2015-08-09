@@ -118,7 +118,7 @@ void MainWindow::initializeSystemTrayIcon()
     if (!QSystemTrayIcon::isSystemTrayAvailable())
                 QMessageBox::warning(this, tr("System tray is unavailable"),
                                           tr("System tray unavailable"));
-    trayIcon = new TrayIcon();
+    trayIcon = new TrayIcon(this);
     connect(trayIcon->openSettingsWindow, SIGNAL(triggered()), this, SLOT(customShow()));
     connect(trayIcon->quit, SIGNAL(triggered()), this, SLOT(customClose()));
     connect(Settings::Instance(), SIGNAL(settingsLoaded()), this, SLOT(initUiWithSettings()));

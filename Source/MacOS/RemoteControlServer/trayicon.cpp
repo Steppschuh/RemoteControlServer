@@ -6,7 +6,8 @@
 
 #include <QDebug>
 
-TrayIcon::TrayIcon()
+TrayIcon::TrayIcon(QObject *parent) :
+    QSystemTrayIcon(parent)
 {
     serverIp = new QAction(this);
     serverVersion = new QAction(this);

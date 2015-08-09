@@ -58,9 +58,12 @@ void Network::getHostIps()
     Logger::Instance()->add("Active Wi-Fi network adapters:");
     foreach (const QHostAddress &address, QNetworkInterface::allAddresses())
     {
-        QString ip = address.toString();
-        hostIps->append(ip);
-        Logger::Instance()->add(" - " + ip);
+        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress::LocalHost)
+        {
+            QString ip = address.toString();
+            hostIps->append(ip);
+            Logger::Instance()->add(" - " + ip);
+        }
     }
 }
 

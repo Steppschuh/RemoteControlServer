@@ -41,7 +41,7 @@ void UDP::startListener()
         if (success)
         {
             connect(udpSocket, SIGNAL(readyRead()), this, SLOT(listen()));
-            Logger::Instance()->add("UDP listener started listening at port " + QString(port));
+            Logger::Instance()->add("UDP listener started listening at port " + QString::number(port));
         }
         else
         {
@@ -51,7 +51,7 @@ void UDP::startListener()
     }
     else
     {
-        Logger::Instance()->add("UDP listener already running at port " + QString(port));
+        Logger::Instance()->add("UDP listener already running at port " + QString::number(port));
     }
 }
 

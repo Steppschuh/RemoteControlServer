@@ -46,7 +46,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="generalTab">
            <attribute name="title">
@@ -234,6 +234,12 @@
                </item>
                <item row="2" column="0" colspan="2">
                 <widget class="QLineEdit" name="pinDisplay">
+                 <property name="maximumSize">
+                  <size>
+                   <width>75</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>1234</string>
                  </property>
@@ -242,6 +248,9 @@
                  </property>
                  <property name="echoMode">
                   <enum>QLineEdit::Password</enum>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </item>

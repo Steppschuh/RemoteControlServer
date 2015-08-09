@@ -10,7 +10,7 @@ class TrayIcon : public QSystemTrayIcon
     Q_OBJECT
 
 public:
-    TrayIcon();
+    TrayIcon(QObject *parent);
 
     QAction* openSettingsWindow;
     QAction* quit;

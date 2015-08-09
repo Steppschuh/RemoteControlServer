@@ -46,7 +46,7 @@ bool TCP::sendData(Command &command)
     }
     else
     {
-        Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString(portSend));
+        Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString::number(portSend));
     }
     return received;
 }
@@ -82,7 +82,7 @@ void TCP::startListener()
         if (success)
         {
             connect(tcpServer, SIGNAL(newConnection()), this, SLOT(listenTimerTick()));
-            Logger::Instance()->add("TCP listener started at port " + QString(portReceive));
+            Logger::Instance()->add("TCP listener started at port " + QString::number(portReceive));
         }
         else
         {
@@ -92,7 +92,7 @@ void TCP::startListener()
     }
     else
     {
-        Logger::Instance()->add("TCP listener already running at port " + QString(portReceive));
+        Logger::Instance()->add("TCP listener already running at port " + QString::number(portReceive));
     }
 }
 
