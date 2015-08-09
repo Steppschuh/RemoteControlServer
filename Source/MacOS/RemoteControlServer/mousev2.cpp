@@ -1,5 +1,7 @@
 #include "converter.h"
 #include "mousev2.h"
+#include "screenshot.h"
+#include "server.h"
 #include "settings.h"
 
 #include <math.h>
@@ -389,7 +391,7 @@ void MouseV2::parsePointer(QByteArray &messageBytes)
         // Pointer
         if (!(X_Rel == 0 && Y_Rel == 0))
         {
-//            cursorPositonCurrent = Server.pointer.getPointerPosition()
+            cursorPositionCurrent = Server::Instance()->pointer->getPointerPosition();
             if (Y_Rel < 0) cursorPositionNew->setX(cursorPositionCurrent->x() - Y_Rel * Y_Rel);
             else if (Y_Rel > 0) cursorPositionNew->setX(cursorPositionCurrent->x() + Y_Rel * Y_Rel);
             else cursorPositionNew->setX(cursorPositionCurrent->x());
@@ -398,19 +400,15 @@ void MouseV2::parsePointer(QByteArray &messageBytes)
             else if (X_Rel > 0) cursorPositionNew->setY(cursorPositionCurrent->y() + X_Rel * X_Rel);
             else cursorPositionNew->setY(cursorPositionCurrent->y());
 
-//            if (cursorPositionNew->x() > Screen.PrimaryScreen.Bounds.Width - 50 Then
-//                        cursorPositonNew.X = Screen.PrimaryScreen.Bounds.Width - 50
-//                    ElseIf cursorPositonNew.X < 0 Then
-//                        cursorPositonNew.X = 0
-//                    End If
-//                    If cursorPositonNew.Y > Screen.PrimaryScreen.Bounds.Height - 50 Then
-//                        cursorPositonNew.Y = Screen.PrimaryScreen.Bounds.Height - 50
-//                    ElseIf cursorPositonNew.Y < 0 Then
-//                        cursorPositonNew.Y = 0
-//                    End If
-            //todo
+            QList<QPoint*> *screenBounds = Screenshot::Instance()->getScreenBounds(Screenshot::Instance()->screenIndex);
 
-//                    Server.pointer.setPointerPosition(New Point(cursorPositonNew.X, cursorPositonNew.Y))
+            if (cursorPositionNew->x() > screenBounds->at(1)->x()) cursorPositionNew->setX(screenBounds->at(1)->x());
+            if (cursorPositionNew->x() < screenBounds->at(0)->x()) cursorPositionNew->setX(screenBounds->at(0)->x());
+
+            if (cursorPositionNew->y() > screenBounds->at(1)->y()) cursorPositionNew->setY(screenBounds->at(1)->y());
+            if (cursorPositionNew->y() < screenBounds->at(0)->y()) cursorPositionNew->setY(screenBounds->at(0)->y());
+
+            Server::Instance()->pointer->setPointerPosition(*new QPoint(cursorPositionNew->x(), cursorPositionNew->y()));
         }
     }
 }
@@ -439,18 +437,24 @@ void MouseV2::parseLaser(QByteArray &messageBytes)
     QPoint *point_org, *point;
     point_org = commandGetPoint(messageBytes, 0);
 
-    // Server.pointer.showPointer()
+    Server::Instance()->pointer->showPointer();
 
-    QDesktopWidget desktop;
-    QRect mainScreenSize = desktop.screenGeometry(desktop.primaryScreen());
+    QList<QPoint *> *locations = Screenshot::Instance()->getScreenBounds(Screenshot::Instance()->screenIndex);
 
-    int width = mainScreenSize.width();
-    int height = mainScreenSize.height();
+    QPoint *startLocation = locations->at(0);
+    QPoint *endLocation = locations->at(1);
 
-    point->setX(point_org->x() * width / 255);
-    point->setY(point_org->y() * height / 255);
+    int width = endLocation->x() - startLocation->x();
+    int height = endLocation->y() - startLocation->y();
 
-    // todo
-    // Server.pointer.setPointerPosition(...)
-    // Server.pointer.fadeOutPointer()
+    point->setX(point_org->x() * width / 255 + startLocation->x());
+    point->setY(point_org->y() * height / 255 + startLocation->y());
+
+    int x, y;
+
+    x = (point->x() > startLocation->x() + 25) ? point->x() - 25 : startLocation->x();
+    y = (point->y() > startLocation->y() + 25) ? point->y() - 25 : startLocation->y();
+
+    Server::Instance()->pointer->setPointerPosition(*new QPoint(startLocation->x() + x, startLocation->y() + y));
+    Server::Instance()->pointer->fadeOutPointer();
 }

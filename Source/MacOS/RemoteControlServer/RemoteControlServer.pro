@@ -52,7 +52,8 @@ SOURCES += main.cpp \
     udp.cpp \
     updater.cpp \
     whitelistwindow.cpp \
-    customwindow.cpp
+    customwindow.cpp \
+    pointerwindow.cpp
 
 LIBS += -framework IOKit
 
@@ -86,7 +87,8 @@ HEADERS += macx.h \
     udp.h \
     updater.h \
     whitelistwindow.h \
-    customwindow.h
+    customwindow.h \
+    pointerwindow.h
 
 RESOURCES += \
     resources.qrc

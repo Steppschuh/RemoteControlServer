@@ -26,6 +26,7 @@ public:
     void parsePointer(QByteArray &messageBytes);
     void calibratePointer(QByteArray &messageBytes);
     void parseLaser(QByteArray &messageBytes);
+    void leftClickRepeat(int count);
 
 private:
     static MouseV2 *instance;
@@ -74,7 +75,6 @@ private:
     QPoint *commandGetPoint(QByteArray &messageBytes, int ID);
     bool isPointerDown(QPoint &point);
     void moveCursor();
-    void leftClickRepeat(int count);
     void processMultitouch();
 };
 

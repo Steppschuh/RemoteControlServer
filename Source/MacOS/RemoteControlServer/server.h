@@ -8,6 +8,7 @@
 #include "app.h"
 #include "logger.h"
 #include "mainwindow.h"
+#include "pointerwindow.h"
 
 class Server : public QObject
 {
@@ -18,6 +19,7 @@ public:
 
     QString userName;
     QString status;
+    PointerWindow *pointer;
 
     void initializeAsync();
     void finish();

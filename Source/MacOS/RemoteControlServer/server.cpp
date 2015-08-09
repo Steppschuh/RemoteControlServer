@@ -31,6 +31,8 @@ Server::Server()
     status = "Initializing";
     userName = "";
 
+    pointer = new PointerWindow(0, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+
     if (isLatestServerRunning())
     {
         Settings::Instance()->loadSettings();

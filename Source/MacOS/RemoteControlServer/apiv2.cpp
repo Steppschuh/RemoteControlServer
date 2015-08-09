@@ -213,12 +213,11 @@ void ApiV2::parsePointerCommand(Command &command)
             break;
         case cmd_pointer_start:
             readableCommand = "Start";
-            // todo
-//            Server::Instance()->pointer.showPointer();
+            Server::Instance()->pointer->showPointer();
             break;
         case cmd_pointer_end:
             readableCommand = "Hide";
-//            Server::Instance()->pointer.hidePointer();
+            Server::Instance()->pointer->hidePointer();
             break;
         case cmd_pointer_calibrate:
             readableCommand = "Calibrate";

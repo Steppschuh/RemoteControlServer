@@ -55,12 +55,9 @@ private:
     int moveEventIndex;
 
     bool mousePadDown;
-    bool mouseLeftDown;
-    bool mouseRightDown;
 
     void leftSecondClick();
     int trim(int value, int min, int max);
-    void moveMouseTo(int x, int y);
     void updatePointerPosition();
     void updateCursorPosition();
     void parseMultitouch();

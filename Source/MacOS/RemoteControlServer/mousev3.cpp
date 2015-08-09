@@ -14,6 +14,7 @@
 #include <QDateTime>
 #include <QList>
 
+#include "algorithm"
 #include "math.h"
 
 #include <QDebug>
@@ -57,10 +58,7 @@ void MouseV3::leftSecondClick()
 
 void MouseV3::pointersDown()
 {
-    if (mousePadDown)
-    {
-        return;
-    }
+    if (mousePadDown) return;
 
     mousePadDown = true;
     P1_Start = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
@@ -201,9 +199,27 @@ void MouseV3::updatePointerPosition()
 {
     if (pointers->length() > 0)
     {
-//        Server::Instance()->pointer.showPointer
-        Logger::Instance()->add("Showing pointer");
-        // todo
+        if (!Server::Instance()->pointer->isVisible)
+        {
+            Server::Instance()->pointer->showPointer();
+            Logger::Instance()->add("Showing pointer");
+        }
+
+        QList<QPoint *> *locations = Screenshot::Instance()->getScreenBounds(Screenshot::Instance()->screenIndex);
+
+        QPoint *startLocation = locations->at(0);
+        QPoint *endLocation = locations->at(1);
+
+        int width = endLocation->x() - startLocation->x();
+        int height = endLocation->y() - startLocation->y();
+
+        QPoint *pointerPosition = new QPoint();
+        int pointerOffset = 50;
+        pointerPosition->setX(startLocation->x() + std::min(std::max(0, pointers->at(0)->x - pointerOffset), width - 100));
+        pointerPosition->setY(startLocation->y() + std::min(std::max(0, pointers->at(0)->y - pointerOffset), height - 100));
+
+        Server::Instance()->pointer->setPointerPosition(*pointerPosition);
+        Server::Instance()->pointer->fadeOutPointer();
     }
 }
 
@@ -372,7 +388,7 @@ void MouseV3::processMultitouch()
     }
     else if (currentGesture == GESTURE_SCROLL)
     {
-        scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
+        scrollAmount = abs((int) pow(P3_New->y() - P3_Last->y(), 2));
         if (P3_New->y() > P3_Last->y())
         {
             MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
@@ -395,7 +411,7 @@ void MouseV3::checkForClick()
     {
         if (pointers->length() >= 1)
         {
-            Logger::Instance()->add("CLick delay " + timeDelta);
+            Logger::Instance()->add("CLick delay " + QString::number(timeDelta));
             int offsetX = abs(P1_Start->x() - pointers->at(0)->x);
             int offsetY = abs(P1_Start->y() - pointers->at(0)->y);
 
