@@ -7,7 +7,7 @@
 CONFIG +=c++11
 LIBS += -framework ApplicationServices
 
-VERSION = 0.5
+VERSION = 0.6.1
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 

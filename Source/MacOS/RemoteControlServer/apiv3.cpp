@@ -401,7 +401,7 @@ void ApiV3::parseKeyboardCommand(Command &command)
                         CGKeyCode keyboardKey = KeyboardMac::Instance()->keycodeToKey(keyCode);
                         if (keyboardKey == KeyboardMac::KEYCODE_UNKOWN)
                         {
-                            KeyboardMac::Instance()->sendShortcut(keyboardKey);
+                            KeyboardMac::Instance()->sendShortcut(keyCode);
                         }
                         else
                         {

@@ -212,7 +212,7 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
         return kVK_Delete;
     case KEYCODE_CAPS_LOCK:
         shiftDown = (shiftDown) ? false : true;
-        return -1;
+        return KEYCODE_UNKOWN;
     case KEYCODE_DEL:
         return kVK_Delete;
     case KEYCODE_ENTER:
@@ -254,7 +254,7 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     case KEYCODE_DEL_FORWARD:
         return kVK_ForwardDelete;
     case KEYCODE_WINDOWS:
-        return -1; // no windows key on a mac
+        return KEYCODE_UNKOWN;; // no windows key on a mac
     case KEYCODE_F1:
         return kVK_F1;
     case KEYCODE_F2:
@@ -280,7 +280,7 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     case KEYCODE_F12:
         return kVK_F12;
     default:
-        return -1;
+        return KEYCODE_UNKOWN;;
     }
 }
 
@@ -291,6 +291,7 @@ void KeyboardMac::standby()
 
 void KeyboardMac::shutdown()
 {
+    qDebug() << "shutdown";
     MDSendAppleEventToSystemProcess(kAEShutDown);
 }
 

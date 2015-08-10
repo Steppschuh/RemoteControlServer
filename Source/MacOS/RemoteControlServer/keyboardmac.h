@@ -1,6 +1,8 @@
 #ifndef KEYBOARDMAC_H
 #define KEYBOARDMAC_H
 
+#include <limits>
+
 #include <ApplicationServices/ApplicationServices.h>
 #include <QString>
 
@@ -11,7 +13,7 @@ public:
 
     enum
     {
-        KEYCODE_UNKOWN = -1,
+        KEYCODE_UNKOWN = std::numeric_limits<CGKeyCode>::max(),
         KEYCODE_BACK = 4,
         KEYCODE_UP = 19,
         KEYCODE_DOWN = 20,
