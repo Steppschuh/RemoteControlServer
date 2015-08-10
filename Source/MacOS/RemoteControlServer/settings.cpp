@@ -2,11 +2,13 @@
 #include "logger.h"
 #include "settings.h"
 
-#include <QDebug>
+#include <QCoreApplication>
 #include <QDir>
 #include <QDomDocument>
 #include <QFile>
 #include <QStandardPaths>
+
+#include <QDebug>
 
 Settings* Settings::instance = NULL;
 
@@ -194,7 +196,7 @@ void Settings::assignSetting(QString &name, QString &value)
     if (name == "autoStart")
     {
         autoStart = Converter::Instance()->stringToBool(value);
-//        setAutostart(autoStart);
+        setAutostart(autoStart);
     }
     else if (name == "startMinimized")
     {
@@ -386,6 +388,7 @@ QString Settings::getConfigPath()
 void Settings::setAutostart(bool value)
 {
     autoStart = value;
+    enableAutostart(value);
 }
 
 void Settings::setClickOnLaserUp(bool value)
@@ -491,4 +494,43 @@ void Settings::setUsePin(bool value)
 void Settings::setUseWhitelist(bool value)
 {
     useWhitelist = value;
+}
+
+void Settings::enableAutostart(bool autostart)
+{
+#ifdef Q_OS_MAC
+    QString path = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    path = path + "/Library/LaunchAgents/" + QCoreApplication::organizationDomain() + "." + QCoreApplication::applicationName() + ".plist";
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadWrite))
+    {
+        Logger::Instance()->add("Error while creating auto start entry in:/n" + path);
+    }
+    else
+    {
+        QTextStream stream(&file);
+
+        stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
+        stream << "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">" << endl;
+        stream << "<plist version=\"1.0\">" << endl;
+        stream << "<dict>" << endl;
+        stream << "  <key>Label</key>" << endl;
+        stream << "  <string>" << QCoreApplication::organizationDomain() + "." + QCoreApplication::applicationName() << "</string>" << endl;
+        stream << "  <key>ProgramArguments</key>" << endl;
+        stream << "  <array>" << endl;
+        stream << "    <string>open</string>" << endl;
+        stream << "    <string>-a</string>" << endl;
+        stream << "    <string>" << QCoreApplication::applicationName() << ".app</string>" << endl;
+        stream << "  </array>" << endl;
+        stream << "  <key>RunAtLoad</key>" << endl;
+        if (autostart) stream << "  <true/>" << endl;
+        else stream << "  <false/>" << endl;
+//        stream << "  <key>"
+        stream << "</dict>" << endl;
+        stream << "</plist>";
+
+        stream.flush();
+    }
+#endif
 }

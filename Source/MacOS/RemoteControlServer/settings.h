@@ -103,6 +103,7 @@ private:
     QDomNodeList prepareParsing(const QString &initialLogMessage, const QString &xmlString, const QString &tagName);
     QString getAppDataDirectory();
     QString getConfigPath();
+    void enableAutostart(bool autostart);
 };
 
 #endif // SETTINGS_H

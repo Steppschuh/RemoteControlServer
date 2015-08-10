@@ -7,7 +7,8 @@
 CONFIG +=c++11
 LIBS += -framework ApplicationServices
 
-VERSION = 0.6.1
+VERSION = 0.7.0
+BUNDLEID = net.steppschuh.RemoteControlServer
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
