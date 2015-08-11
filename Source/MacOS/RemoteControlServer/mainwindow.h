@@ -47,6 +47,7 @@ public slots:
     void setVisibleStateOfPinBox(bool value);
     void showNewDialog(QString title, QString message);
     void showNewErrorDialog(QString title, QString message);
+    void showUpdateInfo();
     void startUpdateHelpAction();
     void startUpdateChangelogAction();
     void updateLogMessages();

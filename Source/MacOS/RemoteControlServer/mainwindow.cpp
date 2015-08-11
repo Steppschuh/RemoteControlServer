@@ -45,6 +45,7 @@ void MainWindow::connectUiToServer()
     connect(Server::Instance(), SIGNAL(newNotification(QString,QString)), trayIcon, SLOT(showNotification(QString,QString)));
     connect(Server::Instance(), SIGNAL(newErrorMessage(QString,QString)), this, SLOT(showNewErrorDialog(QString,QString)));
     connect(Updater::Instance(), SIGNAL(hasUpdatesParsed()), this, SLOT(initUpdateNewestVersion()));
+    connect(Updater::Instance(), SIGNAL(updatesAvailable()), this, SLOT(showUpdateInfo()));
 
     // Signals from the ui to the server
     // Settings
@@ -319,6 +320,12 @@ void MainWindow::showNewErrorDialog(QString title, QString message)
     QMessageBox msgBox(QMessageBox::Critical, title, message);
 
     msgBox.exec();
+}
+
+void MainWindow::showUpdateInfo()
+{
+    customShow();
+    ui->mainTabs->setCurrentIndex(1);
 }
 
 void MainWindow::startUpdateChangelogAction()
