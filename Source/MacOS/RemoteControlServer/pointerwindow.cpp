@@ -16,7 +16,7 @@ PointerWindow::PointerWindow(QWidget *parent, Qt::WindowFlags f) :
 {
     setFixedSize(100, 100);
     setAttribute(Qt::WA_TranslucentBackground);
-    pointerImage = new QPixmap(":/icons/pointer_white.png");
+    pointerImage = new QPixmap(":/Resources/pointer_white.png");
     setPixmap(*pointerImage);
 }
 
@@ -25,10 +25,10 @@ void PointerWindow::showPointer()
     switch (Settings::Instance()->pointerDesign)
     {
     case 0:
-        pointerImage = new QPixmap(":/icons/pointer_white.png");
+        pointerImage = new QPixmap(":/Resources/pointer_white.png");
         break;
     case 1:
-        pointerImage = new QPixmap(":/icons/pointer.png");
+        pointerImage = new QPixmap(":/Resources/pointer.png");
     }
     isVisible = true;
     setOpacity(1.0);

@@ -1,7 +1,9 @@
 #include "logger.h"
 #include "server.h"
+#include "settings.h"
 #include "updater.h"
 
+#include <QFileInfo>
 #include <QtConcurrent>
 #include <QObject>
 #include <QTimer>
@@ -72,6 +74,21 @@ QString Updater::getValue(QString tag, QString source)
 
 void Updater::startUpdater()
 {
+#ifdef Q_OS_MAC
+    QString pathUpdater = Settings::Instance()->getAppDataDirectory() + "/RemoteControlServerUpdater";
+#endif
+    QFileInfo fileInfo(pathUpdater);
 
+    if (!fileInfo.exists() || !fileInfo.isFile())
+    {
+        Logger::Instance()->add("Extracting update tool to " + pathUpdater);
+        QFile::copy(":/Resources/RemoteControlServerUpdater", pathUpdater);
+        QFile file(pathUpdater);
+        file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
+    }
+
+    Logger::Instance()->add("Starting update tool");
+    Server::Instance()->startProcess(pathUpdater);
+    emit hasUpdatesStarted();
 }
 

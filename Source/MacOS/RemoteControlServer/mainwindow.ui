@@ -46,7 +46,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="generalTab">
            <attribute name="title">
@@ -739,7 +739,7 @@
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="resources.qrc">:/icons/pointer_white.png</pixmap>
+                  <pixmap resource="resources.qrc">:/Resources/pointer_white.png</pixmap>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

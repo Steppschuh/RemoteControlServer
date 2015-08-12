@@ -55,6 +55,7 @@ public:
     bool serialCommands;
     bool updateAmbientColor;
 
+    QString getAppDataDirectory();
     void loadSettings();
     void saveSettings();
 
@@ -101,7 +102,6 @@ private:
     void parseCustomActions(QString &xmlString);
     void parseWhitelist(QString &xmlString);
     QDomNodeList prepareParsing(const QString &initialLogMessage, const QString &xmlString, const QString &tagName);
-    QString getAppDataDirectory();
     QString getConfigPath();
     void enableAutostart(bool autostart);
 };

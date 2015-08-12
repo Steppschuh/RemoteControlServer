@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Remote Control Server");
-    setWindowIcon(QIcon(":/icons/icon_server_256.png"));
+    setWindowIcon(QIcon(":/Resources/icon_server_256.png"));
     ui->settingsTabs->setCurrentIndex(0);
 
     initializeSystemTrayIcon();
@@ -46,6 +46,7 @@ void MainWindow::connectUiToServer()
     connect(Server::Instance(), SIGNAL(newErrorMessage(QString,QString)), this, SLOT(showNewErrorDialog(QString,QString)));
     connect(Updater::Instance(), SIGNAL(hasUpdatesParsed()), this, SLOT(initUpdateNewestVersion()));
     connect(Updater::Instance(), SIGNAL(updatesAvailable()), this, SLOT(showUpdateInfo()));
+    connect(Updater::Instance(), SIGNAL(hasUpdatesStarted()), this, SLOT(customClose()));
 
     // Signals from the ui to the server
     // Settings
@@ -138,11 +139,11 @@ void MainWindow::changePointer(int index)
     QString path = "";
     if (index == 0)
     {
-        path = ":icons/pointer_white.png";
+        path = ":Resources/pointer_white.png";
     }
     else if (index == 1)
     {
-        path = ":icons/pointer.png";
+        path = ":Resources/pointer.png";
     }
 
     if (path.length() <= 0) return;
@@ -188,7 +189,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (closeEventCameFromSystemTrayIcon)
     {
         Server::Instance()->finish();
-        qDebug() << "stopping server";
         event->accept();
     }
     else
@@ -252,7 +252,8 @@ void MainWindow::initUiWithSettings()
     changePointer(Settings::Instance()->pointerDesign);
     ui->slideShowCropBlackBorder->setChecked(Settings::Instance()->cropBlackBorder);
 
-    QFileInfo checkFile(Settings::Instance()->defaultMediaPlayer);
+    QFileInfo
+            checkFile(Settings::Instance()->defaultMediaPlayer);
     if (!checkFile.exists() || !checkFile.isFile())
     {
         ui->defaultMediaPlayer->setText(Media::Instance()->getDefaultMediaPlayerPath());

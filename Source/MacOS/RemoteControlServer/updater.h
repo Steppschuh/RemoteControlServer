@@ -26,6 +26,7 @@ public:
 
 signals:
     void hasUpdatesParsed();
+    void hasUpdatesStarted();
     void updatesAvailable();
 
 public slots:
