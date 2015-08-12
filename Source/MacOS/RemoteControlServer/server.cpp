@@ -37,7 +37,7 @@ Server::Server()
     {
         Settings::Instance()->loadSettings();
         Network::Instance();                            // In order to initialize the network
-        Updater::Instance()->checkForUpdates(1);
+        Updater::Instance()->checkForUpdates(30);
         Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
         Screenshot::Instance()->startUpdateColorTimer();
         QtConcurrent::run(this, &Server::initializeAsync);
