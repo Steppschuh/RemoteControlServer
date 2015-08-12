@@ -67,37 +67,37 @@ void ApiV1::parseCommand(Command &command)
     if (cmd.contains(cmd_keyboard_string))
     {
         parseKeyboardCommand(cmd);
-        Logger::Instance()->add("Keyboard: " + readableCommand);
+        //Logger::Instance()->add("Keyboard: " + readableCommand);
     }
     else if (cmd.contains(cmd_media_string))
     {
         parseMediaCommand(cmd);
-        Logger::Instance()->add("Media: " + readableCommand);
+        //Logger::Instance()->add("Media: " + readableCommand);
     }
     else if (cmd.contains(cmd_slideshow_string))
     {
         parseSlideshowCommand(cmd);
-        Logger::Instance()->add("Slideshow: " + readableCommand);
+        //Logger::Instance()->add("Slideshow: " + readableCommand);
     }
     else if (cmd.contains(cmd_scroll_string))
     {
         parseScrollCommand(cmd);
-        Logger::Instance()->add("Scroll: " + readableCommand);
+        //Logger::Instance()->add("Scroll: " + readableCommand);
     }
     else if (cmd.contains(cmd_shortcut_string))
     {
         parseShortcutCommand(cmd);
-        Logger::Instance()->add("Shortcut: " + readableCommand);
+        //Logger::Instance()->add("Shortcut: " + readableCommand);
     }
     else if (cmd.contains(cmd_process_string))
     {
         Server::Instance()->startProcess(value);
-        Logger::Instance()->add("Process: " + value);
+        //Logger::Instance()->add("Process: " + value);
     }
     else if (cmd.contains(cmd_google_string))
     {
         QDesktopServices::openUrl("http://google.com/search?q=" + value);
-        Logger::Instance()->add("Google: " + value);
+        //Logger::Instance()->add("Google: " + value);
     }
     else if (cmd.contains(cmd_broadcast_string))
     {
@@ -108,7 +108,7 @@ void ApiV1::parseCommand(Command &command)
     else if (cmd.contains(cmd_connect))
     {
         app->deviceName = value;
-        Logger::Instance()->add("Device name set to " + value);
+        //Logger::Instance()->add("Device name set to " + value);
         app->onConnect();
     }
     else if (cmd.contains(cmd_disconnect))
@@ -119,26 +119,26 @@ void ApiV1::parseCommand(Command &command)
     else if (cmd.contains(cmd_info_device_name))
     {
         app->deviceName = value;
-        Logger::Instance()->add("Device name set to " + value);
+        //Logger::Instance()->add("Device name set to " + value);
     }
     else if (cmd.contains(cmd_info_device_osversion))
     {
         app->osVersion = value;
-        Logger::Instance()->add("Device OS version set to " + value);
+        //Logger::Instance()->add("Device OS version set to " + value);
     }
     else if (cmd.contains(cmd_info_app_name))
     {
         app->appName = value;
-        Logger::Instance()->add("App name set to " + value);
+        //Logger::Instance()->add("App name set to " + value);
     }
     else if (cmd.contains(cmd_info_app_version) || cmd.contains(cmd_version))
     {
         app->appVersion = value;
-        Logger::Instance()->add("App version set to " + value);
+        //Logger::Instance()->add("App version set to " + value);
     }
     else
     {
-        Logger::Instance()->add("Unknown ApiV1: " + cmd);
+        //Logger::Instance()->add("Unknown ApiV1: " + cmd);
     }
 }
 

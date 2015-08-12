@@ -4,6 +4,7 @@
 
 #include <QByteArray>
 #include <QDebug>
+#include <QTimer>
 
 UDP* UDP::instance = NULL;
 
@@ -23,7 +24,12 @@ UDP::UDP() :
     isListening = false;
     Logger::Instance()->add("Initializing UDP");
 
-    startListener();
+    // let's restart the listener every 15 seconds as it seems that it stops working after a certain amount of time or received data
+    QTimer *timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(restartListener()));
+    timer->start(15000);
+
+    startListener(true);
 }
 
 void UDP::sendData(Command &command)
@@ -31,7 +37,13 @@ void UDP::sendData(Command &command)
 
 }
 
-void UDP::startListener()
+void UDP::restartListener()
+{
+    stopListener();
+    startListener(false);
+}
+
+void UDP::startListener(bool logMessages)
 {
     if (!isListening)
     {
@@ -41,17 +53,17 @@ void UDP::startListener()
         if (success)
         {
             connect(udpSocket, SIGNAL(readyRead()), this, SLOT(listen()));
-            Logger::Instance()->add("UDP listener started listening at port " + QString::number(port));
+            if (logMessages) Logger::Instance()->add("UDP listener started listening at port " + QString::number(port));
         }
         else
         {
             isListening = false;
-            Logger::Instance()->add("Error while starting UDP listener");
+            if (logMessages) Logger::Instance()->add("Error while starting UDP listener");
         }
     }
     else
     {
-        Logger::Instance()->add("UDP listener already running at port " + QString::number(port));
+        if (logMessages) Logger::Instance()->add("UDP listener already running at port " + QString::number(port));
     }
 }
 

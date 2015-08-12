@@ -122,7 +122,7 @@ void ApiV3::parseCommand(Command &command)
             parseOpenCommand(command);
             break;
         default:
-            Logger::Instance()->add("Unknown command " + Converter::Instance()->commandToString(command));
+            //Logger::Instance()->add("Unknown command " + Converter::Instance()->commandToString(command));
             break;
         }
     }
@@ -144,10 +144,10 @@ void ApiV3::parseConnectCommand(Command &command)
         case cmd_connection_reachable:
             app->setIp(Converter::Instance()->byteToString(*command.data, 3));
             app->onBroadCast(command);
-            Logger::Instance()->add(app->getIp() + " checked reachability");
+            //Logger::Instance()->add(app->getIp() + " checked reachability");
             break;
         default:
-            Logger::Instance()->add("Unknown connection command: " + Converter::Instance()->commandToString(command));
+            //Logger::Instance()->add("Unknown connection command: " + Converter::Instance()->commandToString(command));
             break;
         }
     }
@@ -159,12 +159,12 @@ void ApiV3::parseOpenCommand(Command &command)
     if (command.data->length() >= 3 && command.data->at(2) == cmd_action_process)
     {
         QString processString = Converter::Instance()->byteToString(*command.data, 3);
-        Logger::Instance()->add("Starting process: " + processString);
+        //Logger::Instance()->add("Starting process: " + processString);
         Server::Instance()->startProcess(processString);
     }
     else
     {
-        Logger::Instance()->add("Unknown open command: " + Converter::Instance()->commandToString(command));
+        //Logger::Instance()->add("Unknown open command: " + Converter::Instance()->commandToString(command));
     }
 }
 
@@ -184,7 +184,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
         switch (requestCommand.data->at(2))
         {
         case cmd_get_server_version:
-            Logger::Instance()->add("Server version requested");
+            //Logger::Instance()->add("Server version requested");
             responseCommand->data = &commandIdentifier->append(Updater::Instance()->currentVersionCode);
             break;
         case cmd_get_server_name:
@@ -209,7 +209,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
             }
             break;
         default:
-            Logger::Instance()->add("Unknown get command: " + Converter::Instance()->commandToString(requestCommand));
+            //Logger::Instance()->add("Unknown get command: " + Converter::Instance()->commandToString(requestCommand));
             break;
         }
     }
@@ -262,27 +262,27 @@ void ApiV3::setValue(Command &setCommand)
         {
         case cmd_set_pin:
             app->pin = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Pin from " + app->getIp() + " set to " + app->pin);
+            //Logger::Instance()->add("Pin from " + app->getIp() + " set to " + app->pin);
             validatePin(*app);
             break;
         case cmd_set_app_version:
             app->appVersion = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("App version from " + app->getIp() + " set to " + app->appVersion);
+            //Logger::Instance()->add("App version from " + app->getIp() + " set to " + app->appVersion);
             break;
         case cmd_set_app_name:
             app->appName = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("App name from " + app->getIp() + " set to " + app->appName);
+            //Logger::Instance()->add("App name from " + app->getIp() + " set to " + app->appName);
             break;
         case cmd_set_os_version:
             app->osVersion = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Os version from " + app->getIp() + " set to " + app->osVersion);
+            //Logger::Instance()->add("Os version from " + app->getIp() + " set to " + app->osVersion);
             break;
         case cmd_set_device_name:
             app->deviceName = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Device name from " + app->getIp() + " set to " + app->deviceName);
+            //Logger::Instance()->add("Device name from " + app->getIp() + " set to " + app->deviceName);
             break;
         default:
-            Logger::Instance()->add("Unknown set command: " + Converter::Instance()->commandToString(setCommand));
+            //Logger::Instance()->add("Unknown set command: " + Converter::Instance()->commandToString(setCommand));
             break;
         }
     }
@@ -315,7 +315,7 @@ void ApiV3::parseMouseCommand(Command &command)
                     MouseV3::Instance()->pointersUp();
                     break;
                 default:
-                    Logger::Instance()->add("Unknown mouse pad command");
+                    //Logger::Instance()->add("Unknown mouse pad command");
                     break;
                 }
             }
@@ -326,15 +326,15 @@ void ApiV3::parseMouseCommand(Command &command)
                 switch (command.data->at(3))
                 {
                 case cmd_action_down:
-                    Logger::Instance()->add("Mouse left down");
+//                    Logger::Instance()->add("Mouse left down");
                     MouseMac::Instance()->leftMouseDown(false);
                     break;
                 case cmd_action_up:
-                    Logger::Instance()->add("Mouse left up");
+                    //Logger::Instance()->add("Mouse left up");
                     MouseMac::Instance()->leftMouseUp(false);
                     break;
                 default:
-                    Logger::Instance()->add("Unknown mouse left command");
+                    //Logger::Instance()->add("Unknown mouse left command");
                     break;
                 }
             }
@@ -345,21 +345,21 @@ void ApiV3::parseMouseCommand(Command &command)
                 switch (command.data->at(3))
                 {
                 case cmd_action_down:
-                    Logger::Instance()->add("Mouse right down");
+                    //Logger::Instance()->add("Mouse right down");
                     MouseMac::Instance()->rightMouseDown();
                     break;
                 case cmd_action_up:
-                    Logger::Instance()->add("Mouse right up");
+                    //Logger::Instance()->add("Mouse right up");
                     MouseMac::Instance()->rightMouseUp();
                     break;
                 default:
-                    Logger::Instance()->add("Unknown mouse right command");
+                    //Logger::Instance()->add("Unknown mouse right command");
                     break;
                 }
             }
             break;
         default:
-            Logger::Instance()->add("Unknown mouse command: " + Converter::Instance()->commandToString(command));
+            //Logger::Instance()->add("Unknown mouse command: " + Converter::Instance()->commandToString(command));
             break;
         }
     }
@@ -392,12 +392,23 @@ void ApiV3::parseKeyboardCommand(Command &command)
 #endif
                         break;
                     case cmd_action_up:
+                    {
 #ifdef Q_OS_MAC
-                        KeyboardMac::Instance()->sendKeyUp(KeyboardMac::Instance()->keycodeToKey(keyCode));
+                        CGKeyCode keyboardKey = KeyboardMac::Instance()->keycodeToKey(keyCode);
+                        if (keyboardKey == KeyboardMac::KEYCODE_UNKOWN)
+                        {
+                            KeyboardMac::Instance()->sendShortcut(keyCode);
+                        }
+                        else
+                        {
+                            KeyboardMac::Instance()->sendKeyUp(keyboardKey);
+                        }
 #endif
                         break;
+                    }
                     case cmd_action_click:
 #ifdef Q_OS_MAC
+                        qDebug() << keyCode;
                         CGKeyCode keyboardKey = KeyboardMac::Instance()->keycodeToKey(keyCode);
                         if (keyboardKey == KeyboardMac::KEYCODE_UNKOWN)
                         {
@@ -416,7 +427,7 @@ void ApiV3::parseKeyboardCommand(Command &command)
 #ifdef Q_OS_MAC
                     int actionIndex = keyCode - KeyboardMac::KEYCODE_C1;
 #endif
-                    Logger::Instance()->add("Received custom key code: " + (actionIndex + 1));
+                    //Logger::Instance()->add("Received custom key code: " + (actionIndex + 1));
 
                     if (Settings::Instance()->serialCommands)
                     {
@@ -426,15 +437,15 @@ void ApiV3::parseKeyboardCommand(Command &command)
                     {
                         if (actionIndex > Settings::Instance()->customActions->length() - 1)
                         {
-                            Logger::Instance()->add("No custom action set");
+                            //Logger::Instance()->add("No custom action set");
                             Server::Instance()->startProcess("http://remote-control-collection.com/help/custom/");
-                            Logger::Instance()->trackEvent("Server", "Custom", "Not set");
+                            //Logger::Instance()->trackEvent("Server", "Custom", "Not set");
                         }
                         else
                         {
                             QString path = Settings::Instance()->customActions->at(actionIndex);
                             Server::Instance()->startProcess(path);
-                            Logger::Instance()->trackEvent("Server", "Custom", path);
+                            //Logger::Instance()->trackEvent("Server", "Custom", path);
                         }
                     }
                 }
@@ -451,7 +462,7 @@ void ApiV3::parseKeyboardCommand(Command &command)
         }
         default:
         {
-            Logger::Instance()->add("Unknown keyboard command: " + Converter::Instance()->commandToString(command));
+            //Logger::Instance()->add("Unknown keyboard command: " + Converter::Instance()->commandToString(command));
             break;
         }
         }

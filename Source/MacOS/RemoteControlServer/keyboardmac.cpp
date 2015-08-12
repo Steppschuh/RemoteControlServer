@@ -1,11 +1,15 @@
 #include "keyboardmac.h"
 #include "logger.h"
-#include "macx.h"
 
 #include <QObject>
 
 #include <Carbon/Carbon.h>
 #include <CoreServices/CoreServices.h>
+
+#ifdef Q_OS_MAC
+    #include <ApplicationServices/ApplicationServices.h>
+    #include "macx.h"
+#endif
 
 #include <QDebug>
 
@@ -131,6 +135,7 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_SELECT_ALL:
+        qDebug() << "CMD + A";
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(kVK_ANSI_A);
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
@@ -141,10 +146,13 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_SHOW_DESKTOP:
-        sendKeyDown(keycodeToKey(KEYCODE_FUNCTION));
-        sendKeyPress(keycodeToKey(KEYCODE_F11));
-        sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
+    {
+        qDebug() << "show desktop";
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
+        sendKeyPress(keycodeToKey(KEYCODE_F3));
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
+    }
     case KEYCODE_ZOOM_IN:
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(kVK_ANSI_KeypadPlus);
@@ -156,9 +164,9 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_CLOSE:
-        sendKeyDown(keycodeToKey(KEYCODE_FUNCTION));
+        sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(kVK_ANSI_Q);
-        sendKeyUp(keycodeToKey(KEYCODE_FUNCTION));
+        sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_SHUTDOWN:
         shutdown();
@@ -177,11 +185,11 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_FULLSCREEN:
-        sendKeyDown(keycodeToKey(KEYCODE_SHIFT));
+        sendKeyDown(keycodeToKey(KEYCODE_CONTROL));
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(kVK_ANSI_F);
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
-        sendKeyUp(keycodeToKey(KEYCODE_SHIFT));
+        sendKeyUp(keycodeToKey(KEYCODE_CONTROL));
         break;
     case KEYCODE_UNDO:
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
@@ -199,7 +207,7 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     default:
-        Logger::Instance()->add("Unkown keyboard command");
+        //Logger::Instance()->add("Unkown keyboard command");
         break;
     }
 }
@@ -253,8 +261,6 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
         return kVK_Shift;
     case KEYCODE_DEL_FORWARD:
         return kVK_ForwardDelete;
-    case KEYCODE_WINDOWS:
-        return KEYCODE_UNKOWN;; // no windows key on a mac
     case KEYCODE_F1:
         return kVK_F1;
     case KEYCODE_F2:
@@ -280,7 +286,7 @@ CGKeyCode KeyboardMac::keycodeToKey(int keyCode)
     case KEYCODE_F12:
         return kVK_F12;
     default:
-        return KEYCODE_UNKOWN;;
+        return KEYCODE_UNKOWN;
     }
 }
 
@@ -291,7 +297,6 @@ void KeyboardMac::standby()
 
 void KeyboardMac::shutdown()
 {
-    qDebug() << "shutdown";
     MDSendAppleEventToSystemProcess(kAEShutDown);
 }
 

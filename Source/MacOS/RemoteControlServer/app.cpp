@@ -56,7 +56,7 @@ void App::onBroadCast(Command &command)
     Logger::Instance()->add("Connection request from " + ip);
     if (Authentication::Instance()->isAuthenticated(ip, pin))
     {
-        Logger::Instance()->add("Allowing to connec");
+        Logger::Instance()->add("Allowing to connect");
         answerBroadCast(command);
     }
     else if (Settings::Instance()->usePin)

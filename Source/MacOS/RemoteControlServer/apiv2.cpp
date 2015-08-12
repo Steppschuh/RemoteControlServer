@@ -135,11 +135,11 @@ void ApiV2::parseGeneralCommand(Command &command)
                     app->lastControl = "Unknown";
                     break;
                 }
-                Logger::Instance()->add("Control set to " + app->lastControl);
+                //Logger::Instance()->add("Control set to " + app->lastControl);
             }
             break;
         default:
-            Logger::Instance()->add("Unkown general command");
+            //Logger::Instance()->add("Unkown general command");
             break;
         }
     }
@@ -169,7 +169,7 @@ void ApiV2::parseRemoteCommand(Command &command)
             parseCustomCommand(command);
             break;
         default:
-            Logger::Instance()->add("Unkown remote command");
+            //Logger::Instance()->add("Unkown remote command");
             break;
         }
     }
@@ -226,7 +226,7 @@ void ApiV2::parsePointerCommand(Command &command)
         default:
             return;
         }
-        Logger::Instance()->add("Pointer: " + readableCommand);
+        //Logger::Instance()->add("Pointer: " + readableCommand);
     }
 }
 
@@ -234,7 +234,7 @@ void ApiV2::parseLaserCommand(Command &command)
 {
     readableCommand = "Move";
     MouseV2::Instance()->parseLaser(*command.data);
-    Logger::Instance()->add("Laser: " + readableCommand);
+    //Logger::Instance()->add("Laser: " + readableCommand);
 }
 
 void ApiV2::parseMediaCommand(Command &command)
@@ -279,7 +279,7 @@ void ApiV2::parseMediaCommand(Command &command)
             readableCommand = "Unkown";
             break;
         }
-        Logger::Instance()->add("Media: " + readableCommand);
+        //Logger::Instance()->add("Media: " + readableCommand);
     }
 }
 
@@ -302,7 +302,7 @@ void ApiV2::parseRequest(Command &command)
             Screenshot::Instance()->sendScreenshot(true);
             break;
         }
-        Logger::Instance()->add("Request: " + readableCommand);
+        //Logger::Instance()->add("Request: " + readableCommand);
     }
 }
 
@@ -366,6 +366,6 @@ void ApiV2::parseCustomCommand(Command &command)
             readableCommand = "Unkown";
             break;
         }
-        Logger::Instance()->add("Custom: " + readableCommand);
+        //Logger::Instance()->add("Custom: " + readableCommand);
     }
 }

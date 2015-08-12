@@ -98,6 +98,6 @@ void Updater::startUpdater()
 
     Logger::Instance()->add("Starting update tool");
     Server::Instance()->startProcess(pathUpdater);
-    //    emit hasUpdatesStarted();
+    emit hasUpdatesStarted();
 }
 

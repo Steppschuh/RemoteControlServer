@@ -202,7 +202,7 @@ void MouseV3::updatePointerPosition()
         if (!Server::Instance()->pointer->isVisible)
         {
             Server::Instance()->pointer->showPointer();
-            Logger::Instance()->add("Showing pointer");
+            //Logger::Instance()->add("Showing pointer");
         }
 
         QList<QPoint *> *locations = Screenshot::Instance()->getScreenBounds(Screenshot::Instance()->screenIndex);
@@ -411,7 +411,7 @@ void MouseV3::checkForClick()
     {
         if (pointers->length() >= 1)
         {
-            Logger::Instance()->add("CLick delay " + QString::number(timeDelta));
+            //Logger::Instance()->add("CLick delay " + QString::number(timeDelta));
             int offsetX = abs(P1_Start->x() - pointers->at(0)->x);
             int offsetY = abs(P1_Start->y() - pointers->at(0)->y);
 

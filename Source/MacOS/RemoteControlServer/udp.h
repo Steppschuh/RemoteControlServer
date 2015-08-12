@@ -3,6 +3,7 @@
 
 #include <command.h>
 
+#include <QThread>
 #include <QUdpSocket>
 
 class UDP : public QObject
@@ -18,17 +19,19 @@ public:
 
 public slots:
     void listen();
+    void restartListener();
 
 private:
     UDP();
     static UDP *instance;
+
 
     const int port;
     const int timeout;
 
     QUdpSocket *udpSocket;
 
-    void startListener();
+    void startListener(bool logMessages);
     void stopListener();
 };
 
