@@ -143,7 +143,6 @@ void ApiV3::parseConnectCommand(Command &command)
             break;
         case cmd_connection_reachable:
             app->setIp(Converter::Instance()->byteToString(*command.data, 3));
-            qDebug() << "apiV3 " << Converter::Instance()->byteToString(*command.data, 3);
             app->onBroadCast(command);
             Logger::Instance()->add(app->getIp() + " checked reachability");
             break;
@@ -268,7 +267,6 @@ void ApiV3::setValue(Command &setCommand)
             break;
         case cmd_set_app_version:
             app->appVersion = Converter::Instance()->byteToString(*setCommand.data, 3);
-            qDebug() << "setting app version" << app->appVersion;
             Logger::Instance()->add("App version from " + app->getIp() + " set to " + app->appVersion);
             break;
         case cmd_set_app_name:

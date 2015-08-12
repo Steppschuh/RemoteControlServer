@@ -70,16 +70,13 @@ App* Server::getApp(QString ip)
 {
     for (int i = 0; i < this->apps->length(); ++i)
     {
-        qDebug() << apps->at(i)->getIp() << ip;
         if (QString::compare(apps->at(i)->getIp(), ip) == 0)
         {
             return apps->at(i);
         }
     }
-    qDebug() << "new app with ip" << ip;
     App *app = new App();
     app->setIp(ip);
-    qDebug() << "Server" << ip;
     this->apps->append(app);
     return app;
 }
