@@ -66,7 +66,7 @@ void TrayIcon::onClick()
     serverStatus->setText("Status: " + Server::Instance()->status);
 
     App *currentApp = Server::Instance()->getCurrentApp();
-    appIp->setText("IP Address: " + currentApp->ip);
+    appIp->setText("IP Address: " + currentApp->getIp());
     appVersion->setText("Version: " + currentApp->appVersion);
     appDevice->setText("Device: " + currentApp->deviceName);
     appStatus->setText("Status: " + currentApp->status);

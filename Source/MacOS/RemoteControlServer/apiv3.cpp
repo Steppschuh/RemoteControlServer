@@ -55,7 +55,7 @@ void ApiV3::requestPin(App &app)
 {
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app.ip;
+    command->destination = app.getIp();
     command->priority = Command::PRIORITY_HIGH;
     QByteArray *serverName = new QByteArray();
     serverName->append(COMMAND_IDENTIFIER).append(cmd_connection).append(cmd_connection_protected);
@@ -68,11 +68,11 @@ void ApiV3::validatePin(App &app)
 {
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app.ip;
+    command->destination = app.getIp();
     command->priority = Command::PRIORITY_HIGH;
     QByteArray *commandData = new QByteArray();
     commandData->append(COMMAND_IDENTIFIER).append(cmd_connection);
-    if(Authentication::Instance()->isAuthenticated(app.ip, app.pin))
+    if(Authentication::Instance()->isAuthenticated(app.getIp(), app.pin))
     {
         commandData->append(cmd_connection_connect);
     }
@@ -88,7 +88,7 @@ void ApiV3::answerBroadCast(App &app)
 {
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app.ip;
+    command->destination = app.getIp();
     command->priority = Command::PRIORITY_HIGH;
     QByteArray *serverName = new QByteArray();
     serverName->append(COMMAND_IDENTIFIER).append(cmd_get).append(cmd_get_server_name);
@@ -142,9 +142,10 @@ void ApiV3::parseConnectCommand(Command &command)
             app->onDisconnect();
             break;
         case cmd_connection_reachable:
-            app->ip = Converter::Instance()->byteToString(*command.data, 3);
+            app->setIp(Converter::Instance()->byteToString(*command.data, 3));
+            qDebug() << "apiV3 " << Converter::Instance()->byteToString(*command.data, 3);
             app->onBroadCast(command);
-            Logger::Instance()->add(app->ip + " checked reachability");
+            Logger::Instance()->add(app->getIp() + " checked reachability");
             break;
         default:
             Logger::Instance()->add("Unknown connection command: " + Converter::Instance()->commandToString(command));
@@ -173,7 +174,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
     App *app = Server::Instance()->getApp(requestCommand.source);
     Command *responseCommand = new Command();
     responseCommand->source = Network::Instance()->getServerIp();
-    responseCommand->destination = app->ip;
+    responseCommand->destination = app->getIp();
     responseCommand->priority = Command::PRIORITY_HIGH;
 
     if (requestCommand.data->length() >= 3)
@@ -262,24 +263,25 @@ void ApiV3::setValue(Command &setCommand)
         {
         case cmd_set_pin:
             app->pin = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Pin from " + app->ip + " set to " + app->pin);
+            Logger::Instance()->add("Pin from " + app->getIp() + " set to " + app->pin);
             validatePin(*app);
             break;
         case cmd_set_app_version:
             app->appVersion = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("App version from " + app->ip + " set to " + app->appVersion);
+            qDebug() << "setting app version" << app->appVersion;
+            Logger::Instance()->add("App version from " + app->getIp() + " set to " + app->appVersion);
             break;
         case cmd_set_app_name:
             app->appName = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("App name from " + app->ip + " set to " + app->appName);
+            Logger::Instance()->add("App name from " + app->getIp() + " set to " + app->appName);
             break;
         case cmd_set_os_version:
             app->osVersion = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Os version from " + app->ip + " set to " + app->osVersion);
+            Logger::Instance()->add("Os version from " + app->getIp() + " set to " + app->osVersion);
             break;
         case cmd_set_device_name:
             app->deviceName = Converter::Instance()->byteToString(*setCommand.data, 3);
-            Logger::Instance()->add("Device name from " + app->ip + " set to " + app->deviceName);
+            Logger::Instance()->add("Device name from " + app->getIp() + " set to " + app->deviceName);
             break;
         default:
             Logger::Instance()->add("Unknown set command: " + Converter::Instance()->commandToString(setCommand));

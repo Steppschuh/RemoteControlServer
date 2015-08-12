@@ -10,7 +10,6 @@ class App
 public:
     App();
 
-    QString ip;
     QString status;
     QString pin;
     QString appName;
@@ -23,18 +22,22 @@ public:
 
     bool isConnected;
 
+    void detectOs();
+    QString getIp();
+    void onBroadCast(Command &command);
     void onConnect();
     void onDisconnect();
     void onPause();
     void onResume();
-    void onBroadCast(Command &command);
+    void setIp(QString newIp);
 
-    void detectOs();
 
 private:
     void answerBroadCast(Command &command);
     void refuseBroadCast(Command &command);
     void requestPin(Command &command);
+
+    QString ip;
 };
 
 #endif // APP_H

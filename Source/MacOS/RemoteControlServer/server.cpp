@@ -37,7 +37,7 @@ Server::Server()
     {
         Settings::Instance()->loadSettings();
         Network::Instance();                            // In order to initialize the network
-        Updater::Instance()->checkForUpdates(1);
+        Updater::Instance()->checkForUpdates(30);
         Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
         Screenshot::Instance()->startUpdateColorTimer();
         QtConcurrent::run(this, &Server::initializeAsync);
@@ -66,17 +66,20 @@ bool Server::isLatestServerRunning()
     return true;
 }
 
-App* Server::getApp(QString &ip)
+App* Server::getApp(QString ip)
 {
     for (int i = 0; i < this->apps->length(); ++i)
     {
-        if (apps->at(i)->ip == ip)
+        qDebug() << apps->at(i)->getIp() << ip;
+        if (QString::compare(apps->at(i)->getIp(), ip) == 0)
         {
             return apps->at(i);
         }
     }
+    qDebug() << "new app with ip" << ip;
     App *app = new App();
-    app->ip = ip;
+    app->setIp(ip);
+    qDebug() << "Server" << ip;
     this->apps->append(app);
     return app;
 }

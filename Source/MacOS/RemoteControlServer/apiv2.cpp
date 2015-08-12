@@ -41,7 +41,7 @@ void ApiV2::requestPin(App &app)
     data->append(cmd_request_pin);
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app.ip;
+    command->destination = app.getIp();
     command->priority = Command::PRIORITY_HIGH;
     command->data = data;
     command->send();
@@ -51,7 +51,7 @@ void ApiV2::answerBroadCast(App &app)
 {
     Command *command = new Command();
     command->source = Network::Instance()->getServerIp();
-    command->destination = app.ip;
+    command->destination = app.getIp();
     command->priority = Command::PRIORITY_HIGH;
     command->data = new QByteArray(Server::Instance()->getServerName().toUtf8());
     command->send();

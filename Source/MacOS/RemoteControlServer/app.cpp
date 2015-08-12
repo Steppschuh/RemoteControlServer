@@ -107,3 +107,14 @@ void App::requestPin(Command &command)
         ApiV3::Instance()->requestPin(*this);
     }
 }
+
+void App::setIp(QString newIp)
+{
+    if (newIp.startsWith("::ffff:")) ip =  newIp.right(newIp.length() - 7); // remove the first seven chars when ip is formatted as ipv6
+    else ip = newIp;
+}
+
+QString App::getIp()
+{
+    return ip;
+}

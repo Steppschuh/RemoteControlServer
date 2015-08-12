@@ -42,7 +42,7 @@ bool Authentication::isWhitelisted(const QString &ip)
 
 bool Authentication::isWhitelisted(App *app)
 {
-    return isWhitelisted(app->ip);
+    return isWhitelisted(app->getIp());
 }
 
 void Authentication::addToWhiteList(QString ip)

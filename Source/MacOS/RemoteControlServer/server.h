@@ -24,7 +24,7 @@ public:
     void initializeAsync();
     void finish();
     QString getServerName();
-    App *getApp(QString &ip);
+    App *getApp(QString ip);
     QString getServerOs();
     QString getServerVersionName();
     App *getCurrentApp();

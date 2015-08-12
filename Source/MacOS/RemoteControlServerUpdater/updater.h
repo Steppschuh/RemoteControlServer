@@ -26,7 +26,7 @@ signals:
 private:
     Ui::Updater *ui;
 
-    const QString URL_UPDATE_SERVER = "http://remote-control-collection.com/files/server/RemoteControlServer.app";
+    const QString URL_UPDATE_SERVER = "https://github.com/Steppschuh/RemoteControlServer/tree/master/Downloads/Mac%20OS/RemoteControlServer.app";
 };
 
 #endif // UPDATER_H

@@ -113,8 +113,12 @@ void TCP::listen()
     {
         QByteArray messageData = socket->readAll();
         Command *command = new Command();
-        command->source = socket->peerAddress().toString();
-        command->destination = socket->localAddress().toString();
+        QString ip = socket->peerAddress().toString();
+        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
+        command->source = ip;
+        ip = socket->localAddress().toString();
+        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
+        command->destination = ip;
         command->data = &messageData;
         command->process();
     }
