@@ -104,7 +104,7 @@ void Settings::saveSettingsToFile()
 {
     QString path = getConfigPath();
     if (!QDir(getAppDataDirectory()).exists()){
-        QDir().mkdir(getAppDataDirectory());
+        QDir().mkpath(getAppDataDirectory());
     }
     QFile file(path);
     if (!file.open(QIODevice::ReadWrite))

@@ -74,21 +74,30 @@ QString Updater::getValue(QString tag, QString source)
 
 void Updater::startUpdater()
 {
+    if (!isUpdateAvailable) return;
 #ifdef Q_OS_MAC
     QString pathUpdater = Settings::Instance()->getAppDataDirectory() + "/RemoteControlServerUpdater";
 #endif
-    QFileInfo fileInfo(pathUpdater);
 
-    if (!fileInfo.exists() || !fileInfo.isFile())
+    QFileInfo fileInfo(pathUpdater);
+    if (!fileInfo.exists() || !fileInfo.isDir())
     {
-        Logger::Instance()->add("Extracting update tool to " + pathUpdater);
+        QString appDataDir = Settings::Instance()->getAppDataDirectory();
+        if (!QDir(appDataDir).exists()){
+            QDir().mkpath(appDataDir);
+        }
+#ifdef Q_OS_MAC
+
         QFile::copy(":/Resources/RemoteControlServerUpdater", pathUpdater);
+
         QFile file(pathUpdater);
         file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
+
+#endif
     }
 
     Logger::Instance()->add("Starting update tool");
     Server::Instance()->startProcess(pathUpdater);
-    emit hasUpdatesStarted();
+    //    emit hasUpdatesStarted();
 }
 

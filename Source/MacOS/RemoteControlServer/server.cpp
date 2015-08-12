@@ -37,7 +37,7 @@ Server::Server()
     {
         Settings::Instance()->loadSettings();
         Network::Instance();                            // In order to initialize the network
-        Updater::Instance()->checkForUpdates(30);
+        Updater::Instance()->checkForUpdates(1);
         Remote::Instance()->initializeLastCommand();    // In order to initialize the remote
         Screenshot::Instance()->startUpdateColorTimer();
         QtConcurrent::run(this, &Server::initializeAsync);
@@ -107,6 +107,7 @@ QString Server::getServerName(){
 void Server::startProcess(QString path)
 {
     if (path.startsWith("http")) QDesktopServices::openUrl(path);   // includes paths with https
+    else if (path.endsWith(".app")) QProcess::startDetached(QString("open -a " + path));
     else QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 

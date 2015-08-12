@@ -1,32 +1,31 @@
 #ifndef UPDATER_H
 #define UPDATER_H
 
-#include <QObject>
+#include <QDialog>
 #include <QNetworkReply>
 
 namespace Ui {
 class Updater;
 }
 
-class Updater : public QObject
+class Updater : public QDialog
 {
     Q_OBJECT
 
 public:
-    Updater();
+    explicit Updater(QWidget *parent = 0);
     ~Updater();
 
 public slots:
-    void run();
     void downloadFinished(QNetworkReply* reply);
-
-signals:
-    void finished();
+    void updateProgressBar(qint64 bytesReceived, qint64 bytesTotal);
 
 private:
     Ui::Updater *ui;
 
     const QString URL_UPDATE_SERVER = "http://remote-control-collection.com/files/server/RemoteControlServer.app";
+
+    void run();
 };
 
 #endif // UPDATER_H

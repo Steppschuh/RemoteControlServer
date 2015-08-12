@@ -1,11 +1,15 @@
 #include "updater.h"
-
-#include <iostream>
+#include "ui_updater.h"
 
 #include <QFile>
+#include <QMessageBox>
 
-Updater::Updater()
+Updater::Updater(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Updater)
 {
+    ui->setupUi(this);
+    run();
 }
 
 Updater::~Updater()
@@ -16,7 +20,7 @@ Updater::~Updater()
 void Updater::downloadFinished(QNetworkReply* reply)
 {
     QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if (statusCode.isValid() && statusCode.toInt() == 200 && reply->size() > 20000)
+    if (statusCode.isValid() && statusCode.toInt() == 200 && reply->size() > 1000000)
     {
         // if the Size of the Reply is smaller than 1MB we assume that the file does not exist on the server.
         // if your File should be smaller than 1MB, change the number
@@ -33,15 +37,15 @@ void Updater::downloadFinished(QNetworkReply* reply)
         QFile::remove(appPath);
         file->rename(appPath);
         file->close();
-
-        std::cout << "Update finished - Have fun using the new version of the Remote Control Server.\n";
     }
     else
     {
-        std::cout << "Update failed - The Download of the new Version of the Remote Control Server failed. The Updater is finishing now.\n";
+        QMessageBox msgBox(QMessageBox::Critical, "Update failed",
+                           "The Download of the new Version of the Remote Control Server failed. The Updater is finishing now");
+        msgBox.exec();
     }
 
-    emit finished();
+    close();
 }
 
 void Updater::run()
@@ -50,5 +54,13 @@ void Updater::run()
     connect(webManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(downloadFinished(QNetworkReply*)));
 
     QNetworkRequest request(URL_UPDATE_SERVER);
-    webManager->get(request);
+    QNetworkReply *reply = webManager->get(request);
+
+    connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(updateProgressBar(qint64,qint64)));
+}
+
+void Updater::updateProgressBar(qint64 bytesReceived, qint64 bytesTotal)
+{
+    ui->progressBar->setMaximum(bytesTotal);
+    ui->progressBar->setValue(bytesReceived);
 }

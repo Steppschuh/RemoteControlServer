@@ -1,22 +1,23 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-08-12T12:12:11
+# Project created by QtCreator 2015-08-12T15:56:29
 #
 #-------------------------------------------------
 
-QT       += core gui network
-CONFIG   += c++11
+QT       += core
+QT       += network
 
-ICON = applicationIcon.icns
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       -= gui
 
 TARGET = RemoteControlServerUpdater
+CONFIG   += console
+CONFIG   -= app_bundle
+
 TEMPLATE = app
 
-SOURCES += main.cpp\
-        updater.cpp
 
-HEADERS  += updater.h
+SOURCES += main.cpp \
+    updater.cpp
 
-FORMS    += updater.ui
+HEADERS += \
+    updater.h

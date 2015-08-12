@@ -1,12 +1,16 @@
+#include <QCoreApplication>
 #include "updater.h"
-#include <QApplication>
+
+#include <QTimer>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    Updater w;
-    w.setWindowTitle("Remote Control Server Updater");
-    w.show();
+    QCoreApplication a(argc, argv);
+    Updater *u = new Updater();
+
+    QObject::connect(u, SIGNAL(finished()), &a, SLOT(quit()));
+
+    QTimer::singleShot(0, u, SLOT(run()));
 
     return a.exec();
 }

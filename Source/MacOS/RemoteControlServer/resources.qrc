@@ -1,9 +1,9 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-	<file>Resources/icon_server_256.png</file>
-	<file>Resources/pointer.png</file>
-	<file>Resources/pointer_white.png</file>
-    <file>Resources/SystemTrayIcon.png</file>
-    <file>Resources/RemoteControlServerUpdater</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/icon_server_256.png</file>
+        <file>Resources/pointer.png</file>
+        <file>Resources/pointer_white.png</file>
+        <file>Resources/SystemTrayIcon.png</file>
+        <file>Resources/RemoteControlServerUpdater</file>
+    </qresource>
 </RCC>
