@@ -1,22 +1,21 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-08-12T10:35:49
+# Project created by QtCreator 2015-08-12T12:12:11
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core gui network
 
-QT       -= gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RemoteControlServerUpdater
-CONFIG   += console
-CONFIG   -= app_bundle
-
 TEMPLATE = app
 
+ICON = applicationIcon.icns
 
-SOURCES += main.cpp \
-    updatetask.cpp
+SOURCES += main.cpp\
+        updater.cpp
 
-HEADERS += \
-    updatetask.h
+HEADERS  += updater.h
+
+FORMS    += updater.ui
