@@ -5,13 +5,14 @@
 #-------------------------------------------------
 
 QT       += core gui network
+CONFIG   += c++11
+
+ICON = applicationIcon.icns
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RemoteControlServerUpdater
 TEMPLATE = app
-
-ICON = applicationIcon.icns
 
 SOURCES += main.cpp\
         updater.cpp
