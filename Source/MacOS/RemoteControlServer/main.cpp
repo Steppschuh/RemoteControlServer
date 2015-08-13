@@ -2,6 +2,7 @@
 #include "trayicon.h"
 
 #include <QApplication>
+#include <QMainWindow>
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,9 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName("RemoteControlServer"); // the name of the applications
     QApplication::setOrganizationName("Steppschuh");
     QApplication::setOrganizationDomain("net.lekotsch");     // your organisation bundleID as it is set somewhere on your mac / in xcode
-    MainWindow w;
+
+    QMainWindow window;
+    MainWindow w(&window);
 
     return a.exec();
 }

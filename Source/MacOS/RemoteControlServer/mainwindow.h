@@ -8,11 +8,15 @@
 #include "trayicon.h"
 #include "whitelistwindow.h"
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QString>
 #include <QSystemTrayIcon>
 
-class MainWindow : public QMainWindow
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QWidget
 {
     Q_OBJECT
 

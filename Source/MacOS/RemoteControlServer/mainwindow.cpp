@@ -18,7 +18,7 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent, Qt::Dialog),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
