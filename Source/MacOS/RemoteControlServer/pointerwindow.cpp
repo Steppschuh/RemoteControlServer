@@ -92,6 +92,7 @@ void PointerWindow::lowerOpacity()
         isFadingOut = false;
         lowerOpacityTimer->stop();
         isVisible = false;
+        hide();
     }
 }
 
