@@ -43,7 +43,7 @@ private:
     Screenshot();
 
     const int screenUpdateInterval = 200;
-    const int maxScreenshotWidth = 1800;
+    const int maxScreenshotWidth = 1000;
 
     QPixmap* getScreenshot(bool fullscreen, int index);
     QPixmap* getScreenshot(int index);

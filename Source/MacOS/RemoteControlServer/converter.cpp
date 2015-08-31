@@ -35,7 +35,8 @@ QByteArray *Converter::pixmapToByte(QPixmap &pixmap, int compression)
     QByteArray *bytes = new QByteArray();
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
-    pixmap.save(&buffer, "JPG", compression);
+    pixmap.save(&buffer, "JPEG", compression);
+    qDebug() << "Actuel converted length:"<< bytes->length();
     return bytes;
 }
 

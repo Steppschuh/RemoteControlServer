@@ -62,6 +62,11 @@ QPixmap *Screenshot::getResizedScreenshot(int width)
     if (screenshot->width() > width)
     {
         screenshot = new QPixmap(screenshot->scaledToWidth(width));
+        QByteArray ba;
+        QBuffer buffer(&ba);
+        buffer.open(QIODevice::WriteOnly);
+        screenshot->save(&buffer, "JPEG"); // writes image into ba in PNG format
+        qDebug() << "Resized length: " << ba.length();
     }
 
     if (Settings::Instance()->screenBlackWhite)
@@ -83,7 +88,6 @@ QPixmap *Screenshot::getScreenshot(int index)
     // When the second screen was right of the primary screen,
     // we had a bug when using the 0th screen as index in screens for taking the screenshot
     // We omit this bug now by using always the last screen and choosing the coordinates plus width/height of the screenshot
-    QScreen *screen = QGuiApplication::primaryScreen();
     QPixmap screenshot = screens.at(screens.length() - 1)->grabWindow(0,
                                                        locations->at(0)->x(), locations->at(0)->y(),
                                                        locations->at(1)->x() - locations->at(0)->x(),
@@ -95,7 +99,17 @@ QPixmap *Screenshot::getScreenshot(int index)
 QPixmap *Screenshot::convertToGrayscale(QPixmap &source)
 {
     QImage image = source.toImage();
-    image = image.convertToFormat(QImage::Format_Mono);
+    int width = image.width(), height = image.height();
+    QRgb color;
+    for (int x = 0; x < width; ++x)
+    {
+        for (int y = 0; y < height; ++y)
+        {
+            color = image.pixel(x, y);
+            int gray = qGray(color);
+            image.setPixel(x, y, qRgb(gray, gray, gray));
+        }
+    }
     return new QPixmap(QPixmap::fromImage(image));
 }
 

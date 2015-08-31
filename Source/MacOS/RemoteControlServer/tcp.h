@@ -4,8 +4,9 @@
 #include <QTcpServer>
 
 #include "command.h"
+#include "tcpthread.h"
 
-class TCP : public QObject
+class TCP : public QTcpServer
 {
     Q_OBJECT
 
@@ -23,7 +24,7 @@ public slots:
     void listenTimerTick();
 
 private:
-    TCP();
+    explicit TCP(QObject *parent = 0);
     static TCP* instance;
 
     const int portReceive;
@@ -39,7 +40,10 @@ private:
     QTcpServer *tcpServer;
 
     void startListener();
-    void listen();
+//    void listen();
+
+protected:
+    void incomingConnection(qintptr socketDescriptor);
 };
 
 #endif // TCP_H

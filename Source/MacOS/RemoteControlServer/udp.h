@@ -22,7 +22,7 @@ public slots:
     void restartListener();
 
 private:
-    UDP();
+    explicit UDP(QObject *parent = 0);
     static UDP *instance;
 
 
@@ -33,6 +33,9 @@ private:
 
     void startListener(bool logMessages);
     void stopListener();
+
+protected:
+    void incomingConnection(qintptr socketDescriptor);
 };
 
 #endif // UDP_H

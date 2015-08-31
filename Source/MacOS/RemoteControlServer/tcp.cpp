@@ -1,5 +1,6 @@
 #include "logger.h"
 #include "tcp.h"
+#include "tcpthread.h"
 
 #include <QByteArray>
 #include <QTcpSocket>
@@ -18,7 +19,8 @@ TCP* TCP::Instance()
     return instance;
 }
 
-TCP::TCP() :
+TCP::TCP(QObject *parent) :
+    QTcpServer(parent),
     portReceive(1925),
     portSend(1927),
     buffer(1024),
@@ -35,18 +37,23 @@ TCP::TCP() :
 
 bool TCP::sendData(Command &command)
 {
+    qint64 start = QDateTime::currentMSecsSinceEpoch();
     bool received = false;
-    QTcpSocket *socket = new QTcpSocket(this);
+    QTcpSocket *socket = new QTcpSocket();
     socket->connectToHost(command.destination, portSend);
     if (socket->waitForConnected(sendTimeout))
     {
+        qDebug() << "Data sending: " << command.data->length();
         socket->write(*command.data);
+//        qDebug() << "Data sent";
         received = true;
         socket->close();
+        qDebug() << "Sending succeeded in ms:" << QDateTime::currentMSecsSinceEpoch() - start;
     }
     else
     {
         Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString::number(portSend));
+        qDebug() << "Sending failed in ms:" << QDateTime::currentMSecsSinceEpoch() - start;
     }
     return received;
 }
@@ -77,11 +84,12 @@ void TCP::startListener()
     if (!isListening)
     {
         isListening = true;
-        tcpServer = new QTcpServer();
-        bool success = tcpServer->listen(QHostAddress::Any, portReceive);
+//        tcpServer = new QTcpServer();
+//        bool success = tcpServer->listen(QHostAddress::Any, portReceive);
+        bool success = this->listen(QHostAddress::Any, portReceive);
         if (success)
         {
-            connect(tcpServer, SIGNAL(newConnection()), this, SLOT(listenTimerTick()));
+//            connect(tcpServer, SIGNAL(newConnection()), this, SLOT(listenTimerTick()));
             Logger::Instance()->add("TCP listener started at port " + QString::number(portReceive));
         }
         else
@@ -98,29 +106,46 @@ void TCP::startListener()
 
 void TCP::stopListener()
 {
-    tcpServer->close();
+    this->close();
 }
 
 void TCP::listenTimerTick()
 {
-    listen();
+//    listen();
 }
 
-void TCP::listen()
+void TCP::incomingConnection(qintptr socketDescriptor)
 {
-    QTcpSocket *socket = tcpServer->nextPendingConnection();
-    if (socket->waitForReadyRead())
-    {
-        QByteArray messageData = socket->readAll();
-        Command *command = new Command();
-        QString ip = socket->peerAddress().toString();
-        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
-        command->source = ip;
-        ip = socket->localAddress().toString();
-        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
-        command->destination = ip;
-        command->data = &messageData;
-        command->process();
-    }
+    // We have a new connection
+//    qDebug() << socketDescriptor << " Connecting...";
+
+    TCPThread *thread = new TCPThread(socketDescriptor, this);
+
+    // connect signal/slot
+    // once a thread is not needed, it will be beleted later
+    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+
+    thread->start();
 }
+
+//void TCP::listen()
+//{
+//    QTime t;
+//    t.start();
+//    QTcpSocket *socket = tcpServer->nextPendingConnection();
+//    if (socket->waitForReadyRead())
+//    {
+//        QByteArray messageData = socket->readAll();
+//        Command *command = new Command();
+//        QString ip = socket->peerAddress().toString();
+//        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
+//        command->source = ip;
+//        ip = socket->localAddress().toString();
+//        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
+//        command->destination = ip;
+//        command->data = &messageData;
+//        qDebug() << "TCP listen in ms " << t.elapsed();
+//        command->process();
+//    }
+//}
 

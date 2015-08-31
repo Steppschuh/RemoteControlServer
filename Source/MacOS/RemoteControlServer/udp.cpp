@@ -17,7 +17,7 @@ UDP* UDP::Instance()
     return instance;
 }
 
-UDP::UDP() :
+UDP::UDP(QObject *parent) :
     port(1926),
     timeout(2000)
 {
@@ -77,6 +77,8 @@ void UDP::listen()
 {
     while (udpSocket->hasPendingDatagrams())
     {
+        QTime t;
+        t.start();
         QByteArray *message_data = new QByteArray();
         message_data->resize(udpSocket->pendingDatagramSize());
         QHostAddress sender;
@@ -88,6 +90,7 @@ void UDP::listen()
             command->source = Remote::Instance()->lastCommand->source;
             command->destination = Remote::Instance()->lastCommand->destination;
             command->data = message_data;
+            qDebug() << "udp listen in ms " << t.elapsed();
             command->process();
         }
         else
