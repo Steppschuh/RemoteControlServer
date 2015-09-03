@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="KayıpÇeviri">
+
+    <!-- General -->
+	<!-- I probably forgot adding \n to translated words for appropriately, you can add them easily and please let me know if there'll be any issues about them-->
+    <string name="app_name" translatable="false">Uzaktan Erişim Aracı</string>
+	<!-- it's exact translation is "Remote Control Collection <-> Uzaktan Kontrol Koleksiyonu" but "collection" in Turkish means archiving and collecting something solid or literal object, so I'm implementing it as "Tools <-> Aracı", otherwise it's translation is kinda useless. Feel free to edit. -->
+    <string name="interstitial_main_id" translatable="false">ca-app-pub-0964556634112634/1424472330</string>
+    <string name="banner_main_id" translatable="false">ca-app-pub-0964556634112634/5476712735</string>
+
+    <!-- Start -->
+    <string name="start_remotes">Erişim</string>
+    <string name="start_remotes_desc">Bir cihaza erişim yap</string>
+    <string name="start_devices">Cihazlar</string>
+    <string name="start_devices_desc">Ekle veya varolanı yönet</string>
+
+    <!-- Navigation -->
+    <string name="drawer_open">Aç</string>
+    <string name="drawer_close">Kapat</string>
+
+    <string name="title_remotes">Erişim</string>
+    <string name="title_devices">Cihazlar</string>
+    <string name="title_info">Bilgi</string>
+    <string name="title_help">Yardım</string>
+    <string name="title_settings">Ayar</string>
+    <string name="title_upgrade">Yükseltme</string>
+
+    <!-- Devices -->
+    <string name="devicecs_add">Yeni cihaz ekle</string>
+    <string name="devicecs_ip">IP Adresi</string>
+    <string name="devicecs_name">Ad</string>
+    <string name="devicecs_ip_hint">192.168.1.23</string>
+    <string name="devicecs_name_hint">Medya Bilgisayarı</string>
+    <string name="devicecs_in_network">Bağlantı</string>
+    <string name="devicecs_unknown">Bilinmeyen</string>
+
+    <string name="devicecs_pin_title">PIN korumalı</string>
+    <string name="devicecs_pin_desc">korumalıdır. Kimliğinizi doğrulamak için lütfen PIN kodunu doğru giriniz.</string> <!-- starts with device name -->
+    <string name="devicecs_pin_refused">Cihaza bağlantı reddedildi.</string>
+    <string name="devicecs_pin_accepted">Cihaza bağlantı başarı ile sağlandı.</string>
+
+    <string name="devicecs_none_title">Cihaz yok.</string>
+    <string name="devicecs_none_desc">Bağlanmak istediğiniz bilgisayarda Uzaktan Erişim Aracı\'nın sunucu sürümünün kurulu ve doğru şekilde ayarlı olduğundan emin olun. Eğer kurulu değilse \nhttp://server.android-remote.com adreinden sunucu bileşenini edinebilirsiniz.</string>
+    <string name="devicecs_none_desc2">Eğer bilgisayarınız bu ekranda görünmedi ise, bilgisayarınızın IP adresini el ile yazmayı deneyin ve bu cihazınız ile bilgisayarınızın aynı ağda bulunduğuna emin olun. Ayrıntılı bilgiye yardım bölümünde yer alan sorun giderme talimatları kısmından erişebilirsiniz.</string>
+
+    <!-- Device Status -->
+    <string name="status_unknown">Bilinmeyen</string>
+    <string name="status_connected">Bağlandı</string>
+    <string name="status_disconnected">Bağlantı kesildi</string>
+    <string name="status_unavailable">Erişilemiyor</string>
+    <string name="status_available">Erişilebilir</string>
+    <string name="status_connecting">Bağlanıyor</string>
+    <string name="status_searching">Aranıyor</string>
+    <string name="status_authenticating">Kimlik doğrulanıyor</string>
+
+    <!-- Remotes -->
+    <string name="remote_mouse">Fare</string>
+    <string name="remote_keyboard">Klavye</string>
+    <string name="remote_browser">Tarayıcı</string>
+    <string name="remote_desktop">Masaüstü</string>
+    <string name="remote_presenter">Sunum</string>
+    <string name="remote_shortcuts">Kısayollar</string>
+    <string name="remote_voice">Ses</string>
+    <string name="remote_media">Medya</string>
+    <string name="remote_custom">Özelleştirilmiş</string>
+    <string name="remote_premium">Tam sürüm</string>
+
+    <string name="remote_mouse_desc">İmleci dizüstü bilgisayarının dokunmatik faresi gibi kontrol et</string>
+    <string name="remote_keyboard_desc">Yazılıma gömülü klavyeyi kullanarak bilgisayarında yazı yaz</string>
+    <string name="remote_browser_desc">İnternette kolayca dolaşmayı sağlayan yaygın eylemler</string>
+    <string name="remote_desktop_desc">Eşzamanlı olarak bilgisayarının ekranını görüntüle</string>
+    <string name="remote_presenter_desc">Sunumlarını kontrol et ve sunum içeriklerini görüntüle</string>
+    <string name="remote_shortcuts_desc">Sık kullanılan Windows kısayollarına kolayca eriş</string>
+    <string name="remote_voice_desc">Konuşarak bilgisayarına kolayca komutlar yolla</string>
+    <string name="remote_media_desc">Medya oynatıcını ve diğer seçeneklerini düzenle</string>
+    <string name="remote_custom_desc">Uzaktan Erişim Aracı ile özelleştirilmiş eylemler tanımla</string>
+    <string name="remote_premium_desc">Gelecek özellikleri ve birinci sınıf tüm özellikleri açar</string>
+
+    <!-- Keyboard -->
+    <string name="keyboard_advanced_placeholder_desc">Kısayollar ve fonksiyon tuşları yakın zamanda eklenecektir.</string>
+    <string name="keyboard_send_general">Yaygın kullanılan tuşlar</string>
+    <string name="keyboard_send_advances">Fonksiyon tuşları</string>
+    <string name="keyboard_copy">Kopyala</string>
+    <string name="keyboard_paste">Yapıştır</string>
+    <string name="keyboard_select_all">Tümünü seç</string>
+    <string name="keyboard_zoom_in">Yakınlaş</string>
+    <string name="keyboard_zoom_out">Uzaklaş</string>
+    <string name="keyboard_cut">Kes</string>
+    <string name="keyboard_close">Kopyala</string>
+    <string name="keyboard_shutdown">Kapat</string>
+    <string name="keyboard_fullscreen">Tam ekran</string>
+    <string name="keyboard_page_down">Bir sayfa aşağı</string>
+    <string name="keyboard_page_up">Bir sayfa yukarı</string>
+    <string name="keyboard_desktop">Masaüstünü görüntüle</string>
+    <string name="keyboard_function">FN</string>
+
+    <!-- Speech -->
+    <string name="speech">Konuşma</string>
+    <string name="speech_identify_media">medya,müzik,parça,şarkı,film</string>
+    <string name="speech_identify_media_next">sonraki,atla,ileri</string>
+    <string name="speech_identify_media_previous">geri,önceki,sonraki</string>
+    <string name="speech_identify_media_pause">duraklat,devam et,çal,dur</string>
+    <string name="speech_identify_volume">ses yüksekliği,ses</string>
+    <string name="speech_identify_volume_up">yukarı,arttır,daha sesli</string>
+    <string name="speech_identify_volume_down">aşağı,azalt</string>
+    <string name="speech_identify_volume_mute">sessize al,sessizden çıkar,kapat,aç,sessiz</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_code_title">Ücretsiz yükseltme</string>
+    <string name="upgrade_code_description">Erişim kodunu gir</string>
+    <string name="upgrade_iap_title">Ücretli yükseltme</string>
+    <string name="upgrade_iap_description">Ücretli yükseltme satın al</string>
+
+    <string name="upgrade_code_activate">Kod etkinleştir</string>
+    <string name="upgrade_code_hint_inactive">Yükseltme kodunu girin</string>
+    <string name="upgrade_code_hint_active">Yükseltme kodu aktif</string>
+
+    <string name="upgrade_code_get_title">Erişim kodları hakkında</string>
+    <string name="upgrade_code_get_desc">Tam sürüm özelliklerine ücretsiz olarak ulaşmak için erişim kodlarını kullanabilirsiniz.\n\nBazı kodlar sınırlı süreyle aktiftir, bazı kodlar da geçerliliğini kaybetmeyebilir. Erişim kodları yanlızca bir kere aktif edilebilir.</string>
+    <string name="upgrade_iap_get_title">Ücretli yükselltme hakkında</string>
+    <string name="upgrade_iap_get_desc">Satın alınan yükseltme kodları geçerliliğini kaybetmez, ayrıca tüm cihazlarınızda çalışır.\n\nÜcretli yükseltme sayesinde reklamları da kaldırmış olursunuz.</string>
+
+    <string name="upgrade_code_facebook_title">Facebook</string>
+    <string name="upgrade_code_facebook_description">Deneme erişimi kodunu Facebook sayfamız üzerinden alabilirsiniz..\n\nDetaylı bilgi için \nhttp://code.android-remote.com adresine uğrayın.</string>
+    <string name="upgrade_code_google_title">Google+</string>
+    <string name="upgrade_code_google_description">Google+ üzerinden beta test kullanıcısı olarak erişim yaparsanız, ücretsiz bir erişim kodu edinebilirsiniz..\n\nDetaylı bilgi için\nhttp://beta.android-remote.com adresine uğrayın.</string>
+    <string name="upgrade_code_ad_title">Reklam</string>
+    <string name="upgrade_code_ad_description">Reklam görüntülemek, bir oturuma mahsus olmak üzere tam sürüm özelliklerine erişim sağlar.\n\nBu özellik, her reklam görüntülendiğinde aktif olmayabilir.</string>
+
+    <string name="upgrade_trial_activated">Deneme erişim kodu etkinleştirildi.</string>
+    <string name="upgrade_pro_activated">Yükseltme kodu etkinleştirildi.</string>
+
+    <string name="upgrade_remote_locked">Erişim kilitlendi</string>
+    <string name="upgrade_remote_locked_desc">Bu erişim bir tam sürüm bileşenidir. Erişim kodu edinip aktif edebilir veya bir yükseltme kodu satın alabilirsiniz.</string>
+
+    <!-- Info -->
+    <string name="info_app">Cihaz bilgileri</string>
+    <string name="info_app_version">Uygulama sürümü</string>
+    <string name="info_app_ip">IP adresi</string>
+    <string name="info_app_ssid">Ağ SSID</string>
+
+    <string name="info_commands">Komutlar</string>
+    <string name="info_commands_sent">Gönderilen</string>
+    <string name="info_commands_received">Alınan</string>
+
+    <string name="info_links">Bize Ulaşın</string>
+    <string name="info_links_facebook">Facebook</string>
+    <string name="info_links_google">Google+</string>
+    <string name="info_links_store">Play Store</string>
+
+    <string name="info_disclaimer">Feragatname</string>
+    <string name="info_disclaimer_app">@string/app_name</string>
+    <string name="info_disclaimer_app_desc">Android, BlackBerry ve iOS sistemli cihazlar için.\nTelif hakkı © Steppschuh, lisans ayrıntıları \nremote-control-collection.com</string>
+    <string name="info_disclaimer_server">Uzaktan Erişim Sunucusu</string>
+    <string name="info_disclaimer_server_desc">Windows için mevcut. Kaynak kodu GitHub platformunda yer almaktadır ve kişisel kullanımlar için alınıp değiştirilebilir.\Telif hakkı © Steppschuh, lisans detayları \ngithub.com/Steppschuh/RemoteControlServer</string>
+    <string name="info_disclaimer_icons">Simgeler</string>
+    <string name="info_disclaimer_icons_desc">Tüm simgeler "Attribution 4.0 International license by Google Inc." veya Steppschuh aracılığıyla yayımlanmıştır.</string>
+    <string name="info_disclaimer_analytics">Analytics</string>
+    <string name="info_disclaimer_analytics_desc">Bu uygulama Google Analytics aracılığıyla anonim kullanım verileri, dil, cinsiyet, yaş ve erişim yapılan işletim sistemlerinin sürüm bilgileri gibi temel verilere erişebilir. Bu özellik, uygulamanın sonraki sürümlerini özelleştirmek ve kullanıcı odaklı olarak geliştirmek için eklenmiştir.</string>
+    <string name="info_disclaimer_admob">AdMob</string>
+    <string name="info_disclaimer_admob_desc">AdMob, Google Inc. tarafından tasarlanan, uygulamanın ücretsiz sürümünün hayatına devam edebilmesi için ilgi bazlı reklam yayınlama yapabilmesini sağlayan bir platformdur. Herhangi bir ücretli yükseltme kodu ile tüm reklamlar kaldırılır.</string>
+
+    <!-- Help -->
+    <string name="help_first_start">Başlarken</string>
+    <string name="help_first_start_desc">Bilgisayarınızı kontrol etmeye başlarken, \n\nhttp://setup.android-remote.com sayfasını, kontrol etmek istediğiniz bilgisayarda görüntüleyin.</string>
+    <string name="help_connect">Bağlantıyı gerçekleştirme</string>
+    <string name="help_connect_desc">Bu rehberi inceleyerek cihazlarınız arasında nasıl bağlantı kuracağınızı öğrenin.</string>
+    <string name="help_troubleshooting">Sorun giderme</string>
+    <string name="help_troubleshooting_desc">Kurulum esnasında sorun yaşadıysanız, sık karşılaşılan sorunları nasıl çözeceğinizi öğrenmek için bunu okuyun.</string>
+    <string name="help_faq">Sık sorulan sorular</string>
+    <string name="help_faq_desc">Bu uygulama veya Uzaktan Erişim Sunucusu hakkında sorulan sorular kuvvetle muhtemel cevaplanmıştır. Sorunuza cevap bulamadıysanız sorunuzu buradan ekleyebilirsiniz.</string>
+    <string name="help_support">Destek</string>
+    <string name="help_support_desc">Bir sorun oluştuysa, bizimle temasa geçmekten çekinmeyin. En kısa zamanda geri dönüş yapacağız.\n\nBizimle iletişime geçmeden önce sık sorulan sorular kısmını okumanız, süreçleri hızlandıracaktır.</string>
+    <string name="help_feedback">Geri Bildirim</string>
+    <string name="help_feedback_desc">Ne düşündüğünüzü söyleyin, geri bildirimleriniz uygulamayı geliştirmemize çok önemli ölçüde katkıda bulunacaktır!</string>
+
+    <!-- Units -->
+    <string name="unit_day">gün</string>
+    <string name="unit_days">günler</string>
+
+    <!-- Errors -->
+    <string name="error_device_name_empty">Cihaz adı bilgisi boş bırakılmamalıdır</string>
+    <string name="error_device_ip_empty">Lütfen bağlanmak istediğiniz bilgisayarın IP adresini giriniz</string>
+    <string name="error_device_ip_invalid">Lütfen geçerli bir IP adresi giriniz</string>
+
+    <string name="error_code_invalid">Bu kod geçerli bir kod değildir.</string>
+    <string name="error_unknown">Bir hata oluştu, lütfen daha sonra tekrar deneyin.</string>
+    <string name="error_code_limit_reached">Bu kodun etkinleştirilme sayısı, izin verilen azami etkinleştirme sayısına ulaşmıştır, lütfen başka bir kod deneyiniz.</string>
+    <string name="error_code_expired">Kodun geçerlilik süresi dolmuştur, bu kodla tekrar etkinleştirme yapamazsınız.</string>
+    <string name="error_trial_expired">Deneme sürenizin sonuna gelmiş bulunmaktasınız.</string>
+    <string name="error_trial_used">Etkinleştirme kodu zaten kullanılmış, başka bir deneme sürümü kodu ile etkinleştirme yapamazsınız.</string>
+    <string name="error_iap_not_supported">Uygulama içi ödeme, bu cihazda desteklenmemektedir.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_ok">Tamam</string>
+    <string name="dialog_cancel">İptal</string>
+    <string name="dialog_later">Sonra</string>
+    <string name="dialog_unlock">Kilit aç</string>
+    <string name="dialog_success">Başarılı</string>
+    <string name="dialog_error">Hata</string>
+    <string name="dialog_info">Bilgi</string>
+    <string name="dialog_changelog">Sürüm notları</string>
+
+    <!-- Updates -->
+    <string name="update_server_required">Sunucu güncelleme bildirimi</string>
+    <string name="update_server_required_desc">Uygulamanın çalışabilmesi için Uzaktan Erişim Sunucusu\'nun 3.0 sürümü veya üstünün kurulu olması gerekmektedir..\n\nSunucu bileşenini \nhttp://server.android-remote.com adresinden güncelleyiniz.</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Bunu biliyor muydunuz?</string>
+    <string name="hint_close_button"></string>
+    <string name="hint_mouse_multitouch">Kaydırma ve yakınlaştırma işlemleri için çoklu dokunma içeren parmak hareketlerini kullanabilirsiniz.</string>
+    <string name="hint_media_volume_buttons">Sistem ses ayarını cihazınızdaki ses tuşlarından yapabilirsiniz.</string>
+    <string name="hint_presenter_volume_buttons">Sunumda yer alan sayfalar arasında geçiş yapmak için cihazınızdaki ses tuşlarını kullanabilirsiniz.</string>
+    <string name="hint_keyboard_advanced">Sola kaydırma hareketi yaparak gelişmiş kısayolları ve erişim seçeneklerine ulaşabilirsiniz.</string>
+    <string name="hint_free_trial">Tam sürüm özelliklerini test edebilmek için bir etkinleştirme kodu edinebilir ve deneme sürümünü aktif edebilirsiniz.\n\nDaha fazla bilgi için Yükseltme kısmını ziyaret edin.</string>
+    <string name="hint_remove_ads">Tam sürüme geçiş yaparak uygulamadaki tüm reklamları kaldırabilirsiniz.\n\nDaha fazla bilgi için Yükseltme kısmını ziyaret edin..</string>
+
+    <!-- Misc. Stuff -->
+    <string name="work_in_progress">Çalışmalarımız devam etmektedir.</string>
+
+</resources>
