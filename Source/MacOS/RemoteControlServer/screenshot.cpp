@@ -83,7 +83,6 @@ QPixmap *Screenshot::getScreenshot(int index)
     // When the second screen was right of the primary screen,
     // we had a bug when using the 0th screen as index in screens for taking the screenshot
     // We omit this bug now by using always the last screen and choosing the coordinates plus width/height of the screenshot
-    QScreen *screen = QGuiApplication::primaryScreen();
     QPixmap screenshot = screens.at(screens.length() - 1)->grabWindow(0,
                                                        locations->at(0)->x(), locations->at(0)->y(),
                                                        locations->at(1)->x() - locations->at(0)->x(),

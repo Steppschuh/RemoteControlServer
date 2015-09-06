@@ -90,7 +90,8 @@ void Network::sendCommand(Command &command)
     switch (command.priority)
     {
     case Command::PRIORITY_LOW:
-        UDP::Instance()->sendData(command);
+//        UDP::Instance()->sendData(command);
+        // send Date via UDP (Not implemented, nor used)
         break;
     case Command::PRIORITY_MEDIUM:
         TCP::Instance()->sendData(command);

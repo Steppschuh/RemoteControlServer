@@ -32,11 +32,6 @@ UDP::UDP() :
     startListener(true);
 }
 
-void UDP::sendData(Command &command)
-{
-
-}
-
 void UDP::restartListener()
 {
     stopListener();

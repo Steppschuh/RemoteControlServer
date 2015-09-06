@@ -204,7 +204,7 @@ void MouseV2::processMultitouch()
     }
     else if (currentGesture == GESTURE_SCROLL)
     {
-        scrollAmount = abs(pow(P3_New->y() - P3_Last->y(), 2));
+        scrollAmount = pow(P3_New->y() - P3_Last->y(), 2);
 #ifdef Q_OS_MAC
         if (P3_New->y() > P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(1, scrollAmount);
         else if (P3_New->y() < P3_Last->y()) MouseMac::Instance()->mouseScrollVertical(-1, scrollAmount);
@@ -435,6 +435,7 @@ void MouseV2::calibratePointer(QByteArray &messageBytes)
 void MouseV2::parseLaser(QByteArray &messageBytes)
 {
     QPoint *point_org, *point;
+    point = new QPoint();
     point_org = commandGetPoint(messageBytes, 0);
 
     Server::Instance()->pointer->showPointer();

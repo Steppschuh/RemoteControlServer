@@ -64,8 +64,8 @@ void KeyboardMac::sendKeyDown(CGKeyCode key, UniChar c)
     if (c) CGEventKeyboardSetUnicodeString(command, 1, &c);
     if (shiftDown)
     {
-        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskShift;
-        else flags = kCGEventFlagMaskShift;
+        // as this is the first if condition, it is impossible that there is already a flag set
+        flags = kCGEventFlagMaskShift;
         flagsAreInitialized = true;
     }
     if (fnDown)

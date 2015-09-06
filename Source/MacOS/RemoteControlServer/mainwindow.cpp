@@ -294,6 +294,7 @@ void MainWindow::openMediaFileDialog()
 void MainWindow::paintEvent(QPaintEvent * event)
 {
     ui->serverIpLabel->setText(Network::Instance()->getServerIp());
+    event->accept();
 }
 
 void MainWindow::reopenSerialPort()

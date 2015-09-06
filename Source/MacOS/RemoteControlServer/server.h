@@ -40,10 +40,6 @@ private:
     Server();
     static Server *instance;
 
-//    // advanced SettingsWindow
-//    // upgrade UpgradeWindow
-//    // upgradeHandle
-//    // pointer
     QList<App*> *apps;
 
     bool isLatestServerRunning();

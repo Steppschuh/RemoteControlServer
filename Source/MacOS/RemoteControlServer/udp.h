@@ -15,8 +15,6 @@ public:
 
     bool isListening;
 
-    void sendData(Command &command);
-
 public slots:
     void listen();
     void restartListener();

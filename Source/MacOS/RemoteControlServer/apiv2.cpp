@@ -322,7 +322,7 @@ void ApiV2::parseCustomCommand(Command &command)
         case 8:
         case 9:
         case 0:
-            readableCommand = "Button " + command.data->at(2);
+            readableCommand = "Button " + QString(command.data->at(2));
             Serial::Instance()->sendMessage("<0" + QString(command.data->at(2)) + ">");
             break;
         case 10:
@@ -347,7 +347,7 @@ void ApiV2::parseCustomCommand(Command &command)
                 {
                     int value = 64 + MouseV2::Instance()->X_Rel;
                     value = (value > 127) ? 127 : ((value < 0) ? 0 : value);
-                    readableCommand = "Scrollbar " + value;
+                    readableCommand = "Scrollbar " + QString::number(value);
                     Serial::Instance()->sendMessage("<12" + QString(char (value)) + ">");
                 }
             }

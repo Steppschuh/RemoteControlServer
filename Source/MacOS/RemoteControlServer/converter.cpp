@@ -59,7 +59,7 @@ QString Converter::commandToString(Command &command)
     QString commandString = "[ ";
     for (int i = 0; i < command.data->length(); ++i)
     {
-        commandString += command.data->at(i) + " ";
+        commandString += QString(command.data->at(i)) + " ";
     }
     commandString += "]";
     return commandString;
