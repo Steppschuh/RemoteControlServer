@@ -332,7 +332,9 @@ void Settings::parseCustomActions(QString &xmlString)
         path = xmlnode.attributes().namedItem("path").nodeValue();
         customActions->append(path);
     }
-    Logger::Instance()->add("Custom actions restored, " + QString::number(customActions->size()) +  " actions found");
+    QString logText = "Custom actions restored, " + QString::number(customActions->size());
+    logText = logText + ((customActions->size() == 1) ? " action" : " actions") + " found";
+    Logger::Instance()->add(logText);
 
     if (customActions->size() == 0)
     {
@@ -355,7 +357,9 @@ void Settings::parseWhitelist(QString &xmlString)
         appIp = xmlnode.attributes().namedItem("ip").nodeValue();
         whitelistedIps->append(appIp);
     }
-    Logger::Instance()->add("Whitelist restored, " + QString::number(whitelistedIps->size()) +  " IPs restored");
+    QString logText = "Whitelist restored, " + QString::number(whitelistedIps->size());
+    logText = logText + ((whitelistedIps->size() == 1) ? " IP" : " IPs") + " restored";
+    Logger::Instance()->add(logText);
 
     if (whitelistedIps->size() == 0)
     {
