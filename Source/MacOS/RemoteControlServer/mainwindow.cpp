@@ -311,16 +311,12 @@ void MainWindow::setVisibleStateOfPinBox(bool value)
 
 void MainWindow::showNewDialog(QString title, QString message)
 {
-    QMessageBox msgBox(QMessageBox::Information, title, message);
-
-    msgBox.exec();
+    QMessageBox::information(this, title, message, QMessageBox::Ok);
 }
 
 void MainWindow::showNewErrorDialog(QString title, QString message)
 {
-    QMessageBox msgBox(QMessageBox::Critical, title, message);
-
-    msgBox.exec();
+    QMessageBox::critical(this, title, message, QMessageBox::Ok);
 }
 
 void MainWindow::showUpdateInfo()
@@ -332,7 +328,6 @@ void MainWindow::showUpdateInfo()
 void MainWindow::startUpdateChangelogAction()
 {
     showNewDialog("Changelog", Updater::Instance()->updateChangeLog);
-    // todo: server quits after closing this dialog
 }
 
 void MainWindow::startUpdateHelpAction()
