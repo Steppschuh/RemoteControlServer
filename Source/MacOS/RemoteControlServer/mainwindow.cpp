@@ -227,6 +227,8 @@ void MainWindow::helpGithubAction()
 
 void MainWindow::initUiWithSettings()
 {
+    if (!Settings::Instance()->startMinimized) ui->mainTabs->setCurrentIndex(3);
+
     ui->startServerOnLogin->setChecked(Settings::Instance()->autoStart);
     ui->startServerMinimized->setChecked(Settings::Instance()->startMinimized);
     ui->showNotifications->setChecked(Settings::Instance()->showTrayNotifications);
