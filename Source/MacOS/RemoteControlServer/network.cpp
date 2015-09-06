@@ -78,7 +78,7 @@ QString Network::getServerIp()
             break;
         }
     }
-    if (hostIps->contains(Remote::Instance()->lastCommand->destination))
+    if (Remote::Instance()->lastCommandIsInitialized && hostIps->contains(Remote::Instance()->lastCommand->destination))
     {
         ip = Remote::Instance()->lastCommand->destination;
     }

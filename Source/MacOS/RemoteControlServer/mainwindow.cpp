@@ -332,6 +332,7 @@ void MainWindow::showUpdateInfo()
 void MainWindow::startUpdateChangelogAction()
 {
     showNewDialog("Changelog", Updater::Instance()->updateChangeLog);
+    // todo: server quits after closing this dialog
 }
 
 void MainWindow::startUpdateHelpAction()

@@ -2,6 +2,7 @@
 #include "authentication.h"
 #include "network.h"
 #include "server.h"
+#include "settings.h"
 #include "trayicon.h"
 
 #include <QDebug>
@@ -74,6 +75,6 @@ void TrayIcon::onClick()
 
 void TrayIcon::showNotification(QString title, QString text)
 {
-    showMessage(title, text);
+    if (Settings::Instance()->showTrayNotifications) showMessage(title, text);
 }
 

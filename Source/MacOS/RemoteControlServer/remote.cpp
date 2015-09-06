@@ -20,11 +20,13 @@ Remote* Remote::Instance()
 Remote::Remote()
 {
     latestApi = 3;
+    lastCommandIsInitialized = false;
 }
 
 void Remote::initializeLastCommand()
 {
     lastCommand = new Command();
+    lastCommandIsInitialized = true;
 }
 
 void Remote::processCommand(Command &command)
