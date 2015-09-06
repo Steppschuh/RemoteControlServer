@@ -26,7 +26,7 @@ TrayIcon::TrayIcon(QObject *parent) :
     quit = new QAction(this);
     quit->setText("Quit");
 
-    this->setIcon(QIcon(":Resources/SystemTrayIcon.png"));
+    this->setIcon(QIcon(":Resources/icon_server_256.png"));
     trayIconMenu = new QMenu();
 
     trayIconMenu->addAction("Server");
