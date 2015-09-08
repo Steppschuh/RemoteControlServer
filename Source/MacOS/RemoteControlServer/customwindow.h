@@ -2,6 +2,7 @@
 #define CUSTOMWINDOW_H
 
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class CustomWindow;
@@ -14,6 +15,8 @@ class CustomWindow : public QDialog
 public:
     explicit CustomWindow(QWidget *parent = 0);
     ~CustomWindow();
+
+    void closeEvent(QCloseEvent *event);
 
 public slots:
     void customHide();

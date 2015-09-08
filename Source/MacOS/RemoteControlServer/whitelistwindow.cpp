@@ -13,11 +13,20 @@ WhitelistWindow::WhitelistWindow(QWidget *parent) :
 
     connect(ui->ipTextEdit, SIGNAL(textChanged()), this, SLOT(validateInput()));
     connect(ui->applyButton, SIGNAL(pressed()), this, SLOT(customHide()));
+
+    setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint);
+    setWindowTitle("Whitelist");
 }
 
 WhitelistWindow::~WhitelistWindow()
 {
     delete ui;
+}
+
+void WhitelistWindow::closeEvent(QCloseEvent *event)
+{
+    event->ignore();
+    hide();
 }
 
 void WhitelistWindow::customHide()
