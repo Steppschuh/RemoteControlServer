@@ -1,4 +1,5 @@
 #include "converter.h"
+#include "logger.h"
 
 #include "math.h"
 
@@ -36,6 +37,7 @@ QByteArray *Converter::pixmapToByte(QPixmap &pixmap, int compression)
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
     pixmap.save(&buffer, "JPG", compression);
+    //Logger::Instance()->add("Screen quality: " + QString::number(compression));
     return bytes;
 }
 

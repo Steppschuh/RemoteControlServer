@@ -26,7 +26,7 @@ Settings::Settings() :
 {
     // General
     autoStart = false;
-    startMinimized = true;
+    startMinimized = false;
     showTrayNotifications = true;
 
     showGuide = true;
@@ -38,8 +38,8 @@ Settings::Settings() :
     whitelistedIps = new QStringList();
 
     // Mouse
-    mouseSensitivity = 1.0;
-    mouseAcceleration = 1.0;
+    mouseSensitivity = 2.0;
+    mouseAcceleration = 1.5;
     motionFilter = 1;
     motionAcceleration = 3;
 
