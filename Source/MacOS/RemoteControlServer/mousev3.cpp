@@ -52,8 +52,8 @@ MouseV3::MouseV3()
 
 void MouseV3::leftSecondClick()
 {
-    MouseMac::Instance()->leftMouseDown(true);
-    MouseMac::Instance()->leftMouseUp(true);
+    MouseMac::Instance()->leftMouseDown(false);
+    MouseMac::Instance()->leftMouseUp(false);
 }
 
 void MouseV3::pointersDown()

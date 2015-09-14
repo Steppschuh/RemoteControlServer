@@ -279,17 +279,19 @@ void MouseV2::parseClick(QByteArray &messageBytes)
             mousePadDown = false;
             isMultitouch = false;
 
-            P1_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
-            P2_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
-            P1_New = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
             P1_Up = QDateTime::currentDateTime().toMSecsSinceEpoch();
 
-            if (P1_Up - P1_Down > 150
-                    && -10 < P1_Start->x() - P1_Last->x() && P1_Start->x() - P1_Last->x() < 10
-                    && -10 < P1_Start->y() - P1_Last->y() && P1_Start->y() - P1_Last->y() < 10)
+            if ((P1_Up - P1_Down < 150)
+                    && (-10 < (P1_Start->x() - P1_Last->x())) && ((P1_Start->x() - P1_Last->x()) < 10)
+                    && (-10 < (P1_Start->y() - P1_Last->y())) && ((P1_Start->y() - P1_Last->y()) < 10))
             {
                 leftClickRepeat(1);
             }
+
+            P1_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+            P2_Last = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+            P1_New = new QPoint(P_ORIGIN->x(), P_ORIGIN->y());
+
             break;
         case cmd_mouse_down_1:
             isMultitouch = true;

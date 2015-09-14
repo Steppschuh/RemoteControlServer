@@ -72,7 +72,7 @@ QString Network::getServerIp()
     QString ip = "Unknown";
     for (int i = 0; i < hostIps->length(); ++i)
     {
-        if (hostIps->at(i).startsWith("192"))
+        if (hostIps->at(i).startsWith("192.168") || hostIps->at(i).startsWith("10.") || hostIps->at(i).startsWith("172."))
         {
             ip = hostIps->at(i);
             break;
