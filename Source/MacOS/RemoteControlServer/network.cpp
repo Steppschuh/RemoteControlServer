@@ -35,7 +35,7 @@ Network::Network():
 
     commandCount = 0;
 
-    checkListenersRunning();
+    qDebug() << checkListenersRunning();
 }
 
 bool Network::checkListenersRunning()

@@ -53,7 +53,8 @@ SOURCES += main.cpp \
     updater.cpp \
     whitelistwindow.cpp \
     customwindow.cpp \
-    pointerwindow.cpp
+    pointerwindow.cpp \
+    runguard.cpp
 
 LIBS += -framework IOKit
 
@@ -88,7 +89,8 @@ HEADERS += macx.h \
     updater.h \
     whitelistwindow.h \
     customwindow.h \
-    pointerwindow.h
+    pointerwindow.h \
+    runguard.h
 
 RESOURCES += \
     resources.qrc
