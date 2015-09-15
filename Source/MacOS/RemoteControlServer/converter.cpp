@@ -1,4 +1,5 @@
 #include "converter.h"
+#include "logger.h"
 
 #include "math.h"
 
@@ -35,8 +36,7 @@ QByteArray *Converter::pixmapToByte(QPixmap &pixmap, int compression)
     QByteArray *bytes = new QByteArray();
     QBuffer buffer(bytes);
     buffer.open(QIODevice::WriteOnly);
-    pixmap.save(&buffer, "JPEG", compression);
-    qDebug() << "Actuel converted length:"<< bytes->length();
+    pixmap.save(&buffer, "JPG", compression);
     return bytes;
 }
 
@@ -60,7 +60,7 @@ QString Converter::commandToString(Command &command)
     QString commandString = "[ ";
     for (int i = 0; i < command.data->length(); ++i)
     {
-        commandString += command.data->at(i) + " ";
+        commandString += QString(command.data->at(i)) + " ";
     }
     commandString += "]";
     return commandString;

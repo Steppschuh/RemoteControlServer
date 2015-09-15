@@ -227,6 +227,8 @@ void MainWindow::helpGithubAction()
 
 void MainWindow::initUiWithSettings()
 {
+    if (!Settings::Instance()->startMinimized) ui->mainTabs->setCurrentIndex(3);
+
     ui->startServerOnLogin->setChecked(Settings::Instance()->autoStart);
     ui->startServerMinimized->setChecked(Settings::Instance()->startMinimized);
     ui->showNotifications->setChecked(Settings::Instance()->showTrayNotifications);
@@ -294,6 +296,7 @@ void MainWindow::openMediaFileDialog()
 void MainWindow::paintEvent(QPaintEvent * event)
 {
     ui->serverIpLabel->setText(Network::Instance()->getServerIp());
+    event->accept();
 }
 
 void MainWindow::reopenSerialPort()
@@ -310,16 +313,12 @@ void MainWindow::setVisibleStateOfPinBox(bool value)
 
 void MainWindow::showNewDialog(QString title, QString message)
 {
-    QMessageBox msgBox(QMessageBox::Information, title, message);
-
-    msgBox.exec();
+    QMessageBox::information(this, title, message, QMessageBox::Ok);
 }
 
 void MainWindow::showNewErrorDialog(QString title, QString message)
 {
-    QMessageBox msgBox(QMessageBox::Critical, title, message);
-
-    msgBox.exec();
+    QMessageBox::critical(this, title, message, QMessageBox::Ok);
 }
 
 void MainWindow::showUpdateInfo()

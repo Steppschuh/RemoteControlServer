@@ -67,7 +67,7 @@ void App::onBroadCast(Command &command)
     else
     {
         Logger::Instance()->add("Connection blocked");
-        refuseBroadCast(command);
+        // refuse the broadcast
         Server::Instance()->showNotification("Connection blocked", "A connection attempt from " + ip + " has been blocked.");
     }
 }
@@ -86,11 +86,6 @@ void App::answerBroadCast(Command &command)
         ApiV3::Instance()->answerBroadCast(*this);
         break;
     }
-}
-
-void App::refuseBroadCast(Command &command)
-{
-    // refuseBroadcast, do nothing
 }
 
 void App::requestPin(Command &command)

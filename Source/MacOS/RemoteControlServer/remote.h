@@ -10,6 +10,7 @@ public:
 
     char latestApi;
     Command *lastCommand;
+    bool lastCommandIsInitialized;
 
     void initializeLastCommand();
     void processCommand(Command &command);

@@ -155,7 +155,6 @@ void ApiV3::parseConnectCommand(Command &command)
 
 void ApiV3::parseOpenCommand(Command &command)
 {
-    App *app = Server::Instance()->getApp(command.source);
     if (command.data->length() >= 3 && command.data->at(2) == cmd_action_process)
     {
         QString processString = Converter::Instance()->byteToString(*command.data, 3);

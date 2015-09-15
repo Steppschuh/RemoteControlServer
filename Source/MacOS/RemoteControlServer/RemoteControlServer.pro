@@ -55,6 +55,7 @@ SOURCES += main.cpp \
     customwindow.cpp \
     pointerwindow.cpp \
     tcpthread.cpp
+    runguard.cpp
 
 LIBS += -framework IOKit
 
@@ -91,6 +92,7 @@ HEADERS += macx.h \
     customwindow.h \
     pointerwindow.h \
     tcpthread.h
+    runguard.h
 
 RESOURCES += \
     resources.qrc

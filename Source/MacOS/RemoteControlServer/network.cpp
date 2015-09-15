@@ -35,7 +35,7 @@ Network::Network():
 
     commandCount = 0;
 
-    checkListenersRunning();
+    qDebug() << checkListenersRunning();
 }
 
 bool Network::checkListenersRunning()
@@ -72,13 +72,13 @@ QString Network::getServerIp()
     QString ip = "Unknown";
     for (int i = 0; i < hostIps->length(); ++i)
     {
-        if (hostIps->at(i).startsWith("192"))
+        if (hostIps->at(i).startsWith("192.168") || hostIps->at(i).startsWith("10.") || hostIps->at(i).startsWith("172."))
         {
             ip = hostIps->at(i);
             break;
         }
     }
-    if (hostIps->contains(Remote::Instance()->lastCommand->destination))
+    if (Remote::Instance()->lastCommandIsInitialized && hostIps->contains(Remote::Instance()->lastCommand->destination))
     {
         ip = Remote::Instance()->lastCommand->destination;
     }
@@ -90,7 +90,8 @@ void Network::sendCommand(Command &command)
     switch (command.priority)
     {
     case Command::PRIORITY_LOW:
-        UDP::Instance()->sendData(command);
+//        UDP::Instance()->sendData(command);
+        // send Date via UDP (Not implemented, nor used)
         break;
     case Command::PRIORITY_MEDIUM:
         TCP::Instance()->sendData(command);

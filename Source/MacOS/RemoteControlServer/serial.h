@@ -21,7 +21,6 @@ private:
     static Serial *instance;
 
     QString currentSerialPortName;
-//    const int writeTimeout;
     QSerialPort *serialPort;
     bool isSending;
     bool shouldListen;

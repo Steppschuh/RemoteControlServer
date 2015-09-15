@@ -34,7 +34,6 @@ public:
 
 private:
     void answerBroadCast(Command &command);
-    void refuseBroadCast(Command &command);
     void requestPin(Command &command);
 
     QString ip;

@@ -4,9 +4,6 @@
     tools:ignore="MissingTranslation">
 
     <!-- General -->
-    <string name="app_name" translatable="false">Remote Control Collection</string>
-    <string name="interstitial_main_id" translatable="false">ca-app-pub-0964556634112634/1424472330</string>
-    <string name="banner_main_id" translatable="false">ca-app-pub-0964556634112634/5476712735</string>
 
     <!-- Start -->
     <string name="start_remotes">Contrôles</string>
@@ -29,19 +26,18 @@
     <string name="devicecs_add">Ajouter un nouveau appareil</string>
     <string name="devicecs_ip">Adresse IP</string>
     <string name="devicecs_name">Nom</string>
-    <string name="devicecs_ip_hint">192.168.1.23</string>
     <string name="devicecs_name_hint">Media PC</string>
     <string name="devicecs_in_network">PC in </string>
     <string name="devicecs_unknown">Inconnu</string>
 
     <string name="devicecs_pin_title">Pin protegé</string>
-    <string name="devicecs_pin_desc">est protégé. Il faut taper le pin pour s'authentifier.</string> <!-- starts with device name -->
-    <string name="devicecs_pin_refused">L'appariel refuse de connecter.</string>
-    <string name="devicecs_pin_accepted">L'appareil est authentifié.</string>
+    <string name="devicecs_pin_desc">est protégé. Il faut taper le pin pour s\'authentifier.</string> <!-- starts with device name -->
+    <string name="devicecs_pin_refused">L\'appariel refuse de connecter.</string>
+    <string name="devicecs_pin_accepted">L\'appareil est authentifié.</string>
 
-    <string name="devicecs_none_title">Pas d'appariels</string>
+    <string name="devicecs_none_title">Pas d\'appariels</string>
     <string name="devicecs_none_desc">Il faut vérifier si le Remote Control serveur est lancé.\n\nVoci on peut télécharger le serveur:\nhttp://server.android-remote.com</string>
-    <string name="devicecs_none_desc2">Au cas où l'appareil ne paraît pas ici, il faut indiquer l'adresse IP manuellement.Les appareils, sont-ils connectés au même réseau? \n\nPour plus d'information de dépannage voir la section d'assistance.</string>
+    <string name="devicecs_none_desc2">Au cas où l\'appareil ne paraît pas ici, il faut indiquer l\'adresse IP manuellement. Les appareils, sont-ils connectés au même réseau?\n\nPour plus d\'information de dépannage voir la section d\'assistance.</string>
 
     <!-- Device Status -->
     <string name="status_unknown">Inconnu</string>
@@ -65,8 +61,8 @@
     <string name="remote_custom">Adaptation</string>
     <string name="remote_premium">Version pro</string>
 
-    <string name="remote_mouse_desc">Contrôle ton curseur comme lequel à l'ordinateur portable.</string>
-    <string name="remote_keyboard_desc">Sers-toi du clavier pour taper à l'ordinatuer.</string>
+    <string name="remote_mouse_desc">Contrôle ton curseur comme lequel à l\'ordinateur portable.</string>
+    <string name="remote_keyboard_desc">Sers-toi du clavier pour taper à l\'ordinateur.</string>
     <string name="remote_browser_desc">Common actions to easily browse the web remotely</string>
     <string name="remote_desktop_desc">Ton écran en temps réel.</string>
     <string name="remote_presenter_desc">Contrôle tes présentations et vois leur contenu.</string>
@@ -77,7 +73,6 @@
     <string name="remote_premium_desc">Déverrouille les premium remotes et les fonctions futurs.</string>
 
     <!-- Keyboard -->
-    <string name="keyboard_advanced_placeholder_desc">You will find shortcuts and function keys here soon.</string>
     <string name="keyboard_send_general">Touches usuelles</string>
     <string name="keyboard_send_advances">Clés de fonction</string>
     <string name="keyboard_copy">Copier</string>
@@ -106,7 +101,7 @@
     <string name="speech_identify_volume_mute">muet,éteint,silence</string>
 
     <!-- Upgrades -->
-    <string name="upgrade_code_title">Téléchargez gratuitement des upgrades</string>
+    <string name="upgrade_code_title">Upgrades gratuits</string>
     <string name="upgrade_code_description">Reçois ou active un décodage</string>
     <string name="upgrade_iap_title">Upgrades payés</string>
     <string name="upgrade_iap_description">Achète des contrôles particuliers</string>
@@ -115,10 +110,10 @@
     <string name="upgrade_code_hint_inactive">Tape un unlock code ici</string>
     <string name="upgrade_code_hint_active">Unlock code est actif</string>
 
-    <string name="upgrade_code_get_title">Unlock codes, qu'est-ce que c'est?</string>
+    <string name="upgrade_code_get_title">Unlock codes, qu\'est-ce que c\'est?</string>
     <string name="upgrade_code_get_desc">Tu peux activer des contrôles particuliers avec ces codes.\n\nQueqlques-uns ne sont que valides pour une durée limitée est les autres sont illimités. Tu peux activer les Trial codes seulement une fois.</string>
     <string name="upgrade_iap_get_title">Acheter des upgrades</string>
-    <string name="upgrade_iap_get_desc">Des upgrades qui sont déjà payés sont toujours valides et sont disponibles à tes appareils. \n\nAvec un upgrade il n'y a plus de publicité.</string>
+    <string name="upgrade_iap_get_desc">Des upgrades qui sont déjà payés sont toujours valides et sont disponibles à tes appareils. \n\nAvec un upgrade il n\'y a plus de publicité.</string>
 
     <string name="upgrade_code_facebook_title">Facebook</string>
     <string name="upgrade_code_facebook_description">Pour commencer, il y a un trial code gratuit sur notre site de Facebook.\n\nTPilote le butineur de ton ordinatuer à:\nhttp://code.android-remote.com pour recevoir le code.</string>
@@ -131,10 +126,10 @@
     <string name="upgrade_pro_activated">Version pro est activé.</string>
 
     <string name="upgrade_remote_locked">Fonction bloquée</string>
-    <string name="upgrade_remote_locked_desc">Cette fonction est un contrôle particulier. Tu peux activer un unlock code ou acheter un upgrade pour l'utilisier.</string>
+    <string name="upgrade_remote_locked_desc">Cette fonction est un contrôle particulier. Tu peux activer un unlock code ou acheter un upgrade pour l\'utilisier.</string>
 
     <!-- Info -->
-    <string name="info_app">Informations sur l'appareil</string>
+    <string name="info_app">Informations sur l\'appareil</string>
     <string name="info_app_version">App version</string>
     <string name="info_app_ip">Adresse IP</string>
     <string name="info_app_ssid">Réseau SSID</string>
@@ -144,35 +139,20 @@
     <string name="info_commands_received">Reçue</string>
 
     <string name="info_links">Joins-toi à nous</string>
-    <string name="info_links_facebook">Facebook</string>
-    <string name="info_links_google">Google+</string>
-    <string name="info_links_store">Play Store</string>
-
-    <string name="info_disclaimer">Disclaimer</string>
-    <string name="info_disclaimer_app">@string/app_name</string>
-    <string name="info_disclaimer_app_desc">Available for Android, BlackBerry and iOS.\nCopyright © Steppschuh, license details at:\nremote-control-collection.com</string>
-    <string name="info_disclaimer_server">Remote Control Server</string>
-    <string name="info_disclaimer_server_desc">Available for Windows. The source code is available at GitHub and may be modified for private use.\nCopyright © Steppschuh, license details at:\ngithub.com/Steppschuh/RemoteControlServer</string>
-    <string name="info_disclaimer_icons">Icons</string>
-    <string name="info_disclaimer_icons_desc">All icons are either released under an Attribution 4.0 International license by Google Inc. or by Steppschuh.</string>
-    <string name="info_disclaimer_analytics">Analytics</string>
-    <string name="info_disclaimer_analytics_desc">This app uses Google Analyitcs to collect anonymous usage data, including your language, gender, age and which remotes you preferably use. This helps us to improve your experience when using this app.</string>
-    <string name="info_disclaimer_admob">AdMob</string>
-    <string name="info_disclaimer_admob_desc">AdMob is an advertising service provided by Google Inc. that allows us to display interest based ads in order to monetize the free app. Ads will be removed by any paid upgrade.</string>
 
     <!-- Help -->
     <string name="help_first_start">Pour commencer</string>
-    <string name="help_first_start_desc">Pour commencer à conrôler ton ordinateur, ouvre ce site à l'appareil que tu veux contrôler:\n\nhttp://setup.android-remote.com</string>
+    <string name="help_first_start_desc">Pour commencer à conrôler ton ordinateur, ouvre ce site à l\'appareil que tu veux contrôler:\n\nhttp://setup.android-remote.com</string>
     <string name="help_connect">Connecter</string>
     <string name="help_connect_desc">Suis cette notice pour apprendre comment faire une connection entre tes appareils.</string>
     <string name="help_troubleshooting">Problèmes?</string>
-    <string name="help_troubleshooting_desc">S'il y avait des problèmes suis cette notice et apprend comment tu peux éliminer la plupart des problèmes.</string>
+    <string name="help_troubleshooting_desc">S\'il y avait des problèmes suis cette notice et apprend comment tu peux éliminer la plupart des problèmes.</string>
     <string name="help_faq">Frequently asked questions</string>
     <string name="help_faq_desc">Peut-être que tes question concernant notre serveur sont déjàs répondues? Si pas, tu peux ajouter ta question ici.</string>
     <string name="help_support">Support</string>
-    <string name="help_support_desc">En cas des problèmes, n'hésite pas de nous contacter. Nous allons te repondre bientôt.\n\nAvant il serait opportune de lire les notices et les FAQ.</string>
+    <string name="help_support_desc">En cas des problèmes, n\'hésite pas de nous contacter. Nous allons te repondre bientôt.\n\nAvant il serait opportune de lire les notices et les FAQ.</string>
     <string name="help_feedback">Feedback</string>
-    <string name="help_feedback_desc">Donne nous ton oppinion.Tes réactions peuvent nous aider d'améliorer notre app!</string>
+    <string name="help_feedback_desc">Donne nous ton oppinion. Tes réactions peuvent nous aider d\'améliorer notre app!</string>
 
     <!-- Units -->
     <string name="unit_day">jour</string>
@@ -180,16 +160,16 @@
 
     <!-- Errors -->
     <string name="error_device_name_empty">Il faut indiquer un nom</string>
-    <string name="error_device_ip_empty">Tape l'adresse IP de ton ordinateur</string>
-    <string name="error_device_ip_invalid">Tape und adresse IP valide</string>
+    <string name="error_device_ip_empty">Tape l\'adresse IP de ton ordinateur</string>
+    <string name="error_device_ip_invalid">Tape une adresse IP valide</string>
 
-    <string name="error_code_invalid">Cela n'est pas un code valide</string>
-    <string name="error_unknown">Il y avait une problème. Essayer encore une fois s'il te plaît.</string>
+    <string name="error_code_invalid">Cela n\'est pas un code valide</string>
+    <string name="error_unknown">Il y avait une problème. Essayer encore une fois s\'il te plaît.</string>
     <string name="error_code_limit_reached">La limite pour ce code est accédée.</string>
-    <string name="error_code_expired">Ce code n'est plus valide.Tu ne le peux plus utiliser.</string>
+    <string name="error_code_expired">Ce code n\'est plus valide. Tu ne le peux plus utiliser.</string>
     <string name="error_trial_expired">Ton trial est expiré.</string>
     <string name="error_trial_used">Ce trial code était déjà utilisé, ce ne que possible une fois.</string>
-    <string name="error_iap_not_supported">In-app billing n'est pas soutenu par ce appareil.</string>
+    <string name="error_iap_not_supported">In-app billing n\'est pas soutenu par ce appareil.</string>
 
     <!-- Dialogs -->
     <string name="dialog_ok">OK</string>
@@ -212,8 +192,8 @@
     <string name="hint_media_volume_buttons">Utilise les touches de volume pour modifier le volume de ton ordinateur.</string>
     <string name="hint_presenter_volume_buttons">Change les transparents de ta présentation par les touches de volume.</string>
     <string name="hint_keyboard_advanced">Essiue à gauche pour voire les clés de fonction et les shortcuts.</string>
-    <string name="hint_free_trial">Essaie la version pro gratuitement par activer un unlock code.\n\nPour plus d'information regarde les upgrades.</string>
-    <string name="hint_remove_ads">Tu peux supprimer les publicités par activer un code valide de ta choix.\n\nPour plus d'information regarde les upgrades.</string>
+    <string name="hint_free_trial">Essaie la version pro gratuitement par activer un unlock code.\n\nPour plus d\'information regarde les upgrades.</string>
+    <string name="hint_remove_ads">Tu peux supprimer les publicités par activer un code valide de ta choix.\n\nPour plus d\'information regarde les upgrades.</string>
 
     <!-- Misc. Stuff -->
     <string name="work_in_progress">Work in progress</string>

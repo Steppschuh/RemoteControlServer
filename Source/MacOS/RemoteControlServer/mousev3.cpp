@@ -52,8 +52,8 @@ MouseV3::MouseV3()
 
 void MouseV3::leftSecondClick()
 {
-    MouseMac::Instance()->leftMouseDown(true);
-    MouseMac::Instance()->leftMouseUp(true);
+    MouseMac::Instance()->leftMouseDown(false);
+    MouseMac::Instance()->leftMouseUp(false);
 }
 
 void MouseV3::pointersDown()
@@ -374,7 +374,7 @@ void MouseV3::processMultitouch()
     {
         if (!valueMatchesTolerance(P3_Vector_New, P3_Vector_Event, 25))
         {
-            scrollAmount = pow((P3_Vector_New, P3_Vector_Last), 2);
+            scrollAmount = pow((P3_Vector_New - P3_Vector_Last), 2);
             if (P3_Vector_New > P3_Vector_Last)
             {
                 MouseMac::Instance()->zoom(1, 1);

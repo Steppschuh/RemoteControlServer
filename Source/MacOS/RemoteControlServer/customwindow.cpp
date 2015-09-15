@@ -9,11 +9,20 @@ CustomWindow::CustomWindow(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->applyButton, SIGNAL(pressed()), this, SLOT(customHide()));
+
+    setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint);
+    setWindowTitle("Custom Actions");
 }
 
 CustomWindow::~CustomWindow()
 {
     delete ui;
+}
+
+void CustomWindow::closeEvent(QCloseEvent *event)
+{
+    event->ignore();
+    hide();
 }
 
 void CustomWindow::customHide()

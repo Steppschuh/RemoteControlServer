@@ -2,6 +2,7 @@
 #include "authentication.h"
 #include "network.h"
 #include "server.h"
+#include "settings.h"
 #include "trayicon.h"
 
 #include <QDebug>
@@ -26,7 +27,7 @@ TrayIcon::TrayIcon(QObject *parent) :
     quit = new QAction(this);
     quit->setText("Quit");
 
-    this->setIcon(QIcon(":Resources/SystemTrayIcon.png"));
+    this->setIcon(QIcon(":Resources/icon_server_256.png"));
     trayIconMenu = new QMenu();
 
     trayIconMenu->addAction("Server");
@@ -74,6 +75,6 @@ void TrayIcon::onClick()
 
 void TrayIcon::showNotification(QString title, QString text)
 {
-    showMessage(title, text);
+    if (Settings::Instance()->showTrayNotifications) showMessage(title, text);
 }
 
