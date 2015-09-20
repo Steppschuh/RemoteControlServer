@@ -146,13 +146,13 @@ void MouseV2::moveCursor()
                     P1_Rel->setY(pow(P1_Rel->y(), Settings::Instance()->mouseAcceleration) * Settings::Instance()->mouseSensitivity);
                     P1_Rel->setY(P1_Rel->y() * -1);
                 }
-
-                cursorPositionNew = new QPoint(cursorPositionCurrent->x() + P1_Rel->x(), cursorPositionCurrent->y() + P1_Rel->y());
-                P1_Last = new QPoint(P1_New->x(), P1_New->y());
-#ifdef Q_OS_MAC
-                MouseMac::Instance()->moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
-#endif
             }
+
+            cursorPositionNew = new QPoint(cursorPositionCurrent->x() + P1_Rel->x(), cursorPositionCurrent->y() + P1_Rel->y());
+            P1_Last = new QPoint(P1_New->x(), P1_New->y());
+#ifdef Q_OS_MAC
+            MouseMac::Instance()->moveMouseTo(cursorPositionNew->x(), cursorPositionNew->y());
+#endif
         }
     }
 }
