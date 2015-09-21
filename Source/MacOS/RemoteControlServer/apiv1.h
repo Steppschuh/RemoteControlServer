@@ -3,10 +3,13 @@
 
 #include "command.h"
 
+#include <QObject>
 #include <QString>
 
-class ApiV1
+class ApiV1 : public QObject
 {
+    Q_OBJECT
+
 public:
     static ApiV1* Instance();
 

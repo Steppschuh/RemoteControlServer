@@ -4,8 +4,12 @@
 #include "app.h"
 #include "command.h"
 
-class ApiV3
+#include <QObject>
+
+class ApiV3 : public QObject
 {
+    Q_OBJECT
+
 public:
     static ApiV3 *Instance();
 

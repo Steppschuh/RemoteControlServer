@@ -1,13 +1,16 @@
 #ifndef APIV2_H
 #define APIV2_H
 
+#include <QObject>
 #include <QString>
 
 #include "app.h"
 #include "command.h"
 
-class ApiV2
+class ApiV2 : public QObject
 {
+    Q_OBJECT
+
 public:
     static ApiV2 *Instance();
 

@@ -8,6 +8,7 @@
 #include "server.h"
 
 #include <QDebug>
+#include <QThread>
 
 ApiV2* ApiV2::instance = NULL;
 
@@ -15,7 +16,10 @@ ApiV2* ApiV2::Instance()
 {
     if (!instance)
     {
+        QThread *newThread = new QThread();
         instance = new ApiV2();
+        instance->moveToThread(newThread);
+        newThread->start();
     }
     return instance;
 }
