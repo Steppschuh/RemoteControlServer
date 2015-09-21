@@ -70,25 +70,25 @@ void KeyboardMac::sendKeyDown(CGKeyCode key, UniChar c)
     }
     if (fnDown)
     {
-        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskSecondaryFn;
+        if (flagsAreInitialized) flags = CGEventFlags (flags | kCGEventFlagMaskSecondaryFn);
         else flags = kCGEventFlagMaskSecondaryFn;
         flagsAreInitialized = true;
     }
     if (ctrlDown)
     {
-        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskControl;
+        if (flagsAreInitialized) flags = CGEventFlags (flags | kCGEventFlagMaskControl);
         else flags = kCGEventFlagMaskControl;
         flagsAreInitialized = true;
     }
     if (altDown)
     {
-        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskAlternate;
+        if (flagsAreInitialized) flags = CGEventFlags (flags | kCGEventFlagMaskAlternate);
         else flags = kCGEventFlagMaskAlternate;
         flagsAreInitialized = true;
     }
     if (cmdDown)
     {
-        if (flagsAreInitialized) flags = flags | kCGEventFlagMaskCommand;
+        if (flagsAreInitialized) flags = CGEventFlags (flags | kCGEventFlagMaskCommand);
         else flags = kCGEventFlagMaskCommand;
         flagsAreInitialized = true;
     }

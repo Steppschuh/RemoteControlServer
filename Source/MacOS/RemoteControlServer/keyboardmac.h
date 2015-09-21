@@ -83,8 +83,8 @@ public:
     };
 
     void sendKeyPress(CGKeyCode key);
-    void sendKeyDown(CGKeyCode key, UniChar c = NULL);
-    void sendKeyUp(CGKeyCode key, UniChar c = NULL);
+    void sendKeyDown(CGKeyCode key, UniChar c = 0);
+    void sendKeyUp(CGKeyCode key, UniChar c = 0);
     void sendEachKey(QString message);
     void sendShortcut(int keyCode);
     CGKeyCode keycodeToKey(int keyCode);
