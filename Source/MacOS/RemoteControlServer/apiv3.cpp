@@ -19,6 +19,7 @@
 #include <QByteArray>
 #include <QProcess>
 #include <QtConcurrent>
+#include <QThread>
 
 #include <QDebug>
 
@@ -28,7 +29,10 @@ ApiV3* ApiV3::Instance()
 {
     if (!instance)
     {
+        QThread *newThread = new QThread();
         instance = new ApiV3();
+        instance->moveToThread(newThread);
+        newThread->start();
     }
     return instance;
 }

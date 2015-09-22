@@ -36,6 +36,10 @@ Network::Network():
     commandCount = 0;
 
     QtConcurrent::run(this, &Network::checkListenersRunning);
+
+    connect(this, SIGNAL(sendData(Command*)), TCP::Instance(), SLOT(sendData(Command*)));
+    connect(this, SIGNAL(sendDataRetry(Command*)), TCP::Instance(), SLOT(sendDataRetry(Command*)));
+    connect(this, SIGNAL(sendDataUntilReceived(Command*)), TCP::Instance(), SLOT(sendDataUntilReceived(Command*)));
 }
 
 bool Network::checkListenersRunning()
@@ -94,16 +98,16 @@ void Network::sendCommand(Command &command)
         // send Date via UDP (Not implemented, nor used)
         break;
     case Command::PRIORITY_MEDIUM:
-        TCP::Instance()->sendData(command);
+        emit sendData(&command);
         break;
     case Command::PRIORITY_HIGH:
-        TCP::Instance()->sendDataRetry(command);
+        emit sendDataRetry(&command);
         break;
     case Command::PRIORITY_INDISPENSABLE:
-        TCP::Instance()->sendDataUntilReceived(command);
+        emit sendDataUntilReceived(&command);
         break;
     default:
-        TCP::Instance()->sendData(command);
+        emit sendData(&command);
     }
 }
 

@@ -5,6 +5,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QTimer>
+#include <QtConcurrent>
 
 UDP* UDP::instance = NULL;
 
@@ -43,7 +44,7 @@ void UDP::startListener(bool logMessages)
     if (!isListening)
     {
         isListening = true;
-        udpSocket = new QUdpSocket(this);
+        udpSocket = new QUdpSocket(0);
         bool success = udpSocket->bind(QHostAddress::Any, port);
         if (success)
         {

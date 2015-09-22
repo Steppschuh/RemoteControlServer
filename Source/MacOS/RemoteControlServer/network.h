@@ -6,8 +6,12 @@
 
 #include "command.h"
 
-class Network
+#include <QObject>
+
+class Network : public QObject
 {
+    Q_OBJECT
+
 public:
     static Network* Instance();
 
@@ -18,6 +22,11 @@ public:
     void sendCommand(Command &command);
     void loadInBrowser(QString &url);
     bool isValidIp(QString &ip);
+
+signals:
+    void sendData(Command *command);
+    void sendDataRetry(Command *command);
+    void sendDataUntilReceived(Command *command);
 
 private:
     Network();

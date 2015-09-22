@@ -7,6 +7,7 @@
 #include <QThread>
 
 #include <QDebug>
+#include <QtConcurrent>
 
 TCP* TCP::instance = NULL;
 
@@ -35,46 +36,56 @@ TCP::TCP(QObject *parent) :
     startListener();
 }
 
-bool TCP::sendData(Command &command)
+void TCP::sendData(Command *command)
 {
-    qint64 start = QDateTime::currentMSecsSinceEpoch();
+    QtConcurrent::run(this, &TCP::sendDataThread, command);
+}
+
+bool TCP::sendDataThread(Command *command) {
     bool received = false;
-    QTcpSocket *socket = new QTcpSocket();
-    socket->connectToHost(command.destination, portSend);
+    QTcpSocket *socket = new QTcpSocket(0);
+    socket->connectToHost(command->destination, portSend);
+
     if (socket->waitForConnected(sendTimeout))
     {
-        qDebug() << "Data sending: " << command.data->length();
-        socket->write(*command.data);
-//        qDebug() << "Data sent";
+        socket->write(*command->data);
         received = true;
         socket->close();
-        qDebug() << "Sending succeeded in ms:" << QDateTime::currentMSecsSinceEpoch() - start;
     }
     else
     {
-        Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString::number(portSend));
-        qDebug() << "Sending failed in ms:" << QDateTime::currentMSecsSinceEpoch() - start;
+        Logger::Instance()->add("Unable to send command to " + command->destination + ":" + QString::number(portSend));
     }
     return received;
 }
 
-void TCP::sendDataRetry(Command &command)
+void TCP::sendDataRetry(Command *command)
+{
+    QtConcurrent::run(this, &TCP::sendDataRetryThread, command);
+}
+
+void TCP::sendDataRetryThread(Command *command)
 {
     for (int i = 0; i < retries; ++i)
     {
-        if (sendData(command))
+        if (sendDataThread(command))
         {
             break;
         }
     }
 }
 
-void TCP::sendDataUntilReceived(Command &command)
+void TCP::sendDataUntilReceived(Command *command)
+{
+    QtConcurrent::run(this, &TCP::sendDataUntilReceivedThread, command);
+}
+
+void TCP::sendDataUntilReceivedThread(Command *command)
 {
     bool received = false;
     while (!received)
     {
-        received = sendData(command);
+        received = sendDataThread(command);
         QThread::sleep(retryTimeout);
     }
 }
@@ -127,25 +138,4 @@ void TCP::incomingConnection(qintptr socketDescriptor)
 
     thread->start();
 }
-
-//void TCP::listen()
-//{
-//    QTime t;
-//    t.start();
-//    QTcpSocket *socket = tcpServer->nextPendingConnection();
-//    if (socket->waitForReadyRead())
-//    {
-//        QByteArray messageData = socket->readAll();
-//        Command *command = new Command();
-//        QString ip = socket->peerAddress().toString();
-//        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
-//        command->source = ip;
-//        ip = socket->localAddress().toString();
-//        if (ip.startsWith("::ffff:")) ip = ip.right(ip.length() - 7);
-//        command->destination = ip;
-//        command->data = &messageData;
-//        qDebug() << "TCP listen in ms " << t.elapsed();
-//        command->process();
-//    }
-//}
 

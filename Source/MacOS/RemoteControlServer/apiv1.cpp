@@ -15,7 +15,7 @@
 #endif
 
 #include <QDesktopServices>
-
+#include <QThread>
 #include <QDebug>
 
 ApiV1* ApiV1::instance = NULL;
@@ -24,7 +24,10 @@ ApiV1* ApiV1::Instance()
 {
     if (!instance)
     {
+        QThread *newThread = new QThread();
         instance = new ApiV1();
+        instance->moveToThread(newThread);
+        newThread->start();
     }
     return instance;
 }
