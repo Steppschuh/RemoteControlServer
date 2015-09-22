@@ -6,6 +6,7 @@
 #include <QThread>
 
 #include <QDebug>
+#include <QtConcurrent>
 
 TCP* TCP::instance = NULL;
 
@@ -33,41 +34,56 @@ TCP::TCP() :
     startListener();
 }
 
-bool TCP::sendData(Command &command)
+void TCP::sendData(Command *command)
 {
+    QtConcurrent::run(this, &TCP::sendDataThread, command);
+}
+
+bool TCP::sendDataThread(Command *command) {
     bool received = false;
-    QTcpSocket *socket = new QTcpSocket(this);
-    socket->connectToHost(command.destination, portSend);
+    QTcpSocket *socket = new QTcpSocket(0);
+    socket->connectToHost(command->destination, portSend);
+
     if (socket->waitForConnected(sendTimeout))
     {
-        socket->write(*command.data);
+        socket->write(*command->data);
         received = true;
         socket->close();
     }
     else
     {
-        Logger::Instance()->add("Unable to send command to " + command.destination + ":" + QString::number(portSend));
+        Logger::Instance()->add("Unable to send command to " + command->destination + ":" + QString::number(portSend));
     }
     return received;
 }
 
-void TCP::sendDataRetry(Command &command)
+void TCP::sendDataRetry(Command *command)
+{
+    QtConcurrent::run(this, &TCP::sendDataRetryThread, command);
+}
+
+void TCP::sendDataRetryThread(Command *command)
 {
     for (int i = 0; i < retries; ++i)
     {
-        if (sendData(command))
+        if (sendDataThread(command))
         {
             break;
         }
     }
 }
 
-void TCP::sendDataUntilReceived(Command &command)
+void TCP::sendDataUntilReceived(Command *command)
+{
+    QtConcurrent::run(this, &TCP::sendDataUntilReceivedThread, command);
+}
+
+void TCP::sendDataUntilReceivedThread(Command *command)
 {
     bool received = false;
     while (!received)
     {
-        received = sendData(command);
+        received = sendDataThread(command);
         QThread::sleep(retryTimeout);
     }
 }

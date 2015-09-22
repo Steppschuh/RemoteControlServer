@@ -2,6 +2,7 @@
 #define TCP_H
 
 #include <QTcpServer>
+#include <QThread>
 
 #include "command.h"
 
@@ -14,13 +15,13 @@ public:
 
     bool isListening;
 
-    bool sendData(Command &command);
-    void sendDataRetry(Command &command);
-    void sendDataUntilReceived(Command &command);
     void stopListener();
 
 public slots:
     void listenTimerTick();
+    void sendData(Command *command);
+    void sendDataRetry(Command *command);
+    void sendDataUntilReceived(Command *command);
 
 private:
     TCP();
@@ -38,8 +39,14 @@ private:
 
     QTcpServer *tcpServer;
 
+    QThread *tcpThread;
+
     void startListener();
     void listen();
+
+    bool sendDataThread(Command *command);
+    void sendDataRetryThread(Command *command);
+    void sendDataUntilReceivedThread(Command *command);
 };
 
 #endif // TCP_H
