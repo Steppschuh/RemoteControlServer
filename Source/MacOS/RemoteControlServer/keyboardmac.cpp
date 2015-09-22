@@ -11,8 +11,6 @@
     #include "macx.h"
 #endif
 
-#include <QDebug>
-
 KeyboardMac *KeyboardMac::instance = NULL;
 
 KeyboardMac *KeyboardMac::Instance()
@@ -135,7 +133,6 @@ void KeyboardMac::sendShortcut(int keyCode)
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
         break;
     case KEYCODE_SELECT_ALL:
-        qDebug() << "CMD + A";
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(kVK_ANSI_A);
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));
@@ -147,7 +144,6 @@ void KeyboardMac::sendShortcut(int keyCode)
         break;
     case KEYCODE_SHOW_DESKTOP:
     {
-        qDebug() << "show desktop";
         sendKeyDown(keycodeToKey(KEYCODE_COMMAND));
         sendKeyPress(keycodeToKey(KEYCODE_F3));
         sendKeyUp(keycodeToKey(KEYCODE_COMMAND));

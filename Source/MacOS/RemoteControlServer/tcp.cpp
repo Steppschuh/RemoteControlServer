@@ -36,7 +36,8 @@ TCP::TCP() :
 
 void TCP::sendData(Command *command)
 {
-    QtConcurrent::run(this, &TCP::sendDataThread, command);
+//    QtConcurrent::run(this, &TCP::sendDataThread, command);
+    sendDataThread(command);
 }
 
 bool TCP::sendDataThread(Command *command) {
@@ -59,7 +60,8 @@ bool TCP::sendDataThread(Command *command) {
 
 void TCP::sendDataRetry(Command *command)
 {
-    QtConcurrent::run(this, &TCP::sendDataRetryThread, command);
+//    QtConcurrent::run(this, &TCP::sendDataRetryThread, command);
+    sendDataRetryThread(command);
 }
 
 void TCP::sendDataRetryThread(Command *command)
@@ -75,7 +77,8 @@ void TCP::sendDataRetryThread(Command *command)
 
 void TCP::sendDataUntilReceived(Command *command)
 {
-    QtConcurrent::run(this, &TCP::sendDataUntilReceivedThread, command);
+//    QtConcurrent::run(this, &TCP::sendDataUntilReceivedThread, command);
+    sendDataUntilReceivedThread(command);
 }
 
 void TCP::sendDataUntilReceivedThread(Command *command)

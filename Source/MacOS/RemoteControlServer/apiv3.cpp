@@ -205,6 +205,7 @@ void ApiV3::answerGetRequest(Command &requestCommand)
             break;
         case cmd_get_screenshots:
             parseScreenshotProperties(requestCommand);
+            qDebug() << "keep sending screenshots";
             Screenshot::Instance()->continueSendingScreenshots = true;
             if (!Screenshot::Instance()->isSendingScreenshot)
             {

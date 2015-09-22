@@ -623,7 +623,7 @@
                   <number>1</number>
                  </property>
                  <property name="maximum">
-                  <number>80</number>
+                  <number>100</number>
                  </property>
                  <property name="value">
                   <number>5</number>

@@ -33,12 +33,10 @@ void PointerWindow::showPointer()
     isVisible = true;
     setOpacity(1.0);
     show();
-    qDebug() << "show";
 }
 
 void PointerWindow::hidePointer()
 {
-    qDebug() << "hide";
     hide();
     setOpacity(0.0);
     isVisible = false;
@@ -46,7 +44,6 @@ void PointerWindow::hidePointer()
 
 void PointerWindow::setOpacity(float o)
 {
-    qDebug() << "Opacity" << o;
     o = (o > 1.0) ? 1.0 : ((o < 0.0) ? 0.0 : o);
     opacity = o;
 
@@ -62,7 +59,6 @@ void PointerWindow::setOpacity(float o)
 
 void PointerWindow::startFadeOutPointer()
 {
-    qDebug() << "start fadeout";
     if (isFadingOutTimed) fadeOutDelayTimer->stop();
 
     lowerOpacityTimer = new QTimer();

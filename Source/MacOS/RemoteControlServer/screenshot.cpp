@@ -56,7 +56,8 @@ QPixmap *Screenshot::getScreenshot(bool fullscreen, int index)
 
 QPixmap *Screenshot::getResizedScreenshot(int width)
 {
-    width = (width > maxScreenshotWidth) ? maxScreenshotWidth : width;
+    width = width * Settings::Instance()->screenScale;
+//    width = (width > maxScreenshotWidth) ? maxScreenshotWidth : width;
 
     QPixmap *screenshot = getScreenshot(screenIndex);
     if (screenshot->width() > width)
