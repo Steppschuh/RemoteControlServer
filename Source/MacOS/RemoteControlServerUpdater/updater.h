@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QNetworkReply>
+#include <QProcess>
 
 namespace Ui {
 class Updater;

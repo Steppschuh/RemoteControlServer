@@ -20,7 +20,7 @@ void Updater::downloadFinished(QNetworkReply* reply)
     {
         // if the Size of the Reply is smaller than 1MB we assume that the file does not exist on the server.
         // if your File should be smaller than 1MB, change the number
-        QFile *file = new QFile("/Applications/RemoteControlServerNew.app");
+        QFile *file = new QFile("/Applications/RemoteControlServer.app.zip");
         if (file->open(QIODevice::WriteOnly))
         {
             file->write(reply->readAll());
@@ -29,10 +29,15 @@ void Updater::downloadFinished(QNetworkReply* reply)
                              | QFileDevice::ReadGroup | QFileDevice::ExeGroup
                              | QFileDevice::ReadOther | QFileDevice::ExeOther);
 
+        QProcess unzipProcess;
+        unzipProcess.start("unzip", QStringList() << "/home/oDx/Documents/a.txt");
+
+        /*
         QString appPath = "/Applications/RemoteControlServer.app";
         QFile::remove(appPath);
         file->rename(appPath);
         file->close();
+        */
 
         std::cout << "Update finished - Have fun using the new version of the Remote Control Server.\n";
     }
