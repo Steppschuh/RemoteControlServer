@@ -12,7 +12,7 @@ class Updater : public QObject
 public:
     static Updater *Instance();
 
-    const QString URL_UPDATE_INFO = "http://remote-control-collection.com/files/server/update.xml";
+    const QString URL_UPDATE_INFO = "http://remote-control-collection.com/files/server/update_mac.xml";
     const QString URL_UPDATE_HELP = "http://remote-control-collection.com/help/update/";
 
     const char currentVersionCode = 1;

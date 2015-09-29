@@ -20,7 +20,7 @@ void Updater::downloadFinished(QNetworkReply* reply)
     {
         // if the Size of the Reply is smaller than 1MB we assume that the file does not exist on the server.
         // if your File should be smaller than 1MB, change the number
-        QFile *file = new QFile("/Applications/RemoteControlServer2.app");
+        QFile *file = new QFile("/Applications/RemoteControlServerNew.app");
         if (file->open(QIODevice::WriteOnly))
         {
             file->write(reply->readAll());
@@ -38,7 +38,7 @@ void Updater::downloadFinished(QNetworkReply* reply)
     }
     else
     {
-        std::cout << "Update failed - The Download of the new Version of the Remote Control Server failed. The Updater is finishing now.\n";
+        std::cout << "Update failed - The Download of the new Version of the Remote Control Server failed.\nPlease update the server manually, instructions can be found at http://remote-control-collection.com/help/update/";
     }
 
     emit finished();
