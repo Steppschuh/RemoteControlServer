@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QLoggingCategory>
 
 int main(int argc, char *argv[])
 {
@@ -15,9 +16,11 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    QApplication::setApplicationName("RemoteControlServer"); // the name of the applications
+    QApplication::setApplicationName("RemoteControlServer");
     QApplication::setOrganizationName("Steppschuh");
-    QApplication::setOrganizationDomain("com.steppschuh");     // your organisation bundleID as it is set somewhere on your mac / in xcode
+    QApplication::setOrganizationDomain("com.steppschuh");
+
+    QLoggingCategory::setFilterRules("qt.network.ssl.w arning=false");
 
     QMainWindow window;
     MainWindow w(&window);

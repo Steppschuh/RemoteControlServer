@@ -16,11 +16,13 @@ Updater::~Updater()
 void Updater::downloadFinished(QNetworkReply* reply)
 {
     QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if (statusCode.isValid() && statusCode.toInt() == 200 && reply->size() > 20000)
+    if (statusCode.isValid() && statusCode.toInt() == 200 && reply->size() > 10000)
     {
-        // if the Size of the Reply is smaller than 1MB we assume that the file does not exist on the server.
-        // if your File should be smaller than 1MB, change the number
-        QFile *file = new QFile("/Applications/RemoteControlServer.app.zip");
+        std::cout << "Download finished.\nExtracting application...\n";
+
+        QString appPath = "/Applications/RemoteControlServer.app";
+
+        QFile *file = new QFile(appPath + ".zip");
         if (file->open(QIODevice::WriteOnly))
         {
             file->write(reply->readAll());
@@ -30,20 +32,25 @@ void Updater::downloadFinished(QNetworkReply* reply)
                              | QFileDevice::ReadOther | QFileDevice::ExeOther);
 
         QProcess unzipProcess;
-        unzipProcess.start("unzip", QStringList() << "/home/oDx/Documents/a.txt");
+        unzipProcess.setProcessChannelMode(QProcess::ForwardedChannels);
+        unzipProcess.start("unzip -o -q " + file->fileName() + " -d /Applications/");
+        unzipProcess.waitForFinished();
+        unzipProcess.close();
 
-        /*
-        QString appPath = "/Applications/RemoteControlServer.app";
-        QFile::remove(appPath);
-        file->rename(appPath);
+        // no need to rename, unzip has overwritten the existing server
+        //QFile::remove(appPath);
+        //file->rename(appPath);
+
         file->close();
-        */
+        std::cout << "Extraction done.\nUpdated application has been stored to:\n   " << appPath.toUtf8().constData() << "\n";
+        std::cout << "Starting the new Remote Control Server.\n\n";
 
-        std::cout << "Update finished - Have fun using the new version of the Remote Control Server.\n";
+        QProcess serverProcess;
+        serverProcess.startDetached("open " + appPath);
     }
     else
     {
-        std::cout << "Update failed - The Download of the new Version of the Remote Control Server failed.\nPlease update the server manually, instructions can be found at http://remote-control-collection.com/help/update/";
+        std::cout << "Update failed.\nPlease update the server manually, instructions can be found at http://remote-control-collection.com/help/update/\n\n";
     }
 
     emit finished();
@@ -51,6 +58,9 @@ void Updater::downloadFinished(QNetworkReply* reply)
 
 void Updater::run()
 {
+    std::cout << "\n\nDownloading the latest version of the Remote Control Server...\n";
+
+
     QNetworkAccessManager *webManager = new QNetworkAccessManager();
     connect(webManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(downloadFinished(QNetworkReply*)));
 
