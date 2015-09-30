@@ -28,6 +28,8 @@ private:
     Ui::Updater *ui;
 
     const QString URL_UPDATE_SERVER = "http://remote-control-collection.com/files/server/RemoteControlServer.app.zip";
+
+    void displayErrorMessage();
 };
 
 #endif // UPDATER_H
