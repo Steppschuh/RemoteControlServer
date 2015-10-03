@@ -86,15 +86,15 @@ void Updater::startUpdater()
         if (!QDir(appDataDir).exists()){
             QDir().mkpath(appDataDir);
         }
+    }
 #ifdef Q_OS_MAC
 
-        QFile::copy(":/Resources/RemoteControlServerUpdater", pathUpdater);
+    QFile::copy(":/Resources/RemoteControlServerUpdater", pathUpdater);
 
-        QFile file(pathUpdater);
-        file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
+    QFile file(pathUpdater);
+    file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
 
 #endif
-    }
 
     Logger::Instance()->add("Starting update tool");
     Server::Instance()->startProcess(pathUpdater);
