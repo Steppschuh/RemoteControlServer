@@ -213,3 +213,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+Source/MacOS/build-RemoteControlServer-Desktop_Qt_5_5_0_clang_64bit-Debug
+Source/MacOS/build-RemoteControlServer-Desktop_Qt_5_5_0_clang_64bit-Release
+Source/MacOS/build-RemoteControlServerUpdater-Desktop_Qt_5_5_0_clang_64bit-Debug
+Source/MacOS/build-RemoteControlServerUpdater-Desktop_Qt_5_5_0_clang_64bit-Release
