@@ -15,13 +15,13 @@
 	<key>CFBundleExecutable</key>
 	<string>RemoteControlServer</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.steppschuh.RemoteControlServer</string>
+	<string>com.steppschuh.remotecontrolserver</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>3.2.0.0</string>
+	<string>3.2.0.1</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.0.0</string>
+	<string>3.2.0.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Remote Control Collection</string>
 	<key>NSHumanReadableCopyright</key>
