@@ -1,5 +1,5 @@
-<b>Use your Android device as a remote for your Windows PC - Control the mouse, keyboard, media, presentations and more!</b>
-The Remote Control Collection is a compilation of remotes, which you can use to wirelessly control your Windows PC. The unified remotes enable you to control the PC beyond mouse and keyboard!
+<b>Use your Android device as a remote for your Windows PC or Mac - Control the mouse, keyboard, media, presentations and more!</b>
+The Remote Control Collection is a compilation of remotes, which you can use to wirelessly control your Windows PC or Mac. The unified remotes enable you to control the PC beyond mouse and keyboard!
 <br/>
 
 <b>What others say:</b>
@@ -62,11 +62,17 @@ Facebook fans can test the pro version for free:
 http://facebook.com/RemoteControlApps<br/>
 
 <b>Permissions:</b>
-Network communication
+Network
 For creating network sockets and using custom network protocols to connect with the pc.
 
-Phone calls
+Call information
 Is needed to create a unique device id. Used to verify purchases and register unlock codes.
+
+Approximate location
+For analytics to improve localisation (translations, assets, etc.).
+
+Media & Files
+For caching to save network traffic.
 
 Vibration
 For haptic feedback.</small>

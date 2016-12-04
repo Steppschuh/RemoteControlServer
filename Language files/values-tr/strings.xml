@@ -4,11 +4,7 @@
     tools:ignore="KayıpÇeviri">
 
     <!-- General -->
-	<!-- I probably forgot adding \n to translated words for appropriately, you can add them easily and please let me know if there'll be any issues about them-->
-    <string name="app_name" translatable="false">Uzaktan Erişim Aracı</string>
-	<!-- it's exact translation is "Remote Control Collection <-> Uzaktan Kontrol Koleksiyonu" but "collection" in Turkish means archiving and collecting something solid or literal object, so I'm implementing it as "Tools <-> Aracı", otherwise it's translation is kinda useless. Feel free to edit. -->
-    <string name="interstitial_main_id" translatable="false">ca-app-pub-0964556634112634/1424472330</string>
-    <string name="banner_main_id" translatable="false">ca-app-pub-0964556634112634/5476712735</string>
+    <!-- it's exact translation is "Remote Control Collection <-> Uzaktan Kontrol Koleksiyonu" but "collection" in Turkish means archiving and collecting something solid or literal object, so I'm implementing it as "Tools <-> Aracı", otherwise it's translation is kinda useless. Feel free to edit. -->
 
     <!-- Start -->
     <string name="start_remotes">Erişim</string>
@@ -31,7 +27,6 @@
     <string name="devicecs_add">Yeni cihaz ekle</string>
     <string name="devicecs_ip">IP Adresi</string>
     <string name="devicecs_name">Ad</string>
-    <string name="devicecs_ip_hint">192.168.1.23</string>
     <string name="devicecs_name_hint">Medya Bilgisayarı</string>
     <string name="devicecs_in_network">Bağlantı</string>
     <string name="devicecs_unknown">Bilinmeyen</string>
@@ -79,7 +74,6 @@
     <string name="remote_premium_desc">Gelecek özellikleri ve birinci sınıf tüm özellikleri açar</string>
 
     <!-- Keyboard -->
-    <string name="keyboard_advanced_placeholder_desc">Kısayollar ve fonksiyon tuşları yakın zamanda eklenecektir.</string>
     <string name="keyboard_send_general">Yaygın kullanılan tuşlar</string>
     <string name="keyboard_send_advances">Fonksiyon tuşları</string>
     <string name="keyboard_copy">Kopyala</string>
@@ -133,7 +127,7 @@
     <string name="upgrade_pro_activated">Yükseltme kodu etkinleştirildi.</string>
 
     <string name="upgrade_remote_locked">Erişim kilitlendi</string>
-    <string name="upgrade_remote_locked_desc">Bu erişim bir tam sürüm bileşenidir. Erişim kodu edinip aktif edebilir veya bir yükseltme kodu satın alabilirsiniz.</string>
+    <string name="upgrade_remote_locked_desc">Bu erişim bir tam sürüm bileşenidir. Sen, bir reklam izlemek bir kilit açma kodu etkinleştirmek veya kullanmak için bir yükseltme satın alabilirsiniz.</string>
 
     <!-- Info -->
     <string name="info_app">Cihaz bilgileri</string>
@@ -146,12 +140,8 @@
     <string name="info_commands_received">Alınan</string>
 
     <string name="info_links">Bize Ulaşın</string>
-    <string name="info_links_facebook">Facebook</string>
-    <string name="info_links_google">Google+</string>
-    <string name="info_links_store">Play Store</string>
 
     <string name="info_disclaimer">Feragatname</string>
-    <string name="info_disclaimer_app">@string/app_name</string>
     <string name="info_disclaimer_app_desc">Android, BlackBerry ve iOS sistemli cihazlar için.\nTelif hakkı © Steppschuh, lisans ayrıntıları \nremote-control-collection.com</string>
     <string name="info_disclaimer_server">Uzaktan Erişim Sunucusu</string>
     <string name="info_disclaimer_server_desc">Windows için mevcut. Kaynak kodu GitHub platformunda yer almaktadır ve kişisel kullanımlar için alınıp değiştirilebilir.\Telif hakkı © Steppschuh, lisans detayları \ngithub.com/Steppschuh/RemoteControlServer</string>
@@ -163,7 +153,7 @@
     <string name="info_disclaimer_admob_desc">AdMob, Google Inc. tarafından tasarlanan, uygulamanın ücretsiz sürümünün hayatına devam edebilmesi için ilgi bazlı reklam yayınlama yapabilmesini sağlayan bir platformdur. Herhangi bir ücretli yükseltme kodu ile tüm reklamlar kaldırılır.</string>
 
     <!-- Help -->
-    <string name="help_first_start">Başlarken</string>
+    <string name="help_first_start_title">Başlarken</string>
     <string name="help_first_start_desc">Bilgisayarınızı kontrol etmeye başlarken, \n\nhttp://setup.android-remote.com sayfasını, kontrol etmek istediğiniz bilgisayarda görüntüleyin.</string>
     <string name="help_connect">Bağlantıyı gerçekleştirme</string>
     <string name="help_connect_desc">Bu rehberi inceleyerek cihazlarınız arasında nasıl bağlantı kuracağınızı öğrenin.</string>
@@ -219,5 +209,6 @@
 
     <!-- Misc. Stuff -->
     <string name="work_in_progress">Çalışmalarımız devam etmektedir.</string>
+    <string name="dialog_try">Denemek</string>
 
 </resources>

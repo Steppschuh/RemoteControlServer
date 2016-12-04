@@ -1,0 +1,16 @@
+Remote Control Collection permet de contrôler votre ordinateur sans fil grâce à votre smartphone Android.
+ 
+Inclus contrôleurs :
+-Souris (Touchpad)
+-Clavier (Live | Manuel)
+-Media player (iTunes | Windows Media | VLC Player | ...) (version Pro uniquement)
+-Diaporamas (PowerPoint | Adobe Reader | Impress | ...) (version Pro uniquement)
+ 
+L’application et le serveur sont entièrement disponibles en allemand et en anglais.
+ 
+Le serveur de contrôle à distance est disponible gratuitement à cet adresse :
+http://server.android-remote.com
+Aucune inscription n'est requise.
+ 
+Les Fans de Facebook peuvent tester la version Pro gratuitement:
+http://facebook.com/RemoteControlApps

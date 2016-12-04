@@ -26,7 +26,6 @@
     <string name="devicecs_add">Adicionar um novo dispositivo</string>
     <string name="devicecs_ip">Endereço de IP</string>
     <string name="devicecs_name">Nome</string>
-    <string name="devicecs_ip_hint">192.168.1.23</string>
     <string name="devicecs_name_hint">Media PC</string>
     <string name="devicecs_in_network">PC em </string>
     <string name="devicecs_unknown">Desconhecido</string>
@@ -74,7 +73,6 @@
     <string name="remote_premium_desc">Desbloqueie todos os controles premium e futuros recursos</string>
 
     <!-- Keyboard -->
-    <string name="keyboard_advanced_placeholder_desc">Você encontrará atalhos e teclas de funções aqui em breve.</string>
     <string name="keyboard_send_general">Teclas comuns</string>
     <string name="keyboard_send_advances">Teclas de funções</string>
     <string name="keyboard_copy">Copiar</string>
@@ -88,7 +86,6 @@
     <string name="keyboard_fullscreen">Tela\ncheia</string>
     <string name="keyboard_page_down">Descer\na página</string>
     <string name="keyboard_page_up">Subir\na página</string>
-    <string name="keyboard_desktop">Mostrar a área\nde trabalho</string>
     <string name="keyboard_function">Teclas de funções</string>
 
     <!-- Speech -->
@@ -128,7 +125,7 @@
     <string name="upgrade_pro_activated">Versão pro foi ativada.</string>
 
     <string name="upgrade_remote_locked">Controle bloqueado</string>
-    <string name="upgrade_remote_locked_desc">Este controle é um recurso pro. Você pode ativar um código de desbloqueio ou comprar um upgrade para usá-lo.</string>
+    <string name="upgrade_remote_locked_desc">Este controle é um recurso pro. Você pode assistir a um anúncio, ative um código de desbloqueio ou comprar um upgrade para usá-lo.</string>
 
     <!-- Info -->
     <string name="info_app">Informações do dispositivo</string>
@@ -141,14 +138,10 @@
     <string name="info_commands_received">Recebidos</string>
 
     <string name="info_links">Encontre-nos</string>
-    <string name="info_links_facebook">Facebook</string>
-    <string name="info_links_google">Google+</string>
-    <string name="info_links_store">Play Store</string>
 
     <string name="info_disclaimer">Aviso legal</string>
-    <string name="info_disclaimer_app">@string/app_name</string>
     <string name="info_disclaimer_app_desc">Disponível para Android, BlackBerry e iOS.\nCopyright © Steppschuh, tradução por Stephen da Silva Madeira. Detalhes da licensa em:\nremote-control-collection.com</string>
-    <string name="info_disclaimer_server">Servidor de Controle Remoto</string>
+    <string name="info_disclaimer_server">Remote Control Server</string>
     <string name="info_disclaimer_server_desc">Disponível apenas para Windows. Ajude-nos a desenvolver o programa para Linux! O código-fonte está disponível no GitHub e pode ser modificado para uso pessoal .\nCopyright © Steppschuh, detalhes da licensa em:\ngithub.com/Steppschuh/RemoteControlServer</string>
     <string name="info_disclaimer_icons">Ícones</string>
     <string name="info_disclaimer_icons_desc">Todos os ícones são ou lançados sob uma Atribuição de licensa Internacional 4.0 por Google Inc. ou por Steppschuh.</string>
@@ -158,7 +151,7 @@
     <string name="info_disclaimer_admob_desc">AdMob é um serviço de propagandas provido pela Google Inc. que permite-nos mostrar propagandas baseadas em seus interesse a fim de monetizar este app livre. As propagandas serão removidas por qualquer upgrade pago.</string>
 
     <!-- Help -->
-    <string name="help_first_start">Começando</string>
+    <string name="help_first_start_title">Começando</string>
     <string name="help_first_start_desc">Para começar a controlar seu PC, abra este site no dispositivo que você quer controlar:\n\nhttp://setup.android-remote.com</string>
     <string name="help_connect">Configurando uma conexão</string>
     <string name="help_connect_desc">Siga este guia para aprender a configurar a conexão entre seus dispositivos.</string>
@@ -214,5 +207,6 @@
 
     <!-- Misc. Stuff -->
     <string name="work_in_progress">Trabalhando...</string>
+    <string name="dialog_try">Tentar</string>
 
 </resources>

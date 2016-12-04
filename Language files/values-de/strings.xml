@@ -48,6 +48,7 @@
     <string name="status_authenticating">Authentifizierung</string>
 
     <!-- Remotes -->
+    <string name="remote">Steuerung</string>
     <string name="remote_mouse">Maus</string>
     <string name="remote_keyboard">Tastatur</string>
     <string name="remote_browser">Browser</string>
@@ -67,11 +68,10 @@
     <string name="remote_shortcuts_desc">Schnellzugriff auf häufig genutzte Windows Befehle</string>
     <string name="remote_voice_desc">Nutzen Sie Ihre Stimme um Befehle oder Text zu senden</string>
     <string name="remote_media_desc">Steuern Sie Ihren Media Player und die System Lautstärke</string>
-    <string name="remote_custom_desc">Define custom actions in the Remote Control Server</string>
+    <string name="remote_custom_desc">Sondertasten, die Sie selber im Remote Control Server belegen können</string>
     <string name="remote_premium_desc">Schalten Sie alle verfügbaren und zukünfitigen Premium Steuerungen frei</string>
 
     <!-- Keyboard -->
-    <string name="keyboard_advanced_placeholder_desc">Hier werden Sie demnächst Shortcuts und Funktionstasten finden</string>
     <string name="keyboard_send_general">Haupttasten</string>
     <string name="keyboard_send_advances">Sondertasten</string>
 
@@ -112,7 +112,7 @@
     <string name="upgrade_pro_activated">Pro Version wurde aktiviert.</string>
 
     <string name="upgrade_remote_locked">Steuerung gesperrt</string>
-    <string name="upgrade_remote_locked_desc">Dies ist eine Pro Steuerung. Aktivieren Sie einen kostenlosen Freischalt-Code oder kaufen Sie ein Upgrade um diese Steuerung zu nutzen.</string>
+    <string name="upgrade_remote_locked_desc">Dies ist eine Pro Steuerung. Schauen Sie ein Video, aktivieren Sie einen kostenlosen Freischalt-Code oder kaufen Sie ein Upgrade um diese Steuerung zu nutzen.</string>
 
     <!-- Info -->
     <string name="info_app">Dieses Gerät</string>
@@ -124,7 +124,7 @@
     <string name="info_commands_sent">Gesendet</string>
     <string name="info_commands_received">Erhalten</string>
 
-    <string name="info_links">Find Us</string>
+    <string name="info_links">Finden Sie uns</string>
 
     <string name="info_disclaimer">Disclaimer</string>
     <string name="info_disclaimer_app_desc">Available for Android, BlackBerry and iOS.\nCopyright © Steppschuh, license details at:\nremote-control-collection.com</string>
@@ -137,7 +137,7 @@
     <string name="info_disclaimer_admob_desc">AdMob is an advertising service provided by Google Inc. that allows us to display interest based ads in order to monetize the free app. Ads will be removed by any paid upgrade.</string>
 
     <!-- Help -->
-    <string name="help_first_start">Einrichtung</string>
+    <string name="help_first_start_title">Einrichtung</string>
     <string name="help_first_start_desc">Um eine Verbindung herzustellen, öffnen Sie diese Website auf dem PC, den Sie steuern möchten:\n\nhttp://setup.android-remote.com</string>
     <string name="help_connect">Eine Verbindung einrichten</string>
     <string name="help_connect_desc">Folgen Sie dieser Anleitung um zu lernen, wie Sie Ihre Geräte verbinden können.</string>
@@ -180,9 +180,26 @@
 
     <!-- Updates -->
     <string name="update_server_required">Server Update</string>
-    <string name="update_server_required_desc">Diese App Version benötigt den Remote Control Server Version 3.0 oder neuer.\n\nBitte updaten Sie den Server oder laden Sie die aktuellste Version von:\nhttp://server.android-remote.com</string>
+    <string name="update_server_required_desc">Diese App Version benötigt eine neue Version des Remote Control Servers um richtig zu funktionieren.\n\nBitte updaten Sie den Server oder laden Sie die aktuellste Version von:\nhttp://server.android-remote.com</string>
 
     <!-- Misc. Stuff -->
     <string name="work_in_progress">Noch in Arbeit</string>
+    <string name="hint_close_button">Alles klar</string>
+    <string name="hint_free_trial">Sie können die Pro Version kostnlos testen. Gehen Sie zu Upgrade um mehr zu erfahren.</string>
+    <string name="hint_keyboard_advanced">Wischen Sie nach links um weitere Tasten anzuzeigen.</string>
+    <string name="hint_media_volume_buttons">Sie können die Lautstärke Tasten nutzen um die Systemlautstärke anzupassen.</string>
+    <string name="hint_mouse_multitouch">Zwei Finger Gesten für scrollen und zoomen werden unterstützt.</string>
+    <string name="hint_presenter_volume_buttons">Mit den Lautstärke Tasten können Sie die aktuelle Folie wechseln.</string>
+    <string name="hint_remove_ads">Sie können die Werbung durch Kauf eines beliebigen Upgrades entfernen.</string>
+    <string name="hint_title">Wussten Sie schon?</string>
+    <string name="keyboard_shutdown"></string>
+    <string name="remote_remove_ads">Werbung entfernen</string>
+    <string name="remote_remove_ads_desc">Entfernen Sie die Werbung und unterstützen Sie die Entwicklung</string>
+    <string name="hint_feedback_desc">Ihr Feedback hilft uns diese App zu Verbessern. Bitte lassen Sie uns Ihre Meinung durch eine Bewertung wissen.</string>
+    <string name="hint_wifi_desc">Sie müssen mit einem WLAN verbunden sein um sich mit Ihrem PC zu verbinden.</string>
+    <string name="hint_wifi_title">WLAN benötigt</string>
+    <string name="upgrade_pirate_toast">Arrrr! Ich bin ein Pirat!</string>
+    <string name="upgrade_remote_locked_pirate"></string>
+    <string name="dialog_try">Ausprobieren</string>
 
 </resources>

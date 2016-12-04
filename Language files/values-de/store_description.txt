@@ -1,5 +1,5 @@
-<b>Benutze dein Android Gerät als Fernbedienung für deinen PC - Steuere die Maus, Tastatur, Media Player, Präsentationen und mehr!</b>
-Die Remote Control Collection ist eine Sammlung von Fernbedienungen, mit denen du deinen PC drahtlos steuern kannst. Die Remotes ermöglichen einen Steuerung des Computers jenseits von Maus und Tastatur!
+<b>Benutze dein Android Gerät als Fernbedienung für deinen PC oder Mac - Steuere die Maus, Tastatur, Media Player, Präsentationen und mehr!</b>
+Die Remote Control Collection ist eine Sammlung von Fernbedienungen, mit denen du deinen Windows PC oder Mac drahtlos steuern kannst. Die Remotes ermöglichen eine Steuerung des Computers jenseits von Maus und Tastatur!
 <br>
 
 <b>Was andere sagen:</b>
@@ -60,6 +60,12 @@ Erstellung von Netzwerk-Sockets und die Verwendung eigener Netzwerkprotokolle um
 
 Telefonanrufe
 Wird benötigt, um eine eindeutige Geräte ID zu erstellen. Mit dieser werden Käufe verifiziert und Unlock Codes registriert.
+
+Ungefährer Standort
+Zu Analyse Zwecken um die Lokalisation zu verbessern (Übersetzungen, Grafiken, usw.).
+
+Speicher
+Cache um die Netzwerk Belastung zu minimieren.
 
 Vibration
 Ermöglicht haptisches Feedback für übertragene Befehle.</small>
