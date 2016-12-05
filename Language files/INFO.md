@@ -1,7 +1,7 @@
 Translations
 ===================
 
-You can find text files containing the sore descriptions and xml files containing strings used in the app [here](https://github.com/Steppschuh/RemoteControlServer/tree/master/Language%20files). Please feel free to change texts or add new files if your native language doesn't exist yet.
+You can find text files containing the store descriptions and xml files containing strings used in the app [here](https://github.com/Steppschuh/RemoteControlServer/tree/master/Language%20files). Please feel free to change texts or add new files if your native language doesn't exist yet.
 
 Always use the files from the [default values](https://github.com/Steppschuh/RemoteControlServer/tree/master/Language%20files/values) directory as base for any translations.
 
