@@ -1,0 +1,78 @@
+<b>Usa tu dispositivo Android como control remoto para tu PC con Windows o Mac - Controla el mouse, teclado, multimedia, presentaciones y más!</b>
+La Coleccián de Control Remoto es un compilado de controles remotos, los cuales podes usar para controlar inalámbricamente tu PC con Windows o Mac. Esta unificación de controles te permiten controlar la PC más allá de un mouse y teclado!
+<br/>
+
+<b>Opiniones:</b>
+DotTech.org:
+<i>Responde muy bien y es muy conveniente para usar</i>
+
+Chip.de:
+<i>Una aplicacion sólida con una simpleza brillante</i>
+
+UnlockPWD.com:
+<i>Hay otros controles disponibles, pero este está en otro nivel</i>
+
+Android-User.de:
+<i>Preparar la app para el uso es muy fácil</i>
+
+TomsGuide.com:
+<i>La app número uno para controlar tu PC</i>
+<br/>
+
+<b>Controles remotos incluídos:</b>
+-Mouse
+-Teclado
+-Pantalla en vivo (Pro)
+-Reproductor multimedia (Pro)
+-Presentación de diapositivas (Pro)
+-Reconocimiento de discurso
+<br/>
+
+<b>Mouse remoto</b>
+Imagina el panel táctil de tu PC directo en tu dispositivo Android. Soporte multitouch como scrolling y zoom. Puedes alternar con el teclado para enviar teclas al mismo tiempo.
+
+<b>Teclado remoto</b>
+Usa el teclado físico o virtual Android para tipear caracteres y aparecerán en tu PC. Teclas importantes como Windows, Escape y Control también disponibles.
+
+<b>Pantalla en vivo remota</b>
+Mira la pantalla de tu PC en vivo directamente desde tu dispositivo Android y controla el mouse en tiempo real.
+
+<b>Multimedia</b>
+Controla el reproductor de multimedia de tu elección! Soportados: Windows Media Player, iTunes, VLC, Media Monkey, Songbird y más.
+
+<b>Presentación de diapositivas</b>
+Controla tu presentación de diapositivas directamente desde tu smartphone! La pantalla de tu PC será transmitida a tu smartphone en tiempo real! Funciona con Powerpoint, Impress y Adobe Reader, Windows Media Center y más.
+
+<b>Reconocimiento de discurso</b>
+Simplemente dí lo que quieras y será tipeado en tu PC. También podés utilizar comandos de voz para controlar multimedia en tu PC, por ejemplo: "skip this track" o "turn the volume up".
+
+<b>Soporte para Android Wear</b>
+Ahora puedes controlar tu PC directamente desde tu muñeca! Súper útil para presentaciones o controlar el reproductor de multimedia.
+
+<b>Y mucho más</b>
+El Remote Control Server es de código abierto y puede ser usado para controlar cualquier dispositivo en tu red. También puedes usar esta app para controlar todos tus dispositivos con internet (Internet of things - IOT), como Arduino, Raspberry Pi, etc.<br/>
+
+<small>Para recibir los comandos de la app Remote Control, vas a necesitar Remote Control Server. Lo puedes descargar gratis desde:
+http://server.android-remote.com
+
+Si tienes problemas para configurar una conexión, seguí esta guía paso a paso o mira este video tutorial:
+http://setup.android-remote.com/
+
+Fans de Facebook pueden probar la versión pro gratis:
+http://facebook.com/RemoteControlApps<br/>
+
+<b>Permisos:</b>
+Red
+Para crear conectores de red y usar protocolos personalizados para conectar con la PC.
+
+Información de llamada
+Es necesario para crear id de dispositivo único. También para verificar compras y registrar códigos de desbloqueo.
+
+Ubicación aproximada
+Análisis para mejorar la localización (traducciones, recursos, etc.).
+
+Multimedia y Archivos
+Para guardar en caché y disminuir tráfico de datos.
+
+Vibración
+Para la respuesta táctil.</small>
