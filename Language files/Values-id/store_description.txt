@@ -1,0 +1,78 @@
+<b>Gunakan Android sebagai pengendali jarak jauh untuk Windows PC atau Mac - kontrol mouse, keyboard, media, presentasi dan lainya!</b>
+The Remote Control Collection adalah kumpulan pengendali jarak jauh, yang dapat anda gunakan untuk mengontrol tanpa kabel Windows PC atau Mac anda. Remote terpadu memungkinkan anda untuk mengontrol PC tanpa mouse dan keyboard!
+<br/>
+
+<b>Apa yang orang lain katakan:</b>
+DotTech.org:
+<i>Sangan responsif dan sangat nyaman untuk digunakan</i>
+
+Chip.de:
+<i>aplikasi yang solid dengan kesederhanaan brilian</i>
+
+UnlockPWD.com:
+<i>Terdapat banyak kendali jarak jauh disana, aplikasi ini berada di level yang lain</i>
+
+Android-User.de:
+<i>pengaturan aplikasi ini sangat jelas</i>
+
+TomsGuide.com:
+<i>aplikasi top untuk mengendalikan PC anda Top app for controlling your PC</i>
+<br/>
+
+<b>Pengendali jarak jauh yang termasuk adalah:</b>
+-Mouse
+-Keyboard
+-Live Screen (Pro)
+-Media Player (Pro)
+-Slideshows (Pro)
+-Speech Recognition
+<br/>
+
+<b>Pengendali Mouse</b>
+Bayangkan Touchpad PC anda berada pada perangkat android. Multitouch gestures seperti scrolling dan zooming juga didukung. Anda dapat mengganti keyboard untuk mengirim tombol pada waktu yang sama.
+
+<b>Pengendali Keyboard</b>
+Gunakan Android keyboard secara fisik atau virtual untuk mengetik karakterdan mereka akan muncuk di PC anda. Tombol penting seperti Windows, Escape dan Control juga tersedia.
+
+<b>Pengendali Live Screen</b>
+Melihat PC anda secara langsung pada perangkat androiddan mengontrol mouse secara real time. 
+
+<b>pengendali Media</b>
+kontrol media player pilihanmu! didukung dengan Windows Media Player, iTunes, VLC, Media Monkey, Songbird dan banyak lagi.
+
+<b>Pengendali Slideshow</b>
+Kontrol slideshows anda secarat tepat di smartphone! Layar PC anda akan di transmisi ke smartphone anda secara real time! aplikasi ini bekerja dengan Powerpoint, Impress dan Adobe Reader, Windows Media Center dan banyak lagi.
+
+<b>Speech recognition</b>
+katakan apa yang anda ingin tulis di PC anda dengan mudah. Anda juga dapat menggunakan perintah suara untuk mengontrol media PC, seperti. "lewati lagu" atau "naikkan volume".
+
+<b>Android Wear Support</b>
+Anda sekarang dapat mengontrol PC anda tepat dari pergelangan tangan anda! Sangan mudah ditangan untuk presentasi atau mengendalikan media player.
+
+<b>banyak lagi</b>
+Server pengendali jarak jauh berupa open source dan dapat untuk mengendalikan nanyak perangkat di jaringan anda. Anda dapat menggunakan aplikasi ini untuk mengontrol perangkat internet of things (IOT) - seperti Arduino, Raspberry Pi dan yang lain.<br/>
+
+<small>Untuk menerima perintah dari aplikasi pengendali jarak jauh, Anda akan membutuhkan Remote Control Server. Anda dapat mengunduh secara gratis di:
+http://server.android-remote.com
+
+Jika Anda mengalami masalah dalam mengatur konesksi, ikuti petunjuk langkah atau dengan menonton video tutorial pada: 
+http://setup.android-remote.com/
+
+Facebook fans dapat mengetest pro version secara gratis:
+http://facebook.com/RemoteControlApps<br/>
+
+<b>Permissions:</b>
+Network
+Untuk Menciptakan network sockets dan untuk mengubah network protocol untuk menyambungkan ke PC.
+
+Panggilan Informasi
+Dibutuhkan untuk membuat id perangkat yang unik. gunakakn untuk memverifikasi pembelian dan pendaftaran kode unlock.
+
+Approximate location
+Untuk menganalisa untuk mengembangkan lokasi (terjemahan, assets, dst.).
+
+Media & File
+Untuk menyimpan network traffic.
+
+Getaran
+untuk memberi feedback.</small>
