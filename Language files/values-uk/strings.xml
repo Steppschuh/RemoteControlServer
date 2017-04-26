@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- Start -->
+    <string name="start_remotes">Пульти</string>
+    <string name="start_remotes_desc">Почати керувати пристроєм</string>
+    <string name="start_devices">Пристрої</string>
+    <string name="start_devices_desc">Керувати пристроями</string>
+
+    <!-- Navigation -->
+    <string name="drawer_open">Відкрити</string>
+    <string name="drawer_close">Закрити</string>
+
+    <string name="title_remotes">Пульти</string>
+    <string name="title_devices">Пристрої</string>
+    <string name="title_info">Інформація</string>
+    <string name="title_help">Допомога</string>
+    <string name="title_settings">Налаштування</string>
+    <string name="title_upgrade">Оновити</string>
+
+    <!-- Devices -->
+    <string name="devicecs_add">Додати новий пристрій</string>
+    <string name="devicecs_ip">IP адреса</string>
+    <string name="devicecs_name">Ім\'я</string>
+
+    <string name="devicecs_name_hint">Медійний ПК </string>
+    <string name="devicecs_in_network">ПК та</string>
+    <string name="devicecs_unknown">Невідомий</string>
+
+    <string name="devicecs_pin_title">Захищено паролем</string>
+    <string name="devicecs_pin_desc">захищено. Вкажіть пароль для автентифікації</string> <!-- starts with device name -->
+    <string name="devicecs_pin_refused">Пристрій відмовив у встановленні з\'єднання.</string>
+    <string name="devicecs_pin_accepted">Пристрій автентифіковано.</string>
+
+    <string name="devicecs_none_title">Пристрої відсутні</string>
+    <string name="devicecs_none_desc">Переконайтесь що Remote Control Server виконується на ПК котрим ви плануєте керувати.\n\nВи можете отримати Remote Control Server за посиланням: http://server.android-remote.com</string>
+    <string name="devicecs_none_desc2">Якщо ваш ПК відсутній,\nдодати IP адресу вручну, та переконайтесь що ваші пристрої знаходяться в одній мережі.\n\nТакож ви можете знайти детальні вказівки для вирішення проблем в розділі довідки.</string>
+
+    <!-- Device Status -->
+    <string name="status_unknown">Невідомо</string>
+    <string name="status_connected">Встановлюється з\'єднання</string>
+    <string name="status_disconnected">Від\'єдано</string>
+    <string name="status_unavailable">Недоступно</string>
+    <string name="status_available">Доступно</string>
+    <string name="status_connecting">Под\'єднано</string>
+    <string name="status_searching">Виконується пошук</string>
+    <string name="status_authenticating">Автентифікація</string>
+
+    <!-- Remotes -->
+    <string name="remote_mouse">Мишка</string>
+    <string name="remote_keyboard">Клавіатура</string>
+    <string name="remote_browser">Переглядач</string>
+    <string name="remote_desktop">Стільниця</string>
+    <string name="remote_presenter">Презентація</string>
+    <string name="remote_shortcuts">Позначки програм</string>
+    <string name="remote_voice">Голосові команди</string>
+    <string name="remote_media">Медіа</string>
+    <string name="remote_custom">Користувацькі</string>
+    <string name="remote_premium">Pro Версія</string>
+    <string name="remote_remove_ads">Вимкнути рекламу</string>
+
+    <string name="remote_mouse_desc">Керувати вказівником мишки як тачпадом на ноутбуці</string>
+    <string name="remote_keyboard_desc">Використовуйте клавіатуру вашого пристрою для вводу тексту на вашому ПК</string>
+    <string name="remote_browser_desc">Засоби для полегшення віддаленого перегляду веб-сторінок</string>
+    <string name="remote_desktop_desc">Показати стільницю ПК на вашому пристрої</string>
+    <string name="remote_presenter_desc">Керування презентаціями та вмістом ваших слайдів</string>
+    <string name="remote_shortcuts_desc">Швидкий доступ до позначок програм що часто використовуються</string>
+    <string name="remote_voice_desc">Використовуйте голос для керування вашим ПК</string>
+    <string name="remote_media_desc">Керування вашими плеєрами та гучністю вашого ПК</string>
+    <string name="remote_custom_desc">Призначити власні дії в Remote Control Server</string>
+    <string name="remote_premium_desc">Розблоковує всі пульти та функції що будуть додані</string>
+    <string name="remote_remove_ads_desc">Позбудьтесь реклами та підтримайте розробку</string>
+
+
+    <!-- Keyboard -->
+    <string name="keyboard_send_general">Загальні клавіші</string>
+    <string name="keyboard_send_advances">Функціональні клавіші</string>
+    <string name="keyboard_copy">Копіювати</string>
+    <string name="keyboard_paste">Вставити</string>
+    <string name="keyboard_select_all">Вибрати\nвсе</string>
+    <string name="keyboard_zoom_in">Зменшити</string>
+    <string name="keyboard_zoom_out">Збільшити</string>
+    <string name="keyboard_cut">Вирізати</string>
+    <string name="keyboard_close">Закрити</string>
+    <string name="keyboard_shutdown">Вимкнути</string>
+    <string name="keyboard_fullscreen">На весь\nекран</string>
+    <string name="keyboard_page_down">Сторінка\nвниз</string>
+    <string name="keyboard_page_up">Сторінка\nвверх</string>
+    <string name="keyboard_desktop">Показати\nстільницю</string>
+    <string name="keyboard_function">Функціональна клавіша</string>
+
+    <!-- Speech -->
+    <string name="speech">Голос</string>
+
+    <!-- Comma sperated list of hotwords to detect commands (e.g. 'skip this track' or 'turn the volume up') -->
+    <string name="speech_identify_media">media,music,track,song,movie</string>
+    <string name="speech_identify_media_next">next,skip,forward</string>
+    <string name="speech_identify_media_previous">back,previous,last</string>
+    <string name="speech_identify_media_pause">pause,resume,play,stop</string>
+    <string name="speech_identify_volume">volume,audio</string>
+    <string name="speech_identify_volume_up">up,increase,louder</string>
+    <string name="speech_identify_volume_down">down,decrease</string>
+    <string name="speech_identify_volume_mute">mute,unmute,off,on,silence</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_code_title">Безкоштовні оновлення</string>
+    <string name="upgrade_code_description">Отримати та активувати промокоди</string>
+    <string name="upgrade_iap_title">Платні оновлення</string>
+    <string name="upgrade_iap_description">Купити Pro версію</string>
+    <string name="upgrade_code_activate">Активація промокоду</string>
+    <string name="upgrade_code_hint_inactive">введіть промокод</string>
+    <string name="upgrade_code_hint_active">промокод активовано</string>
+    <string name="upgrade_code_get_title">Про промокоди</string>
+    <string name="upgrade_code_get_desc">Ви можете розблокувати преміум функції безкоштовно, активувавши промокод. \nПромокоди бувають двох типів: тимчасові та постійні. Промокод може бути активовано лише раз.</string>
+    <string name="upgrade_iap_get_title">Про платні оновлення</string>
+    <string name="upgrade_iap_get_desc">Придбані оновлення не мають обмеження по часу використання,\nі будуть розблоковані відразу на всіх ваших пристроях.</string>
+    <string name="upgrade_code_facebook_title">Facebook</string>
+    <string name="upgrade_code_facebook_description">Ви можете отримати безкоштовний промокод на сторінці в Facebook.\n\nЩоб отримати промокод перейдіть за посиланням:\n\nhttp://code.android-remote.com</string>
+    <string name="upgrade_code_google_title">Google+</string>
+    <string name="upgrade_code_google_description">Якщо ви є членом спільноти Google+ ви отримаєте безкоштовний промокод.\n\nЩоб отримати промокод перейдіть за посиланням:\n\nhttp://beta.android-remote.com</string>
+    <string name="upgrade_code_ad_title">Відео спонсора</string>
+    <string name="upgrade_code_ad_description">Перегляд реклами розблоковує всі преміум функції на одну сесію. \nЦя опція не є постійно-доступною</string>
+    <string name="upgrade_trial_activated">Тимчасовий промокод активовано.</string>
+    <string name="upgrade_pro_activated">Pro Версія активована.</string>
+    <string name="upgrade_remote_locked">Пульт заблокований</string>
+    <string name="upgrade_remote_locked_desc">Пульт доступний в Pro версії. Для його використання вам необхідно переглянути рекламу, активувати промокод або придбати оновлення.</string>
+
+    <!-- Info -->
+    <string name="info_app">Інформація про пристрій</string>
+    <string name="info_app_version">Версія додатку:</string>
+    <string name="info_app_ip">IP адреса:</string>
+    <string name="info_app_ssid">Точка доступу:</string>
+    <string name="info_commands">Команди</string>
+    <string name="info_commands_sent">Передано</string>
+    <string name="info_commands_received">Отримано</string>
+    <string name="info_links">Шукайте нас</string>
+    <string name="info_disclaimer">Застереження</string>
+    <string name="info_disclaimer_app_desc">Доступно для  Android, BlackBerry і iOS. \nВсі права захищено © Steppschuh. \n\Детально про ліцензію за адресою:\nremote-control-collection.com</string>
+    <string name="info_disclaimer_server">Remote Control Сервер</string>
+    <string name="info_disclaimer_server_desc">Доступно для Windows. \nПочатковий код доступний на GitHub та може бути змінений для приватного використання. \nВсі права захищено © Steppschuh \n\nдетально про ліцензію за адресою: \ngithub.com/Steppschuh/RemoteControlServer</string>
+    <string name="info_disclaimer_icons">Позначки</string>
+    <string name="info_disclaimer_icons_desc">Всі позначки розповсюджено згідно міжнародної ліцензії Attribution 4.0 і є власністю \nGoogle Inc, Steppschuh.</string>
+    <string name="info_disclaimer_analytics">Аналітика</string>
+    <string name="info_disclaimer_analytics_desc">Цей додаток використовує Google Analyitcs для збору анонімних даних, включно з вашою мовою, статтю, віком та відслідковує ваші вподобання. Це сприятиме покращенню цього додатку.</string>
+    <string name="info_disclaimer_admob">AdMob</string>
+    <string name="info_disclaimer_admob_desc">AdMob рекламний сервіс Google Inc. що дає нам можливість показувати рекламу спираючись на інформацію про ваші вподобання для монетизації безкоштовного додатку. Демонстрація реклами буде вимкнена будь-яким придбаним оновленням або внаслідок активації промокоду.</string>
+
+    <!-- Help -->
+    <string name="help_first_start_title">Почати користування</string>
+    <string name="help_first_start_desc">Отримайте клієнтський додаток для ПК за посиланням: \n\nhttp://setup.android-remote.com</string>
+    <string name="help_connect">Налаштування з\'єднання</string>
+    <string name="help_connect_desc">Дотримуйтесь наданих вказівок щоб налаштувати з\'єднання між пристроями.</string>
+    <string name="help_troubleshooting">Пошук проблем</string>
+    <string name="help_troubleshooting_desc">Якщо у вас виникли запитання пов\'зані з вказівками по встановленню з\'єднання, ознайомтесь з цим для вирішення поширених проблем.</string>
+    <string name="help_faq">FAQ</string>
+    <string name="help_faq_desc">Ймовірно тут вже є відповіді на питання пов\'язані з цим додатком чи з Remote Control Server.\nТакож тут ви можете поставити свої запитання.</string>
+    <string name="help_support">Підтримка</string>
+    <string name="help_support_desc">Маєте питання - не соромтесь до нас звертатись.\nМи зв\'яжемось з вами в найкоротші терміни.\n\nЗробіть будь ласка нам послугу - звертайтесь до нас після ознайомлення з інструкціями та FAQ</string>
+    <string name="help_feedback">Відгуки</string>
+    <string name="help_feedback_desc">Допоможіть нам покращити цей додаток!</string>
+
+    <!-- Units -->
+    <string name="unit_day">день</string>
+    <string name="unit_days">днів</string>
+
+    <!-- Errors -->
+    <string name="error_device_name_empty">Назва пристрою повинна бути непорожньою</string>
+    <string name="error_device_ip_empty">Вкажіть IP-адресу вашого ПК</string>
+    <string name="error_device_ip_invalid">Вкажіть дійсну IP-адресу</string>
+    <string name="error_code_invalid">Промокод не є дійсним</string>
+    <string name="error_unknown">Щось не склалось як гадалось..., спробуйте ще раз.</string>
+    <string name="error_code_limit_reached">Перевищено обмеження на кількість активацій даного промокоду</string>
+    <string name="error_code_expired">Термін дії промокоду завершився, ви більше не зможете його активувати.</string>
+    <string name="error_trial_expired">Термін дії ознайомлювальної версії додатку завершився.</string>
+    <string name="error_trial_used">Ви вже використали цей промокод, можна активувати лише один промокод для пристрою.</string>
+    <string name="error_iap_not_supported">Покупки всередині додатку не підтримуються цим пристроєм.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Закрити</string>
+    <string name="dialog_later">Потім</string>
+    <string name="dialog_unlock">Розблокувати</string>
+    <string name="dialog_success">Виконано</string>
+    <string name="dialog_error">Помилка</string>
+    <string name="dialog_info">Інформація</string>
+    <string name="dialog_changelog">Історія змін</string>
+
+    <!-- Updates -->
+    <string name="update_server_required">Оновити сервер</string>
+    <string name="update_server_required_desc">Додаток цієї версії потребує нову версію Remote Control Server для коректної роботи.\n\nОновіть ваш Server або отримайте свіжу версію за посиланням:\nhttp://server.android-remote.com</string>
+
+    <!-- Hints -->
+    <string name="hint_title">А ви знали?</string>
+    <string name="hint_close_button">Ясно</string>
+    <string name="hint_mouse_multitouch">Ви можете використовувати мультидотикові жести для прокручування вмісту та масштабування.</string>
+    <string name="hint_media_volume_buttons">Ви можете використовувати кнопки гучності для контролю гучності на ПК.</string>
+    <string name="hint_presenter_volume_buttons">Ви можете використовувати кнопки гучності для перемикання між слайдами.</string>
+    <string name="hint_keyboard_advanced">Ви можете зсунути вліво щоб побачити функціональні клавіші та додаткові позначки.</string>
+    <string name="hint_free_trial">Ви можете спробувати Pro Version безкоштовно активувавши промокод.\n\nПерейдіть до Оновлення щоб дізнатись більше.</string>
+    <string name="hint_remove_ads">Ви можете вимкнути перегляд реклами розблокувавши будь-який преміум пульт.\n\nПерейдіть до Оновлення щоб дізнатись більше.</string>
+    <string name="hint_feedback_title">Сподобався додаток?</string>
+    <string name="hint_feedback_desc">Ваші відгуки допомагають нам покращувати наш продукт.\n\nСкажіть нам свою думку та оцініть цей додаток.</string>
+    <string name="hint_wifi_title">Потрібен WiFi</string>
+    <string name="hint_wifi_desc">Ви повинні бути під\'єднані до WiFi мережі щоб з\'єднатись з вашим пристроєм.</string>
+    <string name="hint_available_in_rcc_title">Не включає</string>
+    <string name="hint_available_in_rcc_desc">Цей пристрій є частиною Remote Control Collection додатку.</string>
+    <string name="hint_watched_rewarded_video_title">Тимчасово розблоковане</string>
+    <string name="hint_watched_rewarded_video_desc">Переглядаючи цю рекламу ви розблокували цей пристрій в поточній сесії.\n\nМайте на увазі що така можливість може бути доступною не кожного разу в майбутньому.</string>
+    <string name="hint_experienced_user_title">Ви Pro!</string>
+    <string name="hint_experienced_user_desc">Скидається на те що ви користуєтесь цим додатком досить довго.\n\nМи були б надзвичайно щасливі, як би ви,\n\nбудьте такі ласкаві,\n\nнаписали огляд або черкнули нам листа!</string>
+
+    <!-- Settings -->
+    <string name="pref_cat_general">Загальне</string>
+    <string name="pref_haptic_feedback">Тактильний зворотній зв\'язок</string>
+    <string name="pref_haptic_feedback_desc">Вібрація при надсиланні команди</string>
+    <string name="pref_low_hardware_performance">Низька апаратна продуктивність</string>
+    <string name="pref_low_hardware_performance_desc">Обмежити важкі анімаційні ефекти</string>
+    <string name="pref_low_screen_quality">Низька продуктивність екрану</string>
+    <string name="pref_low_screen_quality_desc">Запитувати скріншоти гіршої якості</string>
+    <string name="pref_low_update_frequency">Низька частота оновлень</string>
+    <string name="pref_low_update_frequency_desc">Відсилати менше команд за секунду</string>
+    <!-- Misc. Stuff -->
+    <string name="work_in_progress">В процесі...</string>
+</resources>
