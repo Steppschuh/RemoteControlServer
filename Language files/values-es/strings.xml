@@ -4,14 +4,6 @@
     tools:ignore="MissingTranslation">
 
     <!-- General -->
-    <string name="app_name" translatable="false">Remote Control Collection</string>
-    <string name="interstitial_main_id" translatable="false">ca-app-pub-0964556634112634/1424472330</string>
-    <string name="interstitial_iap_id" translatable="false">ca-app-pub-0964556634112634/1446306336</string>
-    <string name="banner_main_id" translatable="false">ca-app-pub-0964556634112634/5476712735</string>
-
-    <string name="url_rcc" translatable="false">market://details?id=com.steppschuh.remotecontrolcollection</string>
-    <string name="url_rcc_pro" translatable="false">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
-    <string name="url_current_app" translatable="false">@string/url_rcc</string>
 
     <!-- Start -->
     <string name="start_remotes">Controles</string>
@@ -34,7 +26,6 @@
     <string name="devicecs_add">Agregar un nuevo dispositivo</string>
     <string name="devicecs_ip">Dirección IP</string>
     <string name="devicecs_name">Nombre</string>
-    <string name="devicecs_ip_hint" translatable="false">192.168.1.23</string>
     <string name="devicecs_name_hint">Multimedia PC</string>
     <string name="devicecs_in_network">PC en </string>
     <string name="devicecs_unknown">Desconocido</string>
@@ -160,16 +151,9 @@
     <string name="info_commands_received">Recibido</string>
 
     <string name="info_links">Encuentranos</string>
-    <string name="info_links_facebook" translatable="false">Facebook</string>
-    <string name="info_links_google" translatable="false">Google+</string>
-    <string name="info_links_store_googleplay" translatable="false">Play Store</string>
-    <string name="info_links_store_amazon" translatable="false">Amazon Store</string>
-    <string name="info_links_store_other" translatable="false">App Store</string>
-    <string name="info_links_store" translatable="false">@string/info_links_store_googleplay</string>
 
     <!-- Disclaimer (no need to translate this) -->
     <string name="info_disclaimer">Disclaimer</string>
-    <string name="info_disclaimer_app" translatable="false">@string/app_name</string>
     <string name="info_disclaimer_app_desc">Available for Android, BlackBerry and iOS.\nCopyright © Steppschuh, license details at:\nremote-control-collection.com</string>
     <string name="info_disclaimer_server">Remote Control Server</string>
     <string name="info_disclaimer_server_desc">Available for Windows. The source code is available at GitHub and may be modified for private use.\nCopyright © Steppschuh, license details at:\ngithub.com/Steppschuh/RemoteControlServer</string>

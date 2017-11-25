@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- General -->
+    <string name="app_name" translatable="false">Remote Control Collection</string>
+    <string name="interstitial_main_id" translatable="false">ca-app-pub-0964556634112634/1424472330</string>
+    <string name="interstitial_iap_id" translatable="false">ca-app-pub-0964556634112634/1446306336</string>
+    <string name="banner_main_id" translatable="false">ca-app-pub-0964556634112634/5476712735</string>
+
+    <string name="url_rcc" translatable="false">market://details?id=com.steppschuh.remotecontrolcollection</string>
+    <string name="url_rcc_pro" translatable="false">market://details?id=com.steppschuh.remotecontrolcollectionpro</string>
+    <string name="url_current_app" translatable="false">@string/url_rcc</string>
+
+    <!-- Start -->
+    <string name="start_remotes">Telecomenzi</string>
+    <string name="start_remotes_desc">Incepe sa controlezi un dispozitiv</string>
+    <string name="start_devices">Dispozitive</string>
+    <string name="start_devices_desc">Adauga sau adminstreaza dispozitive</string>
+
+    <!-- Navigation -->
+    <string name="drawer_open">Deschide</string>
+    <string name="drawer_close">Inchide</string>
+
+    <string name="title_remotes">Telecomenzi</string>
+    <string name="title_devices">Dispozitive</string>
+    <string name="title_info">Info</string>
+    <string name="title_help">Ajutor</string>
+    <string name="title_settings">Setari</string>
+    <string name="title_upgrade">Upgrades</string>
+
+    <!-- Devices -->
+    <string name="devicecs_add">Adauga dispozitiv nou</string>
+    <string name="devicecs_ip">Adresa IP</string>
+    <string name="devicecs_name">Nume</string>
+    <string name="devicecs_ip_hint" translatable="false">192.168.1.23</string>
+    <string name="devicecs_name_hint">Media PC</string>
+    <string name="devicecs_in_network">PC in </string>
+    <string name="devicecs_unknown">Necunoscut</string>
+
+    <string name="devicecs_pin_title">Pin protejat</string>
+    <string name="devicecs_pin_desc">este protejat. Va rugam introduceti PIN-ul pentru autentificare</string>
+    <!-- starts with device name -->
+    <string name="devicecs_pin_refused">Dispozitivul refuza conectarea</string>
+    <string name="devicecs_pin_accepted">Dispozitiv autentificat</string>
+
+    <string name="devicecs_none_title">Niciun dispozitiv</string>
+    <string name="devicecs_none_desc">Asigurati-va ca Remote Control Server este pornit pe PC-ul pe care vreti sa il controlati.\n\nPuteti descarca serverul aici:\nhttp://server.android-remote.com</string>
+    <string name="devicecs_none_desc2">Daca PC-ul tau nu apare aici, adauga manual adresa de IP si asigura-te ca dispozitivele sunt conectate la aceeasi retea.\n\nPuteți găsi instrucțiuni avansate de depanare în secțiunea de ajutor.</string>
+
+    <!-- Device Status -->
+    <string name="status_unknown">Necunoscut</string>
+    <string name="status_connected">Conectat</string>
+    <string name="status_disconnected">Deconectat</string>
+    <string name="status_unavailable">Indisponibil</string>
+    <string name="status_available">Disponibil</string>
+    <string name="status_connecting">Se conecteaza</string>
+    <string name="status_searching">In curs de cautare</string>
+    <string name="status_authenticating">Autentifica</string>
+
+    <!-- Remotes -->
+    <string name="remote">Telecomanda</string>
+    <string name="remote_mouse">Mouse</string>
+    <string name="remote_keyboard">Tastatura</string>
+    <string name="remote_browser">Browser</string>
+    <string name="remote_desktop">Desktop</string>
+    <string name="remote_presenter">Presenter</string>
+    <string name="remote_shortcuts">Shortcuts</string>
+    <string name="remote_voice">Voce</string>
+    <string name="remote_media">Media</string>
+    <string name="remote_custom">Personalizat</string>
+    <string name="remote_premium">Pro Version</string>
+    <string name="remote_remove_ads">Elimina reclamele</string>
+
+    <string name="remote_mouse_desc">Controleaza cursorul mouse-ului ca pe touchpad-ul unui laptop</string>
+    <string name="remote_keyboard_desc">Utilizați tastatura software pentru a tasta pe PC</string>
+    <string name="remote_browser_desc">Actiuni comune pentru utilizarea web-ului in mod remote</string>
+    <string name="remote_desktop_desc">Vedeti ecranul PC-ului pe dispozitivul dvs. în timp real</string>
+    <string name="remote_presenter_desc">Controlați prezentările și verificați conținutul slide-ului</string>
+    <string name="remote_shortcuts_desc">Acces rapid pentru comenzile rapide frecvent utilizate de Windows</string>
+    <string name="remote_voice_desc">Utilizați vocea pentru a trimite comenzi pe PC</string>
+    <string name="remote_media_desc">Controlați playerele media uzuale și volumul sistemului</string>
+    <string name="remote_custom_desc">Definiți acțiunile personalizate în Remote Control Server</string>
+    <string name="remote_premium_desc">Deblochează toate telecomenzile premium și funcțiile viitoare</string>
+    <string name="remote_remove_ads_desc">Scapa de anunțuri și sprijină dezvoltarea</string>
+
+    <!-- Keyboard -->
+    <string name="keyboard_send_general">Common keys</string>
+    <string name="keyboard_send_advances">Function keys</string>
+    <string name="keyboard_copy">Copy</string>
+    <string name="keyboard_paste">Paste</string>
+    <string name="keyboard_select_all">Select\nall</string>
+    <string name="keyboard_zoom_in">Zoom\nin</string>
+    <string name="keyboard_zoom_out">Zoom\nout</string>
+    <string name="keyboard_cut">Cut</string>
+    <string name="keyboard_close">Close</string>
+    <string name="keyboard_shutdown">Shut\ndown</string>
+    <string name="keyboard_fullscreen">Full\nscreen</string>
+    <string name="keyboard_page_down">Page\ndown</string>
+    <string name="keyboard_page_up">Page\nup</string>
+    <string name="keyboard_desktop">Show\ndesktop</string>
+    <string name="keyboard_function">Function key</string>
+
+    <!-- Speech -->
+    <string name="speech">Discurs</string>
+    <!-- Comma sperated list of hotwords to detect commands (e.g. 'skip this track' or 'turn the volume up') -->
+    <string name="speech_identify_media">media, muzica, melodie, cantec, film</string>
+    <string name="speech_identify_media_next">următor, săriți, înainte</string>
+    <string name="speech_identify_media_previous">înapoi, anterior, ultimul</string>
+    <string name="speech_identify_media_pause">pauză, reia, redare, oprire</string>
+    <string name="speech_identify_volume">volum,audio</string>
+    <string name="speech_identify_volume_up">mareste, crește, mai tare</string>
+    <string name="speech_identify_volume_down">miceste, scade</string>
+    <string name="speech_identify_volume_mute">mut,activeaza sunetul,off,on,liniste</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_code_title">Upgrade-uri gratis</string>
+    <string name="upgrade_code_description">Obțineți sau activați un cod de deblocare</string>
+    <string name="upgrade_iap_title">Actualizări plătite</string>
+    <string name="upgrade_iap_description">Achiziționați telecomenzi premium</string>
+
+    <string name="upgrade_code_activate">Activati un cod</string>
+    <string name="upgrade_code_hint_inactive">Introduceți un cod de deblocare aici</string>
+    <string name="upgrade_code_hint_active">Codul de deblocare este activ</string>
+
+    <string name="upgrade_code_get_title">Despre codurile de deblocare</string>
+    <string name="upgrade_code_get_desc">Puteți debloca gratuit funcțiile premium prin activarea codurilor de deblocare. \ N \ nCâteva coduri sunt valabile numai pentru o perioadă limitată de timp, altele nu vor expira. Codurile de încercare pot fi activate numai o singură dată.</string>
+    <string name="upgrade_iap_get_title">Despre upgrade-urile plătite</string>
+    <string name="upgrade_iap_get_desc">Achizițiile de upgrade achiziționate nu vor expira și vor fi deblocate pe toate dispozitivele dvs. \ n \ nOrice upgrade va elimina, de asemenea, anunțurile.</string>
+
+    <string name="upgrade_code_facebook_title">Facebook</string>
+    <string name="upgrade_code_facebook_description">Puteți obține un cod de încercare gratuit de pe pagina noastră Facebook pentru a vă începe. \ N \ nPentru a primi codul, navigați în browser-ul PC-ului dvs. la:\nhttp://code.android-remote.com</string>
+    <string name="upgrade_code_google_title">Google+</string>
+    <string name="upgrade_code_google_description">Dacă vă înscrieți ca tester beta pe Google+, veți primi, de asemenea, un cod de încercare gratuit. \ N \ nPentru a primi codul dvs., navigați în browserul PC-ului dvs. la:\nhttp://beta.android-remote.com</string>
+    <string name="upgrade_code_ad_title">Videoclip sponsorizat</string>
+    <string name="upgrade_code_ad_description">Vizionarea unui anunț va debloca toate telecomenzi premium pentru o sesiune. \ N \ nAceastă opțiune ar putea să nu fie disponibilă de fiecare dată.</string>
+    <string name="upgrade_code_translate_title">Traducere</string>
+    <string name="upgrade_code_translate_description">Ajutați-ne să traducem această aplicație în limba dvs. maternă și vă vom recompensa cu un cod nelimitat pentru eforturile dvs. \ n \ nTrimiteți-ne un e-mail pentru a afla mai multe: contact@android-remote.com</string>
+
+    <string name="upgrade_trial_activated">Codul de încercare a fost activat.</string>
+    <string name="upgrade_pro_activated">Versiunea Pro a fost activată.</string>
+
+    <string name="upgrade_remote_locked">Remote locked</string>
+    <string name="upgrade_remote_locked_desc">Această telecomandă este o caracteristică pro. Puteți să urmăriți un anunț, să activați un cod de deblocare sau să achiziționați un upgrade pentru a-l utiliza.</string>
+    <string name="upgrade_remote_locked_pirate">Nu pentru pirați</string>
+    <string name="upgrade_remote_locked_pirate_desc">Această telecomandă a fost blocată deoarece nu utilizați o versiune oficială a aplicației.</string>
+
+    <string name="upgrade_untrusted_source">Aplicatie piratata</string>
+    <string name="upgrade_untrusted_source_desc">Din nefericire, se pare că nu ați cumpărat actualizarea pe care încercați să o utilizați. \ N \ nAplicația dvs. va fi retrogradată la versiunea gratuită acum.</string>
+    <string name="upgrade_pirate_toast">Yarr! Sunt un Pirat puternic!</string>
+
+    <!-- Info -->
+    <string name="info_app">Informații dispozitiv</string>
+    <string name="info_app_version">Versiunea aplicației</string>
+    <string name="info_app_ip">Adresa IP</string>
+    <string name="info_app_ssid">Network SSID</string>
+
+    <string name="info_commands">Comenzi</string>
+    <string name="info_commands_sent">Trimis</string>
+    <string name="info_commands_received">Primit</string>
+
+    <string name="info_links">Gaseste-ne</string>
+    <string name="info_links_facebook" translatable="false">Facebook</string>
+    <string name="info_links_google" translatable="false">Google+</string>
+    <string name="info_links_store_googleplay" translatable="false">Play Store</string>
+    <string name="info_links_store_amazon" translatable="false">Amazon Store</string>
+    <string name="info_links_store_other" translatable="false">App Store</string>
+    <string name="info_links_store" translatable="false">@string/info_links_store_googleplay</string>
+
+    <!-- Disclaimer (no need to translate this) -->
+    <string name="info_disclaimer">Disclaimer</string>
+    <string name="info_disclaimer_app" translatable="false">@string/app_name</string>
+    <string name="info_disclaimer_app_desc">Available for Android, BlackBerry and iOS.\nCopyright © Steppschuh, license details at:\nremote-control-collection.com</string>
+    <string name="info_disclaimer_server">Remote Control Server</string>
+    <string name="info_disclaimer_server_desc">Available for Windows. The source code is available at GitHub and may be modified for private use.\nCopyright © Steppschuh, license details at:\ngithub.com/Steppschuh/RemoteControlServer</string>
+    <string name="info_disclaimer_icons">Icons</string>
+    <string name="info_disclaimer_icons_desc">All icons are either released under an Attribution 4.0 International license by Google Inc. or by Steppschuh.</string>
+    <string name="info_disclaimer_analytics">Analytics</string>
+    <string name="info_disclaimer_analytics_desc">This app uses Google Analyitcs to collect anonymous usage data, including your language, gender, age and which remotes you preferably use. This helps us to improve your experience when using this app.</string>
+    <string name="info_disclaimer_admob">AdMob</string>
+    <string name="info_disclaimer_admob_desc">AdMob is an advertising service provided by Google Inc. that allows us to display interest based ads in order to monetize the free app. Ads will be removed by any paid upgrade.</string>
+
+    <!-- Help -->
+    <string name="help_first_start_title">Noțiuni de bază</string>
+    <string name="help_first_start_desc">Pentru a începe controlul PC-ului, deschideți acest site pe dispozitivul pe care doriți să-l controlați:\n\nhttp://setup.android-remote.com</string>
+    <string name="help_connect">Configurarea unei conexiuni</string>
+    <string name="help_connect_desc">Urmați acest ghid pentru a afla cum să configurați o conexiune între dispozitive.</string>
+    <string name="help_troubleshooting">Depanare</string>
+    <string name="help_troubleshooting_desc">Dacă aveți probleme în urma ghidului de instalare, citiți acest lucru pentru a afla cum să remediați problemele frecvente.</string>
+    <string name="help_faq">Întrebări frecvente</string>
+    <string name="help_faq_desc">Întrebările legate de această aplicație sau de serverul de control de la distanță ar fi putut fi deja preluate. De asemenea, puteți adăuga întrebările dvs. aici.</string>
+    <string name="help_support">Suport</string>
+    <string name="help_support_desc">Dacă aveți probleme, nu ezitați să ne contactați. Vom reveni la dvs. cât mai curând posibil. \ N \ nVă rugăm să ne faceți o favoare și să citiți ghidurile și întrebările frecvente înainte de a ne contacta.</string>
+    <string name="help_feedback">Parere</string>
+    <string name="help_feedback_desc">Spuneți-ne ce credeți, feedbackul dvs. ne ajută să îmbunătățim această aplicație!</string>
+
+    <!-- Units -->
+    <string name="unit_day">zi</string>
+    <string name="unit_days">zile</string>
+
+    <!-- Errors -->
+    <string name="error_device_name_empty">Numele dispozitivului nu poate fi gol</string>
+    <string name="error_device_ip_empty">Introduceți adresa IP a PC-ului</string>
+    <string name="error_device_ip_invalid">Introduceți o adresă IP valida</string>
+
+    <string name="error_code_invalid">Acesta nu este un cod valid</string>
+    <string name="error_unknown">Ceva n-a mers bine. Vă rugăm să încercați din nou.</string>
+    <string name="error_code_limit_reached">Limita de înregistrare pentru acest cod a fost atinsă.</string>
+    <string name="error_code_expired">Acest cod a expirat, nu îl mai puteți activa.</string>
+    <string name="error_trial_expired">Procesul dvs. a expirat</string>
+    <string name="error_trial_used">Ați folosit deja un cod de încercare înainte, puteți activa numai un cod pe dispozitiv.</string>
+    <string name="error_iap_not_supported">Valorificarea în aplicație nu este acceptată pe acest dispozitiv.</string>
+    <string name="error_no_speech_recognition">Niciun serviciu de recunoaștere a vorbirii</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Inchide</string>
+    <string name="dialog_later">Mai tarziu</string>
+    <string name="dialog_unlock">Deblocheaza</string>
+    <string name="dialog_try">Incearca</string>
+    <string name="dialog_success">Succes</string>
+    <string name="dialog_error">Eroare</string>
+    <string name="dialog_info">Info</string>
+    <string name="dialog_changelog">Changelog</string>
+
+    <!-- Updates -->
+    <string name="update_server_required">Server update</string>
+    <string name="update_server_required_desc">Această versiune de aplicație necesită o nouă versiune de server de la distanță pentru a funcționa corect. \ N \ nVă rugăm să actualizați Serverul sau să descărcați cea mai recentă versiune de la:\nhttp://server.android-remote.com</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Stiati ca?</string>
+    <string name="hint_close_button">Am înţeles</string>
+    <string name="hint_mouse_multitouch">Puteți utiliza gesturi multitouch pentru derulare și zoom.</string>
+    <string name="hint_media_volume_buttons">Puteți utiliza tastele de volum pentru a controla volumul sistemului de la distanță.</string>
+    <string name="hint_presenter_volume_buttons">Puteți utiliza tastele de volum pentru a comuta între diapozitive.</string>
+    <string name="hint_keyboard_advanced">Puteți glisa la stânga pentru a afișa tastele funcționale și comenzile rapide avansate.</string>
+    <string name="hint_free_trial">Puteți încerca gratuit versiunea pro activând un cod de deblocare. \ N \ nMergeti la upgrade si aflați mai multe.</string>
+    <string name="hint_remove_ads">Puteți să eliminați anunțurile prin deblocarea oricărei telecomenzi premium. \ N \ nMergeti la upgrade si aflați mai multe.</string>
+    <string name="hint_feedback_title">Va place aplicatia?</string>
+    <string name="hint_feedback_desc">Feedbackul dvs. ne ajută să îmbunătățim produsul nostru. \ N \ nVă rugăm să ne anunțați ce credeți și evaluați această aplicație.</string>
+    <string name="hint_wifi_title">WiFi necesar</string>
+    <string name="hint_wifi_desc">Trebuie să vă conectați la o rețea WiFi pentru a vă conecta la dispozitivul dvs.</string>
+    <string name="hint_available_in_rcc_title">Nu este inclus</string>
+    <string name="hint_available_in_rcc_desc">Această telecomandă face parte din aplicația Remote Control Collection.</string>
+    <string name="hint_watched_rewarded_video_title">Deblocat temporar</string>
+    <string name="hint_watched_rewarded_video_desc">Privind anunțul, ați deblocat această telecomandă pentru sesiunea curentă. \ N \ nTrebuie să aveți în vedere faptul că este posibil ca această opțiune să nu fie disponibilă de fiecare dată în viitor.</string>
+    <string name="hint_experienced_user_title">Esti Pro!</string>
+    <string name="hint_experienced_user_desc">Se pare că ați folosit destul de mult această aplicație. \ N \ nVă rugăm să scrieți recenzii sau să ne trimiteți un e-mail!</string>
+
+    <!-- Settings -->
+    <string name="pref_cat_general">General</string>
+    <string name="pref_haptic_feedback">Feedback haptic</string>
+    <string name="pref_haptic_feedback_desc">Vibreaza la comandă trimisa</string>
+    <string name="pref_low_hardware_performance">Performanță hardware scăzută</string>
+    <string name="pref_low_hardware_performance_desc">Dezactivează unele animații</string>
+    <string name="pref_low_screen_quality">Performanță ecran redusa</string>
+    <string name="pref_low_screen_quality_desc">Solicită screenshot-uri de calitate inferioară</string>
+    <string name="pref_low_update_frequency">Frecvență redusă de actualizare</string>
+    <string name="pref_low_update_frequency_desc">Trimite mai puține comenzi pe secundă</string>
+
+    <!-- Misc. Stuff -->
+    <string name="work_in_progress">Lucru in desfasurare</string>
+
+</resources>
+
+
+
+
+
+
+<b>Foloseste-ti telefonul Android pe post de telecomanda pentru PC-ul tau Windows sau pentru Mac - Controleaza mouse-ul, tastatura, fisierele media, prezentarile si multe altele!</b> Remote Control Collection e o compilatie de telecomenzi, pe care le poti folosi pentru a-ti controla fara fir, de la distanta Windows PC-ul sau Mac-ul tau. Telecomenzile unificate va permit sa controlati PC-ul fara mouse si tastatura!
+<br/>
+
+<b>Ce spun altii:</b> DotTech.org:
+<i>Foarte sensibila si foarte confortabil de folosit</i> Chip.de:
+<i>O aplicatie solida cu simplitate brilianta</i> UnlockPWD.com:
+<i>Contine multe telecomenzi, aplicatia este de alt nivel</i> Android-User.de:
+<i>Configurarea acestei aplicații este la mintea cocosului</i> TomsGuide.com:
+<i>Aplicatie de top pentru controlul PC-ului</i>
+<br/>
+
+<b>Telecomenzi care sunt incluse:</b> -Mouse -Tastatura -Ecran Live (Pro) -Media Player (Pro) -Slideshow-uri (Pro) -Recunoastere Vocala
+<br/>
+
+<b>Controleaza Mouse-ul</b> Imagineaza-ti touchpad-ul PC-ului tau chiar pe dispozitivul tau Android. Sunt suportate gesturi multitouch precum scrollare si marirea imaginii. Puteți comuta tastatura pentru a tasta simultan.
+
+<b>Controleaza Tastatura</b> Foloseste tastatura fizica sau virtuala Android pentru a scrie caractere si ele vor aparea pe PC. Sunt valabile si tastele speciale precum Windows, Escape sau Control.
+
+<b>Controleaza Ecranul Live</b> Vezi ecranul PC-ului tau live pe dispozitivul tau Android si controleaza mouse-ul in timp real.
+
+<b>Controleaza Media</b> Controleaza Media Player-ul dupa preferintele tale! Sunt suportate Windows Media Player, iTunes, Media Monkey, Songbird si altele.
+
+<b>Controleaza Slideshow-urile</b> Controleaza slideshow-urile direct de pe smartphone! Ecranul PC-ului va fi transmis in timp real pe smartphone! Asta functioneaza cu Powerpoint, Impress si Adobe Reader, Windows Media Center si altele.
+
+<b>Recunoastere vocala</b> Doar spune ce vrei sa fie scris pe PC-ul tau. Poti folosi si comenzi vocale ca sa controlezi fisierele media, de exemplu "Schimba melodia" sau "Da volumul mai tare".
+
+<b>Android Wear Support</b> You can now control your PC directly from your wrist! Super handy for presentations or controlling a media player. Acum poti controla PC-ul direct din incheietura! Super la indemana pentru prezentari sau controlarea media player-ului.
+
+<b>Mult mai mult</b> Server-ul Remote COntrol este open source si poate fi folosit pentru orice dispozitiv din reteaua ta. Puteți utiliza această aplicație pentru a vă controla toate dispozitivele care se pot conecta la internet - precum Arduino, Raspberry Pi si altele.<br/>
+
+<small>Ca aplicatia sa functioneze, aveti nevoie de Remote Control Server. Puteti sa il descarcati de aici:
+http://server.android-remote.com
+
+Daca intampinati probleme la configurarea conexiunii, urmeaza acest ghid pas cu pas sau urmareste tutorialul video aici: 
+http://setup.android-remote.com/
+
+Fanii de pe facebook pot folosi versiunea PRO pe gratis:
+http://facebook.com/RemoteControlApps<br/>
+
+<b>Permisiuni:</b>
+Retea
+Pentru crearea de prize de rețea și utilizarea protocoalelor de rețea personalizate pentru conectarea la PC.
+
+Informații despre apeluri
+Este necesar pentru a crea un id unic de dispozitiv. Se utilizează pentru verificarea achizițiilor și pentru înregistrarea codurilor de deblocare.
+
+Locație aproximativă
+Pentru analize pentru a îmbunătăți localizarea (traduceri, active etc.).
+
+
+Media & fișiere
+Pentru cache pentru salvarea traficului în rețea.
+
+Vibratie
+Pentru feedback-ul haptic.</small>
