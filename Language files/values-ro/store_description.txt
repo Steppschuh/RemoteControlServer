@@ -1,0 +1,55 @@
+<b>Foloseste-ti telefonul Android pe post de telecomanda pentru PC-ul tau Windows sau pentru Mac - Controleaza mouse-ul, tastatura, fisierele media, prezentarile si multe altele!</b> Remote Control Collection e o compilatie de telecomenzi, pe care le poti folosi pentru a-ti controla fara fir, de la distanta Windows PC-ul sau Mac-ul tau. Telecomenzile unificate va permit sa controlati PC-ul fara mouse si tastatura!
+<br/>
+
+<b>Ce spun altii:</b> DotTech.org:
+<i>Foarte sensibila si foarte confortabil de folosit</i> Chip.de:
+<i>O aplicatie solida cu simplitate brilianta</i> UnlockPWD.com:
+<i>Contine multe telecomenzi, aplicatia este de alt nivel</i> Android-User.de:
+<i>Configurarea acestei aplicații este la mintea cocosului</i> TomsGuide.com:
+<i>Aplicatie de top pentru controlul PC-ului</i>
+<br/>
+
+<b>Telecomenzi care sunt incluse:</b> -Mouse -Tastatura -Ecran Live (Pro) -Media Player (Pro) -Slideshow-uri (Pro) -Recunoastere Vocala
+<br/>
+
+<b>Controleaza Mouse-ul</b> Imagineaza-ti touchpad-ul PC-ului tau chiar pe dispozitivul tau Android. Sunt suportate gesturi multitouch precum scrollare si marirea imaginii. Puteți comuta tastatura pentru a tasta simultan.
+
+<b>Controleaza Tastatura</b> Foloseste tastatura fizica sau virtuala Android pentru a scrie caractere si ele vor aparea pe PC. Sunt valabile si tastele speciale precum Windows, Escape sau Control.
+
+<b>Controleaza Ecranul Live</b> Vezi ecranul PC-ului tau live pe dispozitivul tau Android si controleaza mouse-ul in timp real.
+
+<b>Controleaza Media</b> Controleaza Media Player-ul dupa preferintele tale! Sunt suportate Windows Media Player, iTunes, Media Monkey, Songbird si altele.
+
+<b>Controleaza Slideshow-urile</b> Controleaza slideshow-urile direct de pe smartphone! Ecranul PC-ului va fi transmis in timp real pe smartphone! Asta functioneaza cu Powerpoint, Impress si Adobe Reader, Windows Media Center si altele.
+
+<b>Recunoastere vocala</b> Doar spune ce vrei sa fie scris pe PC-ul tau. Poti folosi si comenzi vocale ca sa controlezi fisierele media, de exemplu "Schimba melodia" sau "Da volumul mai tare".
+
+<b>Android Wear Support</b> You can now control your PC directly from your wrist! Super handy for presentations or controlling a media player. Acum poti controla PC-ul direct din incheietura! Super la indemana pentru prezentari sau controlarea media player-ului.
+
+<b>Mult mai mult</b> Server-ul Remote COntrol este open source si poate fi folosit pentru orice dispozitiv din reteaua ta. Puteți utiliza această aplicație pentru a vă controla toate dispozitivele care se pot conecta la internet - precum Arduino, Raspberry Pi si altele.<br/>
+
+<small>Ca aplicatia sa functioneze, aveti nevoie de Remote Control Server. Puteti sa il descarcati de aici:
+http://server.android-remote.com
+
+Daca intampinati probleme la configurarea conexiunii, urmeaza acest ghid pas cu pas sau urmareste tutorialul video aici: 
+http://setup.android-remote.com/
+
+Fanii de pe facebook pot folosi versiunea PRO pe gratis:
+http://facebook.com/RemoteControlApps<br/>
+
+<b>Permisiuni:</b>
+Retea
+Pentru crearea de prize de rețea și utilizarea protocoalelor de rețea personalizate pentru conectarea la PC.
+
+Informații despre apeluri
+Este necesar pentru a crea un id unic de dispozitiv. Se utilizează pentru verificarea achizițiilor și pentru înregistrarea codurilor de deblocare.
+
+Locație aproximativă
+Pentru analize pentru a îmbunătăți localizarea (traduceri, active etc.).
+
+
+Media & fișiere
+Pentru cache pentru salvarea traficului în rețea.
+
+Vibratie
+Pentru feedback-ul haptic.</small>
